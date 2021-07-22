@@ -1,0 +1,16 @@
+#	Complexity of crafting recipes for DLX wagons.
+#
+#	Standard: DLX wagons are crafted from several intermediate craft items that represent wagon parts.
+#	Basic: DLX wagons are crafted using simplified recipes.  This results in fewer craft items being included in the game.
+dlxtrains_wagon_crafting_recipe_complexity (Complexity of DLX wagon crafting recipes) enum Standard Standard,Basic
+
+
+#	Specify if a random livery should be selected when placing DLX wagons.  Otherwise, a default livery scheme that is defined for each wagon type will be used.
+dlxtrains_random_liveries (Use a random livery when placing wagons) bool true
+
+#	Specify which age appearance should be used when placing DLX wagons.
+#
+#	New: Newly placed wagons will always have a newer appearance.
+#	Random: Newly placed wagons will have a randomly selected age appearance.
+#	Used: Newly placed wagons will always have a used appearance, showing signs of dirt, rust or other effects.
+dlxtrains_default_age_appearance (Default age appearance for newly placed wagons) enum Random New,Random,Used
