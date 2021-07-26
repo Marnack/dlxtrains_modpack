@@ -23,7 +23,7 @@ end
 
 dofile(minetest.get_modpath("dlxtrains_industrial_wagons").."/items.lua")
 dofile(minetest.get_modpath("dlxtrains_industrial_wagons").."/wagons.lua")
-dofile(minetest.get_modpath("dlxtrains_industrial_wagons").."/wagon_receipes.lua")
+dofile(minetest.get_modpath("dlxtrains_industrial_wagons").."/wagon_recipes.lua")
 
 -- Cleanup
 dlxtrains_industrial_wagons.S = nil
