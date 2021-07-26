@@ -12,12 +12,12 @@ The following craft items are defined and added to the game if the "Complexity o
 
 - **Australian Louver Van Cargo Housing** - This item is used to craft metal louver vans of the type built in Australia.
 - **Container Wagon Cargo Mounts** - This item is used to craft shipping container wagons.
+- **Container Wagon Single Cargo Mount** - This item is used to craft smaller shipping container wagons
 - **European Wooden Covered Goods Wagon Cargo Housing** - This item is used to craft wooden box wagons of the type built in Europe.
 - **Flat Wagon Cargo Deck** - This item is used to craft flat wagons.
 - **Hopper Wagon Cargo Bin** - This item is used to craft hopper wagons.
 - **North American Wooden Boxcar Cargo Housing** - This item is used to craft wooden boxcars of the type built in North America.
 - **Stake Wagon Cargo Deck** - This item is used to craft stake wagons.
-
 
 ## Wagons
 
@@ -38,6 +38,10 @@ Modeled after a mid to late 20th century European container wagon, this wagon ca
 Although not the first wagon to use bogies in Europe, this early 20th century freight wagon allowed significant versatility for large and oddly shaped loads.
 
 In game, these wagons have four load states: no load, light load, medium load and large load.  When the wagon is lightly loaded, a single node will appear on the wagon as its cargo.  If the cargo is applicable for a flat wagon and can be simply rendered, it will be shown as itself.  Otherwise it will be shown as a crate.  For a moderately full inventory, three nodes will be rendered as the cargo.  As with the previous case, one of the additional nodes with be rendered as itself or a crate.  The third node will always be shown as a crate.  In the case of a large load, five nodes with be shown on the wagon, all of them either as one or more of the inventory items or as a crate.   If the DlxTrains Cargo mod is enabled, additional wooden crates will become available.  These additional crates will then be pseudo-randomly selected from the set of available crates.
+
+### European Single Container Wagon
+
+This fictional wagon is a shortened version of the European Container Wagon that may be better suited for some railways in Minetest.  It has two load states, empty and with a single shipping container whenever inventory is present.  Like the larger container wagon, the livery of the shipping container will match the livery of the wagon.  However, if the **DlxTrains Cargo** mod is enabled, additional shipping container liveries will become available.  The livery of the shipping container will then be pseudo-randomly selected from the set of available liveries.
 
 ### European Stake Wagon
 
@@ -63,7 +67,7 @@ This wagon is modeled after the early to mid 20th century boxcars used in North 
 
 For those DLX wagons that can display visible cargo or cargo containers, DlxTrains will use a pseudo-random algorithm to display the cargo or containers.  However, for players that are interested in specifying exactly which cargo or container is visible on a wagon, that can be accomplished by managing the arrangement and quantities of items and nodes in the wagon's inventory.
 
-When viewing the inventory formspec of DLX wagons that have the ability to display their cargo, a few of the wagon's inventory slots will be highlighted with a blue-green color.  Adjusting the type or quantities of items in those particular slots will cause a change in the displayed cargo or containers.  (Tip: Use the **DLX Wagon Updater Tool** to quickly confirm the change after adjusting the inventory.) Although each type of DLX wagon that supports visible loads may behave slightly differently, adding or removing one item from these special slots will allow a player to select the next or previous container (crate or shipping container).  In the case of loads where the item is visible as itself, any non-zero quantity is equivalent.  The European Stake Wagon will only show logs as its cargo when one or more tree nodes are placed in the first (upper-left) inventory slot, otherwise it will display its cargo similar to a flat wagon.
+When viewing the inventory formspec of DLX wagons that have the ability to display their cargo, one or more of the wagon's inventory slots will be highlighted with a blue-green color.  Adjusting the type or quantities of items in those particular slots will cause a change in the displayed cargo or containers.  (Tip: Use the **DLX Wagon Updater Tool** to quickly confirm the change after adjusting the inventory.) Although each type of DLX wagon that supports visible loads may behave slightly differently, adding or removing one item from these special slots will allow a player to select the next or previous container (crate or shipping container).  In the case of loads where the item is visible as itself, any non-zero quantity is equivalent.  The European Stake Wagon will only show logs as its cargo when one or more tree nodes are placed in the first (upper-left) inventory slot, otherwise it will display its cargo similar to a flat wagon.
 
 ## Wagon Liveries
 

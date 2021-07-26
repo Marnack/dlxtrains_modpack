@@ -9,7 +9,12 @@ local shipping_container_livery_count = dlxtrains_industrial_wagons.shipping_con
 local livery_scheme_industrial_wagon_container_type1 = {
 		[0]="dlxtrains_industrial_wagons_container_type1_black.png",
 		[1]="dlxtrains_industrial_wagons_container_type1_red.png",
-		[2]="dlxtrains_industrial_wagons_container_type1_green.png",
+		count = 2,
+	}
+
+local livery_scheme_industrial_wagon_container_type2 = {
+		[0]="dlxtrains_industrial_wagons_container_type2_black.png",
+		[1]="dlxtrains_industrial_wagons_container_type2_red.png",
 		count = 2,
 	}
 
@@ -341,6 +346,14 @@ local meshes_industrial_wagon_container_type1 = {
 		end,
 	}
 
+local meshes_industrial_wagon_container_type2 = {
+		default = "dlxtrains_industrial_wagons_container_type2.b3d",
+		loaded1 = "dlxtrains_industrial_wagons_container_type2_loaded.b3d",
+		update_model = function(wagon, data, texture_file, meshes)
+			return update_model_industrial_wagon_container(wagon, data, texture_file, meshes)
+		end,
+	}
+
 local meshes_industrial_wagon_covered_goods_type1 = {
 		default = "dlxtrains_industrial_wagons_covered_goods_type1.b3d",
 	}
@@ -423,6 +436,35 @@ advtrains.register_wagon("dlxtrains_industrial_wagons:container_type1", {
 		box=8*4,
 	},
 }, S("European Container Wagon"), "dlxtrains_industrial_wagons_container_type1_inv.png")
+
+advtrains.register_wagon("dlxtrains_industrial_wagons:container_type2", {
+	mesh = meshes_industrial_wagon_container_type2.default,
+	textures = {"dlxtrains_industrial_wagon_container_type2.png"},
+	set_textures = function(wagon, data)
+		dlxtrains.set_textures_for_livery_scheme(wagon, data, livery_scheme_industrial_wagon_container_type2, meshes_industrial_wagon_container_type2)
+	end,
+	custom_may_destroy = function(wagon, puncher, time_from_last_punch, tool_capabilities, direction)
+		return not dlxtrains.update_livery(wagon, puncher, livery_scheme_industrial_wagon_container_type2)
+	end,
+	seats = {},
+	drives_on={default=true},
+	max_speed=20,
+	visual_size = {x=1, y=1},
+	wagon_span=2.4375,
+	collisionbox = {-1.0,-0.5,-1.0,1.0,2.5,1.0},
+	drops={"default:steelblock"},
+	has_inventory = true,
+	get_inventory_formspec = function(wagon, pname, invname)
+		return "size[8,9]"..
+			"box[0,0;.8,.88;#077]"..	-- Highlight slots that impact visible loads
+			"list["..invname..";box;0,0;8,2;]"..
+			"list[current_player;main;0,5;8,4;]"..
+			"listring[]"
+	end,
+	inventory_list_sizes = {
+		box=8*2,
+	},
+}, S("European Single Container Wagon"), "dlxtrains_industrial_wagons_container_type2_inv.png")
 
 advtrains.register_wagon("dlxtrains_industrial_wagons:covered_goods_type1", {
 	mesh = meshes_industrial_wagon_covered_goods_type1.default,

@@ -8,6 +8,11 @@ if dlxtrains.get_config_wagon_crafting_recipe_complexity() == 1 then
 		inventory_image = "dlxtrains_industrial_wagons_container_body_type1.png",
 	})
 
+	minetest.register_craftitem("dlxtrains_industrial_wagons:container_body_type2", {
+		description = S("Container Wagon Single Cargo Mount"),
+		inventory_image = "dlxtrains_industrial_wagons_container_body_type2.png",
+	})
+
 	minetest.register_craftitem("dlxtrains_industrial_wagons:covered_goods_body_type1", {
 		description = S("North American Wooden Boxcar Cargo Housing"),
 		inventory_image = "dlxtrains_industrial_wagons_covered_goods_body_type1.png",
@@ -41,8 +46,17 @@ if dlxtrains.get_config_wagon_crafting_recipe_complexity() == 1 then
 	minetest.register_craft({
 		output = "dlxtrains_industrial_wagons:container_body_type1",
 		recipe = {
-			{"", "dlxtrains:blueprint", ""},
-			{"dye:black", "default:chest", "dye:yellow"},
+			{"dye:black", "dlxtrains:blueprint", "dye:yellow"},
+			{"default:steel_ingot", "default:chest", "default:steel_ingot"},
+			{"default:steel_ingot", "default:steel_ingot", "default:steel_ingot"},
+		}
+	})
+
+	minetest.register_craft({
+		output = "dlxtrains_industrial_wagons:container_body_type2",
+		recipe = {
+			{"dye:black", "dlxtrains:blueprint", "dye:yellow"},
+			{"", "default:chest", ""},
 			{"default:steel_ingot", "default:steel_ingot", "default:steel_ingot"},
 		}
 	})

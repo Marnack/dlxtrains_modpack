@@ -5,6 +5,15 @@ if dlxtrains.get_config_wagon_crafting_recipe_complexity() == 0 then
 		output = "dlxtrains_industrial_wagons:container_type1",
 		recipe = {
 			{"", "default:steel_ingot", ""},
+			{"default:chest", "default:steel_ingot", "default:chest"},
+			{"advtrains:wheel", "dlxtrains:blueprint", "advtrains:wheel"},
+		}
+	})
+
+	minetest.register_craft({
+		output = "dlxtrains_industrial_wagons:container_type2",
+		recipe = {
+			{"", "default:tin_ingot", ""},
 			{"default:steel_ingot", "default:chest", "default:steel_ingot"},
 			{"advtrains:wheel", "dlxtrains:blueprint", "advtrains:wheel"},
 		}
@@ -77,6 +86,15 @@ elseif dlxtrains.get_config_wagon_crafting_recipe_complexity() == 1 then
 		output = "dlxtrains_industrial_wagons:container_type1",
 		recipe = {
 			{"", "dlxtrains_industrial_wagons:container_body_type1", ""},
+			{"dlxtrains:coupler_buffer_and_chain", "dlxtrains:wagon_chassis", "dlxtrains:coupler_buffer_and_chain"},
+			{"dlxtrains:wheel_set", "", "dlxtrains:wheel_set"},
+		}
+	})
+
+	minetest.register_craft({
+		output = "dlxtrains_industrial_wagons:container_type2",
+		recipe = {
+			{"", "dlxtrains_industrial_wagons:container_body_type2", ""},
 			{"dlxtrains:coupler_buffer_and_chain", "dlxtrains:wagon_chassis", "dlxtrains:coupler_buffer_and_chain"},
 			{"dlxtrains:wheel_set", "", "dlxtrains:wheel_set"},
 		}
