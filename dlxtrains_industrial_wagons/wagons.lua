@@ -407,275 +407,293 @@ local meshes_industrial_wagon_transition_type1 = {
 
 -- ////////////////////////////////////////////////////////////////////////////////////
 
-advtrains.register_wagon("dlxtrains_industrial_wagons:container_type1", {
-	mesh = meshes_industrial_wagon_container_type1.default,
-	textures = {"dlxtrains_industrial_wagon_container_type1.png"},
-	set_textures = function(wagon, data)
-		dlxtrains.set_textures_for_livery_scheme(wagon, data, livery_scheme_industrial_wagon_container_type1, meshes_industrial_wagon_container_type1)
-	end,
-	custom_may_destroy = function(wagon, puncher, time_from_last_punch, tool_capabilities, direction)
-		return not dlxtrains.update_livery(wagon, puncher, livery_scheme_industrial_wagon_container_type1)
-	end,
-	seats = {},
-	drives_on={default=true},
-	max_speed=20,
-	visual_size = {x=1, y=1},
-	wagon_span=4.25,
-	collisionbox = {-1.0,-0.5,-1.0,1.0,2.5,1.0},
-	drops={"default:steelblock"},
-	has_inventory = true,
-	get_inventory_formspec = function(wagon, pname, invname)
-		return "size[8,9]"..
-			"box[0,0;.8,.88;#077]"..	-- Highlight slots that impact visible loads
-			"box[0,2;.8,.88;#077]"..
-			"list["..invname..";box;0,0;8,4;]"..
-			"list[current_player;main;0,5;8,4;]"..
-			"listring[]"
-	end,
-	inventory_list_sizes = {
-		box=8*4,
-	},
-}, S("European Container Wagon"), "dlxtrains_industrial_wagons_container_type1_inv.png")
+if dlxtrains_industrial_wagons.max_wagon_length >= 8.5 then
+	advtrains.register_wagon("dlxtrains_industrial_wagons:container_type1", {
+		mesh = meshes_industrial_wagon_container_type1.default,
+		textures = {"dlxtrains_industrial_wagon_container_type1.png"},
+		set_textures = function(wagon, data)
+			dlxtrains.set_textures_for_livery_scheme(wagon, data, livery_scheme_industrial_wagon_container_type1, meshes_industrial_wagon_container_type1)
+		end,
+		custom_may_destroy = function(wagon, puncher, time_from_last_punch, tool_capabilities, direction)
+			return not dlxtrains.update_livery(wagon, puncher, livery_scheme_industrial_wagon_container_type1)
+		end,
+		seats = {},
+		drives_on={default=true},
+		max_speed=20,
+		visual_size = {x=1, y=1},
+		wagon_span=4.25,
+		collisionbox = {-1.0,-0.5,-1.0,1.0,2.5,1.0},
+		drops={"default:steelblock"},
+		has_inventory = true,
+		get_inventory_formspec = function(wagon, pname, invname)
+			return "size[8,9]"..
+				"box[0,0;.8,.88;#077]"..	-- Highlight slots that impact visible loads
+				"box[0,2;.8,.88;#077]"..
+				"list["..invname..";box;0,0;8,4;]"..
+				"list[current_player;main;0,5;8,4;]"..
+				"listring[]"
+		end,
+		inventory_list_sizes = {
+			box=8*4,
+		},
+	}, S("European Container Wagon"), "dlxtrains_industrial_wagons_container_type1_inv.png")
+end
 
-advtrains.register_wagon("dlxtrains_industrial_wagons:container_type2", {
-	mesh = meshes_industrial_wagon_container_type2.default,
-	textures = {"dlxtrains_industrial_wagon_container_type2.png"},
-	set_textures = function(wagon, data)
-		dlxtrains.set_textures_for_livery_scheme(wagon, data, livery_scheme_industrial_wagon_container_type2, meshes_industrial_wagon_container_type2)
-	end,
-	custom_may_destroy = function(wagon, puncher, time_from_last_punch, tool_capabilities, direction)
-		return not dlxtrains.update_livery(wagon, puncher, livery_scheme_industrial_wagon_container_type2)
-	end,
-	seats = {},
-	drives_on={default=true},
-	max_speed=20,
-	visual_size = {x=1, y=1},
-	wagon_span=2.4375,
-	collisionbox = {-1.0,-0.5,-1.0,1.0,2.5,1.0},
-	drops={"default:steelblock"},
-	has_inventory = true,
-	get_inventory_formspec = function(wagon, pname, invname)
-		return "size[8,9]"..
-			"box[0,0;.8,.88;#077]"..	-- Highlight slots that impact visible loads
-			"list["..invname..";box;0,0;8,2;]"..
-			"list[current_player;main;0,5;8,4;]"..
-			"listring[]"
-	end,
-	inventory_list_sizes = {
-		box=8*2,
-	},
-}, S("European Single Container Wagon"), "dlxtrains_industrial_wagons_container_type2_inv.png")
+if dlxtrains_industrial_wagons.max_wagon_length >= 4.875 then
+	advtrains.register_wagon("dlxtrains_industrial_wagons:container_type2", {
+		mesh = meshes_industrial_wagon_container_type2.default,
+		textures = {"dlxtrains_industrial_wagon_container_type2.png"},
+		set_textures = function(wagon, data)
+			dlxtrains.set_textures_for_livery_scheme(wagon, data, livery_scheme_industrial_wagon_container_type2, meshes_industrial_wagon_container_type2)
+		end,
+		custom_may_destroy = function(wagon, puncher, time_from_last_punch, tool_capabilities, direction)
+			return not dlxtrains.update_livery(wagon, puncher, livery_scheme_industrial_wagon_container_type2)
+		end,
+		seats = {},
+		drives_on={default=true},
+		max_speed=20,
+		visual_size = {x=1, y=1},
+		wagon_span=2.4375,
+		collisionbox = {-1.0,-0.5,-1.0,1.0,2.5,1.0},
+		drops={"default:steelblock"},
+		has_inventory = true,
+		get_inventory_formspec = function(wagon, pname, invname)
+			return "size[8,9]"..
+				"box[0,0;.8,.88;#077]"..	-- Highlight slots that impact visible loads
+				"list["..invname..";box;0,0;8,2;]"..
+				"list[current_player;main;0,5;8,4;]"..
+				"listring[]"
+		end,
+		inventory_list_sizes = {
+			box=8*2,
+		},
+	}, S("European Single Container Wagon"), "dlxtrains_industrial_wagons_container_type2_inv.png")
+end
 
-advtrains.register_wagon("dlxtrains_industrial_wagons:covered_goods_type1", {
-	mesh = meshes_industrial_wagon_covered_goods_type1.default,
-	textures = {"dlxtrains_industrial_wagon_covered_goods_type1.png"},
-	set_textures = function(wagon, data)
-		dlxtrains.set_textures_for_livery_scheme(wagon, data, livery_scheme_industrial_wagon_covered_goods_type1, meshes_industrial_wagon_covered_goods_type1)
-	end,
-	custom_may_destroy = function(wagon, puncher, time_from_last_punch, tool_capabilities, direction)
-		return not dlxtrains.update_livery(wagon, puncher, livery_scheme_industrial_wagon_covered_goods_type1)
-	end,
-	seats = {},
-	drives_on={default=true},
-	max_speed=25,
-	visual_size = {x=1, y=1},
-	wagon_span=4,
-	collisionbox = {-1.0,-0.5,-1.0,1.0,2.5,1.0},
-	drops={"default:steelblock"},
-	has_inventory = true,
-	get_inventory_formspec = function(wagon, pname, invname)
-		return "size[8,10]"..
-			"list["..invname..";box;0,0;8,5;]"..
-			"list[current_player;main;0,6;8,4;]"..
-			"listring[]"
-	end,
-	inventory_list_sizes = {
-		box=8*5,
-	},
-}, S("North American Wooden Boxcar"), "dlxtrains_industrial_wagons_covered_goods_type1_inv.png")
+if dlxtrains_industrial_wagons.max_wagon_length >= 8 then
+	advtrains.register_wagon("dlxtrains_industrial_wagons:covered_goods_type1", {
+		mesh = meshes_industrial_wagon_covered_goods_type1.default,
+		textures = {"dlxtrains_industrial_wagon_covered_goods_type1.png"},
+		set_textures = function(wagon, data)
+			dlxtrains.set_textures_for_livery_scheme(wagon, data, livery_scheme_industrial_wagon_covered_goods_type1, meshes_industrial_wagon_covered_goods_type1)
+		end,
+		custom_may_destroy = function(wagon, puncher, time_from_last_punch, tool_capabilities, direction)
+			return not dlxtrains.update_livery(wagon, puncher, livery_scheme_industrial_wagon_covered_goods_type1)
+		end,
+		seats = {},
+		drives_on={default=true},
+		max_speed=25,
+		visual_size = {x=1, y=1},
+		wagon_span=4,
+		collisionbox = {-1.0,-0.5,-1.0,1.0,2.5,1.0},
+		drops={"default:steelblock"},
+		has_inventory = true,
+		get_inventory_formspec = function(wagon, pname, invname)
+			return "size[8,10]"..
+				"list["..invname..";box;0,0;8,5;]"..
+				"list[current_player;main;0,6;8,4;]"..
+				"listring[]"
+		end,
+		inventory_list_sizes = {
+			box=8*5,
+		},
+	}, S("North American Wooden Boxcar"), "dlxtrains_industrial_wagons_covered_goods_type1_inv.png")
+end
 
-advtrains.register_wagon("dlxtrains_industrial_wagons:covered_goods_type2", {
-	mesh = meshes_industrial_wagon_covered_goods_type2.default,
-	textures = {"dlxtrains_industrial_wagon_covered_goods_type2.png"},
-	set_textures = function(wagon, data)
-		dlxtrains.set_textures_for_livery_scheme(wagon, data, livery_scheme_industrial_wagon_covered_goods_type2, meshes_industrial_wagon_covered_goods_type2)
-	end,
-	custom_may_destroy = function(wagon, puncher, time_from_last_punch, tool_capabilities, direction)
-		return not dlxtrains.update_livery(wagon, puncher, livery_scheme_industrial_wagon_covered_goods_type2)
-	end,
-	seats = {},
-	drives_on={default=true},
-	max_speed=25,
-	visual_size = {x=1, y=1},
-	wagon_span=4,
-	collisionbox = {-1.0,-0.5,-1.0,1.0,2.5,1.0},
-	drops={"default:steelblock"},
-	has_inventory = true,
-	get_inventory_formspec = function(wagon, pname, invname)
-		return "size[8,10]"..
-			"list["..invname..";box;0,0;8,5;]"..
-			"list[current_player;main;0,6;8,4;]"..
-			"listring[]"
-	end,
-	inventory_list_sizes = {
-		box=8*5,
-	},
-}, S("Australian Louver Van"), "dlxtrains_industrial_wagons_covered_goods_type2_inv.png")
+if dlxtrains_industrial_wagons.max_wagon_length >= 8 then
+	advtrains.register_wagon("dlxtrains_industrial_wagons:covered_goods_type2", {
+		mesh = meshes_industrial_wagon_covered_goods_type2.default,
+		textures = {"dlxtrains_industrial_wagon_covered_goods_type2.png"},
+		set_textures = function(wagon, data)
+			dlxtrains.set_textures_for_livery_scheme(wagon, data, livery_scheme_industrial_wagon_covered_goods_type2, meshes_industrial_wagon_covered_goods_type2)
+		end,
+		custom_may_destroy = function(wagon, puncher, time_from_last_punch, tool_capabilities, direction)
+			return not dlxtrains.update_livery(wagon, puncher, livery_scheme_industrial_wagon_covered_goods_type2)
+		end,
+		seats = {},
+		drives_on={default=true},
+		max_speed=25,
+		visual_size = {x=1, y=1},
+		wagon_span=4,
+		collisionbox = {-1.0,-0.5,-1.0,1.0,2.5,1.0},
+		drops={"default:steelblock"},
+		has_inventory = true,
+		get_inventory_formspec = function(wagon, pname, invname)
+			return "size[8,10]"..
+				"list["..invname..";box;0,0;8,5;]"..
+				"list[current_player;main;0,6;8,4;]"..
+				"listring[]"
+		end,
+		inventory_list_sizes = {
+			box=8*5,
+		},
+	}, S("Australian Louver Van"), "dlxtrains_industrial_wagons_covered_goods_type2_inv.png")
+end
 
-advtrains.register_wagon("dlxtrains_industrial_wagons:covered_goods_type3", {
-	mesh = meshes_industrial_wagon_covered_goods_type3.default,
-	textures = {"dlxtrains_industrial_wagon_covered_goods_type3.png"},
-	set_textures = function(wagon, data)
-		dlxtrains.set_textures_for_livery_scheme(wagon, data, livery_scheme_industrial_wagon_covered_goods_type3, meshes_industrial_wagon_covered_goods_type3)
-	end,
-	custom_may_destroy = function(wagon, puncher, time_from_last_punch, tool_capabilities, direction)
-		return not dlxtrains.update_livery(wagon, puncher, livery_scheme_industrial_wagon_covered_goods_type3)
-	end,
-	seats = {},
-	drives_on={default=true},
-	max_speed=20,
-	visual_size = {x=1, y=1},
-	wagon_span=3.5,
-	collisionbox = {-1.0,-0.5,-1.0,1.0,2.5,1.0},
-	drops={"default:steelblock"},
-	has_inventory = true,
-	get_inventory_formspec = function(wagon, pname, invname)
-		return "size[8,9]"..
-			"list["..invname..";box;0,0;8,4;]"..
-			"list[current_player;main;0,5;8,4;]"..
-			"listring[]"
-	end,
-	inventory_list_sizes = {
-		box=8*4,
-	},
-}, S("European Wooden Covered Goods Wagon"), "dlxtrains_industrial_wagons_covered_goods_type3_inv.png")
-
--- ////////////////////////////////////////////////////////////////////////////////////
-
-advtrains.register_wagon("dlxtrains_industrial_wagons:flat_type1", {
-	mesh = meshes_industrial_wagon_flat_type1.default,
-	textures = {"dlxtrains_industrial_wagon_flat_type1.png"},
-	set_textures = function(wagon, data)
-		dlxtrains.set_textures_for_livery_scheme(wagon, data, livery_scheme_industrial_wagon_flat_type1, meshes_industrial_wagon_flat_type1)
-	end,
-	custom_may_destroy = function(wagon, puncher, time_from_last_punch, tool_capabilities, direction)
-		return not dlxtrains.update_livery(wagon, puncher, livery_scheme_industrial_wagon_flat_type1)
-	end,
-	seats = {},
-	drives_on={default=true},
-	max_speed=20,
-	visual_size = {x=1, y=1},
-	wagon_span=3,
-	collisionbox = {-1.0,-0.5,-1.0,1.0,2.5,1.0},
-	drops={"default:steelblock"},
-	has_inventory = true,
-	get_inventory_formspec = function(wagon, pname, invname)
-		return "size[8,8]"..
-			"box[0,0;.8,.88;#077]"..	-- Highlight slots that impact visible loads
-			"box[0,1;.8,.88;#077]"..
-			"box[0,2;.8,.88;#077]"..
-			"list["..invname..";box;0,0;8,3;]"..
-			"list[current_player;main;0,4;8,4;]"..
-			"listring[]"
-	end,
-	inventory_list_sizes = {
-		box=8*3,
-	},
-}, S("European Flat Wagon"), "dlxtrains_industrial_wagons_flat_type1_inv.png")
+if dlxtrains_industrial_wagons.max_wagon_length >= 7 then
+	advtrains.register_wagon("dlxtrains_industrial_wagons:covered_goods_type3", {
+		mesh = meshes_industrial_wagon_covered_goods_type3.default,
+		textures = {"dlxtrains_industrial_wagon_covered_goods_type3.png"},
+		set_textures = function(wagon, data)
+			dlxtrains.set_textures_for_livery_scheme(wagon, data, livery_scheme_industrial_wagon_covered_goods_type3, meshes_industrial_wagon_covered_goods_type3)
+		end,
+		custom_may_destroy = function(wagon, puncher, time_from_last_punch, tool_capabilities, direction)
+			return not dlxtrains.update_livery(wagon, puncher, livery_scheme_industrial_wagon_covered_goods_type3)
+		end,
+		seats = {},
+		drives_on={default=true},
+		max_speed=20,
+		visual_size = {x=1, y=1},
+		wagon_span=3.5,
+		collisionbox = {-1.0,-0.5,-1.0,1.0,2.5,1.0},
+		drops={"default:steelblock"},
+		has_inventory = true,
+		get_inventory_formspec = function(wagon, pname, invname)
+			return "size[8,9]"..
+				"list["..invname..";box;0,0;8,4;]"..
+				"list[current_player;main;0,5;8,4;]"..
+				"listring[]"
+		end,
+		inventory_list_sizes = {
+			box=8*4,
+		},
+	}, S("European Wooden Covered Goods Wagon"), "dlxtrains_industrial_wagons_covered_goods_type3_inv.png")
+end
 
 -- ////////////////////////////////////////////////////////////////////////////////////
 
-advtrains.register_wagon("dlxtrains_industrial_wagons:hopper_type1", {
-	mesh = meshes_industrial_wagon_hopper_type1.default,
-	textures = {"dlxtrains_industrial_wagon_hopper_type1.png"},
-	set_textures = function(wagon, data)
-		dlxtrains.set_textures_for_livery_scheme(wagon, data, livery_scheme_industrial_wagon_hopper_type1, meshes_industrial_wagon_hopper_type1)
-	end,
-	custom_may_destroy = function(wagon, puncher, time_from_last_punch, tool_capabilities, direction)
-		return not dlxtrains.update_livery(wagon, puncher, livery_scheme_industrial_wagon_hopper_type1)
-	end,
-	seats = {},
-	drives_on={default=true},
-	max_speed=25,
-	visual_size = {x=1, y=1},
-	wagon_span=3,
-	collisionbox = {-1.0,-0.5,-1.0,1.0,2.5,1.0},
-	drops={"default:steelblock"},
-	has_inventory = true,
-	get_inventory_formspec = function(wagon, pname, invname)
-		return "size[8,8]"..
-			"box[0,0;.8,.88;#077]"..	-- Highlight slots that impact visible loads
-			"list["..invname..";box;0,0;8,3;]"..
-			"list[current_player;main;0,4;8,4;]"..
-			"listring[]"
-	end,
-	inventory_list_sizes = {
-		box=8*3,
-	},
-}, S("North American Hopper Wagon"), "dlxtrains_industrial_wagons_hopper_type1_inv.png")
+if dlxtrains_industrial_wagons.max_wagon_length >= 6 then
+	advtrains.register_wagon("dlxtrains_industrial_wagons:flat_type1", {
+		mesh = meshes_industrial_wagon_flat_type1.default,
+		textures = {"dlxtrains_industrial_wagon_flat_type1.png"},
+		set_textures = function(wagon, data)
+			dlxtrains.set_textures_for_livery_scheme(wagon, data, livery_scheme_industrial_wagon_flat_type1, meshes_industrial_wagon_flat_type1)
+		end,
+		custom_may_destroy = function(wagon, puncher, time_from_last_punch, tool_capabilities, direction)
+			return not dlxtrains.update_livery(wagon, puncher, livery_scheme_industrial_wagon_flat_type1)
+		end,
+		seats = {},
+		drives_on={default=true},
+		max_speed=20,
+		visual_size = {x=1, y=1},
+		wagon_span=3,
+		collisionbox = {-1.0,-0.5,-1.0,1.0,2.5,1.0},
+		drops={"default:steelblock"},
+		has_inventory = true,
+		get_inventory_formspec = function(wagon, pname, invname)
+			return "size[8,8]"..
+				"box[0,0;.8,.88;#077]"..	-- Highlight slots that impact visible loads
+				"box[0,1;.8,.88;#077]"..
+				"box[0,2;.8,.88;#077]"..
+				"list["..invname..";box;0,0;8,3;]"..
+				"list[current_player;main;0,4;8,4;]"..
+				"listring[]"
+		end,
+		inventory_list_sizes = {
+			box=8*3,
+		},
+	}, S("European Flat Wagon"), "dlxtrains_industrial_wagons_flat_type1_inv.png")
+end
 
 -- ////////////////////////////////////////////////////////////////////////////////////
 
-advtrains.register_wagon("dlxtrains_industrial_wagons:stake_type1", {
-	mesh = meshes_industrial_wagon_stake_type1.default,
-	textures = {"dlxtrains_industrial_wagon_stake_type1.png"},
-	set_textures = function(wagon, data)
-		dlxtrains.set_textures_for_livery_scheme(wagon, data, livery_scheme_industrial_wagon_stake_type1, meshes_industrial_wagon_stake_type1)
-	end,
-	custom_may_destroy = function(wagon, puncher, time_from_last_punch, tool_capabilities, direction)
-		return not dlxtrains.update_livery(wagon, puncher, livery_scheme_industrial_wagon_stake_type1)
-	end,
-	seats = {},
-	drives_on={default=true},
-	max_speed=20,
-	visual_size = {x=1, y=1},
-	wagon_span=3,
-	collisionbox = {-1.0,-0.5,-1.0,1.0,2.5,1.0},
-	drops={"default:steelblock"},
-	has_inventory = true,
-	get_inventory_formspec = function(wagon, pname, invname)
-		return "size[8,8]"..
-			"box[0,0;.8,.88;#077]"..	-- Highlight slots that impact visible loads
-			"box[0,1;.8,.88;#077]"..
-			"box[0,2;.8,.88;#077]"..
-			"list["..invname..";box;0,0;8,3;]"..
-			"list[current_player;main;0,4;8,4;]"..
-			"listring[]"
-	end,
-	inventory_list_sizes = {
-		box=8*3,
-	},
-}, S("European Stake Wagon"), "dlxtrains_industrial_wagons_stake_type1_inv.png")
+if dlxtrains_industrial_wagons.max_wagon_length >= 6 then
+	advtrains.register_wagon("dlxtrains_industrial_wagons:hopper_type1", {
+		mesh = meshes_industrial_wagon_hopper_type1.default,
+		textures = {"dlxtrains_industrial_wagon_hopper_type1.png"},
+		set_textures = function(wagon, data)
+			dlxtrains.set_textures_for_livery_scheme(wagon, data, livery_scheme_industrial_wagon_hopper_type1, meshes_industrial_wagon_hopper_type1)
+		end,
+		custom_may_destroy = function(wagon, puncher, time_from_last_punch, tool_capabilities, direction)
+			return not dlxtrains.update_livery(wagon, puncher, livery_scheme_industrial_wagon_hopper_type1)
+		end,
+		seats = {},
+		drives_on={default=true},
+		max_speed=25,
+		visual_size = {x=1, y=1},
+		wagon_span=3,
+		collisionbox = {-1.0,-0.5,-1.0,1.0,2.5,1.0},
+		drops={"default:steelblock"},
+		has_inventory = true,
+		get_inventory_formspec = function(wagon, pname, invname)
+			return "size[8,8]"..
+				"box[0,0;.8,.88;#077]"..	-- Highlight slots that impact visible loads
+				"list["..invname..";box;0,0;8,3;]"..
+				"list[current_player;main;0,4;8,4;]"..
+				"listring[]"
+		end,
+		inventory_list_sizes = {
+			box=8*3,
+		},
+	}, S("North American Hopper Wagon"), "dlxtrains_industrial_wagons_hopper_type1_inv.png")
+end
 
 -- ////////////////////////////////////////////////////////////////////////////////////
 
-advtrains.register_wagon("dlxtrains_industrial_wagons:transition_type1", {
-	mesh = meshes_industrial_wagon_transition_type1.default,
-	textures = {"dlxtrains_industrial_wagon_transition_type1.png"},
-	set_textures = function(wagon, data)
-		dlxtrains.set_textures_for_livery_scheme(wagon, data, livery_scheme_industrial_wagon_transition_type1, meshes_industrial_wagon_transition_type1)
-	end,
-	custom_may_destroy = function(wagon, puncher, time_from_last_punch, tool_capabilities, direction)
-		return not dlxtrains.update_livery(wagon, puncher, livery_scheme_industrial_wagon_transition_type1)
-	end,
-	seats = {},
-	drives_on={default=true},
-	max_speed=20,
-	visual_size = {x=1, y=1},
-	wagon_span=3,
-	collisionbox = {-1.0,-0.5,-1.0,1.0,2.5,1.0},
-	drops={"default:steelblock"},
-	has_inventory = true,
-	get_inventory_formspec = function(wagon, pname, invname)
-		return "size[8,8]"..
-			"box[0,0;.8,.88;#077]"..	-- Highlight slots that impact visible loads
-			"box[0,1;.8,.88;#077]"..
-			"box[0,2;.8,.88;#077]"..
-			"list["..invname..";box;0,0;8,3;]"..
-			"list[current_player;main;0,4;8,4;]"..
-			"listring[]"
-	end,
-	inventory_list_sizes = {
-		box=8*3,
-	},
-}, S("Buffer/Knuckle Transition Wagon"), "dlxtrains_industrial_wagons_transition_type1_inv.png")
+if dlxtrains_industrial_wagons.max_wagon_length >= 6 then
+	advtrains.register_wagon("dlxtrains_industrial_wagons:stake_type1", {
+		mesh = meshes_industrial_wagon_stake_type1.default,
+		textures = {"dlxtrains_industrial_wagon_stake_type1.png"},
+		set_textures = function(wagon, data)
+			dlxtrains.set_textures_for_livery_scheme(wagon, data, livery_scheme_industrial_wagon_stake_type1, meshes_industrial_wagon_stake_type1)
+		end,
+		custom_may_destroy = function(wagon, puncher, time_from_last_punch, tool_capabilities, direction)
+			return not dlxtrains.update_livery(wagon, puncher, livery_scheme_industrial_wagon_stake_type1)
+		end,
+		seats = {},
+		drives_on={default=true},
+		max_speed=20,
+		visual_size = {x=1, y=1},
+		wagon_span=3,
+		collisionbox = {-1.0,-0.5,-1.0,1.0,2.5,1.0},
+		drops={"default:steelblock"},
+		has_inventory = true,
+		get_inventory_formspec = function(wagon, pname, invname)
+			return "size[8,8]"..
+				"box[0,0;.8,.88;#077]"..	-- Highlight slots that impact visible loads
+				"box[0,1;.8,.88;#077]"..
+				"box[0,2;.8,.88;#077]"..
+				"list["..invname..";box;0,0;8,3;]"..
+				"list[current_player;main;0,4;8,4;]"..
+				"listring[]"
+		end,
+		inventory_list_sizes = {
+			box=8*3,
+		},
+	}, S("European Stake Wagon"), "dlxtrains_industrial_wagons_stake_type1_inv.png")
+end
+
+-- ////////////////////////////////////////////////////////////////////////////////////
+
+if dlxtrains_industrial_wagons.max_wagon_length >= 6 then
+	advtrains.register_wagon("dlxtrains_industrial_wagons:transition_type1", {
+		mesh = meshes_industrial_wagon_transition_type1.default,
+		textures = {"dlxtrains_industrial_wagon_transition_type1.png"},
+		set_textures = function(wagon, data)
+			dlxtrains.set_textures_for_livery_scheme(wagon, data, livery_scheme_industrial_wagon_transition_type1, meshes_industrial_wagon_transition_type1)
+		end,
+		custom_may_destroy = function(wagon, puncher, time_from_last_punch, tool_capabilities, direction)
+			return not dlxtrains.update_livery(wagon, puncher, livery_scheme_industrial_wagon_transition_type1)
+		end,
+		seats = {},
+		drives_on={default=true},
+		max_speed=20,
+		visual_size = {x=1, y=1},
+		wagon_span=3,
+		collisionbox = {-1.0,-0.5,-1.0,1.0,2.5,1.0},
+		drops={"default:steelblock"},
+		has_inventory = true,
+		get_inventory_formspec = function(wagon, pname, invname)
+			return "size[8,8]"..
+				"box[0,0;.8,.88;#077]"..	-- Highlight slots that impact visible loads
+				"box[0,1;.8,.88;#077]"..
+				"box[0,2;.8,.88;#077]"..
+				"list["..invname..";box;0,0;8,3;]"..
+				"list[current_player;main;0,4;8,4;]"..
+				"listring[]"
+		end,
+		inventory_list_sizes = {
+			box=8*3,
+		},
+	}, S("Buffer/Knuckle Transition Wagon"), "dlxtrains_industrial_wagons_transition_type1_inv.png")
+end

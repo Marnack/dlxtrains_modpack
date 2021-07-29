@@ -12,9 +12,15 @@ DlxTrains has the following settings.  These settings will also apply to other D
 
 - **Complexity of DLX wagon crafting recipes** (Standard, Basic) - The Standard setting requires that DLX wagons are crafted from intermediate craft items that represent various wagon parts such as couplers, bogies, wheel sets, etc.  The Basic setting simplifies the recipes and reduces the number of craft items added to the game.  It also thereby reduces the overall cost to craft the wagons.  The default is "Standard".
 
+	*NOTE: Switching this setting from "Standard" to "Basic" after players have created DLX items can result in "Unknown Items" appearing in the game.*
+
 - **Use a random livery when placing wagons** (Enabled/Disabled) - If enabled, a random livery will be selected for the wagon when it is placed.  Otherwise, each wagon will always be placed using a default livery defined for that type of wagon.  A player can change the livery later by using the **DLX Livery Selector Tool**.  The default is "Enabled".
 
 - **Default age appearance for newly placed wagons** (New, Random, Used) - Specifies the initial apparent age of a DLX wagon when it is placed.  A player can change the apparent age later by using the **DLX Age Selector Tool**.  The default is "Random".
+
+- **Longest DLX wagon to include in game** (5m, 6m, 7m, 8m, Unlimited) - This specifies the maximum overall length in meters of the DLX wagons to be included in the game.  It will also prevent any craft item from being added to the game if the item is only needed for excluded wagons.  The default is "Unlimited".
+
+	*NOTE: Switching this setting from a less restrictive setting to a more restrictive setting after players have created DLX items or wagons can result in "Unknown Items" appearing in the game and warning messages from AdvTrains about missing wagon definitions.*
 
 ## Craft Items
 

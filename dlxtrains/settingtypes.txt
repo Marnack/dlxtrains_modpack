@@ -14,3 +14,9 @@ dlxtrains_random_liveries (Use a random livery when placing wagons) bool true
 #	Random: Newly placed wagons will have a randomly selected age appearance.
 #	Used: Newly placed wagons will always have a used appearance, showing signs of dirt, rust or other effects.
 dlxtrains_default_age_appearance (Default age appearance for newly placed wagons) enum Random New,Random,Used
+
+
+#	Specify the maximum length DLX wagon in meters to include in game.  Wagons longer than this value and any applicable craft items will not be added to the game.
+#
+dlxtrains_maximum_wagon_length (Longest DLX wagon to include in game) enum Unlimited 5m,6m,7m,8m,Unlimited
+

@@ -8,6 +8,12 @@ else
 	dlxtrains_industrial_wagons.S = function(s) return s end
 end
 
+dlxtrains_industrial_wagons.max_wagon_length = 100	-- A large number to represent "unlimited"
+
+if minetest.get_modpath( "dlxtrains" ) and dlxtrains then
+	dlxtrains_industrial_wagons.max_wagon_length = dlxtrains.max_wagon_length
+end
+
 dlxtrains_industrial_wagons.crate_texture_count = 1
 dlxtrains_industrial_wagons.get_crate_texture = nil
 
