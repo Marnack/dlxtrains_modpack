@@ -2,6 +2,12 @@
 
 All notable changes to this project will be documented in this file.
 
+## [1.2.0] - 2021-07-30
+
+- Added a setting for specifying the maximum length of DLX wagons to be included in the game.
+- Replaced B3D model files with equivalent OBJ model files to work around an apparent issue in MT 5.5-dev where textures were not being applied correctly.
+- Reduced the volume of tool sound effects.
+
 ## [1.1.1] - 2021-07-27
 
 - Corrected sound location for tools.
