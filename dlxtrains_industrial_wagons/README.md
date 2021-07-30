@@ -21,6 +21,22 @@ The following craft items are defined and added to the game if the "Complexity o
 
 ## Wagons
 
+The following table summarizes the full set of DlxTrains Industrial Wagons.
+
+Icon|Wagon Name|Length (m)|Coupler Type|Inventory Size|Max Speed (m/s)|Livery Options
+:---:|---|:---:|---|:---:|:---:|:---:
+![](textures/dlxtrains_industrial_wagons_covered_goods_type2_inv.png)|Australian Louver Van|8|Knuckle|40|25|3
+![](textures/dlxtrains_industrial_wagons_transition_type1_inv.png)|Buffer/Knuckle Transition Wagon|6|Buffer & Chain / Knuckle|24|20|2
+![](textures/dlxtrains_industrial_wagons_container_type1_inv.png)|European Container Wagon|8.5|Buffer & Chain|32|20|2
+![](textures/dlxtrains_industrial_wagons_flat_type1_inv.png)|European Flat Wagon|6|Buffer & Chain|24|20|2
+![](textures/dlxtrains_industrial_wagons_container_type2_inv.png)|European Single Container Wagon|4.9|Buffer & Chain|16|20|2
+![](textures/dlxtrains_industrial_wagons_stake_type1_inv.png)|European Stake Wagon|6|Buffer & Chain|24|20|3
+![](textures/dlxtrains_industrial_wagons_covered_goods_type3_inv.png)|European Wooden Covered Goods Wagon|7|Buffer & Chain|32|20|2
+![](textures/dlxtrains_industrial_wagons_hopper_type1_inv.png)|North American Hopper Wagon|6|Knuckle|24|25|2
+![](textures/dlxtrains_industrial_wagons_covered_goods_type1_inv.png)|North American Wooden Boxcar|8|Knuckle|40|25|3
+
+Note that some wagons may not be available in-game if the "Longest DLX wagon to include in game" setting defined in **DlxTrains** is set to a value other than "Unlimited".  That setting will use the lengths shown in the table when determining the wagons to be excluded.
+
 ### Australian Louver Van
 
 This is an Australian wagon loosely modeled on a louver van which first saw service in southern Australia in the late 1920's.  Although initially built with buffer and chain couplers, the wagons were later retrofitted with knuckle couplers.  Since they seem to have been equipped with knuckle couplers for a majority of their service life, they are the couplers used in this mod's version of the wagon. 
