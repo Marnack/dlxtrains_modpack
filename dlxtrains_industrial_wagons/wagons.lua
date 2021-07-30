@@ -338,68 +338,68 @@ end
 -- ////////////////////////////////////////////////////////////////////////////////////
 
 local meshes_industrial_wagon_container_type1 = {
-		default = "dlxtrains_industrial_wagons_container_type1.b3d",
-		loaded1 = "dlxtrains_industrial_wagons_container_type1_loaded1.b3d",
-		loaded2 = "dlxtrains_industrial_wagons_container_type1_loaded2.b3d",
+		default = "dlxtrains_industrial_wagons_container_type1.obj",
+		loaded1 = "dlxtrains_industrial_wagons_container_type1_loaded1.obj",
+		loaded2 = "dlxtrains_industrial_wagons_container_type1_loaded2.obj",
 		update_model = function(wagon, data, texture_file, meshes)
 			return update_model_industrial_wagon_container(wagon, data, texture_file, meshes)
 		end,
 	}
 
 local meshes_industrial_wagon_container_type2 = {
-		default = "dlxtrains_industrial_wagons_container_type2.b3d",
-		loaded1 = "dlxtrains_industrial_wagons_container_type2_loaded.b3d",
+		default = "dlxtrains_industrial_wagons_container_type2.obj",
+		loaded1 = "dlxtrains_industrial_wagons_container_type2_loaded.obj",
 		update_model = function(wagon, data, texture_file, meshes)
 			return update_model_industrial_wagon_container(wagon, data, texture_file, meshes)
 		end,
 	}
 
 local meshes_industrial_wagon_covered_goods_type1 = {
-		default = "dlxtrains_industrial_wagons_covered_goods_type1.b3d",
+		default = "dlxtrains_industrial_wagons_covered_goods_type1.obj",
 	}
 
 local meshes_industrial_wagon_covered_goods_type2 = {
-		default = "dlxtrains_industrial_wagons_covered_goods_type2.b3d",
+		default = "dlxtrains_industrial_wagons_covered_goods_type2.obj",
 	}
 
 local meshes_industrial_wagon_covered_goods_type3 = {
-		default = "dlxtrains_industrial_wagons_covered_goods_type3.b3d",
+		default = "dlxtrains_industrial_wagons_covered_goods_type3.obj",
 	}
 
 local meshes_industrial_wagon_flat_type1 = {
-		default = "dlxtrains_industrial_wagons_flat_type1.b3d",
-		loaded1 = "dlxtrains_industrial_wagons_flat_type1_loaded1.b3d",
-		loaded3 = "dlxtrains_industrial_wagons_flat_type1_loaded3.b3d",
-		loaded5 = "dlxtrains_industrial_wagons_flat_type1_loaded5.b3d",
+		default = "dlxtrains_industrial_wagons_flat_type1.obj",
+		loaded1 = "dlxtrains_industrial_wagons_flat_type1_loaded1.obj",
+		loaded3 = "dlxtrains_industrial_wagons_flat_type1_loaded3.obj",
+		loaded5 = "dlxtrains_industrial_wagons_flat_type1_loaded5.obj",
 		update_model = function(wagon, data, texture_file, meshes)
 			return update_model_industrial_wagon_flat(wagon, data, texture_file, meshes)
 		end,
 	}
 
 local meshes_industrial_wagon_hopper_type1 = {
-		default = "dlxtrains_industrial_wagons_hopper_type1.b3d",
-		loaded = "dlxtrains_industrial_wagons_hopper_type1_loaded.b3d",
+		default = "dlxtrains_industrial_wagons_hopper_type1.obj",
+		loaded = "dlxtrains_industrial_wagons_hopper_type1_loaded.obj",
 		update_model = function(wagon, data, texture_file, meshes)
 			return update_model_industrial_wagon_hopper(wagon, data, texture_file, meshes)
 		end,
 	}
 
 local meshes_industrial_wagon_stake_type1 = {
-		default = "dlxtrains_industrial_wagons_stake_type1.b3d",
-		loaded1 = "dlxtrains_industrial_wagons_stake_type1_loaded1.b3d",
-		loaded3 = "dlxtrains_industrial_wagons_stake_type1_loaded3.b3d",
-		loaded5 = "dlxtrains_industrial_wagons_stake_type1_loaded5.b3d",
-		log_load = "dlxtrains_industrial_wagons_stake_type1_logs.b3d",
+		default = "dlxtrains_industrial_wagons_stake_type1.obj",
+		loaded1 = "dlxtrains_industrial_wagons_stake_type1_loaded1.obj",
+		loaded3 = "dlxtrains_industrial_wagons_stake_type1_loaded3.obj",
+		loaded5 = "dlxtrains_industrial_wagons_stake_type1_loaded5.obj",
+		log_load = "dlxtrains_industrial_wagons_stake_type1_logs.obj",
 		update_model = function(wagon, data, texture_file, meshes)
 			return update_model_industrial_wagon_stake(wagon, data, texture_file, meshes)
 		end,
 	}
 
 local meshes_industrial_wagon_transition_type1 = {
-		default = "dlxtrains_industrial_wagons_transition_type1.b3d",
-		loaded1 = "dlxtrains_industrial_wagons_transition_type1_loaded1.b3d",
-		loaded3 = "dlxtrains_industrial_wagons_transition_type1_loaded3.b3d",
-		loaded5 = "dlxtrains_industrial_wagons_transition_type1_loaded5.b3d",
+		default = "dlxtrains_industrial_wagons_transition_type1.obj",
+		loaded1 = "dlxtrains_industrial_wagons_transition_type1_loaded1.obj",
+		loaded3 = "dlxtrains_industrial_wagons_transition_type1_loaded3.obj",
+		loaded5 = "dlxtrains_industrial_wagons_transition_type1_loaded5.obj",
 		update_model = function(wagon, data, texture_file, meshes)
 			return update_model_industrial_wagon_flat(wagon, data, texture_file, meshes)
 		end,
