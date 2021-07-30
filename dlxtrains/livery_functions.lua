@@ -64,14 +64,14 @@ function dlxtrains.update_livery(wagon, puncher, livery_schemes)
 			local data = advtrains.wagons[wagon.id]
 
 			if item_name == "dlxtrains:wagon_updater" then
-				minetest.sound_play("dlxtrains_wagon_updater_tool", {object = wagon.object, gain = 0.6, max_hear_distance = 11})
+				minetest.sound_play("dlxtrains_wagon_updater_tool", {object = wagon.object, gain = 0.06, max_hear_distance = 11})
 			else
 				local alt_scheme = data.alt_scheme or false
 				local scheme_id = data.scheme_id or 0
 
 				if item_name == "dlxtrains:age_selector" then
 					data.alt_scheme = not alt_scheme;
-					minetest.sound_play("dlxtrains_age_selection_tool", {object = wagon.object, gain = 0.8, max_hear_distance = 11})
+					minetest.sound_play("dlxtrains_age_selection_tool", {object = wagon.object, gain = 0.08, max_hear_distance = 11})
 				elseif livery_count > 1 then
 					local pc = puncher:get_player_control()
 					local reverse = pc.sneak
@@ -80,7 +80,7 @@ function dlxtrains.update_livery(wagon, puncher, livery_schemes)
 						increment = -1
 					end
 					data.scheme_id = (scheme_id + increment)%livery_count
-					minetest.sound_play("dlxtrains_livery_selection_tool", {object = wagon.object, gain = 0.6, max_hear_distance = 11})
+					minetest.sound_play("dlxtrains_livery_selection_tool", {object = wagon.object, gain = 0.06, max_hear_distance = 11})
 				end
 			end
 			wagon:set_textures(data)
