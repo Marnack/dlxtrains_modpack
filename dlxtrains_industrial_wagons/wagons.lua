@@ -335,6 +335,14 @@ local function update_model_industrial_wagon_stake(wagon, data, texture_file, me
 	return updated_texture
 end
 
+local function get_wagon_proprties_button_spec(wagon_id, pname, x, y)
+	local button_spec = ""
+	if advtrains.wagons[wagon_id].owner == pname then
+		button_spec = "button_exit["..x..","..y..";4,1;prop;"..S("Wagon properties").."]"
+	end
+	return button_spec
+end
+
 -- ////////////////////////////////////////////////////////////////////////////////////
 
 local meshes_industrial_wagon_container_type1 = {
@@ -426,17 +434,13 @@ if dlxtrains_industrial_wagons.max_wagon_length >= 8.5 then
 		drops={"default:steelblock"},
 		has_inventory = true,
 		get_inventory_formspec = function(wagon, pname, invname)
-			local data = advtrains.wagons[wagon.id]
-			local prop = ""
-			if data.owner==pname then
-				prop = "button_exit[0,4;4,1;prop;"..S("Wagon properties").."]"
-			end
 			return "size[8,9]"..
 				"box[0,0;.8,.88;#077]"..	-- Highlight slots that impact visible loads
 				"box[0,2;.8,.88;#077]"..
 				"list["..invname..";box;0,0;8,4;]"..
 				"list[current_player;main;0,5;8,4;]"..
-				"listring[]"..prop
+				"listring[]"..
+				get_wagon_proprties_button_spec(wagon.id, pname, 2, 4)
 		end,
 		inventory_list_sizes = {
 			box=8*4,
@@ -463,16 +467,12 @@ if dlxtrains_industrial_wagons.max_wagon_length >= 4.875 then
 		drops={"default:steelblock"},
 		has_inventory = true,
 		get_inventory_formspec = function(wagon, pname, invname)
-			local data = advtrains.wagons[wagon.id]
-			local prop = ""
-			if data.owner==pname then
-				prop = "button_exit[0,2;4,1;prop;"..S("Wagon properties").."]"
-			end
 			return "size[8,7]"..
 				"box[0,0;.8,.88;#077]"..	-- Highlight slots that impact visible loads
 				"list["..invname..";box;0,0;8,2;]"..
 				"list[current_player;main;0,3;8,4;]"..
-				"listring[]"..prop
+				"listring[]"..
+				get_wagon_proprties_button_spec(wagon.id, pname, 2, 2)
 		end,
 		inventory_list_sizes = {
 			box=8*2,
@@ -499,15 +499,11 @@ if dlxtrains_industrial_wagons.max_wagon_length >= 8 then
 		drops={"default:steelblock"},
 		has_inventory = true,
 		get_inventory_formspec = function(wagon, pname, invname)
-			local data = advtrains.wagons[wagon.id]
-			local prop = ""
-			if data.owner==pname then
-				prop = "button_exit[0,5;4,1;prop;"..S("Wagon properties").."]"
-			end
 			return "size[8,10]"..
 				"list["..invname..";box;0,0;8,5;]"..
 				"list[current_player;main;0,6;8,4;]"..
-				"listring[]"..prop
+				"listring[]"..
+				get_wagon_proprties_button_spec(wagon.id, pname, 2, 5)
 		end,
 		inventory_list_sizes = {
 			box=8*5,
@@ -534,15 +530,11 @@ if dlxtrains_industrial_wagons.max_wagon_length >= 8 then
 		drops={"default:steelblock"},
 		has_inventory = true,
 		get_inventory_formspec = function(wagon, pname, invname)
-			local data = advtrains.wagons[wagon.id]
-			local prop = ""
-			if data.owner==pname then
-				prop = "button_exit[0,5;4,1;prop;"..S("Wagon properties").."]"
-			end
 			return "size[8,10]"..
 				"list["..invname..";box;0,0;8,5;]"..
 				"list[current_player;main;0,6;8,4;]"..
-				"listring[]"..prop
+				"listring[]"..
+				get_wagon_proprties_button_spec(wagon.id, pname, 2, 5)
 		end,
 		inventory_list_sizes = {
 			box=8*5,
@@ -569,15 +561,11 @@ if dlxtrains_industrial_wagons.max_wagon_length >= 7 then
 		drops={"default:steelblock"},
 		has_inventory = true,
 		get_inventory_formspec = function(wagon, pname, invname)
-			local data = advtrains.wagons[wagon.id]
-			local prop = ""
-			if data.owner==pname then
-				prop = "button_exit[0,4;4,1;prop;"..S("Wagon properties").."]"
-			end
 			return "size[8,9]"..
 				"list["..invname..";box;0,0;8,4;]"..
 				"list[current_player;main;0,5;8,4;]"..
-				"listring[]"..prop
+				"listring[]"..
+				get_wagon_proprties_button_spec(wagon.id, pname, 2, 4)
 		end,
 		inventory_list_sizes = {
 			box=8*4,
@@ -606,18 +594,14 @@ if dlxtrains_industrial_wagons.max_wagon_length >= 6 then
 		drops={"default:steelblock"},
 		has_inventory = true,
 		get_inventory_formspec = function(wagon, pname, invname)
-			local data = advtrains.wagons[wagon.id]
-			local prop = ""
-			if data.owner==pname then
-				prop = "button_exit[0,3;4,1;prop;"..S("Wagon properties").."]"
-			end
 			return "size[8,8]"..
 				"box[0,0;.8,.88;#077]"..	-- Highlight slots that impact visible loads
 				"box[0,1;.8,.88;#077]"..
 				"box[0,2;.8,.88;#077]"..
 				"list["..invname..";box;0,0;8,3;]"..
 				"list[current_player;main;0,4;8,4;]"..
-				"listring[]"..prop
+				"listring[]"..
+				get_wagon_proprties_button_spec(wagon.id, pname, 2, 3)
 		end,
 		inventory_list_sizes = {
 			box=8*3,
@@ -646,16 +630,12 @@ if dlxtrains_industrial_wagons.max_wagon_length >= 6 then
 		drops={"default:steelblock"},
 		has_inventory = true,
 		get_inventory_formspec = function(wagon, pname, invname)
-			local data = advtrains.wagons[wagon.id]
-			local prop = ""
-			if data.owner==pname then
-				prop = "button_exit[0,3;4,1;prop;"..S("Wagon properties").."]"
-			end
 			return "size[8,8]"..
 				"box[0,0;.8,.88;#077]"..	-- Highlight slots that impact visible loads
 				"list["..invname..";box;0,0;8,3;]"..
 				"list[current_player;main;0,4;8,4;]"..
-				"listring[]"..prop
+				"listring[]"..
+				get_wagon_proprties_button_spec(wagon.id, pname, 2, 3)
 		end,
 		inventory_list_sizes = {
 			box=8*3,
@@ -684,18 +664,14 @@ if dlxtrains_industrial_wagons.max_wagon_length >= 6 then
 		drops={"default:steelblock"},
 		has_inventory = true,
 		get_inventory_formspec = function(wagon, pname, invname)
-			local data = advtrains.wagons[wagon.id]
-			local prop = ""
-			if data.owner==pname then
-				prop = "button_exit[0,3;4,1;prop;"..S("Wagon properties").."]"
-			end
 			return "size[8,8]"..
 				"box[0,0;.8,.88;#077]"..	-- Highlight slots that impact visible loads
 				"box[0,1;.8,.88;#077]"..
 				"box[0,2;.8,.88;#077]"..
 				"list["..invname..";box;0,0;8,3;]"..
 				"list[current_player;main;0,4;8,4;]"..
-				"listring[]"..prop
+				"listring[]"..
+				get_wagon_proprties_button_spec(wagon.id, pname, 2, 3)
 		end,
 		inventory_list_sizes = {
 			box=8*3,
@@ -724,18 +700,14 @@ if dlxtrains_industrial_wagons.max_wagon_length >= 6 then
 		drops={"default:steelblock"},
 		has_inventory = true,
 		get_inventory_formspec = function(wagon, pname, invname)
-			local data = advtrains.wagons[wagon.id]
-			local prop = ""
-			if data.owner==pname then
-				prop = "button_exit[0,3;4,1;prop;"..S("Wagon properties").."]"
-			end
 			return "size[8,8]"..
 				"box[0,0;.8,.88;#077]"..	-- Highlight slots that impact visible loads
 				"box[0,1;.8,.88;#077]"..
 				"box[0,2;.8,.88;#077]"..
 				"list["..invname..";box;0,0;8,3;]"..
 				"list[current_player;main;0,4;8,4;]"..
-				"listring[]"..prop
+				"listring[]"..
+				get_wagon_proprties_button_spec(wagon.id, pname, 2, 3)
 		end,
 		inventory_list_sizes = {
 			box=8*3,

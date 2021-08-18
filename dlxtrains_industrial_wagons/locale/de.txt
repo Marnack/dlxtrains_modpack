@@ -1,3 +1,4 @@
+Wagon properties=Waggon-Einstellungen
 Container Wagon Cargo Mounts=Containerwagen-Ladungshalterungen 
 North American Wooden Boxcar Cargo Housing=Nordamerikanischer hölzerner Güterwagenaufbau
 Australian Louver Van Cargo Housing=Australisches Louver Van Cargo Gehäuse

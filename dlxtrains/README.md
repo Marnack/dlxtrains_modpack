@@ -35,7 +35,7 @@ These items are typically needed for crafting DLX wagons and tools.  The "DLX Bl
 
 ## Tools
 
-DLX Tools only work with DLX wagons.  Click near the center (i.e. on the selection box) of the wagon in order for the tool to have an effect.  These tools do not wear out or need to be recharged.
+DLX Tools only work with DLX wagons.  Click near the center (i.e. on the selection box) of the wagon in order for the tool to have an effect.  These tools do not wear out or need to be recharged.  Only the wagon owner can use these tools on the wagon.
 
 - **DLX Age Selector Tool** - This tool is used to toggle the age appearance of DLX wagons between "nearly new" and "used/weathered".  The amount of "weathering" will differ by livery.  That is to say, the amount of weathering for one livery can be significantly different from that of another livery for the same type of wagon.  This was done intentionally in order to provide more variety to the appearance of trains.  As a side effect, this tool will also update any visible cargo if it is out of sync with the wagon's inventory.
 - **DLX Livery Selector Tool** - This tool is used to select the livery of DLX wagons.  A livery in this case is more than just a color scheme.  It also includes markings and logos and occasionally other minor cosmetic variations.  Each DLX wagon will have two or more liveries from which to choose.  Left-clicking (punching) on a DLX wagon with this tool changes it to the next livery.  Holding the sneak key while left-clicking on a DLX wagon changes it to the previous livery.  As a side effect, this tool will also update any visible cargo if it is out of sync with the wagon's inventory.
