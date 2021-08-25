@@ -80,6 +80,16 @@ if dlxtrains.get_config_wagon_crafting_recipe_complexity() == 0 then
 
 	if dlxtrains_industrial_wagons.max_wagon_length >= 6 then
 		minetest.register_craft({
+			output = "dlxtrains_industrial_wagons:hopper_type2",
+			recipe = {
+				{"default:steel_ingot", "default:steel_ingot", "default:steel_ingot"},
+				{"", "dlxtrains_industrial_wagons:hopper_type1", ""},
+			}
+		})
+	end
+
+	if dlxtrains_industrial_wagons.max_wagon_length >= 6 then
+		minetest.register_craft({
 			output = "dlxtrains_industrial_wagons:stake_type1",
 			recipe = {
 				{"default:steel_ingot", "", "default:steel_ingot"},
@@ -173,6 +183,16 @@ elseif dlxtrains.get_config_wagon_crafting_recipe_complexity() == 1 then
 				{"", "dlxtrains_industrial_wagons:hopper_body_type1", ""},
 				{"dlxtrains:coupler_knuckle", "dlxtrains:wagon_chassis", "dlxtrains:coupler_knuckle"},
 				{"dlxtrains:bogie", "", "dlxtrains:bogie"},
+			}
+		})
+	end
+
+	if dlxtrains_industrial_wagons.max_wagon_length >= 6 then
+		minetest.register_craft({
+			output = "dlxtrains_industrial_wagons:hopper_type2",
+			recipe = {
+				{"default:steel_ingot", "default:steel_ingot", "default:steel_ingot"},
+				{"", "dlxtrains_industrial_wagons:hopper_type1", ""},
 			}
 		})
 	end

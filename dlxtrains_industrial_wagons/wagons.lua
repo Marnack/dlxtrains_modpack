@@ -50,6 +50,12 @@ local livery_scheme_industrial_wagon_hopper_type1 = {
 		count = 2,
 	}
 
+local livery_scheme_industrial_wagon_hopper_type2 = {
+		[0]="dlxtrains_industrial_wagons_hopper_type2_black.png",
+		[1]="dlxtrains_industrial_wagons_hopper_type2_brown.png",
+		count = 2,
+	}
+
 local livery_scheme_industrial_wagon_stake_type1 = {
 		[0]="dlxtrains_industrial_wagons_stake_type1_brown.png",
 		[1]="dlxtrains_industrial_wagons_stake_type1_red.png",
@@ -392,6 +398,10 @@ local meshes_industrial_wagon_hopper_type1 = {
 		end,
 	}
 
+local meshes_industrial_wagon_hopper_type2 = {
+		default = "dlxtrains_industrial_wagons_hopper_type2.obj",
+	}
+
 local meshes_industrial_wagon_stake_type1 = {
 		default = "dlxtrains_industrial_wagons_stake_type1.obj",
 		loaded1 = "dlxtrains_industrial_wagons_stake_type1_loaded1.obj",
@@ -641,6 +651,39 @@ if dlxtrains_industrial_wagons.max_wagon_length >= 6 then
 			box=8*3,
 		},
 	}, S("North American Hopper Wagon"), "dlxtrains_industrial_wagons_hopper_type1_inv.png")
+end
+
+-- ////////////////////////////////////////////////////////////////////////////////////
+
+if dlxtrains_industrial_wagons.max_wagon_length >= 6 then
+	advtrains.register_wagon("dlxtrains_industrial_wagons:hopper_type2", {
+		mesh = meshes_industrial_wagon_hopper_type2.default,
+		textures = {"dlxtrains_industrial_wagon_hopper_type2.png"},
+		set_textures = function(wagon, data)
+			dlxtrains.set_textures_for_livery_scheme(wagon, data, livery_scheme_industrial_wagon_hopper_type2, meshes_industrial_wagon_hopper_type2)
+		end,
+		custom_may_destroy = function(wagon, puncher, time_from_last_punch, tool_capabilities, direction)
+			return not dlxtrains.update_livery(wagon, puncher, livery_scheme_industrial_wagon_hopper_type2)
+		end,
+		seats = {},
+		drives_on={default=true},
+		max_speed=25,
+		visual_size = {x=1, y=1},
+		wagon_span=3,
+		collisionbox = {-1.0,-0.5,-1.0,1.0,2.5,1.0},
+		drops={"default:steelblock"},
+		has_inventory = true,
+		get_inventory_formspec = function(wagon, pname, invname)
+			return "size[8,8]"..
+				"list["..invname..";box;0,0;8,3;]"..
+				"list[current_player;main;0,4;8,4;]"..
+				"listring[]"..
+				get_wagon_proprties_button_spec(wagon.id, pname, 2, 3)
+		end,
+		inventory_list_sizes = {
+			box=8*3,
+		},
+	}, S("North American Covered Hopper Wagon"), "dlxtrains_industrial_wagons_hopper_type2_inv.png")
 end
 
 -- ////////////////////////////////////////////////////////////////////////////////////

@@ -32,6 +32,7 @@ Icon|Wagon Name|Length (m)|Coupler Type|Inventory Size|Max Speed (m/s)|Livery Op
 ![](textures/dlxtrains_industrial_wagons_container_type2_inv.png)|European Single Container Wagon|4.9|Buffer & Chain|16|20|2
 ![](textures/dlxtrains_industrial_wagons_stake_type1_inv.png)|European Stake Wagon|6|Buffer & Chain|24|20|3
 ![](textures/dlxtrains_industrial_wagons_covered_goods_type3_inv.png)|European Wooden Covered Goods Wagon|7|Buffer & Chain|32|20|2
+![](textures/dlxtrains_industrial_wagons_hopper_type2_inv.png)|North American Covered Hopper Wagon|6|Knuckle|24|25|2
 ![](textures/dlxtrains_industrial_wagons_hopper_type1_inv.png)|North American Hopper Wagon|6|Knuckle|24|25|2
 ![](textures/dlxtrains_industrial_wagons_covered_goods_type1_inv.png)|North American Wooden Boxcar|8|Knuckle|40|25|3
 
@@ -66,6 +67,10 @@ The design of this wagon is based on similar wagons used in Europe in the mid 20
 ### European Wooden Covered Goods Wagon
 
 This wooden freight wagon was modeled on one of the main covered goods wagons used in Europe in the early to mid 20th century.  Perhaps its most recognizable feature are the four vent covers on each side of the wagon.  These vents enabled the wagons to carry a greater diversity of cargo types and, in some situations, were even used for loading the wagon.
+
+### North American Covered Hopper Wagon
+
+This is the covered version of the early 20th century North American hopper wagon listed below.  This type of wagon was used when loose bulk commodities being transported needed to be protected from the weather, such as when transporting grain, sugar or fertilizer.  The wagon includes a roof with 8 loading hatches and a steel mesh "roof walk" that was common for the era.
 
 ### North American Hopper Wagon
 
