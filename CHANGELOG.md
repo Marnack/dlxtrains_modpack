@@ -2,6 +2,11 @@
 
 All notable changes to this project will be documented in this file.
 
+## [1.3.0] - 2021-08-25
+ - Added North American Covered Hopper Wagon.
+ - Added a wagon properties button to the wagon inventory forms.
+ - Removed empty space from European Single Container Wagon's inventory form.
+
 ## [1.2.0] - 2021-07-30
 
 - Added a setting for specifying the maximum length of DLX wagons to be included in the game.
