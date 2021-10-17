@@ -2,6 +2,9 @@
 
 All notable changes to this project will be documented in this file.
 
+## [1.4.0] - 2021-10-17
+ - Added the DLX support wagons mod which initially includes the European Escort Wagon and the Wooden Caboose with Cupola.
+
 ## [1.3.0] - 2021-08-25
  - Added North American Covered Hopper Wagon.
  - Added a wagon properties button to the wagon inventory forms.

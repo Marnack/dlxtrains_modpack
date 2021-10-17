@@ -90,27 +90,6 @@ For those DLX wagons that can display visible cargo or cargo containers, DlxTrai
 
 When viewing the inventory formspec of DLX wagons that have the ability to display their cargo, one or more of the wagon's inventory slots will be highlighted with a blue-green color.  Adjusting the type or quantities of items in those particular slots will cause a change in the displayed cargo or containers.  (Tip: Use the **DLX Wagon Updater Tool** to quickly confirm the change after adjusting the inventory.) Although each type of DLX wagon that supports visible loads may behave slightly differently, adding or removing one item from these special slots will allow a player to select the next or previous container (crate or shipping container).  In the case of loads where the item is visible as itself, any non-zero quantity is equivalent.  The European Stake Wagon will only show logs as its cargo when one or more tree nodes are placed in the first (upper-left) inventory slot, otherwise it will display its cargo similar to a flat wagon.
 
-## Wagon Liveries
-
-The following table shows the fictional liveries currently defined in DlxTrains Industrial Wagons:
-
-```
-Livery Code		Primary Color
-    AR				Red
-    AT				Light Green
-    DL&X			Black
-    DZ				Red
-    NR				n/a*
-    T				Brown
-    TT				n/a*
-    VR				Grey
-    WF				Green
-    ZR				Yellow
-```
-\* These fictional liveries currently use the default "boxcar red" color that was common in the era of the wooden boxcar.  A primary color will be assigned  in a future release of the DlxTrains ModPack if the livery is applied to a later era wagon.
-
-With the initial release of this mod, each wagon type has either 2 or 3 livery options from which to select.  This will likely be increased in future updates.
-
 ## Licenses
 
 Copyright © 2021 Marnack
