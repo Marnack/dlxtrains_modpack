@@ -441,6 +441,8 @@ if dlxtrains_industrial_wagons.max_wagon_length >= 8.5 then
 		visual_size = {x=1, y=1},
 		wagon_span=4.25,
 		collisionbox = {-1.0,-0.5,-1.0,1.0,2.5,1.0},
+		coupler_types_front = {chain=true},
+		coupler_types_back = {chain=true},
 		drops={"default:steelblock"},
 		has_inventory = true,
 		get_inventory_formspec = function(wagon, pname, invname)
@@ -474,6 +476,8 @@ if dlxtrains_industrial_wagons.max_wagon_length >= 4.875 then
 		visual_size = {x=1, y=1},
 		wagon_span=2.4375,
 		collisionbox = {-1.0,-0.5,-1.0,1.0,2.5,1.0},
+		coupler_types_front = {chain=true},
+		coupler_types_back = {chain=true},
 		drops={"default:steelblock"},
 		has_inventory = true,
 		get_inventory_formspec = function(wagon, pname, invname)
@@ -506,6 +510,8 @@ if dlxtrains_industrial_wagons.max_wagon_length >= 8 then
 		visual_size = {x=1, y=1},
 		wagon_span=4,
 		collisionbox = {-1.0,-0.5,-1.0,1.0,2.5,1.0},
+		coupler_types_front = {knuckle=true},
+		coupler_types_back = {knuckle=true},
 		drops={"default:steelblock"},
 		has_inventory = true,
 		get_inventory_formspec = function(wagon, pname, invname)
@@ -537,6 +543,8 @@ if dlxtrains_industrial_wagons.max_wagon_length >= 8 then
 		visual_size = {x=1, y=1},
 		wagon_span=4,
 		collisionbox = {-1.0,-0.5,-1.0,1.0,2.5,1.0},
+		coupler_types_front = {knuckle=true},
+		coupler_types_back = {knuckle=true},
 		drops={"default:steelblock"},
 		has_inventory = true,
 		get_inventory_formspec = function(wagon, pname, invname)
@@ -568,6 +576,8 @@ if dlxtrains_industrial_wagons.max_wagon_length >= 7 then
 		visual_size = {x=1, y=1},
 		wagon_span=3.5,
 		collisionbox = {-1.0,-0.5,-1.0,1.0,2.5,1.0},
+		coupler_types_front = {chain=true},
+		coupler_types_back = {chain=true},
 		drops={"default:steelblock"},
 		has_inventory = true,
 		get_inventory_formspec = function(wagon, pname, invname)
@@ -601,6 +611,8 @@ if dlxtrains_industrial_wagons.max_wagon_length >= 6 then
 		visual_size = {x=1, y=1},
 		wagon_span=3,
 		collisionbox = {-1.0,-0.5,-1.0,1.0,2.5,1.0},
+		coupler_types_front = {chain=true},
+		coupler_types_back = {chain=true},
 		drops={"default:steelblock"},
 		has_inventory = true,
 		get_inventory_formspec = function(wagon, pname, invname)
@@ -637,6 +649,8 @@ if dlxtrains_industrial_wagons.max_wagon_length >= 6 then
 		visual_size = {x=1, y=1},
 		wagon_span=3,
 		collisionbox = {-1.0,-0.5,-1.0,1.0,2.5,1.0},
+		coupler_types_front = {knuckle=true},
+		coupler_types_back = {knuckle=true},
 		drops={"default:steelblock"},
 		has_inventory = true,
 		get_inventory_formspec = function(wagon, pname, invname)
@@ -671,6 +685,8 @@ if dlxtrains_industrial_wagons.max_wagon_length >= 6 then
 		visual_size = {x=1, y=1},
 		wagon_span=3,
 		collisionbox = {-1.0,-0.5,-1.0,1.0,2.5,1.0},
+		coupler_types_front = {knuckle=true},
+		coupler_types_back = {knuckle=true},
 		drops={"default:steelblock"},
 		has_inventory = true,
 		get_inventory_formspec = function(wagon, pname, invname)
@@ -704,6 +720,8 @@ if dlxtrains_industrial_wagons.max_wagon_length >= 6 then
 		visual_size = {x=1, y=1},
 		wagon_span=3,
 		collisionbox = {-1.0,-0.5,-1.0,1.0,2.5,1.0},
+		coupler_types_front = {chain=true},
+		coupler_types_back = {chain=true},
 		drops={"default:steelblock"},
 		has_inventory = true,
 		get_inventory_formspec = function(wagon, pname, invname)
@@ -740,6 +758,8 @@ if dlxtrains_industrial_wagons.max_wagon_length >= 6 then
 		visual_size = {x=1, y=1},
 		wagon_span=3,
 		collisionbox = {-1.0,-0.5,-1.0,1.0,2.5,1.0},
+		coupler_types_front = {chain=true},
+		coupler_types_back = {knuckle=true},
 		drops={"default:steelblock"},
 		has_inventory = true,
 		get_inventory_formspec = function(wagon, pname, invname)
