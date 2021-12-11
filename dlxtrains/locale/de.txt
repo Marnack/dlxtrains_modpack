@@ -1,3 +1,4 @@
+Knuckle Coupler=Knöchelkupplung
 DLX Blueprint=DLX-Blaupause
 Bogie=Drehgestell
 Coupler, buffer and chain=Kupplung, Puffer und Kette
