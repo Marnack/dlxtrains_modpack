@@ -44,7 +44,9 @@ This is an Australian wagon loosely modeled on a louver van which first saw serv
 
 ### Buffer/Knuckle Transition Wagon
 
-Transition wagons, also known as barrier wagons or match wagons, are used to connect wagons that have different couplers.  Flat wagons are typically used for this purpose in the real world since they are usually the lightest wagon available.  Note that AdvTrains does not notice the type of coupler modeled on each wagon so this wagon is not strictly needed in game.  However, it is provided here for those players who are interested in having visually accurate coupled wagons.  DLX Transition wagons are otherwise functionally identical to the flat wagon.
+Transition wagons, also known as barrier wagons or match wagons, are used to connect wagons that have different coupler types.  Flat wagons are typically used for this purpose in the real world since they are usually the lightest wagon available.  Aside from coupler differences, the Buffer/Knuckle Transition Wagon is functionally identical to the European Flat Wagon.
+
+Note that AdvTrains versions 2.4.0 and later support requiring that the type of couplers should match when coupling wagons.  DlxTrains_modpack versions after 1.4.0 enable that requirement.
 
 ### European Container Wagon
 
