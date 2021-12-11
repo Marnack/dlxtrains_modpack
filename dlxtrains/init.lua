@@ -13,6 +13,8 @@ dlxtrains.max_wagon_length = ({["5m"]=5, ["6m"]=6, ["7m"]=7, ["8m"]=8, ["Unlimit
 
 local dlxtrains_path = minetest.get_modpath("dlxtrains")
 
+advtrains.register_coupler_type("knuckle",attrans("Knuckle Coupler"))
+
 dofile(dlxtrains_path.."/items.lua")
 dofile(dlxtrains_path.."/tools.lua")
 dofile(dlxtrains_path.."/livery_functions.lua")

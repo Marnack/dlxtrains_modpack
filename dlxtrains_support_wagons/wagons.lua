@@ -83,6 +83,8 @@ if dlxtrains_support_wagons.max_wagon_length >= 5 then
 		visual_size = {x=1, y=1},
 		wagon_span=3,
 		collisionbox = {-1.0,-0.5,-1.0,1.0,2.5,1.0},
+		coupler_types_front = {knuckle=true},
+		coupler_types_back = {knuckle=true},
 		drops={"default:steelblock"},
 		has_inventory = false,
 	}, S("Wooden Caboose with Cupola"), "dlxtrains_support_wagons_caboose_type1_inv.png")
@@ -136,6 +138,8 @@ if dlxtrains_support_wagons.max_wagon_length >= 4.875 then
 		visual_size = {x=1, y=1},
 		wagon_span=2.4375,
 		collisionbox = {-1.4,-0.5,-1.4,1.4,2.5,1.4},
+		coupler_types_front = {chain=true},
+		coupler_types_back = {chain=true},
 		drops={"default:steelblock"},
 		has_inventory = false,
 	}, S("European Escort Wagon"), "dlxtrains_support_wagons_escort_type1_inv.png")
