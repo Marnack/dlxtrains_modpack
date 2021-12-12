@@ -21,22 +21,22 @@ Please see the README file in each of the included mod folders for important add
 
 ## Liveries
 
-All of the liveries in DlxTrains are intended to be fictional.  The following table summarizes the set of currently available liveries, including their colors and the count of wagons of a given category that uses the livery.
+All of the liveries in DlxTrains are intended to be fictional.  The following table summarizes the set of currently defined fictional railways and their modern liveries plus the count of wagons of a given category for each railway.  Note that wagons from earlier eras can have color schemes and logos that vary from their modern livery.
 
-Logo|Livery Code|Primary Color|Secondary Color|Industrial Wagons|Support Wagons
-:---:|---|---|---|:---:|:---:
-![](dlxtrains/textures/dlxtrains_logo_ar.png)|AR|Red|Yellow|1|0
-![](dlxtrains/textures/dlxtrains_logo_at.png)|AT|Light Green|Yellow|1|0
-![](dlxtrains/textures/dlxtrains_logo_dlx.png)|DL&X|Black|Light Grey|6|1
-![](dlxtrains/textures/dlxtrains_logo_dz.png)|DZ|Red|Light Grey|4|1
-![](dlxtrains/textures/dlxtrains_logo_nr.png)|NR|n/a*|n/a*|1|1
-![](dlxtrains/textures/dlxtrains_logo_t.png)|T|Brown|Yellow|6|2
-![](dlxtrains/textures/dlxtrains_logo_tt.png)|TT|n/a*|n/a*|1|0
-![](dlxtrains/textures/dlxtrains_logo_vr.png)|VR|Light Grey|Red|1|0
-![](dlxtrains/textures/dlxtrains_logo_wf.png)|WF|Green|Grey|1|1
-![](dlxtrains/textures/dlxtrains_logo_zr.png)|ZR|Yellow|Black|1|0
+Railway Code|Logo(s)|Primary Color|Secondary Color|Industrial Wagons|Support Wagons
+---|:---:|---|---|:---:|:---:
+AR|![](dlxtrains/textures/dlxtrains_logo_ar.png)|Red|Yellow|1|0
+AT|![](dlxtrains/textures/dlxtrains_logo_at.png)|Light Green|Yellow|1|0
+DL&X|![](dlxtrains/textures/dlxtrains_logo_dlx.png)|Black|Light Grey|6|1
+DZ|![](dlxtrains/textures/dlxtrains_logo_dz.png)|Red|Light Grey|5|1
+NR|![](dlxtrains/textures/dlxtrains_logo_nr.png)|n/a*|n/a*|3|1
+T|![](dlxtrains/textures/dlxtrains_logo_t.png)|Brown|Yellow|6|2
+TT|![](dlxtrains/textures/dlxtrains_logo_tt.png) ![](dlxtrains/textures/dlxtrains_logo_tt_2.png)|Green|Cyan|3|0
+VR|![](dlxtrains/textures/dlxtrains_logo_vr.png)|Light Grey|Red|1|0
+WF|![](dlxtrains/textures/dlxtrains_logo_wf.png)|Green|Grey|3|1
+ZR|![](dlxtrains/textures/dlxtrains_logo_zr.png)|Yellow|Black|3|0
 
-\* These liveries are currently only used on wagons from earlier eras before distinctive railway color schemes were established.  These colors will be defined in a future release of DlxTrains if the livery is applied to a later era wagon.
+\* The modern color scheme for this railway is not yet defined.  The color will be defined in a future release of DlxTrains if used on a later era wagon.
 
 ## Author's Notes
 

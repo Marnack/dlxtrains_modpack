@@ -2,13 +2,17 @@
 
 All notable changes to this project will be documented in this file.
 
+## [1.5.0] - 2021-12-12
+ - Added more livery options to several of the existing industrial wagons.
+ - Updated DLX wagons to require matching coupler types when coupling wagons, a new feature that was added to AdvTrains 2.4.0.  (Thanks to Maverick2797)
+
 ## [1.4.0] - 2021-10-17
  - Added the DLX support wagons mod which initially includes the European Escort Wagon and the Wooden Caboose with Cupola.
 
 ## [1.3.0] - 2021-08-25
  - Added North American Covered Hopper Wagon.
- - Added a wagon properties button to the wagon inventory forms.
- - Removed empty space from European Single Container Wagon's inventory form.
+ - Added a wagon properties button to the wagon inventory forms.  (Thanks to Maverick2797)
+ - Removed empty space from European Single Container Wagon's inventory form.  (Thanks to Maverick2797)
 
 ## [1.2.0] - 2021-07-30
 

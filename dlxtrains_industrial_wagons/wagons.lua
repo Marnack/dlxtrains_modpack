@@ -35,32 +35,41 @@ local livery_scheme_industrial_wagon_covered_goods_type2 = {
 local livery_scheme_industrial_wagon_covered_goods_type3 = {
 		[0]="dlxtrains_industrial_wagons_covered_goods_type3_red.png",
 		[1]="dlxtrains_industrial_wagons_covered_goods_type3_brown.png",
-		count = 2,
+		[2]="dlxtrains_industrial_wagons_covered_goods_type3_brown2.png",
+		[3]="dlxtrains_industrial_wagons_covered_goods_type3_brown3.png",
+		count = 4,
 	}
 
 local livery_scheme_industrial_wagon_flat_type1 = {
 		[0]="dlxtrains_industrial_wagons_flat_type1_yellow.png",
 		[1]="dlxtrains_industrial_wagons_flat_type1_brown.png",
-		count = 2,
+		[2]="dlxtrains_industrial_wagons_flat_type1_red.png",
+		[3]="dlxtrains_industrial_wagons_flat_type1_green.png",
+		count = 4,
 	}
 
 local livery_scheme_industrial_wagon_hopper_type1 = {
 		[0]="dlxtrains_industrial_wagons_hopper_type1_black.png",
 		[1]="dlxtrains_industrial_wagons_hopper_type1_brown.png",
-		count = 2,
+		[2]="dlxtrains_industrial_wagons_hopper_type1_brown2.png",
+		[3]="dlxtrains_industrial_wagons_hopper_type1_grey.png",
+		count = 4,
 	}
 
 local livery_scheme_industrial_wagon_hopper_type2 = {
 		[0]="dlxtrains_industrial_wagons_hopper_type2_black.png",
 		[1]="dlxtrains_industrial_wagons_hopper_type2_brown.png",
-		count = 2,
+		[2]="dlxtrains_industrial_wagons_hopper_type2_green.png",
+		[3]="dlxtrains_industrial_wagons_hopper_type2_grey.png",
+		count = 4,
 	}
 
 local livery_scheme_industrial_wagon_stake_type1 = {
 		[0]="dlxtrains_industrial_wagons_stake_type1_brown.png",
 		[1]="dlxtrains_industrial_wagons_stake_type1_red.png",
 		[2]="dlxtrains_industrial_wagons_stake_type1_green.png",
-		count = 3,
+		[3]="dlxtrains_industrial_wagons_stake_type1_yellow.png",
+		count = 4,
 	}
 
 local livery_scheme_industrial_wagon_transition_type1 = {
