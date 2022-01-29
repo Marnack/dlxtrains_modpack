@@ -1,4 +1,3 @@
-Wagon properties=Waggon-Einstellungen
 Small Escort Wagon Cabin=Kleine Begleitwagenkabine
 Wooden Caboose Cabin with Cupola=Caboose-Kabine aus Holz mit Kuppel
 European Escort Wagon=Europäischer Begleitwagen

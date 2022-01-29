@@ -1,12 +1,14 @@
 Wagon properties=Waggon-Einstellungen
 Container Wagon Cargo Mounts=Containerwagen-Ladungshalterungen 
+Container Wagon Single Cargo Mount=Containerwagen Einzelfrachthalterung
 North American Wooden Boxcar Cargo Housing=Nordamerikanischer hölzerner Güterwagenaufbau
 Australian Louver Van Cargo Housing=Australisches Louver Van Cargo Gehäuse
 European Wooden Covered Goods Wagon Cargo Housing=Europäischer gedeckter Güterwagen-Laderaum aus Holz
 Flat Wagon Cargo Deck=Flachwagen-Frachtdeck
 Hopper Wagon Cargo Bin=Bunkerwagenaufbau
-Stake Wagon Cargo Deck=Rungenwagen-Frachtdeck 
-European Container Wagon=Europäischer Containerwagen 
+Stake Wagon Cargo Deck=Rungenwagen-Frachtdeck
+European Container Wagon=Europäischer Containerwagen
+European Single Container Wagon=Europäischer Einzelcontainerwagen
 North American Wooden Boxcar=Nordamerikanischer hölzerner Güterwagen
 Australian Louver Van=Australischer Louver Van
 European Wooden Covered Goods Wagon=Europäischer gedeckter Güterwagen aus Holz
