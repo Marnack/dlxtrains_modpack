@@ -29,7 +29,7 @@ local meshes_support_wagon_escort_type1 = {
 
 -- ////////////////////////////////////////////////////////////////////////////////////
 
-if dlxtrains_support_wagons.max_wagon_length >= 5 then
+if dlxtrains_support_wagons.max_wagon_length >= 6 then
 	advtrains.register_wagon("dlxtrains_support_wagons:caboose_type1", {
 		mesh = meshes_support_wagon_caboose_type1.default,
 		textures = {"dlxtrains_support_wagon_caboose_type1.png"},
