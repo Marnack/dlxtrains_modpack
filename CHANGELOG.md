@@ -2,6 +2,10 @@
 
 All notable changes to this project will be documented in this file.
 
+## [1.6.0] - 2022-01-30
+ - Added the DLX diesel locomotives mod which initially includes the European G1206 Diesel Locomotive.
+ - Added missing mod dependencies.
+ - Corrected the length check for determining when to include the Wooden Caboose with Cupola.
 ## [1.5.0] - 2021-12-12
  - Added more livery options to several of the existing industrial wagons.
  - Updated DLX wagons to require matching coupler types when coupling wagons, a new feature that was added to AdvTrains 2.4.0.  (Thanks to Maverick2797)

@@ -45,6 +45,11 @@ function dlxtrains.set_textures_for_livery_scheme(wagon, data, livery_schemes, m
 		texture = texture.."^[transformR180"
 	end
 
+	-- Allow for livery scheme specific dynamic customization of the texture
+	if livery_schemes.on_update_texture ~=nil then
+		texture = livery_schemes.on_update_texture(wagon, data, texture)
+	end
+
 	-- Modify texture (and possibly the model/mesh) for wagons that could have visible loads
 	if meshes and meshes.update_model then
 		texture = meshes.update_model(wagon, data, texture, meshes)

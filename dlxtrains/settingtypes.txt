@@ -1,22 +1,35 @@
-#	Complexity of crafting recipes for DLX wagons.
+#	Complexity of crafting recipes for DLX wagons and locomotives.
 #
-#	Standard: DLX wagons are crafted from several intermediate craft items that represent wagon parts.
-#	Basic: DLX wagons are crafted using simplified recipes.  This results in fewer craft items being included in the game.
+#	Standard: DLX wagons and locomotives are crafted from several intermediate craft items that represent their major components.
+#	Basic: DLX wagons and locomotives are crafted using simplified recipes.  This results in fewer craft items being included in the game.
 dlxtrains_wagon_crafting_recipe_complexity (Complexity of DLX wagon crafting recipes) enum Standard Standard,Basic
 
 
 #	Specify if a random livery should be selected when placing DLX wagons.  Otherwise, a default livery scheme that is defined for each wagon type will be used.
 dlxtrains_random_liveries (Use a random livery when placing wagons) bool true
 
-#	Specify which age appearance should be used when placing DLX wagons.
+#	Specify which age appearance should be used when placing DLX wagons and locomotives.
 #
-#	New: Newly placed wagons will always have a newer appearance.
-#	Random: Newly placed wagons will have a randomly selected age appearance.
-#	Used: Newly placed wagons will always have a used appearance, showing signs of dirt, rust or other effects.
+#	New: Newly placed wagons and locomotives will always have a newer appearance.
+#	Random: Newly placed wagons and locomotives will have a randomly selected age appearance.
+#	Used: Newly placed wagons and locomotives will always have a used appearance, showing signs of dirt, rust or other effects.
 dlxtrains_default_age_appearance (Default age appearance for newly placed wagons) enum Random New,Random,Used
 
 
-#	Specify the maximum length DLX wagon in meters to include in game.  Wagons longer than this value and any applicable craft items will not be added to the game.
+#	Specify the maximum length DLX wagon and locomotive in meters to include in game.  Wagons and locomotives longer than this value and any applicable craft items will not be added to the game.
 #
 dlxtrains_maximum_wagon_length (Longest DLX wagon to include in game) enum Unlimited 5m,6m,7m,8m,Unlimited
 
+#	DLX Locomotive sounds
+#
+#	Dynamic: DLX Locomotives will produce a sound that varies based on the locomotive's velocity.
+#	Constant: DLX Locomotives will produce a constant sound regardless of velocity.
+#	Off: DLX Locomotives will not produce any sound.
+dlxtrains_locomotive_sounds (DLX Locomotive sounds) enum Dynamic Dynamic,Constant,Off
+
+#	DLX Locomotive smoke 
+#
+#	Dynamic: When applicable, DLX Locomotives will produce a quantity of smoke particles that varies based on the locomotive's acceleration, velocity and length of train.
+#	Constant: When applicable, DLX Locomotives will produce a constant amount of smoke regardless of acceleration, velocity or length of train.
+#	Off: DLX Locomotives will not produce any smoke.
+dlxtrains_locomotive_smoke (DLX Locomotive smoke) enum Dynamic Dynamic,Constant,Off

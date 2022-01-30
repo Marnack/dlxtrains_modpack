@@ -1,0 +1,12 @@
+Diesel Locomotive Chassis=Fahrgestelle der Diesellokomotive
+Diesel Locomotive Bogie=Drehgestell der Diesellokomotive
+Diesel Locomotive Fuel Tank=Kraftstofftank der Diesellokomotive
+Diesel Locomotive Hood=Motorhaube der Diesellokomotive
+Diesel Locomotive Cooling Fan=Diesellokomotive Kühlgebläse
+Diesel Locomotive Radiator=Diesellokomotive Kühler
+Diesel Locomotive Cooling Unit=Diesellokomotive Kühlaggregat
+Diesel Locomotive Hydraulic Transmission=Hydraulisches Getriebe der Diesellokomotive
+Diesel Locomotive Battery Pack=Diesellokomotive Batteriepack
+Diesel Locomotive Engine=Diesellokomotive Motor
+European G1206 Diesel Locomotive Body=Europäischer G1206 Diesellokomotiven-Aufbau
+European G1206 Diesel Locomotive=Europäische Diesellokomotive G1206
