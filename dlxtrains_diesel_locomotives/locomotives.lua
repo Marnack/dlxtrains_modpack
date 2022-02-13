@@ -3,6 +3,86 @@ local S = dlxtrains_diesel_locomotives.S
 
 -- ////////////////////////////////////////////////////////////////////////////////////
 
+local livery_type1_unit_number_info = {
+		[0] = {	{x = 205, y = 117, spacing = 1, justify = 1, digit_width =  3, digit_height =  5, font_id = 1, color1 = "#848C8B", color2 = "#787B78"}, },
+		[1] = {	{x = 133, y = 133, spacing = 5, justify = 0, digit_width =  9, digit_height = 14, font_id = 2, color1 = "#938731", color2 = "#948839"},
+				{x = 281, y = 133, spacing = 5, justify = 2, digit_width =  9, digit_height = 14, font_id = 2, color1 = "#938731", color2 = "#948839"}, },
+		[2] = {	{x = 356, y =  19, spacing = 1, justify = 2, digit_width =  3, digit_height =  5, font_id = 1, color1 = "#C3C3C3", color2 = "#B9B8B8"}, },
+		[3] = {	{x = 205, y = 103, spacing = 1, justify = 1, digit_width =  3, digit_height =  5, font_id = 1, color1 = "#2A2A2A", color2 = "#474443"}, },
+	}
+
+local function GetDigitOverlay(livery_unit_number_info, x, d, alt_scheme)
+	local digit_font_name = "dlxtrains_diesel_locomotives_font"..livery_unit_number_info.font_id.."_digit_"
+
+	-- Colorize the digit based on the age appearance of the locomotive.
+	local color = livery_unit_number_info.color1
+	if alt_scheme then color = livery_unit_number_info.color2 end
+
+	return ":"..x..","..livery_unit_number_info.y
+			.."="..digit_font_name..d
+			..".png\\^\\[resize\\:"
+			..livery_unit_number_info.digit_width.."x"
+			..livery_unit_number_info.digit_height
+			.."\\^\\[colorize\\:"..color.."\\:255"
+end
+
+local function Get_unit_number_overlays(livery_unit_number_info, wagon_number, unit_number, alt_scheme)
+	-- Assumes the given wagon_number is a string representation of a positive whole number, possibly
+	-- with leading zeros, < 1000 and that unit_number is the integer value of that number.  Leading
+	-- spaces will be converted into leading zeros.
+
+	-- Determine value of each digit
+	local d1 = math.floor(unit_number / 100)
+	local d2 = math.floor((unit_number - (d1 * 100)) / 10)
+	local d3 = math.floor(unit_number - (d1 * 100 + d2 * 10))
+
+	local overlays = ""
+	local digit_count = #wagon_number	-- Use length of wagon_number string to allow for leading zeros
+	if digit_count > 3 then digit_count = 3 end
+	for i, unit_number_info in pairs(livery_unit_number_info) do
+		local increment = unit_number_info.digit_width + unit_number_info.spacing
+
+		-- Determine the starting x position of the first digit overlay based on the value of
+		-- unit_number_info.justify: 1 == Centered, 2 = Right justify, anything else == Left justify
+		local pos_offset = 0
+		if unit_number_info.justify == 1 then
+			if digit_count == 1 then
+				pos_offset = increment
+			elseif digit_count == 2 then
+				pos_offset = increment / 2
+			end
+		elseif unit_number_info.justify == 2 then
+			if digit_count == 1 then
+				pos_offset = increment * 2
+			elseif digit_count == 2 then
+				pos_offset = increment
+			end
+		end
+
+		-- Calculate the x position of each digit
+		local x1 = unit_number_info.x + pos_offset
+		local x2 = x1 + increment
+		local x3 = x2 + increment
+
+		-- Get the digit overlays
+		if digit_count == 3 then
+			overlays = overlays
+					 ..GetDigitOverlay(unit_number_info, x1, d1, alt_scheme)
+					 ..GetDigitOverlay(unit_number_info, x2, d2, alt_scheme)
+					 ..GetDigitOverlay(unit_number_info, x3, d3, alt_scheme)
+		elseif digit_count == 2 then
+			overlays = overlays
+					 ..GetDigitOverlay(unit_number_info, x1, d2, alt_scheme)
+					 ..GetDigitOverlay(unit_number_info, x2, d3, alt_scheme)
+		else
+			overlays = overlays
+					 ..GetDigitOverlay(unit_number_info, x1, d3, alt_scheme)
+		end
+	end
+
+	return overlays
+end
+
 local livery_scheme_diesel_locomotive_type1 = {
 		[0]="dlxtrains_diesel_locomotives_locomotive_type1_green1.png",
 		[1]="dlxtrains_diesel_locomotives_locomotive_type1_brown1.png",
@@ -12,18 +92,35 @@ local livery_scheme_diesel_locomotive_type1 = {
 		on_update_texture = function(wagon, data, texture)
 			local new_texture = texture
 			if texture ~= nil then
+				local overlays = nil
+
+				-- Update lights
 				local white_light = "dlxtrains_diesel_locomotives_white_light.png\\^\\[resize\\:10x10"
 				local red_light = "dlxtrains_diesel_locomotives_red_light.png\\^\\[resize\\:10x10"
 				if data.light_config == 1 then
 					-- Short hood end of locomotive is moving forward
-					new_texture = "[combine:384x384:0,0=("..texture.."):363,161="..white_light..":374,172="..red_light
+					overlays = (overlays or "")..":363,161="..white_light..":374,172="..red_light
 				elseif data.light_config == 2 then
 					-- Long hood end of locomotive is moving forward
-					new_texture = "[combine:384x384:0,0=("..texture.."):374,161="..white_light..":363,172="..red_light
+					overlays = (overlays or "")..":374,161="..white_light..":363,172="..red_light
 				end
+
+				-- Update cooling fans
 				if data.light_config == 1 or data.light_config == 2 then
 					-- Show cooling fan in spinning state
-					new_texture = new_texture..":270,85=".."dlxtrains_diesel_locomotives_spinning_fan.png\\^\\[resize\\:17x17"
+					overlays = (overlays or "")..":270,85=".."dlxtrains_diesel_locomotives_spinning_fan.png\\^\\[resize\\:17x17"
+				end
+
+				-- Update unit number
+				local wagon_number = data.roadnumber
+				local unit_number = tonumber(wagon_number)
+				if unit_number ~= nil and unit_number >= 0 and unit_number < 1000 and string.find(wagon_number, "[,%.]") == nil then
+					overlays = (overlays or "")..Get_unit_number_overlays(livery_type1_unit_number_info[data.scheme_id or 0], wagon_number, unit_number, data.alt_scheme)
+				end
+
+				-- Update the texture if any overlays were created
+				if overlays ~= nil then
+					new_texture = "[combine:384x384:0,0=("..texture..")"..overlays
 				end
 			end
 			return new_texture
@@ -152,7 +249,7 @@ if dlxtrains_diesel_locomotives.max_wagon_length >= 7.35 then
 				view_offset={x=0, y=3.6, z=0},
 				driving_ctrl_access = true,
 				group = "cabin",
-			},r
+			}
 		},
 		seat_groups = {
 			cabin={

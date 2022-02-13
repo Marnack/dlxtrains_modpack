@@ -17,7 +17,7 @@ Please see the README file in each of the included mod folders for important add
 
 - **DlxTrains** - This is the base mod needed by all other DlxTrains related mods.  It contains common craft items and tools for the modpack plus utilities needed by the other DlxTrains mods.
 - **DlxTrains Cargo** - This is an optional mod that adds some cargo nodes as well as additional cargo related textures that can be used by the DlxTrains Industrial Wagons mod.
-- **DlxTrains Diesel Locomotives** - This mod provides a modern European industrial diesel locomotive in multiple liveries.
+- **DlxTrains Diesel Locomotives** - This mod provides a modern European industrial diesel locomotive in multiple liveries.  Players can optionally customize the exterior of these locomotives with a visible unit number that is unique to each locomotive.
 - **DlxTrains Industrial Wagons** - This mod provides freight wagons that feature selectable liveries and, in some cases, visible cargo.
 - **DlxTrains Support Wagons** - This mod provides support wagons, including an escort wagon and a caboose, both of which provide additional seating for train crew members.  These wagons also feature selectable liveries.
 
