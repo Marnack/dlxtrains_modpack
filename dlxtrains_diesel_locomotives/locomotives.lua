@@ -264,6 +264,7 @@ if dlxtrains_diesel_locomotives.max_wagon_length >= 7.35 then
 		max_speed=25,
 		visual_size = {x=1, y=1},
 		wagon_span=3.675,
+		wheel_positions = {1.8, -1.8},
 		is_locomotive=true,
 		collisionbox = {-0.5,-0.5,-0.5,0.5,2.5,0.5},
 		drops={"default:steelblock 2"},
