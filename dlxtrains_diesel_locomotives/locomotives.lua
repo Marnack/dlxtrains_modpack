@@ -152,7 +152,7 @@ if dlxtrains_diesel_locomotives.max_wagon_length >= 7.35 then
 				view_offset={x=0, y=3.6, z=0},
 				driving_ctrl_access = true,
 				group = "cabin",
-			},r
+			},
 		},
 		seat_groups = {
 			cabin={
