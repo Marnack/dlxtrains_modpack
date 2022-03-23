@@ -155,6 +155,9 @@ local function update_model_industrial_wagon_container(wagon, data, texture_file
 		-- Update texture to include alternate shipping container(s)
 		updated_texture = "[combine:256x256:0,0=("..texture_file..")"
 		local livery_id = get_shipping_container_livery_id(data.id, stack1:get_count())
+		if stack1:get_count() == 0 and stack17:get_count() > 0 then
+			livery_id = get_shipping_container_livery_id(data.id, stack17:get_count())
+		end
 		if livery_id > 0 then	-- livery_id 0 is reserved for the container livery defined by the current livery of the wagon.
 			updated_texture = updated_texture..":0,64="..get_shipping_container_texture(livery_id).."\\^\\[resize\\:216x32"
 		end
