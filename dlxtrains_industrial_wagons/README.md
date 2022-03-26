@@ -27,9 +27,9 @@ Icon|Wagon Name|Length (m)|Coupler Type|Inventory Size|Max Speed (m/s)|Livery Op
 :---:|---|:---:|---|:---:|:---:|:---:
 ![](textures/dlxtrains_industrial_wagons_covered_goods_type2_inv.png)|Australian Louver Van|8|Knuckle|40|25|3
 ![](textures/dlxtrains_industrial_wagons_transition_type1_inv.png)|Buffer/Knuckle Transition Wagon|6|Buffer & Chain / Knuckle|24|20|2
-![](textures/dlxtrains_industrial_wagons_container_type1_inv.png)|European Container Wagon|8.5|Buffer & Chain|32|20|2
+![](textures/dlxtrains_industrial_wagons_container_type1_inv.png)|European Container Wagon|8.5|Buffer & Chain|32|20|5
 ![](textures/dlxtrains_industrial_wagons_flat_type1_inv.png)|European Flat Wagon|6|Buffer & Chain|24|20|4
-![](textures/dlxtrains_industrial_wagons_container_type2_inv.png)|European Single Container Wagon|4.9|Buffer & Chain|16|20|2
+![](textures/dlxtrains_industrial_wagons_container_type2_inv.png)|European Single Container Wagon|4.9|Buffer & Chain|16|20|5
 ![](textures/dlxtrains_industrial_wagons_stake_type1_inv.png)|European Stake Wagon|6|Buffer & Chain|24|20|4
 ![](textures/dlxtrains_industrial_wagons_covered_goods_type3_inv.png)|European Wooden Covered Goods Wagon|7|Buffer & Chain|32|20|4
 ![](textures/dlxtrains_industrial_wagons_hopper_type2_inv.png)|North American Covered Hopper Wagon|6|Knuckle|24|25|4
@@ -94,7 +94,7 @@ When viewing the inventory formspec of DLX wagons that have the ability to displ
 
 ## Licenses
 
-Copyright © 2021 Marnack
+Copyright © 2021-2022 Marnack
 
 - DlxTrains Industrial Wagons code is licensed under the GNU AGPL version 3 license.
 - Unless otherwise specified, DlxTrains Industrial Wagons media (models, textures and sounds) are licensed under [CC BY-SA 3.0 Unported](https://creativecommons.org/licenses/by-sa/3.0/).

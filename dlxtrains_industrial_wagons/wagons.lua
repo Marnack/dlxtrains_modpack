@@ -9,13 +9,19 @@ local shipping_container_livery_count = dlxtrains_industrial_wagons.shipping_con
 local livery_scheme_industrial_wagon_container_type1 = {
 		[0]="dlxtrains_industrial_wagons_container_type1_black.png",
 		[1]="dlxtrains_industrial_wagons_container_type1_red.png",
-		count = 2,
+		[2]="dlxtrains_industrial_wagons_container_type1_green.png",
+		[3]="dlxtrains_industrial_wagons_container_type1_brown.png",
+		[4]="dlxtrains_industrial_wagons_container_type1_yellow.png",
+		count = 5,
 	}
 
 local livery_scheme_industrial_wagon_container_type2 = {
 		[0]="dlxtrains_industrial_wagons_container_type2_black.png",
 		[1]="dlxtrains_industrial_wagons_container_type2_red.png",
-		count = 2,
+		[2]="dlxtrains_industrial_wagons_container_type2_green.png",
+		[3]="dlxtrains_industrial_wagons_container_type2_brown.png",
+		[4]="dlxtrains_industrial_wagons_container_type2_yellow.png",
+		count = 5,
 	}
 
 local livery_scheme_industrial_wagon_covered_goods_type1 = {
