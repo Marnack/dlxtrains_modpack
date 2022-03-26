@@ -84,10 +84,11 @@ local function Get_unit_number_overlays(livery_unit_number_info, wagon_number, u
 end
 
 local livery_scheme_diesel_locomotive_type1 = {
-		[0]="dlxtrains_diesel_locomotives_locomotive_type1_green1.png",
-		[1]="dlxtrains_diesel_locomotives_locomotive_type1_brown1.png",
-		[2]="dlxtrains_diesel_locomotives_locomotive_type1_red1.png",
-		[3]="dlxtrains_diesel_locomotives_locomotive_type1_yellow1.png",
+		filename_prefix = "dlxtrains_diesel_locomotives_locomotive_type1",
+		[0]={code="wf"},
+		[1]={code="t"},
+		[2]={code="dz"},
+		[3]={code="zr"},
 		count = 4,
 		on_update_texture = function(wagon, data, texture)
 			local new_texture = texture

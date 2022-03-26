@@ -40,7 +40,7 @@ function dlxtrains.set_textures_for_livery_scheme(wagon, data, livery_schemes, m
 		end
 	end
 
-	local texture = livery_schemes[data.scheme_id or 0]
+	local texture = livery_schemes.filename_prefix.."_"..livery_schemes[data.scheme_id or 0].code..".png"
 	if data.alt_scheme then
 		texture = texture.."^[transformR180"
 	end

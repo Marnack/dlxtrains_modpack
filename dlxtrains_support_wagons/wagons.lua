@@ -4,16 +4,18 @@ local S = dlxtrains_support_wagons.S
 -- ////////////////////////////////////////////////////////////////////////////////////
 
 local livery_scheme_support_wagon_caboose_type1 = {
-		[0]="dlxtrains_support_wagons_caboose_type1_brown.png",
-		[1]="dlxtrains_support_wagons_caboose_type1_red1.png",
-		[2]="dlxtrains_support_wagons_caboose_type1_red2.png",
+		filename_prefix = "dlxtrains_support_wagons_caboose_type1",
+		[0]={code="t"},
+		[1]={code="dlx"},
+		[2]={code="nr"},
 		count = 3,
 	}
 
 local livery_scheme_support_wagon_escort_type1 = {
-		[0]="dlxtrains_support_wagons_escort_type1_green.png",
-		[1]="dlxtrains_support_wagons_escort_type1_brown.png",
-		[2]="dlxtrains_support_wagons_escort_type1_red.png",
+		filename_prefix = "dlxtrains_support_wagons_escort_type1",
+		[0]={code="wf"},
+		[1]={code="t"},
+		[2]={code="dz"},
 		count = 3,
 	}
 
