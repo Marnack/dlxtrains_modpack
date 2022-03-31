@@ -2,6 +2,13 @@
 
 All notable changes to this project will be documented in this file.
 
+## [1.8.0] - 2022-03-31
+ - Added tank containers as a new load option for the container wagons.  These will be visible when the wagons are loaded with water, water buckets or other filled liquid containers.
+ - Added extra tank container liveries to dlxtrains_cargo.
+ - Added 3 more livery options to both of the European container wagons.
+ - Tweaked the safety paint scheme of the container wagons.
+ - Restored the directory structure in the textures directories.
+ - Fixed a minor issue in the shipping container livery assignment algorithm.
 ## [1.7.0] - 2022-02-13
  - Added the option for players to customize the exterior of their European G1206 Diesel Locomotives with a visible unit number that is unique to each locomotive.
  - Added wheel position information to all locomotive and wagon definitions needed by the new wheel alignment algorithm that is expected in the next update of AdvTrains (after v2.4.1).
