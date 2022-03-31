@@ -25,16 +25,16 @@ The following table summarizes the full set of DlxTrains Industrial Wagons.
 
 Icon|Wagon Name|Length (m)|Coupler Type|Inventory Size|Max Speed (m/s)|Livery Options
 :---:|---|:---:|---|:---:|:---:|:---:
-![](textures/dlxtrains_industrial_wagons_covered_goods_type2_inv.png)|Australian Louver Van|8|Knuckle|40|25|3
-![](textures/dlxtrains_industrial_wagons_transition_type1_inv.png)|Buffer/Knuckle Transition Wagon|6|Buffer & Chain / Knuckle|24|20|2
-![](textures/dlxtrains_industrial_wagons_container_type1_inv.png)|European Container Wagon|8.5|Buffer & Chain|32|20|5
-![](textures/dlxtrains_industrial_wagons_flat_type1_inv.png)|European Flat Wagon|6|Buffer & Chain|24|20|4
-![](textures/dlxtrains_industrial_wagons_container_type2_inv.png)|European Single Container Wagon|4.9|Buffer & Chain|16|20|5
-![](textures/dlxtrains_industrial_wagons_stake_type1_inv.png)|European Stake Wagon|6|Buffer & Chain|24|20|4
-![](textures/dlxtrains_industrial_wagons_covered_goods_type3_inv.png)|European Wooden Covered Goods Wagon|7|Buffer & Chain|32|20|4
-![](textures/dlxtrains_industrial_wagons_hopper_type2_inv.png)|North American Covered Hopper Wagon|6|Knuckle|24|25|4
-![](textures/dlxtrains_industrial_wagons_hopper_type1_inv.png)|North American Hopper Wagon|6|Knuckle|24|25|4
-![](textures/dlxtrains_industrial_wagons_covered_goods_type1_inv.png)|North American Wooden Boxcar|8|Knuckle|40|25|3
+![](textures/inventory/dlxtrains_industrial_wagons_covered_goods_type2_inv.png)|Australian Louver Van|8|Knuckle|40|25|3
+![](textures/inventory/dlxtrains_industrial_wagons_transition_type1_inv.png)|Buffer/Knuckle Transition Wagon|6|Buffer & Chain / Knuckle|24|20|2
+![](textures/inventory/dlxtrains_industrial_wagons_container_type1_inv.png)|European Container Wagon|8.5|Buffer & Chain|32|20|5
+![](textures/inventory/dlxtrains_industrial_wagons_flat_type1_inv.png)|European Flat Wagon|6|Buffer & Chain|24|20|4
+![](textures/inventory/dlxtrains_industrial_wagons_container_type2_inv.png)|European Single Container Wagon|4.9|Buffer & Chain|16|20|5
+![](textures/inventory/dlxtrains_industrial_wagons_stake_type1_inv.png)|European Stake Wagon|6|Buffer & Chain|24|20|4
+![](textures/inventory/dlxtrains_industrial_wagons_covered_goods_type3_inv.png)|European Wooden Covered Goods Wagon|7|Buffer & Chain|32|20|4
+![](textures/inventory/dlxtrains_industrial_wagons_hopper_type2_inv.png)|North American Covered Hopper Wagon|6|Knuckle|24|25|4
+![](textures/inventory/dlxtrains_industrial_wagons_hopper_type1_inv.png)|North American Hopper Wagon|6|Knuckle|24|25|4
+![](textures/inventory/dlxtrains_industrial_wagons_covered_goods_type1_inv.png)|North American Wooden Boxcar|8|Knuckle|40|25|3
 
 Note that some wagons may not be available in-game if the "Longest DLX wagon to include in game" setting defined in **DlxTrains** is set to a value other than "Unlimited".  That setting will use the lengths shown in the table when determining the wagons to be excluded.
 

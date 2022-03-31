@@ -28,7 +28,7 @@ The following table summarizes the current set of DlxTrains Diesel Locomotives.
 
 Icon|Wagon Name|Length (m)|Coupler Type|Max Speed (m/s)|Livery Options
 :---:|---|:---:|---|:---:|:---:
-![](textures/dlxtrains_diesel_locomotives_locomotive_type1_inv.png)|European G1206 Diesel Locomotive|7.35|Buffer & Chain|25|4
+![](textures/inventory/dlxtrains_diesel_locomotives_locomotive_type1_inv.png)|European G1206 Diesel Locomotive|7.35|Buffer & Chain|25|4
 
 Note that locomotives may not be available in-game if the "Longest DLX wagon to include in game" setting defined in **DlxTrains** is set to a value other than "Unlimited".  That setting will use the lengths shown in the table when determining the locomotives to be excluded.
 
