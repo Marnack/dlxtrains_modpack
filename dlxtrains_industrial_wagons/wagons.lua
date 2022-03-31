@@ -3,6 +3,7 @@ local S = dlxtrains_industrial_wagons.S
 
 local crate_texture_count = dlxtrains_industrial_wagons.crate_texture_count
 local shipping_container_livery_count = dlxtrains_industrial_wagons.shipping_container_livery_count
+local tank_container_livery_count = dlxtrains_industrial_wagons.tank_container_livery_count
 
 -- ////////////////////////////////////////////////////////////////////////////////////
 
@@ -96,6 +97,79 @@ local livery_scheme_industrial_wagon_transition_type1 = {
 
 -- ////////////////////////////////////////////////////////////////////////////////////
 
+local function is_filled_bucket(stack)
+	-- Any liquid registered with the bucket mod will be considered a valid liquid
+	for bucket, def in pairs(bucket.liquids) do
+		if def.itemname == stack:get_name() then
+			return true
+		end
+	end
+	return false
+end
+
+local stackable_liquid_proxies = {}
+
+local function register_stackable_liquid_proxy(mod_name, item_name)
+	if mod_name ~= nil and item_name ~= nil then
+		if minetest.get_modpath(mod_name) then
+			table.insert(stackable_liquid_proxies, item_name)
+		end
+	end
+end
+
+-- Register items defined in other mods that are stackable and that can be
+-- considered to be a liquid for the purpose of determining whether it
+-- should be shown as being transported in a shipping container or a tank
+-- container.  These proxies are typically non-empty liquid containers.
+--
+-- While liquids in containers are not actually placed in tank containers
+-- in the real world, this was done here to make it easier for players to
+-- have wagons with tank containers in game when playing in survival mode.
+-- Please note, however, that these non-empty liquid containers
+-- might not be considered be liquids in a future release of this mod.
+--
+register_stackable_liquid_proxy("basic_materials", "basic_materials:oil_extract")
+register_stackable_liquid_proxy("biofuel", "biofuel:phial_fuel")
+register_stackable_liquid_proxy("biofuel", "biofuel:bottle_fuel")
+register_stackable_liquid_proxy("biofuel", "biofuel:fuel_can")
+register_stackable_liquid_proxy("farming", "farming:bottle_ethanol")
+register_stackable_liquid_proxy("farming", "farming:hemp_oil")
+register_stackable_liquid_proxy("pipeworks", "homedecor:oil_extract")
+register_stackable_liquid_proxy("technic", "technic:cottonseed_oil")
+register_stackable_liquid_proxy("technic", "technic:lox")
+
+local function is_stackable_liquid_proxy(item_name)
+	for _, proxy_name in ipairs(stackable_liquid_proxies) do
+		if item_name == proxy_name then
+			return true
+		end
+	end
+	return false
+end
+
+local function get_liquid_count(stack)
+	-- The liquid count is either the cound of liquid nodes in the given stack or the
+	-- amount of liquid in a liquid container since such containers do not stack.
+	local liquid_count = 0
+	if is_filled_bucket(stack) then
+		-- Filled buckets neither stack nor contain more than one unit of liquid.
+		liquid_count = 1
+	elseif minetest.get_modpath("technic") and technic.cans[stack:get_name()] then
+		-- Technic cans do not stack so use the quantity of liquid in the container.
+		liquid_count = tonumber(stack:get_metadata()) or 0
+	else
+		local item_def = minetest.registered_items[stack:get_name()]
+		if item_def then
+			if item_def.groups.liquid or is_stackable_liquid_proxy(stack:get_name()) then
+				-- This is a stackable liquid node so use the stack size to get the
+				-- liquid count.
+				liquid_count = stack:get_count()
+			end
+		end
+	end
+	return liquid_count
+end
+
 local function is_hopper_load_material(node_def)
 	if node_def then
 		if node_def.groups.soil
@@ -151,7 +225,44 @@ local function get_shipping_container_texture(livery_id)
 	return "invalid.png"
 end
 
-local function update_model_industrial_wagon_container(wagon, data, texture_file, meshes)
+local function get_shipping_container_overlay(livery_id, y)
+	local overlay_texture = ""
+	if livery_id > 0 then	-- livery_id 0 is reserved for the container livery defined by the current livery of the wagon.
+		overlay_texture = ":0,"..y.."="..get_shipping_container_texture(livery_id).."\\^\\[resize\\:216x32"
+	end
+	return overlay_texture
+end
+
+local function get_tank_container_livery_id(wagon_id, quantity)
+	return (wagon_id + quantity) % tank_container_livery_count
+end
+
+local function get_tank_container_texture(livery_id)
+	if dlxtrains_industrial_wagons.get_tank_container_texture ~= nil then
+		return dlxtrains_industrial_wagons.get_tank_container_texture(livery_id)
+	end
+	return "invalid.png"
+end
+
+local function get_default_tank_container_texture(livery_code)
+	return "dlxtrains_industrial_wagons_default_tank_container_"..livery_code..".png"
+end
+
+local function get_tank_container_overlay(livery_id, livery_code, y)
+	local overlay_texture = ":0,"..y.."="
+	if livery_id > 0 then
+		-- Use a tank container livery from the set of extra liveries.
+		overlay_texture = overlay_texture..get_tank_container_texture(livery_id)
+	else
+		-- Use the container livery corresponding to the current livery of the wagon.
+		overlay_texture = overlay_texture..get_default_tank_container_texture(livery_code)
+	end
+	overlay_texture = overlay_texture.."\\^\\[resize\\:232x32"
+
+	return overlay_texture
+end
+
+local function update_model_industrial_wagon_container(wagon, data, texture_file, meshes, livery_code)
 	local updated_texture = texture_file
 
 	-- Assume the wagon is not loaded
@@ -168,26 +279,66 @@ local function update_model_industrial_wagon_container(wagon, data, texture_file
 			occupied_slots = 2
 		end
 
-		-- Update texture to include alternate shipping container(s)
+		local liquid_count1 = get_liquid_count(stack1)
+		local liquid_count17 = get_liquid_count(stack17)
+
+		-- Update texture to include appropriate shipping and/or tank container overlays
+		local overlay_y_offset = {[1]=64, [2]=96}
 		updated_texture = "[combine:256x256:0,0=("..texture_file..")"
-		local livery_id = get_shipping_container_livery_id(data.id, stack1:get_count())
-		if stack1:get_count() == 0 and stack17:get_count() > 0 then
-			livery_id = get_shipping_container_livery_id(data.id, stack17:get_count())
-		end
-		if livery_id > 0 then	-- livery_id 0 is reserved for the container livery defined by the current livery of the wagon.
-			updated_texture = updated_texture..":0,64="..get_shipping_container_texture(livery_id).."\\^\\[resize\\:216x32"
+		if liquid_count1 > 0 or (occupied_slots == 1 and liquid_count17 > 0) then
+			-- The first or only container is a tank container
+			local livery_id = get_tank_container_livery_id(data.id, liquid_count1)
+			if occupied_slots == 1 and stack17:get_count() > 0 then
+				-- stack1 is empty but stack17 is not so use it to determine the livery_id
+				livery_id = get_tank_container_livery_id(data.id, liquid_count17)
+			end
+			updated_texture = updated_texture..get_tank_container_overlay(livery_id, livery_code, overlay_y_offset[1])
+		else
+			-- The first or only container is a shipping container
+			local livery_id = get_shipping_container_livery_id(data.id, stack1:get_count())
+			if stack1:get_count() == 0 and stack17:get_count() > 0 then
+				-- stack1 is empty but stack17 is not so use it to determine the livery_id
+				livery_id = get_shipping_container_livery_id(data.id, stack17:get_count())
+			end
+			updated_texture = updated_texture..get_shipping_container_overlay(livery_id, overlay_y_offset[1])
 		end
 		if occupied_slots > 1 then
-			livery_id = get_shipping_container_livery_id(data.id, stack17:get_count())
-			if livery_id > 0 then
-				updated_texture = updated_texture..":0,96="..get_shipping_container_texture(livery_id).."\\^\\[resize\\:216x32"
+			if liquid_count17 > 0 then
+				-- The second container is a tank container
+				local livery_id = get_tank_container_livery_id(data.id, liquid_count17)
+				updated_texture = updated_texture..get_tank_container_overlay(livery_id, livery_code, overlay_y_offset[2])
+			else
+				-- The second container is a shipping container
+				local livery_id = get_shipping_container_livery_id(data.id, stack17:get_count())
+				updated_texture = updated_texture..get_shipping_container_overlay(livery_id, overlay_y_offset[2])
 			end
 		end
 
-		-- Use a mesh that corresponds to the number of containers to be shown.
-		local mesh_with_load = meshes.loaded1
+		-- Use a mesh that corresponds to the number of shipping containers/tank containers to be shown.
+		-- Since the wagon's inventory is not empty, one of the following cases will apply:
+		--
+		--		Case										Mesh to use
+		--      ----------------------------------			-----------
+		--		1 shipping container						load_a
+		--		1 shipping container and 1 tank container	load_ab
+		--		2 shipping containers						load_aa
+		--		1 tank container							load_b
+		--		1 tank container and 1 shipping container	load_ba
+		--		2 tank containers							load_bb
+
+		local mesh_with_load = meshes.load_a
+		if liquid_count1 > 0 or liquid_count17 > 0 then
+			mesh_with_load = meshes.load_b
+		end
 		if occupied_slots > 1 then
-			mesh_with_load = meshes.loaded2
+			mesh_with_load = meshes.load_aa
+			if liquid_count1 > 0 and liquid_count17 > 0 then
+				mesh_with_load = meshes.load_bb
+			elseif liquid_count1 > 0 then
+				mesh_with_load = meshes.load_ba
+			elseif liquid_count17 > 0 then
+				mesh_with_load = meshes.load_ab
+			end
 		end
 		wagon.object:set_properties({
 			mesh = mesh_with_load
@@ -380,19 +531,24 @@ end
 -- ////////////////////////////////////////////////////////////////////////////////////
 
 local meshes_industrial_wagon_container_type1 = {
-		default = "dlxtrains_industrial_wagons_container_type1.obj",
-		loaded1 = "dlxtrains_industrial_wagons_container_type1_loaded1.obj",
-		loaded2 = "dlxtrains_industrial_wagons_container_type1_loaded2.obj",
+		default = "dlxtrains_industrial_wagons_container_type1.b3d",
+		load_a  = "dlxtrains_industrial_wagons_container_type1_a.b3d",
+		load_aa = "dlxtrains_industrial_wagons_container_type1_aa.b3d",
+		load_ab = "dlxtrains_industrial_wagons_container_type1_ab.b3d",
+		load_b  = "dlxtrains_industrial_wagons_container_type1_b.b3d",
+		load_ba = "dlxtrains_industrial_wagons_container_type1_ba.b3d",
+		load_bb = "dlxtrains_industrial_wagons_container_type1_bb.b3d",
 		update_model = function(wagon, data, texture_file, meshes)
-			return update_model_industrial_wagon_container(wagon, data, texture_file, meshes)
+			return update_model_industrial_wagon_container(wagon, data, texture_file, meshes, livery_scheme_industrial_wagon_container_type1[data.scheme_id or 0].code)
 		end,
 	}
 
 local meshes_industrial_wagon_container_type2 = {
-		default = "dlxtrains_industrial_wagons_container_type2.obj",
-		loaded1 = "dlxtrains_industrial_wagons_container_type2_loaded.obj",
+		default = "dlxtrains_industrial_wagons_container_type2.b3d",
+		load_a  = "dlxtrains_industrial_wagons_container_type2_a.b3d",
+		load_b  = "dlxtrains_industrial_wagons_container_type2_b.b3d",
 		update_model = function(wagon, data, texture_file, meshes)
-			return update_model_industrial_wagon_container(wagon, data, texture_file, meshes)
+			return update_model_industrial_wagon_container(wagon, data, texture_file, meshes, livery_scheme_industrial_wagon_container_type2[data.scheme_id or 0].code)
 		end,
 	}
 

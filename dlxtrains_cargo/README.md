@@ -19,11 +19,15 @@ The following nodes defined in this mod do not currently function as containers.
 
 ## Additional Shipping Containers
 
-This mod defines 18 additional textures for large modern shipping containers.  These containers would be much larger than the standard cubic meter node in Minetest and thus are not currently implemented to be placed directly in the world.  However, they can appear on the shipping container wagons that are defined in the DlxTrains Industrial Wagons mod.  Enabling this mod allows these additional textures to be used by that mod.  As with the liveries defined for DLX wagons, the shipping container liveries in this mod are all intended to be fictional.
+This mod defines 18 additional textures for large modern shipping containers.  These containers would be much larger than the standard cubic meter node in Minetest and thus are not currently implemented to be placed directly in the world.  However, they can appear on the container wagons that are defined in the DlxTrains Industrial Wagons mod.  Enabling this mod allows these additional textures to be used by that mod.  As with the liveries defined for DLX wagons, the shipping container liveries in this mod are all intended to be fictional.
+
+## Additional Tank Containers
+
+This mod defines 14 additional textures for modern tank containers (also known as an "ISO Tank" or a "Tanktainer").  As with shipping containers these containers are not currently implemented to be placed directly in the world.  However, they can appear on the container wagons that are defined in the DlxTrains Industrial Wagons mod.  Enabling this mod allows these additional textures to be used by that mod.  These tank container liveries are also intended to be fictional.
 
 ## Licenses
 
-Copyright © 2021 Marnack
+Copyright © 2021-2022 Marnack
 
 - DlxTrains Cargo code is licensed under the GNU AGPL version 3 license.
 - Unless otherwise specified, DlxTrains Cargo media (models, textures and sounds) are licensed under [CC BY-SA 3.0 Unported](https://creativecommons.org/licenses/by-sa/3.0/).

@@ -20,11 +20,16 @@ dlxtrains_industrial_wagons.get_crate_texture = nil
 dlxtrains_industrial_wagons.shipping_container_livery_count = 1		-- Each container wagon has a "built-in" container livery that will typically match the wagon's livery.
 dlxtrains_industrial_wagons.get_shipping_container_texture = nil
 
+dlxtrains_industrial_wagons.tank_container_livery_count = 1		-- Each container wagon has a corresponding tank container livery that will typically match the wagon's livery.
+dlxtrains_industrial_wagons.get_tank_container_texture = nil
+
 if minetest.get_modpath( "dlxtrains_cargo" ) and dlxtrains_cargo then
 	dlxtrains_industrial_wagons.crate_texture_count = dlxtrains_industrial_wagons.crate_texture_count + dlxtrains_cargo.get_crate_texture_count()
 	dlxtrains_industrial_wagons.get_crate_texture = dlxtrains_cargo.get_crate_texture
 	dlxtrains_industrial_wagons.shipping_container_livery_count = dlxtrains_industrial_wagons.shipping_container_livery_count + dlxtrains_cargo.get_shipping_container_livery_count()
 	dlxtrains_industrial_wagons.get_shipping_container_texture = dlxtrains_cargo.get_shipping_container_texture
+	dlxtrains_industrial_wagons.tank_container_livery_count = dlxtrains_industrial_wagons.tank_container_livery_count + dlxtrains_cargo.get_tank_container_livery_count()
+	dlxtrains_industrial_wagons.get_tank_container_texture = dlxtrains_cargo.get_tank_container_texture
 end
 
 dofile(minetest.get_modpath("dlxtrains_industrial_wagons").."/items.lua")

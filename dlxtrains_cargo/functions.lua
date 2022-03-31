@@ -30,3 +30,12 @@ function dlxtrains_cargo.get_shipping_container_texture(livery_id)
 	local texture = "dlxtrains_cargo_shipping_container_livery_"..livery_id..".png"
 	return dlxtrains.make_safe_string(texture)
 end
+
+function dlxtrains_cargo.get_tank_container_livery_count()
+	return 14
+end
+
+function dlxtrains_cargo.get_tank_container_texture(livery_id)
+	local texture = "dlxtrains_cargo_tank_container_livery_"..livery_id..".png"
+	return dlxtrains.make_safe_string(texture)
+end

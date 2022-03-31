@@ -50,7 +50,7 @@ Note that AdvTrains versions 2.4.0 and later support requiring that the type of 
 
 ### European Container Wagon
 
-Modeled after a mid to late 20th century European container wagon, this wagon can appear in one of three load states.  When its inventory is empty it will have no visible shipping containers and players will be able to view the entire framework of this relatively lightweight wagon.  When a small amount of inventory is present, one shipping container will be visible, centered in the middle of the wagon.  When the wagon has significant inventory, a second shipping container will be visible.  The livery of the shipping containers will match the livery of the wagon.  However, if the **DlxTrains Cargo** mod is enabled, additional shipping container liveries will become available.  The livery of each shipping container will then be pseudo-randomly selected from the set of available liveries.
+Modeled after a mid to late 20th century European container wagon, this wagon can appear in one of three load states.  When its inventory is empty it will have no visible containers and players will be able to view the entire framework of this relatively lightweight wagon.  When a small amount of inventory is present, one container will be visible, centered in the middle of the wagon.  When the wagon has significant inventory, a second container will be visible.  (See the *Wagon Inventory Management* section below for the items that will cause a tank container to appear on the wagon.)  The livery of the containers will match the livery of the wagon.  However, if the **DlxTrains Cargo** mod is enabled, additional shipping and tank container liveries will become available.  The livery of each container will then be pseudo-randomly selected from the set of available liveries.
 
 ### European Flat Wagon
 
@@ -60,7 +60,7 @@ In game, these wagons have four load states: no load, light load, medium load an
 
 ### European Single Container Wagon
 
-This fictional wagon is a shortened version of the European Container Wagon that may be better suited for some railways in Minetest.  It has two load states, empty and with a single shipping container whenever inventory is present.  Like the larger container wagon, the livery of the shipping container will match the livery of the wagon.  However, if the **DlxTrains Cargo** mod is enabled, additional shipping container liveries will become available.  The livery of the shipping container will then be pseudo-randomly selected from the set of available liveries.
+This fictional wagon is a shortened version of the European Container Wagon that may be better suited for some railways in Minetest.  It has two load states, empty and with a single shipping or tank container whenever the applicable inventory is present.  (See the *Wagon Inventory Management* section below for the items that will cause a tank container to appear on the wagon.)  Like the larger container wagon, the livery of the container will match the livery of the wagon.  However, if the **DlxTrains Cargo** mod is enabled, additional shipping and tank container liveries will become available.  The livery of the container will then be pseudo-randomly selected from the set of available liveries.
 
 ### European Stake Wagon
 
@@ -90,7 +90,24 @@ This wagon is modeled after the early to mid 20th century boxcars used in North 
 
 For those DLX wagons that can display visible cargo or cargo containers, DlxTrains will use a pseudo-random algorithm to display the cargo or containers.  However, for players that are interested in specifying exactly which cargo or container is visible on a wagon, that can be accomplished by managing the arrangement and quantities of items and nodes in the wagon's inventory.
 
-When viewing the inventory formspec of DLX wagons that have the ability to display their cargo, one or more of the wagon's inventory slots will be highlighted with a blue-green color.  Adjusting the type or quantities of items in those particular slots will cause a change in the displayed cargo or containers.  (Tip: Use the **DLX Wagon Updater Tool** to quickly confirm the change after adjusting the inventory.) Although each type of DLX wagon that supports visible loads may behave slightly differently, adding or removing one item from these special slots will allow a player to select the next or previous container (crate or shipping container).  In the case of loads where the item is visible as itself, any non-zero quantity is equivalent.  The European Stake Wagon will only show logs as its cargo when one or more tree nodes are placed in the first (upper-left) inventory slot, otherwise it will display its cargo similar to a flat wagon.
+When viewing the inventory formspec of DLX wagons that have the ability to display their cargo, one or more of the wagon's inventory slots will be highlighted with a blue-green color.  Adjusting the type or quantities of items in those particular slots will cause a change in the displayed cargo or containers.  (Tip: Use the **DLX Wagon Updater Tool** to quickly confirm the change after adjusting the inventory.) Although each type of DLX wagon that supports visible loads may behave slightly differently, adding or removing one item from these special slots will allow a player to select the next or previous container (crate, shipping container or tank container).  In the case of loads where the item is visible as itself, any non-zero quantity is equivalent.
+
+The European Stake Wagon will only show logs as its cargo when one or more tree nodes are placed in the first (upper-left) inventory slot, otherwise it will display its cargo similar to a flat wagon.
+
+For container wagons, the load will appear as a shipping container unless the load placed in the highlighted slot is either a liquid, such as a water source node, or a non-empty liquid container, such as a water bucket.  For non-stackable liquid containers that can store multiple units of liquid, the number of units of liquid in the container rather than the number of items in the inventory slot will determine the tank container's livery.
+
+The following nodes from other optional mods will cause a tank container to appear on the wagon rather then a shipping container when they are placed in a highlighted inventory slot of a container wagon:
+
+Mod|Items
+---|---
+bucket (from Minetest Game)|any non-empty bucket
+[Basic Materials](https://content.minetest.net/packages/VanessaE/basic_materials/)|oil_extract
+[Biofuel](https://content.minetest.net/packages/Lokrates/biofuel/)|phial_fuel, bottle_fuel, fuel_can
+[Farming Redo](https://content.minetest.net/packages/TenPlus1/farming/)|bottle_ethanol, hemp_oil
+[Pipeworks](https://content.minetest.net/packages/VanessaE/pipeworks/)|oil_extract
+[Technic](https://content.minetest.net/packages/RealBadAngel/technic/)|cottonseed_oil, lox, any non-empty can
+
+While liquids in containers are not actually placed in tank containers in the real world, this was done here to make it easier for players to have wagons loaded with tank containers in game when playing in survival mode.  Please note, however, that this could change in a future release of this mod.
 
 ## Licenses
 
