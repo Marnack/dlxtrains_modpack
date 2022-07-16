@@ -268,6 +268,8 @@ if dlxtrains_diesel_locomotives.max_wagon_length >= 7.35 then
 		wheel_positions = {1.8, -1.8},
 		is_locomotive=true,
 		collisionbox = {-0.5,-0.5,-0.5,0.5,2.5,0.5},
+		coupler_types_front = {chain=true},
+		coupler_types_back = {chain=true},
 		drops={"default:steelblock 2"},
 		horn_sound = "advtrains_industrial_horn",
 		has_inventory = false,
