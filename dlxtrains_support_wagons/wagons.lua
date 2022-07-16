@@ -1,5 +1,6 @@
 
 local S = dlxtrains_support_wagons.S
+local use_attachment_patch = advtrains_attachment_offset_patch and advtrains_attachment_offset_patch.setup_advtrains_wagon
 
 -- ////////////////////////////////////////////////////////////////////////////////////
 
@@ -32,7 +33,7 @@ local meshes_support_wagon_escort_type1 = {
 -- ////////////////////////////////////////////////////////////////////////////////////
 
 if dlxtrains_support_wagons.max_wagon_length >= 6 then
-	advtrains.register_wagon("dlxtrains_support_wagons:caboose_type1", {
+	local wagon_def = {
 		mesh = meshes_support_wagon_caboose_type1.default,
 		textures = {"dlxtrains_support_wagon_caboose_type1.png"},
 		set_textures = function(wagon, data)
@@ -45,26 +46,29 @@ if dlxtrains_support_wagons.max_wagon_length >= 6 then
 		seats = {
 			{
 				name = "Left seat in cabin",
-				attach_offset = {x=-3.5, y=-2, z=-19.5},
-				view_offset = {x=0, y=-3, z=0},
+				attach_offset = use_attachment_patch and {x=-4.2, y=-2, z=-18.2} or {x=-3.5, y=-2, z=-19.5},
+				view_offset = use_attachment_patch and {x=0, y=0, z=0} or {x=0, y=-3, z=0},
+				advtrains_attachment_offset_patch_attach_rotation = use_attachment_patch and {x=0, y=90, z=0} or nil,
 				group = "cabin",
 			},
 			{
 				name = "Right seat in cabin",
-				attach_offset = {x=3.5, y=-2, z=-19.5},
-				view_offset = {x=0, y=-3, z=0},
+				attach_offset = use_attachment_patch and {x=4.0, y=-2, z=-18.2} or {x=3.5, y=-2, z=-19.5},
+				view_offset = use_attachment_patch and {x=0, y=0, z=0} or {x=0, y=-3, z=0},
+				advtrains_attachment_offset_patch_attach_rotation = use_attachment_patch and {x=0, y=270, z=0} or nil,
 				group = "cabin",
 			},
 			{
 				name = "Left seat in Cupola",
 				attach_offset = {x=-3.8, y=6, z=-2},
-				view_offset = {x=-3.9, y=7, z=-1.5},
+				view_offset = use_attachment_patch and {x=0, y=0, z=0} or {x=-3.9, y=7, z=-1.5},
 				group = "cupola",
 			},
 			{
 				name = "Right seat in Cupola",
-				attach_offset = {x=3.8, y=6, z=-2},
-				view_offset = {x=3.9, y=7, z=-1.5},
+				attach_offset = use_attachment_patch and {x=3.8, y=6, z=2} or {x=3.8, y=6, z=-2},
+				view_offset = use_attachment_patch and {x=0, y=0, z=0} or {x=3.9, y=7, z=-1.5},
+				advtrains_attachment_offset_patch_attach_rotation = use_attachment_patch and {x=0, y=180, z=0} or nil,
 				group = "cupola",
 			},
 		},
@@ -90,11 +94,17 @@ if dlxtrains_support_wagons.max_wagon_length >= 6 then
 		coupler_types_back = {knuckle=true},
 		drops={"default:steelblock"},
 		has_inventory = false,
-	}, S("Wooden Caboose with Cupola"), "dlxtrains_support_wagons_caboose_type1_inv.png")
+	}
+
+	if use_attachment_patch then
+		advtrains_attachment_offset_patch.setup_advtrains_wagon(wagon_def);
+	end
+
+	advtrains.register_wagon("dlxtrains_support_wagons:caboose_type1", wagon_def, S("Wooden Caboose with Cupola"), "dlxtrains_support_wagons_caboose_type1_inv.png")
 end
 
 if dlxtrains_support_wagons.max_wagon_length >= 4.875 then
-	advtrains.register_wagon("dlxtrains_support_wagons:escort_type1", {
+	local wagon_def = {
 		mesh = meshes_support_wagon_escort_type1.default,
 		textures = {"dlxtrains_support_wagon_escort_type1.png"},
 		set_textures = function(wagon, data)
@@ -107,19 +117,21 @@ if dlxtrains_support_wagons.max_wagon_length >= 4.875 then
 			{
 				name = "Rear right seat in cabin",
 				attach_offset = {x=3.2, y=-2, z=-5.6},
-				view_offset = {x=0, y=-3, z=0},
+				view_offset = use_attachment_patch and {x=0, y=0, z=0} or {x=0, y=-3, z=0},
 				group = "cabin",
 			},
 			{
 				name = "Front left seat in cabin",
 				attach_offset = {x=-3.2, y=-2, z=4},
-				view_offset = {x=0, y=-3, z=0},
+				view_offset = use_attachment_patch and {x=0, y=0, z=0} or {x=2.6, y=-3, z=13},
+				advtrains_attachment_offset_patch_attach_rotation = use_attachment_patch and {x=0, y=180, z=0} or nil,
 				group = "cabin",
 			},
 			{
 				name = "On propane cabinet on veranda",
 				attach_offset = {x=-2.6, y=-2, z=-13},
-				view_offset = {x=2.6, y=-3, z=13},
+				view_offset = use_attachment_patch and {x=0, y=0, z=0} or {x=2.6, y=-3, z=13},
+				advtrains_attachment_offset_patch_attach_rotation = use_attachment_patch and {x=0, y=180, z=0} or nil,
 				group = "veranda",
 			},
 		},
@@ -146,6 +158,12 @@ if dlxtrains_support_wagons.max_wagon_length >= 4.875 then
 		coupler_types_back = {chain=true},
 		drops={"default:steelblock"},
 		has_inventory = false,
-	}, S("European Escort Wagon"), "dlxtrains_support_wagons_escort_type1_inv.png")
+	}
+
+	if use_attachment_patch then
+		advtrains_attachment_offset_patch.setup_advtrains_wagon(wagon_def);
+	end
+
+	advtrains.register_wagon("dlxtrains_support_wagons:escort_type1", wagon_def, S("European Escort Wagon"), "dlxtrains_support_wagons_escort_type1_inv.png")
 end
 

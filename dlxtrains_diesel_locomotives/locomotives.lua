@@ -1,5 +1,6 @@
 
 local S = dlxtrains_diesel_locomotives.S
+local use_attachment_patch = advtrains_attachment_offset_patch and advtrains_attachment_offset_patch.setup_advtrains_wagon
 
 -- ////////////////////////////////////////////////////////////////////////////////////
 
@@ -234,7 +235,7 @@ end
 -- ////////////////////////////////////////////////////////////////////////////////////
 
 if dlxtrains_diesel_locomotives.max_wagon_length >= 7.35 then
-	advtrains.register_wagon("dlxtrains_diesel_locomotives:locomotive_type1", {
+	local wagon_def = {
 		mesh = meshes_diesel_locomotive_type1.default,
 		textures = {"dlxtrains_diesel_locomotives_type1.png"},
 		set_textures = function(wagon, data)
@@ -247,7 +248,7 @@ if dlxtrains_diesel_locomotives.max_wagon_length >= 7.35 then
 			{
 				name = "Driver Stand",
 				attach_offset={x=2.8, y=2.8, z=12},
-				view_offset={x=0, y=3.6, z=0},
+				view_offset = use_attachment_patch and {x=0, y=0, z=0} or {x=0, y=3.6, z=0},
 				driving_ctrl_access = true,
 				group = "cabin",
 			}
@@ -314,5 +315,11 @@ if dlxtrains_diesel_locomotives.max_wagon_length >= 7.35 then
 				end
 			end
 		end,
-	}, S("European G1206 Diesel Locomotive"), "dlxtrains_diesel_locomotives_locomotive_type1_inv.png")
+	}
+
+	if use_attachment_patch then
+		advtrains_attachment_offset_patch.setup_advtrains_wagon(wagon_def);
+	end
+
+	advtrains.register_wagon("dlxtrains_diesel_locomotives:locomotive_type1", wagon_def, S("European G1206 Diesel Locomotive"), "dlxtrains_diesel_locomotives_locomotive_type1_inv.png")
 end
