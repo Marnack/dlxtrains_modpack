@@ -3,7 +3,7 @@ local S = dlxtrains_diesel_locomotives.S
 
 if dlxtrains.get_config_wagon_crafting_recipe_complexity() == 1 then
 
-	if dlxtrains_diesel_locomotives.max_wagon_length >= 7.35 then
+	if dlxtrains_diesel_locomotives.max_wagon_length >= 6.80725 then
 
 		minetest.register_craftitem("dlxtrains_diesel_locomotives:locomotive_chassis", {
 			description = S("Diesel Locomotive Chassis"),
@@ -103,20 +103,6 @@ if dlxtrains.get_config_wagon_crafting_recipe_complexity() == 1 then
 			}
 		})
 
-		minetest.register_craftitem("dlxtrains_diesel_locomotives:hydraulic_transmission", {
-			description = S("Diesel Locomotive Hydraulic Transmission"),
-			inventory_image = "dlxtrains_diesel_locomotives_hydraulic_transmission.png",
-		})
-
-		minetest.register_craft({
-			output = "dlxtrains_diesel_locomotives:hydraulic_transmission",
-			recipe = {
-				{"", "default:steelblock", ""},
-				{"default:steel_ingot", "bucket:bucket_water", "default:steel_ingot"},
-				{"", "dlxtrains:blueprint", ""},
-			}
-		})
-
 		minetest.register_craftitem("dlxtrains_diesel_locomotives:battery_pack", {
 			description = S("Diesel Locomotive Battery Pack"),
 			inventory_image = "dlxtrains_diesel_locomotives_battery_pack.png",
@@ -142,6 +128,52 @@ if dlxtrains.get_config_wagon_crafting_recipe_complexity() == 1 then
 				{"default:copper_ingot", "default:steel_ingot", "default:copper_ingot"},
 				{"default:steel_ingot", "default:steelblock", "default:steel_ingot"},
 				{"default:steel_ingot", "dlxtrains:blueprint", "default:steel_ingot"},
+			}
+		})
+
+		minetest.register_craftitem("dlxtrains_diesel_locomotives:generator", {
+			description = S("Diesel Locomotive Generator"),
+			inventory_image = "dlxtrains_diesel_locomotives_generator.png",
+		})
+
+		minetest.register_craft({
+			output = "dlxtrains_diesel_locomotives:generator",
+			recipe = {
+				{"default:copper_ingot", "default:steel_ingot", "default:copper_ingot"},
+				{"default:steel_ingot", "default:copperblock", "default:steel_ingot"},
+				{"default:steel_ingot", "dlxtrains:blueprint", "default:steel_ingot"},
+			}
+		})
+
+		minetest.register_craftitem("dlxtrains_diesel_locomotives:locomotive_body_type2", {
+			description = S("North American SW1500 Diesel Locomotive Body"),
+			inventory_image = "dlxtrains_diesel_locomotives_locomotive_body_type2.png",
+		})
+
+		minetest.register_craft({
+			output = "dlxtrains_diesel_locomotives:locomotive_body_type2",
+			recipe = {
+				{"", "dlxtrains_diesel_locomotives:hood", "advtrains:driver_cab"},
+				{"", "dye:black", "dlxtrains_diesel_locomotives:cooling_unit"},
+				{"dlxtrains_diesel_locomotives:battery_pack", "dlxtrains_diesel_locomotives:generator", "dlxtrains_diesel_locomotives:diesel_engine"},
+			}
+		})
+
+	end
+
+	if dlxtrains_diesel_locomotives.max_wagon_length >= 7.35 then
+
+		minetest.register_craftitem("dlxtrains_diesel_locomotives:hydraulic_transmission", {
+			description = S("Diesel Locomotive Hydraulic Transmission"),
+			inventory_image = "dlxtrains_diesel_locomotives_hydraulic_transmission.png",
+		})
+
+		minetest.register_craft({
+			output = "dlxtrains_diesel_locomotives:hydraulic_transmission",
+			recipe = {
+				{"", "default:steelblock", ""},
+				{"default:steel_ingot", "bucket:bucket_water", "default:steel_ingot"},
+				{"", "dlxtrains:blueprint", ""},
 			}
 		})
 

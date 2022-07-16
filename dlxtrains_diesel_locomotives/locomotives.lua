@@ -12,6 +12,13 @@ local livery_type1_unit_number_info = {
 		[3] = {	{x = 205, y = 103, spacing = 1, justify = 1, digit_width =  3, digit_height =  5, font_id = 1, color1 = "#2A2A2A", color2 = "#474443"}, },
 	}
 
+local livery_type2_unit_number_info = {
+		[0] = {	{x = 278, y =  80, spacing = 1, justify = 1, digit_width =  3, digit_height = 5, font_id = 1, color1 = "#C3C3C3", color2 = "#B9B8B8"},
+				{x = 356, y =  80, spacing = 1, justify = 1, digit_width =  3, digit_height = 5, font_id = 1, color1 = "#C3C3C3", color2 = "#B9B8B8"}, },
+		[1] = {	{x =  48, y = 114, spacing = 3, justify = 0, digit_width =  7, digit_height = 10, font_id = 3, color1 = "#938731", color2 = "#948839"},
+				{x =  47, y =  59, spacing = 3, justify = 2, digit_width =  7, digit_height = 10, font_id = 3, color1 = "#938731", color2 = "#948839"}, },
+	}
+
 local function GetDigitOverlay(livery_unit_number_info, x, d, alt_scheme)
 	local digit_font_name = "dlxtrains_diesel_locomotives_font"..livery_unit_number_info.font_id.."_digit_"
 
@@ -129,51 +136,83 @@ local livery_scheme_diesel_locomotive_type1 = {
 		end,
 	}
 
+local livery_scheme_diesel_locomotive_type2 = {
+		filename_prefix = "dlxtrains_diesel_locomotives_locomotive_type2",
+		[0]={code="dlx"},
+		[1]={code="t"},
+		count = 2,
+		on_update_texture = function(wagon, data, texture)
+			local new_texture = texture
+			if texture ~= nil then
+				local overlays = nil
+
+				-- Update lights
+				local white_light = "dlxtrains_diesel_locomotives_white_light.png\\^\\[resize\\:10x10"
+				local red_light = "dlxtrains_diesel_locomotives_red_light.png\\^\\[resize\\:10x10"
+				if data.light_config == 1 or data.light_config == 2 then
+					-- Turn on running lights
+					overlays = (overlays or "")..":374,168="..white_light
+				end
+
+				-- Update unit number
+				local wagon_number = data.roadnumber
+				local unit_number = tonumber(wagon_number)
+				if unit_number ~= nil and unit_number >= 0 and unit_number < 1000 and string.find(wagon_number, "[,%.]") == nil then
+					overlays = (overlays or "")..Get_unit_number_overlays(livery_type2_unit_number_info[data.scheme_id or 0], wagon_number, unit_number, data.alt_scheme)
+				end
+
+				-- Update the texture if any overlays were created
+				if overlays ~= nil then
+					new_texture = "[combine:384x384:0,0=("..texture..")"..overlays
+				end
+			end
+			return new_texture
+		end,
+	}
+
 -- ////////////////////////////////////////////////////////////////////////////////////
 
 local meshes_diesel_locomotive_type1 = {
 		default = "dlxtrains_diesel_locomotives_locomotive_type1.b3d",
-		smoke_pos = {x=0.27, y=2.4, z=0.60},
+		chimneys = {
+			{x=0.27, y=2.4, z=0.60}
+		},
 		audio_loop_name = "dlxtrains_diesel_locomotives_locomotive_type1_loop",
+		audio_loop_gain = .3
+	}
+
+local meshes_diesel_locomotive_type2 = {
+		default = "dlxtrains_diesel_locomotives_locomotive_type2.b3d",
+		chimneys = {
+			{x=0.0, y=2.4, z= 0.90},
+			{x=0.0, y=2.4, z=-0.30}
+		},
+		audio_loop_name = "dlxtrains_diesel_locomotives_locomotive_type1_loop",	-- Using locomotive_type1 audio for now.
 		audio_loop_gain = .3
 	}
 
 -- ////////////////////////////////////////////////////////////////////////////////////
 
-local function Get_diesel_smoke_particle_burst_def()
-	return {
-		amount = 10,
-		time = 1,
-		minvel = {x=-0.2, y=1.8, z=-0.2},
-		maxvel = {x=0.2, y=2, z=0.2},
-		minacc = {x=0, y=-0.1, z=0},
-		maxacc = {x=0, y=-0.3, z=0},
-		minexptime = 2,
-		maxexptime = 4,
-		minsize = 1,
-		maxsize = 5,
-		collisiondetection = true,
-		vertical = false,
-		texture = "dlxtrains_diesel_locomotives_smoke_puff.png",
-	}
-end
-
-local function Get_diesel_smoke_particle_stream_def()
-	return {
-		amount = 10,
-		time = 0,
-		minvel = {x=-0.2, y=1.8, z=-0.2},
-		maxvel = {x=0.2, y=2, z=0.2},
-		minacc = {x=0, y=-0.1, z=0},
-		maxacc = {x=0, y=-0.3, z=0},
-		minexptime = 2,
-		maxexptime = 4,
-		minsize = 1,
-		maxsize = 5,
-		collisiondetection = true,
-		vertical = false,
-		texture = "dlxtrains_diesel_locomotives_smoke_puff.png",
-	}
+local function Get_diesel_smoke_particle_def(type)
+	local index = type or "default"
+	local burst_defs = {
+			default = {
+				amount = 10,
+				time = 0,
+				minvel = {x=-0.2, y=1.8, z=-0.2},
+				maxvel = {x=0.2, y=2, z=0.2},
+				minacc = {x=0, y=-0.1, z=0},
+				maxacc = {x=0, y=-0.3, z=0},
+				minexptime = 2,
+				maxexptime = 4,
+				minsize = 1,
+				maxsize = 5,
+				collisiondetection = true,
+				vertical = false,
+				texture = "dlxtrains_diesel_locomotives_smoke_puff.png",
+			},
+		}
+	return burst_defs[index]
 end
 
 local function Terminate_locomotive_sound(wagon)
@@ -202,33 +241,52 @@ local function Update_locomotive_sound(wagon, time_expired, audio_loop_name, aud
 	end
 end
 
-local function Update_locomotive_smoke(data, wagon, smoke_pos, old_velocity, new_velocity)
-	if dlxtrains.locomotive_smoke > 0 then
+local function Update_locomotive_smoke(data, wagon, chimneys, old_velocity, new_velocity)
+	if dlxtrains.locomotive_smoke > 0 and chimneys ~= nil then
 		-- If dynamic smoke is enabled, add extra smoke puffs when accelerating
 		if dlxtrains.locomotive_smoke == 2 and new_velocity > old_velocity then
-			local smoke_def = Get_diesel_smoke_particle_burst_def()
-			smoke_def.amount = 4 - new_velocity
-			if smoke_def.amount < 1 then smoke_def.amount = 1 end
-			smoke_def.minpos = smoke_pos
-			smoke_def.maxpos = smoke_pos
-			smoke_def.attached = wagon.object
-			minetest.add_particlespawner(smoke_def)
-		end
-
-		local smoke_def = Get_diesel_smoke_particle_stream_def()
-		if dlxtrains.locomotive_smoke == 2 then
-			-- If dynamic smoke is enabled, define smoke stream based on velocity and length of train
-			smoke_def.amount = new_velocity + #(wagon:train().trainparts) - 1
-			if smoke_def.amount < 1 then
-				smoke_def.amount = 1
-			elseif smoke_def.amount > 12 then
-				smoke_def.amount = 12
+			local dynamic_amount = 4 - new_velocity
+			if #chimneys > 1 then dynamic_amount = dynamic_amount/#chimneys end
+			if dynamic_amount < 1 then dynamic_amount = 1 end
+			for _, chimney_pos in pairs(chimneys) do
+				local smoke_def = Get_diesel_smoke_particle_def(chimney_pos.type)
+				smoke_def.time = 1					-- Automatically end after a unit of time.
+				smoke_def.amount = dynamic_amount
+				smoke_def.minpos = chimney_pos
+				smoke_def.maxpos = chimney_pos
+				smoke_def.attached = wagon.object
+				minetest.add_particlespawner(smoke_def)
 			end
 		end
-		smoke_def.minpos = smoke_pos
-		smoke_def.maxpos = smoke_pos
-		smoke_def.attached = wagon.object
-		data.particle_spawner_id = minetest.add_particlespawner(smoke_def)
+
+		-- Compute the amount of smoke based on velocity and length of train. (This will be used later if dynamic smoke is enabled)
+		local dynamic_amount = new_velocity + #(wagon:train().trainparts) - 1
+		if #chimneys > 1 then dynamic_amount = dynamic_amount/#chimneys end
+		if dynamic_amount < 1 then
+			dynamic_amount = 1
+		elseif dynamic_amount > 12 then
+			dynamic_amount = 12
+		end
+
+		data.particle_spawner_ids = {}
+		for _, chimney_pos in pairs(chimneys) do
+			local smoke_def = Get_diesel_smoke_particle_def(chimney_pos.type)
+			if dlxtrains.locomotive_smoke == 2 then
+				-- If dynamic smoke is enabled, define smoke stream based on velocity and length of train
+				smoke_def.amount = dynamic_amount
+			else
+				if #chimneys > 1 then
+					smoke_def.amount = smoke_def.amount/#chimneys
+					if smoke_def.amount < 1 then
+						smoke_def.amount = 1
+					end
+				end	
+			end
+			smoke_def.minpos = chimney_pos
+			smoke_def.maxpos = chimney_pos
+			smoke_def.attached = wagon.object
+			table.insert(data.particle_spawner_ids, minetest.add_particlespawner(smoke_def))
+		end
 	end
 end
 
@@ -289,10 +347,20 @@ if dlxtrains_diesel_locomotives.max_wagon_length >= 7.35 then
 				local data = advtrains.wagons[wagon.id]
 				local light_config = data.light_config
 
+				-- Keep the following for legacy locomotives (Remove after 2023?)
 				if data.particle_spawner_id ~= nil then
 					minetest.delete_particlespawner(data.particle_spawner_id)
 					data.particle_spawner_id = nil
 				end 
+
+				if data.particle_spawner_ids ~= nil then
+					for _, particle_spawner_id in ipairs(data.particle_spawner_ids) do
+						if particle_spawner_id ~= nil then
+							minetest.delete_particlespawner(particle_spawner_id)
+						end
+					end
+					data.particle_spawner_ids = nil
+				end
 
 				if velocity > 0 then
 					-- Set light configuration based on direction of travel
@@ -301,7 +369,7 @@ if dlxtrains_diesel_locomotives.max_wagon_length >= 7.35 then
 						light_config = 2
 					end
 
-					Update_locomotive_smoke(data, wagon, meshes_diesel_locomotive_type1.smoke_pos, old_velocity, velocity)
+					Update_locomotive_smoke(data, wagon, meshes_diesel_locomotive_type1.chimneys, old_velocity, velocity)
 				else
 					light_config = 0
 				end
@@ -322,4 +390,99 @@ if dlxtrains_diesel_locomotives.max_wagon_length >= 7.35 then
 	end
 
 	advtrains.register_wagon("dlxtrains_diesel_locomotives:locomotive_type1", wagon_def, S("European G1206 Diesel Locomotive"), "dlxtrains_diesel_locomotives_locomotive_type1_inv.png")
+end
+
+if dlxtrains_diesel_locomotives.max_wagon_length >= 6.80725 then
+	local wagon_def = {
+		mesh = meshes_diesel_locomotive_type2.default,
+		textures = {"dlxtrains_diesel_locomotives_type2.png"},
+		set_textures = function(wagon, data)
+			dlxtrains.set_textures_for_livery_scheme(wagon, data, livery_scheme_diesel_locomotive_type2, meshes_diesel_locomotive_type2)
+		end,
+		custom_may_destroy = function(wagon, puncher, time_from_last_punch, tool_capabilities, direction)
+			return not dlxtrains.update_livery(wagon, puncher, livery_scheme_diesel_locomotive_type2)
+		end,
+		seats = {
+			{
+				name = "Driver Stand",
+				attach_offset={x=3.6, y=4.2, z=-21.2},
+				view_offset = use_attachment_patch and {x=0, y=0, z=0} or {x=1.3, y=6.5, z=0},
+				driving_ctrl_access = true,
+				group = "cabin",
+			}
+		},
+		seat_groups = {
+			cabin={
+				name = "Cabin",
+				access_to = {},
+				require_doors_open = false,
+				driving_ctrl_access = true,
+			},
+		},
+		assign_to_seat_group = {"cabin"},
+		drives_on={default=true},
+		max_speed=25,
+		visual_size = {x=1, y=1},
+		wagon_span=3.403625,
+		wheel_positions = {1.5625, -1.5625},
+		is_locomotive=true,
+		collisionbox = {-0.5,-0.5,-0.5,0.5,2.5,0.5},
+		coupler_types_front = {knuckle=true},
+		coupler_types_back = {knuckle=true},
+		drops={"default:steelblock 2"},
+		horn_sound = "advtrains_industrial_horn",
+		has_inventory = false,
+		custom_on_step=function(wagon, dtime)
+			if dlxtrains.locomotive_sounds > 0 and wagon:train().velocity > 0 then
+				if not wagon.sound_loop_tmr or wagon.sound_loop_tmr <= 0 then
+					Update_locomotive_sound(wagon, true, meshes_diesel_locomotive_type1.audio_loop_name, meshes_diesel_locomotive_type1.audio_loop_gain) -- Using locomotive_type1 audio for now.
+				end
+				wagon.sound_loop_tmr = wagon.sound_loop_tmr - dtime
+			else
+				Terminate_locomotive_sound(wagon)
+			end
+		end,
+		custom_on_velocity_change = function(wagon, velocity, old_velocity)
+			if velocity ~= old_velocity then
+				local data = advtrains.wagons[wagon.id]
+				local light_config = data.light_config
+
+				if data.particle_spawner_ids ~= nil then
+					for _, particle_spawner_id in ipairs(data.particle_spawner_ids) do
+						if particle_spawner_id ~= nil then
+							minetest.delete_particlespawner(particle_spawner_id)
+						end
+					end
+					data.particle_spawner_ids = nil
+				end
+
+				if velocity > 0 then
+					-- Set light configuration based on direction of travel
+					light_config = 1
+					if data.wagon_flipped then
+						light_config = 2
+					end
+
+					Update_locomotive_smoke(data, wagon, meshes_diesel_locomotive_type2.chimneys, old_velocity, velocity)
+				else
+					light_config = 0
+				end
+				if light_config ~= data.light_config then
+					data.light_config = light_config
+					wagon:set_textures(data)
+				end
+
+				if dlxtrains.locomotive_sounds == 2 then
+					Update_locomotive_sound(wagon, false, meshes_diesel_locomotive_type1.audio_loop_name, meshes_diesel_locomotive_type1.audio_loop_gain) -- Using locomotive_type1 audio for now.
+				end
+			end
+		end,
+	}
+
+	if use_attachment_patch then
+		advtrains_attachment_offset_patch.setup_advtrains_wagon(wagon_def);
+	end
+
+	advtrains.register_wagon("dlxtrains_diesel_locomotives:locomotive_type2", wagon_def, S("North American SW1500 Diesel Locomotive"), "dlxtrains_diesel_locomotives_locomotive_type2_inv.png")
+
 end
