@@ -2,6 +2,10 @@
 
 All notable changes to this project will be documented in this file.
 
+## [1.9.0] - 2022-07-16
+ - Added the North American SW1500 Diesel Locomotive.
+ - Added support for the advtrains_attachment_offset_patch.
+ - Added the missing coupler specifications for the European G1206 Diesel Locomotive.
 ## [1.8.0] - 2022-03-31
  - Added tank containers as a new load option for the container wagons.  These will be visible when the wagons are loaded with water, water buckets or other filled liquid containers.
  - Added extra tank container liveries to dlxtrains_cargo.
