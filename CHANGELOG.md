@@ -2,6 +2,8 @@
 
 All notable changes to this project will be documented in this file.
 
+## [1.9.1] - 2022-08-24
+ - Fixed a crash that could occur when loading a container wagon and one of the common versions of the Technic mod is active.
 ## [1.9.0] - 2022-07-16
  - Added the North American SW1500 Diesel Locomotive.
  - Added support for the advtrains_attachment_offset_patch.
