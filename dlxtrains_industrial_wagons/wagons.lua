@@ -117,6 +117,25 @@ local function register_stackable_liquid_proxy(mod_name, item_name)
 	end
 end
 
+local technic_cans = {}
+if minetest.get_modpath("technic") then
+	if technic.cans ~= nil then
+		-- This version of the technic mod has a table of can definitions.
+		-- Use it to build the local list of technic can names so that any
+		-- changes to the list of cans will be supported automatically.
+		for _, def in pairs(technic.cans) do
+			technic_cans[def.can_name] = true
+		end
+	else
+		-- This version of the technic mod lacks a table of can definitions.
+		-- Define a hard-coded local list. Any changes to the list of cans
+		-- will need to be manually updated here.
+		technic_cans["technic:water_can"] = true
+		technic_cans["technic:lava_can"] = true
+		technic_cans["technic:river_water_can"] = true
+	end
+end
+
 -- Register items defined in other mods that are stackable and that can be
 -- considered to be a liquid for the purpose of determining whether it
 -- should be shown as being transported in a shipping container or a tank
@@ -154,7 +173,7 @@ local function get_liquid_count(stack)
 	if is_filled_bucket(stack) then
 		-- Filled buckets neither stack nor contain more than one unit of liquid.
 		liquid_count = 1
-	elseif minetest.get_modpath("technic") and technic.cans[stack:get_name()] then
+	elseif technic_cans[stack:get_name()] then
 		-- Technic cans do not stack so use the quantity of liquid in the container.
 		liquid_count = tonumber(stack:get_metadata()) or 0
 	else
