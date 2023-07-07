@@ -3,13 +3,12 @@
 DlxTrains ModPack is an extension for AdvTrains that adds train related content for Minetest train operations.  Features of the modpack include:
 
 - Detailed locomotives and wagons whose livery and age appearance can be selected by the owning player.
-- 2 diesel locomotives with dynamic sound, smoke and texture effects.
+- 3 diesel locomotives with dynamic sound, smoke and texture effects.
 - 10 industrial freight wagons, including some that have visible loads that reflect the wagon's inventory.
 - 2 support wagons, including an escort wagon and a caboose.
 
-Note: This modpack does not currently include passenger wagons.  For those, consider using [AdvTrains Basic Trains](https://content.minetest.net/packages/orwell/basic_trains/) or [Moretrains](https://content.minetest.net/packages/gpcf/moretrains/), both of which are available on [ContentDB](https://content.minetest.net/).
-
-![](screenshot.png)
+Note: This modpack does not currently include passenger wagons. For those, consider using [AdvTrains Basic Trains](https://content.minetest.net/packages/orwell/basic_trains/), [Moretrains](https://content.minetest.net/packages/gpcf/moretrains/) or [Classic Coaches](https://content.minetest.net/packages/Marnack/classic_coaches/), all of which are available on ContentDB.
+![](screenshot.png).
 
 ## Included mods
 
@@ -17,7 +16,7 @@ Please see the README file in each of the included mod folders for important add
 
 - **DlxTrains** - This is the base mod needed by all other DlxTrains related mods.  It contains common craft items and tools for the modpack plus utilities needed by the other DlxTrains mods.
 - **DlxTrains Cargo** - This is an optional mod that adds some cargo nodes as well as additional cargo related textures that can be used by the DlxTrains Industrial Wagons mod.
-- **DlxTrains Diesel Locomotives** - This mod provides two diesel locomotives in multiple liveries.  Players can optionally customize the exterior of these locomotives with a visible unit number that is unique to each locomotive.
+- **DlxTrains Diesel Locomotives** - This mod provides three diesel locomotives in multiple liveries.  Players can optionally customize the exterior of these locomotives with a visible unit number that is unique to each locomotive.
 - **DlxTrains Industrial Wagons** - This mod provides freight wagons that feature selectable liveries and, in some cases, visible cargo.
 - **DlxTrains Support Wagons** - This mod provides support wagons, including an escort wagon and a caboose, both of which provide additional seating for train crew members.  These wagons also feature selectable liveries.
 
@@ -30,9 +29,9 @@ Railway Code|Logo(s)|Primary Color|Secondary Color|Diesel Locomotives|Industrial
 AR|![](dlxtrains/textures/dlxtrains_logo_ar.png)|Red|Yellow|0|1|0
 AT|![](dlxtrains/textures/dlxtrains_logo_at.png)|Light Green|Yellow|0|1|0
 DL&X|![](dlxtrains/textures/dlxtrains_logo_dlx.png)|Black|Light Grey|1|6|1
-DZ|![](dlxtrains/textures/dlxtrains_logo_dz.png)|Red|Light Grey|1|5|1
+DZ|![](dlxtrains/textures/dlxtrains_logo_dz.png)|Red|Light Grey|2|5|1
 NR|![](dlxtrains/textures/dlxtrains_logo_nr.png)|n/a*|n/a*|0|3|1
-T|![](dlxtrains/textures/dlxtrains_logo_t.png)|Brown|Yellow|2|8|2
+T|![](dlxtrains/textures/dlxtrains_logo_t.png)|Brown|Yellow|3|8|2
 TT|![](dlxtrains/textures/dlxtrains_logo_tt.png) ![](dlxtrains/textures/dlxtrains_logo_tt_2.png)|Green|Cyan|0|3|0
 VR|![](dlxtrains/textures/dlxtrains_logo_vr.png)|Light Grey|Red|0|1|0
 WF|![](dlxtrains/textures/dlxtrains_logo_wf.png)|Green|Grey|1|5|1
@@ -56,7 +55,7 @@ This modpack would not exist without the prior efforts of the following people:
 
 ## Licenses
 
-Copyright © 2021-2022 Marnack
+Copyright © 2021-2023 Marnack
 
 - DlxTrains ModPack code is licensed under the GNU AGPL version 3 license, see [LICENSE.txt](LICENSE.txt) for details.
 - Unless otherwise specified, DlxTrains ModPack media (models, textures and sounds) are licensed under [CC BY-SA 3.0 Unported](https://creativecommons.org/licenses/by-sa/3.0/).

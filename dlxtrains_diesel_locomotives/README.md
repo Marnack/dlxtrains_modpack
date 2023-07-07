@@ -21,6 +21,7 @@ The following craft items are defined and added to the game if the "Complexity o
 - **Diesel Locomotive Hood** - Typically made from sheet metal and various structural elements, hoods are the outer covering of the locomotive's engine, its transmission and other vital components.  Depending on the design of the locomotive it will typically have one or two of these.
 - **Diesel Locomotive Hydraulic Transmission** - This component is used to transfer power from the engine to the drive shaft and bogies and to control speed and direction.
 - **Diesel Locomotive Radiator** - Radiators are a critical element of a diesel engine since they are needed to keep it from over-heating and becoming permanently damaged. They typically consist of long coiled tubes to which many metal fins are attached.  Fluid is circulated through the engine, into the radiators and back.  The fluid thus transfers the heat from the engine to the metal fins where the heat is radiated into the air and away from the engine.
+- **European BR218 Diesel Locomotive Body** - This is the set of components that are added to a chassis to make a European BR218 Diesel Locomotive.
 - **European G1206 Diesel Locomotive Body** - This is the set of components that are added to a chassis to make a European G1206 Diesel Locomotive.
 - **North American SW1500 Diesel Locomotive Body** - This is the set of components that are added to a chassis to make a North American SW1500 Diesel Locomotive.
 
@@ -30,10 +31,23 @@ The following table summarizes the current set of DlxTrains Diesel Locomotives.
 
 Icon|Wagon Name|Length (m)|Coupler Type|Max Speed (m/s)|Livery Options
 :---:|---|:---:|---|:---:|:---:
+![](textures/inventory/dlxtrains_diesel_locomotives_locomotive_type3_inv.png)|European BR218 Diesel Locomotive|8.2|Buffer & Chain|25|2
 ![](textures/inventory/dlxtrains_diesel_locomotives_locomotive_type1_inv.png)|European G1206 Diesel Locomotive|7.35|Buffer & Chain|25|4
 ![](textures/inventory/dlxtrains_diesel_locomotives_locomotive_type2_inv.png)|North American SW1500 Diesel Locomotive|6.81|Knuckle|25|2
 
 Note that locomotives may not be available in-game if the "Longest DLX wagon to include in game" setting defined in **DlxTrains** is set to a value other than "Unlimited".  That setting will use the lengths shown in the table when determining the locomotives to be excluded.
+
+### European BR218 Diesel Locomotive
+
+The European BR218 Diesel Locomotive in DlxTrains is loosely based on the DB Class 218 diesel-hydraulic locomotive that was built for the Deutsche Bundesbahn in Germany beginning in 1968.  Nearly 400 units were built and played a key role in both passenger and freight service for more than 20 years, with many units remaining in service even longer.
+
+In game, the locomotive features several effects when the locomotive is moving:
+* The main lights will appear to turn on (but not illuminate) based on the locomotive's direction of movement.
+* Its radiator cooling fan will appear to be spinning while the locomotive is moving.
+* The diesel engine's sound will change based on the locomotive's velocity (unless this feature is disabled in the **DlxTrains** mod settings).
+* The amount of diesel smoke produced by the locomotive will vary based on its acceleration, velocity and the length of the train (unless this feature is disabled in the **DlxTrains** mod settings).
+
+The locomotive has two driver's cabs, one at each end. Players can choose to be located in either cab 1 or cab 2, switching between the two even while the locomotive is moving. This can be especially useful when changing the direction of travel.  For the best in-cab experience, use the optional [advtrains_attachment_offset_patch](https://content.minetest.net/packages/doxygen_spammer/advtrains_attachment_offset_patch/)
 
 ### European G1206 Diesel Locomotive
 
@@ -68,7 +82,7 @@ Due to current limitations in Minetest, the player's view while on board the loc
 
 ## Licenses
 
-Copyright © 2022 Marnack
+Copyright © 2022-2023 Marnack
 
 - DlxTrains Diesel Locomotives code is licensed under the GNU AGPL version 3 license.
 - Unless otherwise specified, DlxTrains Diesel Locomotives media (models, textures and sounds) are licensed under [CC BY-SA 3.0 Unported](https://creativecommons.org/licenses/by-sa/3.0/).

@@ -13,3 +13,5 @@ European G1206 Diesel Locomotive Body=Europäischer G1206 Diesellokomotiven Karos
 European G1206 Diesel Locomotive=Europäische G1206 Diesellokomotive
 North American SW1500 Diesel Locomotive Body=Nordamerikanischer SW1500 Diesellokomotive Karosserie
 North American SW1500 Diesel Locomotive Body=Nordamerikanischer SW1500 Diesellokomotive
+European BR218 Diesel Locomotive Body=Europäischer BR218 Diesellokomotiven Karosserie
+European BR218 Diesel Locomotive=Europäische BR218 Diesellokomotive

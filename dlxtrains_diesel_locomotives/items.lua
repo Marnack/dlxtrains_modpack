@@ -192,4 +192,22 @@ if dlxtrains.get_config_wagon_crafting_recipe_complexity() == 1 then
 		})
 	end
 
+	if dlxtrains_diesel_locomotives.max_wagon_length >= 8.2 then
+
+		minetest.register_craftitem("dlxtrains_diesel_locomotives:locomotive_body_type3", {
+			description = S("European BR218 Diesel Locomotive Body"),
+			inventory_image = "dlxtrains_diesel_locomotives_locomotive_body_type3.png",
+		})
+
+		minetest.register_craft({
+			output = "dlxtrains_diesel_locomotives:locomotive_body_type3",
+			recipe = {
+				{"advtrains:driver_cab", "dlxtrains_diesel_locomotives:hood", "advtrains:driver_cab"},
+				{"dye:red", "dlxtrains_diesel_locomotives:cooling_unit", "dlxtrains_diesel_locomotives:generator"},
+				{"dlxtrains_diesel_locomotives:battery_pack", "dlxtrains_diesel_locomotives:hydraulic_transmission", "dlxtrains_diesel_locomotives:diesel_engine"},
+			}
+		})
+
+	end
+
 end
