@@ -2,6 +2,8 @@
 
 All notable changes to this project will be documented in this file.
 
+## [1.10.0] - 2023-07-07
+ - Added the European BR218 Diesel Locomotive.
 ## [1.9.1] - 2022-08-24
  - Fixed a crash that could occur when loading a container wagon and one of the common versions of the Technic mod is active.
 ## [1.9.0] - 2022-07-16
