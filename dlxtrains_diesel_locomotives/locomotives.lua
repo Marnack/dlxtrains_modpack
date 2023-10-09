@@ -13,18 +13,26 @@ local livery_type1_unit_number_info = {
 	}
 
 local livery_type2_unit_number_info = {
-		[0] = {	{x = 278, y =  80, spacing = 1, justify = 1, digit_width =  3, digit_height = 5, font_id = 1, color1 = "#C3C3C3", color2 = "#B9B8B8"},
-				{x = 356, y =  80, spacing = 1, justify = 1, digit_width =  3, digit_height = 5, font_id = 1, color1 = "#C3C3C3", color2 = "#B9B8B8"}, },
+		[0] = {	{x = 278, y =  80, spacing = 1, justify = 1, digit_width =  3, digit_height =  5, font_id = 1, color1 = "#C3C3C3", color2 = "#B9B8B8"},
+				{x = 356, y =  80, spacing = 1, justify = 1, digit_width =  3, digit_height =  5, font_id = 1, color1 = "#C3C3C3", color2 = "#B9B8B8"}, },
 		[1] = {	{x =  48, y = 114, spacing = 3, justify = 0, digit_width =  7, digit_height = 10, font_id = 3, color1 = "#938731", color2 = "#948839"},
 				{x =  47, y =  59, spacing = 3, justify = 2, digit_width =  7, digit_height = 10, font_id = 3, color1 = "#938731", color2 = "#948839"}, },
+		[2] = {	{x = 277, y =  83, spacing = 1, justify = 1, digit_width =  4, digit_height =  7, font_id = 5, color1 = "#C3C3C3", color2 = "#B9B8B8"},
+				{x = 354, y =  83, spacing = 1, justify = 1, digit_width =  4, digit_height =  7, font_id = 5, color1 = "#C3C3C3", color2 = "#B9B8B8"}, },
+		[3] = {	{x = 277, y =  81, spacing = 1, justify = 1, digit_width =  4, digit_height =  7, font_id = 5, color1 = "#C3C3C3", color2 = "#B9B8B8"},
+				{x = 354, y =  81, spacing = 1, justify = 1, digit_width =  4, digit_height =  7, font_id = 5, color1 = "#C3C3C3", color2 = "#B9B8B8"}, },
 	}
 
 local livery_type3_unit_number_info = {
-		[0] = {	{x = 192, y =  17, spacing = 1, justify = 2, digit_width =  3, digit_height = 5, font_id = 1, color1 = "#636363", color2 = "#595858"},
-				{x = 248, y = 100, spacing = 1, justify = 0, digit_width =  2, digit_height = 2, font_id = 4, color1 = "#C3C3C3", color2 = "#B9B8B8"},
-				{x = 295, y = 100, spacing = 1, justify = 0, digit_width =  2, digit_height = 2, font_id = 4, color1 = "#C3C3C3", color2 = "#B9B8B8"}, },
-		[1] = {	{x =  83, y = 130, spacing = 1, justify = 1, digit_width =  3, digit_height = 5, font_id = 1, color1 = "#938731", color2 = "#9E913B"},
-				{x = 126, y = 175, spacing = 1, justify = 1, digit_width =  3, digit_height = 5, font_id = 1, color1 = "#938731", color2 = "#9E913B"}, },
+		[0] = {	{x = 192, y =  17, spacing = 1, justify = 2, digit_width =  3, digit_height =  5, font_id = 1, color1 = "#636363", color2 = "#595858"},
+				{x = 248, y = 100, spacing = 1, justify = 0, digit_width =  2, digit_height =  2, font_id = 4, color1 = "#C3C3C3", color2 = "#B9B8B8"},
+				{x = 295, y = 100, spacing = 1, justify = 0, digit_width =  2, digit_height =  2, font_id = 4, color1 = "#C3C3C3", color2 = "#B9B8B8"}, },
+		[1] = {	{x =  83, y = 130, spacing = 1, justify = 1, digit_width =  3, digit_height =  5, font_id = 1, color1 = "#938731", color2 = "#9E913B"},
+				{x = 126, y = 175, spacing = 1, justify = 1, digit_width =  3, digit_height =  5, font_id = 1, color1 = "#938731", color2 = "#9E913B"}, },
+		[2] = {	{x =  83, y = 137, spacing = 1, justify = 1, digit_width =  3, digit_height =  5, font_id = 1, color1 = "#848C8B", color2 = "#787B78"},
+				{x = 126, y = 182, spacing = 1, justify = 1, digit_width =  3, digit_height =  5, font_id = 1, color1 = "#848C8B", color2 = "#787B78"}, },
+		[3] = {	{x = 192, y = 122, spacing = 1, justify = 1, digit_width =  3, digit_height =  5, font_id = 1, color1 = "#2A2A2A", color2 = "#474443"},
+				{x = 192, y = 167, spacing = 1, justify = 1, digit_width =  3, digit_height =  5, font_id = 1, color1 = "#2A2A2A", color2 = "#474443"}, },
 	}
 
 local function GetDigitOverlay(livery_unit_number_info, x, d, alt_scheme)
@@ -148,7 +156,9 @@ local livery_scheme_diesel_locomotive_type2 = {
 		filename_prefix = "dlxtrains_diesel_locomotives_locomotive_type2",
 		[0]={code="dlx"},
 		[1]={code="t"},
-		count = 2,
+		[2]={code="nr"},
+		[3]={code="tt"},
+		count = 4,
 		on_update_texture = function(wagon, data, texture)
 			local new_texture = texture
 			if texture ~= nil then
@@ -182,7 +192,9 @@ local livery_scheme_diesel_locomotive_type3 = {
 		filename_prefix = "dlxtrains_diesel_locomotives_locomotive_type3",
 		[0]={code="dz"},
 		[1]={code="t"},
-		count = 2,
+		[2]={code="wf"},
+		[3]={code="zr"},
+		count = 4,
 		on_update_texture = function(wagon, data, texture)
 			local new_texture = texture
 			if texture ~= nil then

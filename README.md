@@ -30,14 +30,12 @@ AR|![](dlxtrains/textures/dlxtrains_logo_ar.png)|Red|Yellow|0|1|0
 AT|![](dlxtrains/textures/dlxtrains_logo_at.png)|Light Green|Yellow|0|1|0
 DL&X|![](dlxtrains/textures/dlxtrains_logo_dlx.png)|Black|Light Grey|1|6|1
 DZ|![](dlxtrains/textures/dlxtrains_logo_dz.png)|Red|Light Grey|2|5|1
-NR|![](dlxtrains/textures/dlxtrains_logo_nr.png)|n/a*|n/a*|0|3|1
+NR|![](dlxtrains/textures/dlxtrains_logo_nr.png)|Blue|Light Grey|1|3|1
 T|![](dlxtrains/textures/dlxtrains_logo_t.png)|Brown|Yellow|3|8|2
-TT|![](dlxtrains/textures/dlxtrains_logo_tt.png) ![](dlxtrains/textures/dlxtrains_logo_tt_2.png)|Green|Cyan|0|3|0
+TT|![](dlxtrains/textures/dlxtrains_logo_tt.png) ![](dlxtrains/textures/dlxtrains_logo_tt_2.png)|Green|Cyan|1|3|0
 VR|![](dlxtrains/textures/dlxtrains_logo_vr.png)|Light Grey|Red|0|1|0
-WF|![](dlxtrains/textures/dlxtrains_logo_wf.png)|Green|Grey|1|5|1
-ZR|![](dlxtrains/textures/dlxtrains_logo_zr.png)|Yellow|Black|1|5|0
-
-\* The modern color scheme for this railway is not yet defined.  The color will be defined in a future release of DlxTrains if used on a later era wagon.
+WF|![](dlxtrains/textures/dlxtrains_logo_wf.png)|Green|Grey|2|5|1
+ZR|![](dlxtrains/textures/dlxtrains_logo_zr.png)|Yellow|Black|2|5|0
 
 ## Author's Notes
 
