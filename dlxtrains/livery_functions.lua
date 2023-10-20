@@ -1,8 +1,4 @@
 
-local S = dlxtrains.S
-
--- ////////////////////////////////////////////////////////////////////////////////////
-
 local function get_config_random_livery()
 	local use_random_livery = minetest.settings:get_bool("dlxtrains_random_liveries")
 	if use_random_livery == nil then use_random_livery = true end
@@ -30,7 +26,7 @@ function dlxtrains.set_textures_for_livery_scheme(wagon, data, livery_schemes, m
 			if default_age_appearance == 1 then
 				data.alt_scheme = rnd%2 > 0
 			elseif default_age_appearance == 2 then
-				data.alt_scheme = true	
+				data.alt_scheme = true
 			end
 		end
 
@@ -79,7 +75,6 @@ function dlxtrains.update_livery(wagon, puncher, livery_schemes)
 					minetest.sound_play("dlxtrains_age_selection_tool", {object = wagon.object, gain = 0.08, max_hear_distance = 11})
 				elseif livery_count > 1 then
 					local pc = puncher:get_player_control()
-					local reverse = pc.sneak
 					local increment = 1
 					if pc.sneak then
 						increment = -1

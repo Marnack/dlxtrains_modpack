@@ -111,7 +111,7 @@ While liquids in containers are not actually placed in tank containers in the re
 
 ## Licenses
 
-Copyright © 2021-2022 Marnack
+Copyright © 2021-2023 Marnack
 
 - DlxTrains Industrial Wagons code is licensed under the GNU AGPL version 3 license.
 - Unless otherwise specified, DlxTrains Industrial Wagons media (models, textures and sounds) are licensed under [CC BY-SA 3.0 Unported](https://creativecommons.org/licenses/by-sa/3.0/).

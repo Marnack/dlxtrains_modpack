@@ -194,8 +194,8 @@ local function is_hopper_load_material(node_def)
 		if node_def.groups.soil
 			or node_def.groups.sand
 			or node_def.name == "default:gravel"
-			or node_def.name == "default:coalblock" 
-			or node_def.name == "default:permafrost" 
+			or node_def.name == "default:coalblock"
+			or node_def.name == "default:permafrost"
 			or node_def.name == "default:permafrost_with_stones"
 			or node_def.name == "default:cobble" then
 			return true

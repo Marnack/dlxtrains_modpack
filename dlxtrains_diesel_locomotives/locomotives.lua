@@ -166,7 +166,6 @@ local livery_scheme_diesel_locomotive_type2 = {
 
 				-- Update lights
 				local white_light = "dlxtrains_diesel_locomotives_white_light.png\\^\\[resize\\:10x10"
-				local red_light = "dlxtrains_diesel_locomotives_red_light.png\\^\\[resize\\:10x10"
 				if data.light_config == 1 or data.light_config == 2 then
 					-- Turn on running lights
 					overlays = (overlays or "")..":374,168="..white_light
@@ -383,7 +382,7 @@ local function Update_locomotive_smoke(data, wagon, chimneys, old_velocity, new_
 					if smoke_def.amount < 1 then
 						smoke_def.amount = 1
 					end
-				end	
+				end
 			end
 			smoke_def.minpos = chimney_pos
 			smoke_def.maxpos = chimney_pos
@@ -448,13 +447,13 @@ if dlxtrains_diesel_locomotives.max_wagon_length >= 7.35 then
 		custom_on_velocity_change = function(wagon, velocity, old_velocity)
 			if velocity ~= old_velocity then
 				local data = advtrains.wagons[wagon.id]
-				local light_config = data.light_config
+				local light_config = 0
 
 				-- Keep the following for legacy locomotives (Remove after 2023?)
 				if data.particle_spawner_id ~= nil then
 					minetest.delete_particlespawner(data.particle_spawner_id)
 					data.particle_spawner_id = nil
-				end 
+				end
 
 				if data.particle_spawner_ids ~= nil then
 					for _, particle_spawner_id in ipairs(data.particle_spawner_ids) do
@@ -473,8 +472,6 @@ if dlxtrains_diesel_locomotives.max_wagon_length >= 7.35 then
 					end
 
 					Update_locomotive_smoke(data, wagon, meshes_diesel_locomotive_type1.chimneys, old_velocity, velocity)
-				else
-					light_config = 0
 				end
 				if light_config ~= data.light_config then
 					data.light_config = light_config
@@ -548,7 +545,7 @@ if dlxtrains_diesel_locomotives.max_wagon_length >= 6.80725 then
 		custom_on_velocity_change = function(wagon, velocity, old_velocity)
 			if velocity ~= old_velocity then
 				local data = advtrains.wagons[wagon.id]
-				local light_config = data.light_config
+				local light_config = 0
 
 				if data.particle_spawner_ids ~= nil then
 					for _, particle_spawner_id in ipairs(data.particle_spawner_ids) do
@@ -567,8 +564,6 @@ if dlxtrains_diesel_locomotives.max_wagon_length >= 6.80725 then
 					end
 
 					Update_locomotive_smoke(data, wagon, meshes_diesel_locomotive_type2.chimneys, old_velocity, velocity)
-				else
-					light_config = 0
 				end
 				if light_config ~= data.light_config then
 					data.light_config = light_config
@@ -657,7 +652,7 @@ if dlxtrains_diesel_locomotives.max_wagon_length >= 8.2 then
 		custom_on_velocity_change = function(wagon, velocity, old_velocity)
 			if velocity ~= old_velocity then
 				local data = advtrains.wagons[wagon.id]
-				local light_config = data.light_config
+				local light_config = 0
 
 				if data.particle_spawner_ids ~= nil then
 					for _, particle_spawner_id in ipairs(data.particle_spawner_ids) do
@@ -676,8 +671,6 @@ if dlxtrains_diesel_locomotives.max_wagon_length >= 8.2 then
 					end
 
 					Update_locomotive_smoke(data, wagon, meshes_diesel_locomotive_type3.chimneys, old_velocity, velocity)
-				else
-					light_config = 0
 				end
 				if light_config ~= data.light_config then
 					data.light_config = light_config
