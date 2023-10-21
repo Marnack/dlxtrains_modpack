@@ -1,12 +1,8 @@
+local mod_name = "dlxtrains"
 
 dlxtrains = {}
 
--- Support localized strings if intllib mod is installed.
-if minetest.get_modpath( "intllib" ) and intllib then
-	dlxtrains.S = intllib.Getter()
-else
-	dlxtrains.S = function(s) return s end
-end
+dlxtrains.S = minetest.get_translator(mod_name)
 
 local maximum_wagon_length_enum = minetest.settings:get("dlxtrains_maximum_wagon_length") or "Unlimited"
 dlxtrains.max_wagon_length = ({["5m"]=5, ["6m"]=6, ["7m"]=7, ["8m"]=8, ["Unlimited"]=100})[maximum_wagon_length_enum]
@@ -17,13 +13,9 @@ dlxtrains.locomotive_sounds = ({["Off"]=0, ["Constant"]=1, ["Dynamic"]=2})[locom
 local locomotive_smoke_enum = minetest.settings:get("dlxtrains_locomotive_smoke") or "Dynamic"
 dlxtrains.locomotive_smoke = ({["Off"]=0, ["Constant"]=1, ["Dynamic"]=2})[locomotive_smoke_enum]
 
-local dlxtrains_path = minetest.get_modpath("dlxtrains")
-
 advtrains.register_coupler_type("knuckle", dlxtrains.S("Knuckle Coupler"))
 
-dofile(dlxtrains_path.."/items.lua")
-dofile(dlxtrains_path.."/tools.lua")
-dofile(dlxtrains_path.."/livery_functions.lua")
-
--- Cleanup
-dlxtrains.S = nil
+local mod_path = minetest.get_modpath(mod_name)
+dofile(mod_path.."/items.lua")
+dofile(mod_path.."/tools.lua")
+dofile(mod_path.."/livery_functions.lua")

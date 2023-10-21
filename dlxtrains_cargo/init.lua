@@ -1,17 +1,10 @@
+local mod_name = "dlxtrains_cargo"
 
 dlxtrains_cargo = {}
 
--- Support localized strings if intllib mod is installed.
-if minetest.get_modpath( "intllib" ) and intllib then
-	dlxtrains_cargo.S = intllib.Getter()
-else
-	dlxtrains_cargo.S = function(s) return s end
-end
+dlxtrains_cargo.S = minetest.get_translator(mod_name)
 
--- Add nodes
-dofile(minetest.get_modpath("dlxtrains_cargo").."/items.lua");
-dofile(minetest.get_modpath("dlxtrains_cargo").."/nodes.lua");
-dofile(minetest.get_modpath("dlxtrains_cargo").."/functions.lua");
-
--- Cleanup
-dlxtrains_cargo.S = nil;
+local mod_path = minetest.get_modpath(mod_name)
+dofile(mod_path.."/items.lua");
+dofile(mod_path.."/nodes.lua");
+dofile(mod_path.."/functions.lua");
