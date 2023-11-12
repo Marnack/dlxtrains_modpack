@@ -40,7 +40,8 @@ local livery_scheme_industrial_wagon_covered_goods_type2 = {
 		[0]={code="vr"},
 		[1]={code="ar"},
 		[2]={code="at"},
-		count = 3,
+		[3]={code="t"},
+		count = 4,
 	}
 
 local livery_scheme_industrial_wagon_covered_goods_type3 = {

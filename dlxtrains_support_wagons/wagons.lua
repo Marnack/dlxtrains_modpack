@@ -17,7 +17,8 @@ local livery_scheme_support_wagon_escort_type1 = {
 		[0]={code="wf"},
 		[1]={code="t"},
 		[2]={code="dz"},
-		count = 3,
+		[3]={code="zr"},
+		count = 4,
 	}
 
 -- ////////////////////////////////////////////////////////////////////////////////////
