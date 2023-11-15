@@ -25,6 +25,7 @@ The following table summarizes the full set of DlxTrains Industrial Wagons.
 
 Icon|Wagon Name|Length (m)|Coupler Type|Inventory Size|Max Speed (m/s)|Livery Options
 :---:|---|:---:|---|:---:|:---:|:---:
+![](textures/inventory/dlxtrains_industrial_wagons_flat_type2_inv.png)|Australian Flat Wagon|6|Knuckle|24|20|4
 ![](textures/inventory/dlxtrains_industrial_wagons_covered_goods_type2_inv.png)|Australian Louver Van|8|Knuckle|40|25|4
 ![](textures/inventory/dlxtrains_industrial_wagons_transition_type1_inv.png)|Buffer/Knuckle Transition Wagon|6|Buffer & Chain / Knuckle|24|20|2
 ![](textures/inventory/dlxtrains_industrial_wagons_container_type1_inv.png)|European Container Wagon|8.5|Buffer & Chain|32|20|5
@@ -37,6 +38,12 @@ Icon|Wagon Name|Length (m)|Coupler Type|Inventory Size|Max Speed (m/s)|Livery Op
 ![](textures/inventory/dlxtrains_industrial_wagons_covered_goods_type1_inv.png)|North American Wooden Boxcar|8|Knuckle|40|25|3
 
 Note that some wagons may not be available in-game if the "Longest DLX wagon to include in game" setting defined in **DlxTrains** is set to a value other than "Unlimited".  That setting will use the lengths shown in the table when determining the wagons to be excluded.
+
+### Australian Flat Wagon
+
+This wagon is loosely based on an early Australian bogie flat wagon that entered service in southern Australia in the mid 1920's.
+
+It features visible loads in game using the same mechanism as the European Flat Wagon (see below).
 
 ### Australian Louver Van
 

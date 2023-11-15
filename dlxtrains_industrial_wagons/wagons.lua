@@ -62,6 +62,15 @@ local livery_scheme_industrial_wagon_flat_type1 = {
 		count = 4,
 	}
 
+local livery_scheme_industrial_wagon_flat_type2 = {
+		filename_prefix = "dlxtrains_industrial_wagons_flat_type2",
+		[0]={code="ar"},
+		[1]={code="at"},
+		[2]={code="t"},
+		[3]={code="vr"},
+		count = 4,
+	}
+
 local livery_scheme_industrial_wagon_hopper_type1 = {
 		filename_prefix = "dlxtrains_industrial_wagons_hopper_type1",
 		[0]={code="dlx"},
@@ -594,6 +603,16 @@ local meshes_industrial_wagon_flat_type1 = {
 		end,
 	}
 
+local meshes_industrial_wagon_flat_type2 = {
+		default = "dlxtrains_industrial_wagons_flat_type2.b3d",
+		loaded1 = "dlxtrains_industrial_wagons_flat_type2_loaded1.b3d",
+		loaded3 = "dlxtrains_industrial_wagons_flat_type2_loaded3.b3d",
+		loaded5 = "dlxtrains_industrial_wagons_flat_type2_loaded5.b3d",
+		update_model = function(wagon, data, texture_file, meshes)
+			return update_model_industrial_wagon_flat(wagon, data, texture_file, meshes)
+		end,
+	}
+
 local meshes_industrial_wagon_hopper_type1 = {
 		default = "dlxtrains_industrial_wagons_hopper_type1.obj",
 		loaded = "dlxtrains_industrial_wagons_hopper_type1_loaded.obj",
@@ -839,6 +858,45 @@ if dlxtrains_industrial_wagons.max_wagon_length >= 6 then
 			box=8*3,
 		},
 	}, S("European Flat Wagon"), "dlxtrains_industrial_wagons_flat_type1_inv.png")
+end
+
+-- ////////////////////////////////////////////////////////////////////////////////////
+
+if dlxtrains_industrial_wagons.max_wagon_length >= 6 then
+	advtrains.register_wagon("dlxtrains_industrial_wagons:flat_type2", {
+		mesh = meshes_industrial_wagon_flat_type2.default,
+		textures = {"dlxtrains_industrial_wagon_flat_type2.png"},
+		set_textures = function(wagon, data)
+			dlxtrains.set_textures_for_livery_scheme(wagon, data, livery_scheme_industrial_wagon_flat_type2, meshes_industrial_wagon_flat_type2)
+		end,
+		custom_may_destroy = function(wagon, puncher, time_from_last_punch, tool_capabilities, direction)
+			return not dlxtrains.update_livery(wagon, puncher, livery_scheme_industrial_wagon_flat_type2)
+		end,
+		seats = {},
+		drives_on={default=true},
+		max_speed=20,
+		visual_size = {x=1, y=1},
+		wagon_span=3,
+		wheel_positions = {2.0, -2.0},
+		collisionbox = {-1.0,-0.5,-1.0,1.0,2.5,1.0},
+		coupler_types_front = {knuckle=true},
+		coupler_types_back = {knuckle=true},
+		drops={"default:steelblock"},
+		has_inventory = true,
+		get_inventory_formspec = function(wagon, pname, invname)
+			return "size[8,8]"..
+				"box[0,0;.8,.88;#077]"..	-- Highlight slots that impact visible loads
+				"box[0,1;.8,.88;#077]"..
+				"box[0,2;.8,.88;#077]"..
+				"list["..invname..";box;0,0;8,3;]"..
+				"list[current_player;main;0,4;8,4;]"..
+				"listring[]"..
+				get_wagon_proprties_button_spec(wagon.id, pname, 2, 3)
+		end,
+		inventory_list_sizes = {
+			box=8*3,
+		},
+	}, S("Australian Flat Wagon"), "dlxtrains_industrial_wagons_flat_type2_inv.png")
 end
 
 -- ////////////////////////////////////////////////////////////////////////////////////
