@@ -2,6 +2,10 @@
 
 All notable changes to this project will be documented in this file.
 
+## [1.13.0] - 2024-01-28
+ - Added basic support for AdvTrains Livery Tools.
+ - Added API for external access to livery information.
+ - Added a livery for the Wooden Caboose with Cupola
 ## [1.12.0] - 2023-11-14
  - Added the Australian Flat Wagon
  - Added one livery each for the Australian Louver Van and the European Escort Wagon.
