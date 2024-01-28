@@ -1,6 +1,9 @@
 
 local S = dlxtrains_support_wagons.S
 local use_attachment_patch = advtrains_attachment_offset_patch and advtrains_attachment_offset_patch.setup_advtrains_wagon
+local mod_name = "dlxtrains_support_wagons"
+
+dlxtrains.register_mod(mod_name)
 
 -- ////////////////////////////////////////////////////////////////////////////////////
 
@@ -23,6 +26,22 @@ local livery_scheme_support_wagon_escort_type1 = {
 
 -- ////////////////////////////////////////////////////////////////////////////////////
 
+local livery_templates = {
+	["dlxtrains_support_wagons:caboose_type1"] = {
+		dlxtrains.init_livery_template(mod_name, 0, dlxtrains.livery_type.standard,		"T",	"caboose_type1_t"),
+		dlxtrains.init_livery_template(mod_name, 1, dlxtrains.livery_type.middle_era,	"DL&X",	"caboose_type1_dlx"),
+		dlxtrains.init_livery_template(mod_name, 2, dlxtrains.livery_type.middle_era,	"NR",	"caboose_type1_nr"),
+	},
+	["dlxtrains_support_wagons:escort_type1"] = {
+		dlxtrains.init_livery_template(mod_name, 0, dlxtrains.livery_type.standard,		"WF",	"escort_type1_wf"),
+		dlxtrains.init_livery_template(mod_name, 1, dlxtrains.livery_type.standard,		"T",	"escort_type1_t"),
+		dlxtrains.init_livery_template(mod_name, 2, dlxtrains.livery_type.standard,		"DZ",	"escort_type1_dz"),
+		dlxtrains.init_livery_template(mod_name, 3, dlxtrains.livery_type.standard,		"ZR",	"escort_type1_zr"),
+	},
+}
+
+-- ////////////////////////////////////////////////////////////////////////////////////
+
 local meshes_support_wagon_caboose_type1 = {
 		default = "dlxtrains_support_wagons_caboose_type1.obj",
 	}
@@ -34,9 +53,13 @@ local meshes_support_wagon_escort_type1 = {
 -- ////////////////////////////////////////////////////////////////////////////////////
 
 if dlxtrains_support_wagons.max_wagon_length >= 6 then
+	local wagon_type = "dlxtrains_support_wagons:caboose_type1"
+
+	dlxtrains.register_livery_templates(wagon_type, mod_name, livery_templates)
+
 	local wagon_def = {
 		mesh = meshes_support_wagon_caboose_type1.default,
-		textures = {"dlxtrains_support_wagon_caboose_type1.png"},
+		textures = {dlxtrains.get_init_texture()},
 		set_textures = function(wagon, data)
 			dlxtrains.set_textures_for_livery_scheme(wagon, data, livery_scheme_support_wagon_caboose_type1, meshes_support_wagon_caboose_type1)
 		end,
@@ -101,13 +124,17 @@ if dlxtrains_support_wagons.max_wagon_length >= 6 then
 		advtrains_attachment_offset_patch.setup_advtrains_wagon(wagon_def);
 	end
 
-	advtrains.register_wagon("dlxtrains_support_wagons:caboose_type1", wagon_def, S("Wooden Caboose with Cupola"), "dlxtrains_support_wagons_caboose_type1_inv.png")
+	advtrains.register_wagon(wagon_type, wagon_def, S("Wooden Caboose with Cupola"), "dlxtrains_support_wagons_caboose_type1_inv.png")
 end
 
 if dlxtrains_support_wagons.max_wagon_length >= 4.875 then
+	local wagon_type = "dlxtrains_support_wagons:escort_type1"
+
+	dlxtrains.register_livery_templates(wagon_type, mod_name, livery_templates)
+
 	local wagon_def = {
 		mesh = meshes_support_wagon_escort_type1.default,
-		textures = {"dlxtrains_support_wagon_escort_type1.png"},
+		textures = {dlxtrains.get_init_texture()},
 		set_textures = function(wagon, data)
 			dlxtrains.set_textures_for_livery_scheme(wagon, data, livery_scheme_support_wagon_escort_type1, meshes_support_wagon_escort_type1)
 		end,
@@ -165,6 +192,6 @@ if dlxtrains_support_wagons.max_wagon_length >= 4.875 then
 		advtrains_attachment_offset_patch.setup_advtrains_wagon(wagon_def);
 	end
 
-	advtrains.register_wagon("dlxtrains_support_wagons:escort_type1", wagon_def, S("European Escort Wagon"), "dlxtrains_support_wagons_escort_type1_inv.png")
+	advtrains.register_wagon(wagon_type, wagon_def, S("European Escort Wagon"), "dlxtrains_support_wagons_escort_type1_inv.png")
 end
 

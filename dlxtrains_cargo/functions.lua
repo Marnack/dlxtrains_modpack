@@ -15,7 +15,7 @@ function dlxtrains_cargo.get_crate_texture(index)
 		texture = crate_textures[index]
 	end
 
-	return dlxtrains.make_safe_string(texture)
+	return dlxtrains.add_modifier_escaping(texture)
 end
 
 function dlxtrains_cargo.get_shipping_container_livery_count()
@@ -24,7 +24,7 @@ end
 
 function dlxtrains_cargo.get_shipping_container_texture(livery_id)
 	local texture = "dlxtrains_cargo_shipping_container_livery_"..livery_id..".png"
-	return dlxtrains.make_safe_string(texture)
+	return dlxtrains.add_modifier_escaping(texture)
 end
 
 function dlxtrains_cargo.get_tank_container_livery_count()
@@ -33,5 +33,5 @@ end
 
 function dlxtrains_cargo.get_tank_container_texture(livery_id)
 	local texture = "dlxtrains_cargo_tank_container_livery_"..livery_id..".png"
-	return dlxtrains.make_safe_string(texture)
+	return dlxtrains.add_modifier_escaping(texture)
 end

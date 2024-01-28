@@ -6,8 +6,9 @@ DlxTrains ModPack is an extension for AdvTrains that adds train related content 
 - 3 diesel locomotives with dynamic sound, smoke and texture effects.
 - 11 industrial freight wagons, including some that have visible loads that reflect the wagon's inventory.
 - 2 support wagons, including an escort wagon and a caboose.
+- Basic support for [AdvTrains Livery Tools](https://content.minetest.net/packages/Marnack/advtrains_livery_tools/).
 
-Note: This modpack does not currently include passenger wagons. For those, consider using [AdvTrains Basic Trains](https://content.minetest.net/packages/orwell/basic_trains/), [Moretrains](https://content.minetest.net/packages/gpcf/moretrains/) or [Classic Coaches](https://content.minetest.net/packages/Marnack/classic_coaches/), all of which are available on ContentDB.
+Note: This modpack does not currently include passenger wagons. For those, consider using [AdvTrains Basic Trains](https://content.minetest.net/packages/orwell/basic_trains/), [Moretrains](https://content.minetest.net/packages/gpcf/moretrains/) or [Classic Coaches](https://content.minetest.net/packages/Marnack/classic_coaches/), all of which are available on [ContentDB](https://content.minetest.net/).
 ![](screenshot.png).
 
 ## Included mods
@@ -43,6 +44,8 @@ ZR|![](dlxtrains/textures/dlxtrains_logo_zr.png)|Yellow|Black|2|5|1
 
 2) The locomotives and wagons in this mod are modeled with some additional detail to highlight a few of their distinct characteristics.  The goal was to achieve a reasonable balance between additional detail while still maintaining an overall appearance appropriate for Minetest.
 
+3) The use of AdvTrains Livery Tools is optional and its functionality is currently limited to livery selection.  More advanced functionality normally enabled by AdvTrains Livery Tools such as customizing liveries and supporting livery packs is not yet available.
+
 ## Acknowledgments
 
 This modpack would not exist without the prior efforts of the following people:
@@ -53,7 +56,7 @@ This modpack would not exist without the prior efforts of the following people:
 
 ## Licenses
 
-Copyright © 2021-2023 Marnack
+Copyright © 2021-2024 Marnack
 
 - DlxTrains ModPack code is licensed under the GNU AGPL version 3 license, see [LICENSE.txt](LICENSE.txt) for details.
 - Unless otherwise specified, DlxTrains ModPack media (models, textures and sounds) are licensed under [CC BY-SA 3.0 Unported](https://creativecommons.org/licenses/by-sa/3.0/).

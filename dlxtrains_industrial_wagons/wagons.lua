@@ -1,9 +1,12 @@
 
 local S = dlxtrains_industrial_wagons.S
+local mod_name = "dlxtrains_industrial_wagons"
 
 local crate_texture_count = dlxtrains_industrial_wagons.crate_texture_count
 local shipping_container_livery_count = dlxtrains_industrial_wagons.shipping_container_livery_count
 local tank_container_livery_count = dlxtrains_industrial_wagons.tank_container_livery_count
+
+dlxtrains.register_mod(mod_name)
 
 -- ////////////////////////////////////////////////////////////////////////////////////
 
@@ -107,6 +110,76 @@ local livery_scheme_industrial_wagon_transition_type1 = {
 
 -- ////////////////////////////////////////////////////////////////////////////////////
 
+local livery_templates = {
+	["dlxtrains_industrial_wagons:container_type1"] = {
+		dlxtrains.init_livery_template(mod_name, 0, dlxtrains.livery_type.standard,		"DL&X",	"container_type1_dlx"),
+		dlxtrains.init_livery_template(mod_name, 1, dlxtrains.livery_type.standard,		"DZ",	"container_type1_dz"),
+		dlxtrains.init_livery_template(mod_name, 2, dlxtrains.livery_type.standard,		"WF",	"container_type1_wf"),
+		dlxtrains.init_livery_template(mod_name, 3, dlxtrains.livery_type.standard,		"T",	"container_type1_t"),
+		dlxtrains.init_livery_template(mod_name, 4, dlxtrains.livery_type.standard,		"ZR",	"container_type1_zr"),
+	},
+	["dlxtrains_industrial_wagons:container_type2"] = {
+		dlxtrains.init_livery_template(mod_name, 0, dlxtrains.livery_type.standard,		"DL&X",	"container_type2_dlx"),
+		dlxtrains.init_livery_template(mod_name, 1, dlxtrains.livery_type.standard,		"DZ",	"container_type2_dz"),
+		dlxtrains.init_livery_template(mod_name, 2, dlxtrains.livery_type.standard,		"WF",	"container_type2_wf"),
+		dlxtrains.init_livery_template(mod_name, 3, dlxtrains.livery_type.standard,		"T",	"container_type2_t"),
+		dlxtrains.init_livery_template(mod_name, 4, dlxtrains.livery_type.standard,		"ZR",	"container_type2_zr"),
+	},
+	["dlxtrains_industrial_wagons:covered_goods_type1"] = {
+		dlxtrains.init_livery_template(mod_name, 0, dlxtrains.livery_type.early_era,	"NR",	"covered_goods_type1_nr"),
+		dlxtrains.init_livery_template(mod_name, 1, dlxtrains.livery_type.early_era,	"TT",	"covered_goods_type1_tt"),
+		dlxtrains.init_livery_template(mod_name, 2, dlxtrains.livery_type.early_era,	"DL&X",	"covered_goods_type1_dlx"),
+	},
+	["dlxtrains_industrial_wagons:covered_goods_type2"] = {
+		dlxtrains.init_livery_template(mod_name, 0, dlxtrains.livery_type.middle_era,	"VR",	"covered_goods_type2_vr"),
+		dlxtrains.init_livery_template(mod_name, 1, dlxtrains.livery_type.middle_era,	"AR",	"covered_goods_type2_ar"),
+		dlxtrains.init_livery_template(mod_name, 2, dlxtrains.livery_type.middle_era,	"AT",	"covered_goods_type2_at"),
+		dlxtrains.init_livery_template(mod_name, 3, dlxtrains.livery_type.standard,		"T",	"covered_goods_type2_t"),
+	},
+	["dlxtrains_industrial_wagons:covered_goods_type3"] = {
+		dlxtrains.init_livery_template(mod_name, 0, dlxtrains.livery_type.middle_era,	"DZ",	"covered_goods_type3_dz"),
+		dlxtrains.init_livery_template(mod_name, 1, dlxtrains.livery_type.middle_era,	"T",	"covered_goods_type3_t"),
+		dlxtrains.init_livery_template(mod_name, 2, dlxtrains.livery_type.early_era,	"WF",	"covered_goods_type3_wf"),
+		dlxtrains.init_livery_template(mod_name, 3, dlxtrains.livery_type.middle_era,	"ZR",	"covered_goods_type3_zr"),
+	},
+	["dlxtrains_industrial_wagons:flat_type1"] = {
+		dlxtrains.init_livery_template(mod_name, 0, dlxtrains.livery_type.standard,		"ZR",	"flat_type1_zr"),
+		dlxtrains.init_livery_template(mod_name, 1, dlxtrains.livery_type.standard,		"T",	"flat_type1_t"),
+		dlxtrains.init_livery_template(mod_name, 2, dlxtrains.livery_type.standard,		"DZ",	"flat_type1_dz"),
+		dlxtrains.init_livery_template(mod_name, 3, dlxtrains.livery_type.standard,		"WF",	"flat_type1_wf"),
+	},
+	["dlxtrains_industrial_wagons:flat_type2"] = {
+		dlxtrains.init_livery_template(mod_name, 0, dlxtrains.livery_type.middle_era,	"AR",	"flat_type2_ar"),
+		dlxtrains.init_livery_template(mod_name, 1, dlxtrains.livery_type.middle_era,	"AT",	"flat_type2_at"),
+		dlxtrains.init_livery_template(mod_name, 2, dlxtrains.livery_type.standard,		"T",	"flat_type2_t"),
+		dlxtrains.init_livery_template(mod_name, 3, dlxtrains.livery_type.middle_era,	"VR",	"flat_type2_vr"),
+	},
+	["dlxtrains_industrial_wagons:hopper_type1"] = {
+		dlxtrains.init_livery_template(mod_name, 0, dlxtrains.livery_type.standard,		"DL&X",	"hopper_type1_dlx"),
+		dlxtrains.init_livery_template(mod_name, 1, dlxtrains.livery_type.standard,		"T",	"hopper_type1_t"),
+		dlxtrains.init_livery_template(mod_name, 2, dlxtrains.livery_type.middle_era,	"TT",	"hopper_type1_tt"),
+		dlxtrains.init_livery_template(mod_name, 3, dlxtrains.livery_type.middle_era,	"NR",	"hopper_type1_nr"),
+	},
+	["dlxtrains_industrial_wagons:hopper_type2"] = {
+		dlxtrains.init_livery_template(mod_name, 0, dlxtrains.livery_type.standard,		"DL&X",	"hopper_type2_dlx"),
+		dlxtrains.init_livery_template(mod_name, 1, dlxtrains.livery_type.standard,		"T",	"hopper_type2_t"),
+		dlxtrains.init_livery_template(mod_name, 2, dlxtrains.livery_type.standard,		"TT",	"hopper_type2_tt"),
+		dlxtrains.init_livery_template(mod_name, 3, dlxtrains.livery_type.middle_era,	"NR",	"hopper_type2_nr"),
+	},
+	["dlxtrains_industrial_wagons:stake_type1"] = {
+		dlxtrains.init_livery_template(mod_name, 0, dlxtrains.livery_type.standard,		"T",	"stake_type1_t"),
+		dlxtrains.init_livery_template(mod_name, 1, dlxtrains.livery_type.standard,		"DZ",	"stake_type1_dz"),
+		dlxtrains.init_livery_template(mod_name, 2, dlxtrains.livery_type.standard,		"WF",	"stake_type1_wf"),
+		dlxtrains.init_livery_template(mod_name, 3, dlxtrains.livery_type.standard,		"ZR",	"stake_type1_zr"),
+	},
+	["dlxtrains_industrial_wagons:transition_type1"] = {
+		dlxtrains.init_livery_template(mod_name, 0, dlxtrains.livery_type.standard,		"DL&X",	"transition_type1_dlx"),
+		dlxtrains.init_livery_template(mod_name, 1, dlxtrains.livery_type.standard,		"T",	"transition_type1_t"),
+	},
+}
+
+-- ////////////////////////////////////////////////////////////////////////////////////
+
 local function is_filled_bucket(stack)
 	-- Any liquid registered with the bucket mod will be considered a valid liquid
 	for bucket, def in pairs(bucket.liquids) do
@@ -119,9 +192,9 @@ end
 
 local stackable_liquid_proxies = {}
 
-local function register_stackable_liquid_proxy(mod_name, item_name)
-	if mod_name ~= nil and item_name ~= nil then
-		if minetest.get_modpath(mod_name) then
+local function register_stackable_liquid_proxy(src_mod_name, item_name)
+	if src_mod_name ~= nil and item_name ~= nil then
+		if minetest.get_modpath(src_mod_name) then
 			table.insert(stackable_liquid_proxies, item_name)
 		end
 	end
@@ -240,7 +313,7 @@ local function get_valid_flat_wagon_load_texture(node_def, crate_texture_index)
 			texture = node_def.tiles[1]
 		end
 	end
-	return dlxtrains.make_safe_string(texture)
+	return dlxtrains.add_modifier_escaping(texture)
 end
 
 local function get_shipping_container_livery_id(wagon_id, quantity)
@@ -441,7 +514,6 @@ local function update_model_industrial_wagon_flat(wagon, data, texture_file, mes
 		wagon.object:set_properties({
 			mesh = mesh_with_load
 		})
-
 	end
 
 	return updated_texture
@@ -486,7 +558,7 @@ local function update_model_industrial_wagon_hopper(wagon, data, texture_file, m
 						if type(texture) == "table" then
 							texture = texture[1] or "dlxtrains_mixed_material.png"
 						end
-						local texture_clause = dlxtrains.make_safe_string(texture).."\\^\\[resize\\:16x16"
+						local texture_clause = dlxtrains.add_modifier_escaping(texture).."\\^\\[resize\\:16x16"
 						return "[combine:256x256:0,0=("..texture_file..
 								"):128,32="..texture_clause..
 								":144,32="..texture_clause..
@@ -539,8 +611,8 @@ local function update_model_industrial_wagon_stake(wagon, data, texture_file, me
 				tree_side = node_def.tiles[3]
 			end
 
-			local tree_end_texture = dlxtrains.make_safe_string(tree_end).."\\^\\[resize\\:16x16"
-			local tree_side_texture = dlxtrains.make_safe_string(tree_side).."\\^\\[resize\\:16x16"
+			local tree_end_texture = dlxtrains.add_modifier_escaping(tree_end).."\\^\\[resize\\:16x16"
+			local tree_side_texture = dlxtrains.add_modifier_escaping(tree_side).."\\^\\[resize\\:16x16"
 			return "[combine:256x256:0,0=("..texture_file.."):48,112="..tree_end_texture..":64,112="..tree_side_texture
 
 		end
@@ -649,9 +721,13 @@ local meshes_industrial_wagon_transition_type1 = {
 -- ////////////////////////////////////////////////////////////////////////////////////
 
 if dlxtrains_industrial_wagons.max_wagon_length >= 8.5 then
-	advtrains.register_wagon("dlxtrains_industrial_wagons:container_type1", {
+	local wagon_type = "dlxtrains_industrial_wagons:container_type1"
+
+	dlxtrains.register_livery_templates(wagon_type, mod_name, livery_templates)
+
+	advtrains.register_wagon(wagon_type, {
 		mesh = meshes_industrial_wagon_container_type1.default,
-		textures = {"dlxtrains_industrial_wagon_container_type1.png"},
+		textures = {dlxtrains.get_init_texture()},
 		set_textures = function(wagon, data)
 			dlxtrains.set_textures_for_livery_scheme(wagon, data, livery_scheme_industrial_wagon_container_type1, meshes_industrial_wagon_container_type1)
 		end,
@@ -685,9 +761,13 @@ if dlxtrains_industrial_wagons.max_wagon_length >= 8.5 then
 end
 
 if dlxtrains_industrial_wagons.max_wagon_length >= 4.875 then
-	advtrains.register_wagon("dlxtrains_industrial_wagons:container_type2", {
+	local wagon_type = "dlxtrains_industrial_wagons:container_type2"
+
+	dlxtrains.register_livery_templates(wagon_type, mod_name, livery_templates)
+
+	advtrains.register_wagon(wagon_type, {
 		mesh = meshes_industrial_wagon_container_type2.default,
-		textures = {"dlxtrains_industrial_wagon_container_type2.png"},
+		textures = {dlxtrains.get_init_texture()},
 		set_textures = function(wagon, data)
 			dlxtrains.set_textures_for_livery_scheme(wagon, data, livery_scheme_industrial_wagon_container_type2, meshes_industrial_wagon_container_type2)
 		end,
@@ -720,9 +800,13 @@ if dlxtrains_industrial_wagons.max_wagon_length >= 4.875 then
 end
 
 if dlxtrains_industrial_wagons.max_wagon_length >= 8 then
-	advtrains.register_wagon("dlxtrains_industrial_wagons:covered_goods_type1", {
+	local wagon_type = "dlxtrains_industrial_wagons:covered_goods_type1"
+
+	dlxtrains.register_livery_templates(wagon_type, mod_name, livery_templates)
+
+	advtrains.register_wagon(wagon_type, {
 		mesh = meshes_industrial_wagon_covered_goods_type1.default,
-		textures = {"dlxtrains_industrial_wagon_covered_goods_type1.png"},
+		textures = {dlxtrains.get_init_texture()},
 		set_textures = function(wagon, data)
 			dlxtrains.set_textures_for_livery_scheme(wagon, data, livery_scheme_industrial_wagon_covered_goods_type1, meshes_industrial_wagon_covered_goods_type1)
 		end,
@@ -754,9 +838,13 @@ if dlxtrains_industrial_wagons.max_wagon_length >= 8 then
 end
 
 if dlxtrains_industrial_wagons.max_wagon_length >= 8 then
-	advtrains.register_wagon("dlxtrains_industrial_wagons:covered_goods_type2", {
+	local wagon_type = "dlxtrains_industrial_wagons:covered_goods_type2"
+
+	dlxtrains.register_livery_templates(wagon_type, mod_name, livery_templates)
+
+	advtrains.register_wagon(wagon_type, {
 		mesh = meshes_industrial_wagon_covered_goods_type2.default,
-		textures = {"dlxtrains_industrial_wagon_covered_goods_type2.png"},
+		textures = {dlxtrains.get_init_texture()},
 		set_textures = function(wagon, data)
 			dlxtrains.set_textures_for_livery_scheme(wagon, data, livery_scheme_industrial_wagon_covered_goods_type2, meshes_industrial_wagon_covered_goods_type2)
 		end,
@@ -788,9 +876,13 @@ if dlxtrains_industrial_wagons.max_wagon_length >= 8 then
 end
 
 if dlxtrains_industrial_wagons.max_wagon_length >= 7 then
-	advtrains.register_wagon("dlxtrains_industrial_wagons:covered_goods_type3", {
+	local wagon_type = "dlxtrains_industrial_wagons:covered_goods_type3"
+
+	dlxtrains.register_livery_templates(wagon_type, mod_name, livery_templates)
+
+	advtrains.register_wagon(wagon_type, {
 		mesh = meshes_industrial_wagon_covered_goods_type3.default,
-		textures = {"dlxtrains_industrial_wagon_covered_goods_type3.png"},
+		textures = {dlxtrains.get_init_texture()},
 		set_textures = function(wagon, data)
 			dlxtrains.set_textures_for_livery_scheme(wagon, data, livery_scheme_industrial_wagon_covered_goods_type3, meshes_industrial_wagon_covered_goods_type3)
 		end,
@@ -824,9 +916,13 @@ end
 -- ////////////////////////////////////////////////////////////////////////////////////
 
 if dlxtrains_industrial_wagons.max_wagon_length >= 6 then
-	advtrains.register_wagon("dlxtrains_industrial_wagons:flat_type1", {
+	local wagon_type = "dlxtrains_industrial_wagons:flat_type1"
+
+	dlxtrains.register_livery_templates(wagon_type, mod_name, livery_templates)
+
+	advtrains.register_wagon(wagon_type, {
 		mesh = meshes_industrial_wagon_flat_type1.default,
-		textures = {"dlxtrains_industrial_wagon_flat_type1.png"},
+		textures = {dlxtrains.get_init_texture()},
 		set_textures = function(wagon, data)
 			dlxtrains.set_textures_for_livery_scheme(wagon, data, livery_scheme_industrial_wagon_flat_type1, meshes_industrial_wagon_flat_type1)
 		end,
@@ -863,9 +959,13 @@ end
 -- ////////////////////////////////////////////////////////////////////////////////////
 
 if dlxtrains_industrial_wagons.max_wagon_length >= 6 then
-	advtrains.register_wagon("dlxtrains_industrial_wagons:flat_type2", {
+	local wagon_type = "dlxtrains_industrial_wagons:flat_type2"
+
+	dlxtrains.register_livery_templates(wagon_type, mod_name, livery_templates)
+
+	advtrains.register_wagon(wagon_type, {
 		mesh = meshes_industrial_wagon_flat_type2.default,
-		textures = {"dlxtrains_industrial_wagon_flat_type2.png"},
+		textures = {dlxtrains.get_init_texture()},
 		set_textures = function(wagon, data)
 			dlxtrains.set_textures_for_livery_scheme(wagon, data, livery_scheme_industrial_wagon_flat_type2, meshes_industrial_wagon_flat_type2)
 		end,
@@ -902,9 +1002,13 @@ end
 -- ////////////////////////////////////////////////////////////////////////////////////
 
 if dlxtrains_industrial_wagons.max_wagon_length >= 6 then
-	advtrains.register_wagon("dlxtrains_industrial_wagons:hopper_type1", {
+	local wagon_type = "dlxtrains_industrial_wagons:hopper_type1"
+
+	dlxtrains.register_livery_templates(wagon_type, mod_name, livery_templates)
+
+	advtrains.register_wagon(wagon_type, {
 		mesh = meshes_industrial_wagon_hopper_type1.default,
-		textures = {"dlxtrains_industrial_wagon_hopper_type1.png"},
+		textures = {dlxtrains.get_init_texture()},
 		set_textures = function(wagon, data)
 			dlxtrains.set_textures_for_livery_scheme(wagon, data, livery_scheme_industrial_wagon_hopper_type1, meshes_industrial_wagon_hopper_type1)
 		end,
@@ -939,9 +1043,13 @@ end
 -- ////////////////////////////////////////////////////////////////////////////////////
 
 if dlxtrains_industrial_wagons.max_wagon_length >= 6 then
-	advtrains.register_wagon("dlxtrains_industrial_wagons:hopper_type2", {
+	local wagon_type = "dlxtrains_industrial_wagons:hopper_type2"
+
+	dlxtrains.register_livery_templates(wagon_type, mod_name, livery_templates)
+
+	advtrains.register_wagon(wagon_type, {
 		mesh = meshes_industrial_wagon_hopper_type2.default,
-		textures = {"dlxtrains_industrial_wagon_hopper_type2.png"},
+		textures = {dlxtrains.get_init_texture()},
 		set_textures = function(wagon, data)
 			dlxtrains.set_textures_for_livery_scheme(wagon, data, livery_scheme_industrial_wagon_hopper_type2, meshes_industrial_wagon_hopper_type2)
 		end,
@@ -975,9 +1083,13 @@ end
 -- ////////////////////////////////////////////////////////////////////////////////////
 
 if dlxtrains_industrial_wagons.max_wagon_length >= 6 then
-	advtrains.register_wagon("dlxtrains_industrial_wagons:stake_type1", {
+	local wagon_type = "dlxtrains_industrial_wagons:stake_type1"
+
+	dlxtrains.register_livery_templates(wagon_type, mod_name, livery_templates)
+
+	advtrains.register_wagon(wagon_type, {
 		mesh = meshes_industrial_wagon_stake_type1.default,
-		textures = {"dlxtrains_industrial_wagon_stake_type1.png"},
+		textures = {dlxtrains.get_init_texture()},
 		set_textures = function(wagon, data)
 			dlxtrains.set_textures_for_livery_scheme(wagon, data, livery_scheme_industrial_wagon_stake_type1, meshes_industrial_wagon_stake_type1)
 		end,
@@ -1014,9 +1126,13 @@ end
 -- ////////////////////////////////////////////////////////////////////////////////////
 
 if dlxtrains_industrial_wagons.max_wagon_length >= 6 then
-	advtrains.register_wagon("dlxtrains_industrial_wagons:transition_type1", {
+	local wagon_type = "dlxtrains_industrial_wagons:transition_type1"
+
+	dlxtrains.register_livery_templates(wagon_type, mod_name, livery_templates)
+
+	advtrains.register_wagon(wagon_type, {
 		mesh = meshes_industrial_wagon_transition_type1.default,
-		textures = {"dlxtrains_industrial_wagon_transition_type1.png"},
+		textures = {dlxtrains.get_init_texture()},
 		set_textures = function(wagon, data)
 			dlxtrains.set_textures_for_livery_scheme(wagon, data, livery_scheme_industrial_wagon_transition_type1, meshes_industrial_wagon_transition_type1)
 		end,

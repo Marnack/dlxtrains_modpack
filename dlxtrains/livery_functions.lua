@@ -1,3 +1,6 @@
+local S = dlxtrains.S
+
+local registered_livery_templates = {}
 
 local function get_config_random_livery()
 	local use_random_livery = minetest.settings:get_bool("dlxtrains_random_liveries")
@@ -10,8 +13,54 @@ local function get_config_default_age_appearance()
 	return ({["New"]=0, ["Random"]=1, ["Used"]=2})[default_age_appearance_enum]
 end
 
-function dlxtrains.make_safe_string(str)
-	return str:gsub("[%[%()^:]", "\\%1")
+local function is_valid_wagon(wagon)
+	return wagon and wagon.id and advtrains.wagons[wagon.id] and advtrains.wagons[wagon.id].type
+end
+
+function dlxtrains.add_modifier_escaping(str)
+	return string.gsub(str, ".", {["\\"] = "\\\\", ["^"] = "\\^", [":"] = "\\:"})
+end
+
+function dlxtrains.remove_modifier_escaping(str)
+	local new_str = str
+	new_str = string.gsub(new_str, "\\:", ":")
+	new_str = string.gsub(new_str, "\\^", "^")
+	new_str = string.gsub(new_str, "\\\\", "\\")
+	return new_str
+end
+
+function dlxtrains.get_init_texture()
+	return "dlxtrains_none"
+end
+
+-- Define livery types for DlxTrains based on an approximate scale relative to the age
+-- of the fictional company.  These are intentionally vague and do not correspond to
+-- specific years or common train eras/epochs. Thus, the early era for one company
+-- might not align with the early area of another.
+dlxtrains.livery_type = {
+	standard	= 1,	-- This is the default/latest livery for the fictional company.
+	middle_era	= 2,	-- If used, this represents some time between early era and standard.
+	early_era	= 3,	-- The livery used in the earliest days of the fictional company.
+}
+
+function dlxtrains.init_livery_template(wagon_mod, scheme_id, livery_type, company_abbr, wagon_texture_suffix)
+	local livery_template = {
+		scheme_id = scheme_id,
+		base_texture = wagon_mod.."_"..wagon_texture_suffix..".png",
+	}
+
+	if livery_type == dlxtrains.livery_type.early_era then
+		livery_template.name = S("@1 Early Era", company_abbr)
+		livery_template.notes = S("This is an old livery used by the fictional @1 company in its early days.", company_abbr)
+	elseif livery_type == dlxtrains.livery_type.middle_era then
+		livery_template.name = S("@1 Middle Era", company_abbr)
+		livery_template.notes = S("This is a livery used by the fictional @1 company before it adopted its current standard.", company_abbr)
+	else
+		livery_template.name = S("@1 Standard", company_abbr)
+		livery_template.notes = S("This is the current standard livery for the fictional @1 company.", company_abbr)
+	end
+
+	return livery_template
 end
 
 function dlxtrains.set_textures_for_livery_scheme(wagon, data, livery_schemes, meshes)
@@ -31,9 +80,18 @@ function dlxtrains.set_textures_for_livery_scheme(wagon, data, livery_schemes, m
 		end
 
 		if data.scheme_id == nil and get_config_random_livery() then
-			data.scheme_id = math.floor(rnd/10)%livery_count
-			wagon:set_textures(data)
+			local wagon_properties = wagon.object:get_properties()
+			local wagon_texture = (wagon_properties and wagon_properties.textures and wagon_properties.textures[1]) or "<nil>"
+			if wagon_texture == dlxtrains.get_init_texture() then
+				-- Only set the scheme id if the wagon has not yet been fully initialized
+				data.scheme_id = math.floor(rnd/10)%livery_count
+			end
 		end
+	end
+
+	-- Force out-of-range scheme IDs into range.  (Protection for deleted test data.)
+	if data.scheme_id ~= nil and data.scheme_id >= livery_count then
+		data.scheme_id = 0
 	end
 
 	local texture = livery_schemes.filename_prefix.."_"..livery_schemes[data.scheme_id or 0].code..".png"
@@ -42,7 +100,7 @@ function dlxtrains.set_textures_for_livery_scheme(wagon, data, livery_schemes, m
 	end
 
 	-- Allow for livery scheme specific dynamic customization of the texture
-	if livery_schemes.on_update_texture ~=nil then
+	if livery_schemes.on_update_texture ~= nil then
 		texture = livery_schemes.on_update_texture(wagon, data, texture)
 	end
 
@@ -51,9 +109,7 @@ function dlxtrains.set_textures_for_livery_scheme(wagon, data, livery_schemes, m
 		texture = meshes.update_model(wagon, data, texture, meshes)
 	end
 
-	wagon.object:set_properties({
-		textures={texture}
-	})
+	wagon.object:set_properties({textures={texture}})
 end
 
 function dlxtrains.update_livery(wagon, puncher, livery_schemes)
@@ -87,7 +143,169 @@ function dlxtrains.update_livery(wagon, puncher, livery_schemes)
 
 			return true
 		end
+	elseif dlxtrains.use_advtrains_livery_designer and item_name == advtrains_livery_designer.tool_name and is_valid_wagon(wagon) then
+		local wagon_type = advtrains.wagons[wagon.id].type
+		local wagon_mod_name = advtrains_livery_database.get_wagon_mod_name(wagon_type)
+		if wagon_mod_name then
+			advtrains_livery_designer.activate_tool(puncher, wagon, wagon_mod_name)
+			return true
+		end
 	end
 
 	return false
 end
+
+-- ////////////////////////////////////////////////////////////////////////////////////
+-- Begin support code for AdvTrains Livery Tools
+
+if dlxtrains.use_advtrains_livery_designer then
+	-- Notify player if a newer version of AdvTrains Livery Tools is available or needed.
+	if not advtrains_livery_designer.is_compatible_mod_version or
+	   not advtrains_livery_designer.is_compatible_mod_version({major = 0, minor = 8, patch = 3}) then
+		minetest.log("warning", "[DlxTrains] An old version of AdvTrains Livery Tools was detected. Consider updating to the latest version.")
+		-- Version 0.8.3 is not currently required so just log an informational message.
+	end
+end
+
+local default_template_designer = "Marnack"
+local default_texture_license = "CC-BY-SA-3.0"
+local default_texture_creator = "Marnack"
+
+function dlxtrains.register_livery_templates(target_wagon_type, livery_mod_name, livery_templates)
+	assert(target_wagon_type, "Missing target wagon type")
+	assert(livery_mod_name, "Missing livery mod name")
+	assert(livery_templates, "Missing livery templates")
+
+	for wagon_type, wagon_livery_templates in pairs(livery_templates) do
+		if wagon_type == target_wagon_type then
+			advtrains_livery_database.register_wagon(wagon_type, livery_mod_name)
+			for _, livery_template in ipairs(wagon_livery_templates) do
+
+				-- Build internal table of registered livery templates.
+				if not registered_livery_templates[wagon_type] then
+					registered_livery_templates[wagon_type] = {}
+				end
+				table.insert(registered_livery_templates[wagon_type], livery_template)
+
+				-- Add livery template to advtrains_livery_database.
+				if dlxtrains.use_advtrains_livery_designer then
+					advtrains_livery_database.add_livery_template(
+						wagon_type,
+						livery_template.name,
+						{livery_template.base_texture},
+						livery_mod_name,
+						(livery_template.overlays and #livery_template.overlays) or 0,
+						livery_template.designer or default_template_designer,
+						livery_template.texture_license or default_texture_license,
+						livery_template.texture_creator or default_texture_creator,
+						livery_template.notes
+					)
+					if livery_template.overlays then
+						for overlay_id, overlay in ipairs(livery_template.overlays) do
+							advtrains_livery_database.add_livery_template_overlay(
+								wagon_type,
+								livery_template.name,
+								overlay_id,
+								overlay.name,
+								overlay.slot_idx or 1,
+								overlay.texture,
+								overlay.alpha
+							)
+						end
+					end
+				end
+			end
+		end
+	end
+end
+
+local function remove_dlxtrains_livery_enhancements(livery_texture)
+	local base_texture = livery_texture
+
+	-- Remove any overlays for loads, lighting, fans, road numbers, etc.
+	if string.sub(base_texture, 1, 9) == "[combine:" then
+		local a = string.find(base_texture, "(", 1, true)
+		local b = #base_texture
+		if a then
+			a = a + 1
+			local nesting_level = 1
+			for i = a, #base_texture do
+				local c = string.sub(base_texture, i, i)
+				if c == "(" then
+					nesting_level = nesting_level + 1
+				elseif c == ")" then
+					nesting_level = nesting_level - 1
+					if nesting_level == 0 then
+						b = i - 1
+						break
+					end
+				end
+			end
+			base_texture = base_texture:sub(a,b)
+		end
+
+		-- Remove escape sequences added because of "[combine:"
+		base_texture = dlxtrains.remove_modifier_escaping(base_texture)
+	end
+
+	-- Remove trailing rotation transform, if present.
+	if string.sub(base_texture, -15, -1) == "^[transformR180" then
+		base_texture = string.sub(base_texture, 1, -16)
+	end
+
+	return base_texture
+end
+
+local function get_livery_scheme_id(wagon_type, texture)
+	local base_texture = remove_dlxtrains_livery_enhancements(texture)
+	for wgn_type, wagon_livery_templates in pairs(registered_livery_templates) do
+		if wgn_type == wagon_type then
+			for _, livery_template in ipairs(wagon_livery_templates) do
+				if livery_template.base_texture == base_texture then
+					return livery_template.scheme_id
+				end
+			end
+		end
+	end
+
+	return nil
+end
+
+-- This function is intended to be called by the advtrains_livery_designer tool
+-- whenever the player activates the "Apply" button.
+function dlxtrains.apply_wagon_livery_textures(player, wagon, textures)
+	if wagon and textures and textures[1] then
+		local data = advtrains.wagons[wagon.id]
+		data.scheme_id = get_livery_scheme_id(data.type, textures[1])
+		data.livery = textures[1]
+		wagon:set_textures(data)
+	end
+end
+
+function dlxtrains.on_pre_get_livery_design_from_textures(wagon_type, livery_textures, wagon_id, livery_design)
+	-- For wagons and locomotives that add overlays for loads, lighting, fans,
+	-- road numbers, etc., this implementation will extract and return the
+	-- "base texture" without such overlays.
+	if livery_textures and livery_textures[1] then
+		local base_texture = remove_dlxtrains_livery_enhancements(livery_textures[1])
+		if base_texture then
+			livery_textures[1] = base_texture
+		end
+	end
+
+	return livery_textures
+end
+
+local optional_callback_functions = {
+	on_pre_get_livery_design_from_textures = dlxtrains.on_pre_get_livery_design_from_textures,
+}
+
+function dlxtrains.register_mod(mod_name)
+	if dlxtrains.use_advtrains_livery_designer then
+		-- Register the mod and the dlxtrains livery functions with the advtrains_livery_designer tool.
+		advtrains_livery_designer.register_mod(mod_name, dlxtrains.apply_wagon_livery_textures, optional_callback_functions)
+	end
+end
+
+-- End of support code for AdvTrains Livery Tools
+-- ////////////////////////////////////////////////////////////////////////////////////

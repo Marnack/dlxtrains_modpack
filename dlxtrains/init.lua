@@ -3,6 +3,7 @@ local mod_name = "dlxtrains"
 dlxtrains = {}
 
 dlxtrains.S = minetest.get_translator(mod_name)
+dlxtrains.use_advtrains_livery_designer = minetest.get_modpath( "advtrains_livery_designer" ) and advtrains_livery_designer
 
 local maximum_wagon_length_enum = minetest.settings:get("dlxtrains_maximum_wagon_length") or "Unlimited"
 dlxtrains.max_wagon_length = ({["5m"]=5, ["6m"]=6, ["7m"]=7, ["8m"]=8, ["Unlimited"]=100})[maximum_wagon_length_enum]

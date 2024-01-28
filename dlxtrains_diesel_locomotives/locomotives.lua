@@ -1,6 +1,9 @@
 
 local S = dlxtrains_diesel_locomotives.S
 local use_attachment_patch = advtrains_attachment_offset_patch and advtrains_attachment_offset_patch.setup_advtrains_wagon
+local mod_name = "dlxtrains_diesel_locomotives"
+
+dlxtrains.register_mod(mod_name)
 
 -- ////////////////////////////////////////////////////////////////////////////////////
 
@@ -234,6 +237,29 @@ local livery_scheme_diesel_locomotive_type3 = {
 
 -- ////////////////////////////////////////////////////////////////////////////////////
 
+local livery_templates = {
+	["dlxtrains_diesel_locomotives:locomotive_type1"] = {
+		dlxtrains.init_livery_template(mod_name, 0, dlxtrains.livery_type.standard,		"WF",	"locomotive_type1_wf"),
+		dlxtrains.init_livery_template(mod_name, 1, dlxtrains.livery_type.standard,		"T",	"locomotive_type1_t"),
+		dlxtrains.init_livery_template(mod_name, 2, dlxtrains.livery_type.standard,		"DZ",	"locomotive_type1_dz"),
+		dlxtrains.init_livery_template(mod_name, 3, dlxtrains.livery_type.standard,		"ZR",	"locomotive_type1_zr"),
+	},
+	["dlxtrains_diesel_locomotives:locomotive_type2"] = {
+		dlxtrains.init_livery_template(mod_name, 0, dlxtrains.livery_type.standard,		"DL&X",	"locomotive_type2_dlx"),
+		dlxtrains.init_livery_template(mod_name, 1, dlxtrains.livery_type.standard,		"T",	"locomotive_type2_t"),
+		dlxtrains.init_livery_template(mod_name, 2, dlxtrains.livery_type.standard,		"NR",	"locomotive_type2_nr"),
+		dlxtrains.init_livery_template(mod_name, 3, dlxtrains.livery_type.standard,		"TT",	"locomotive_type2_tt"),
+	},
+	["dlxtrains_diesel_locomotives:locomotive_type3"] = {
+		dlxtrains.init_livery_template(mod_name, 0, dlxtrains.livery_type.standard,		"DZ",	"locomotive_type3_dz"),
+		dlxtrains.init_livery_template(mod_name, 1, dlxtrains.livery_type.standard,		"T",	"locomotive_type3_t"),
+		dlxtrains.init_livery_template(mod_name, 2, dlxtrains.livery_type.standard,		"WF",	"locomotive_type3_wf"),
+		dlxtrains.init_livery_template(mod_name, 3, dlxtrains.livery_type.standard,		"ZR",	"locomotive_type3_zr"),
+	},
+}
+
+-- ////////////////////////////////////////////////////////////////////////////////////
+
 local meshes_diesel_locomotive_type1 = {
 		default = "dlxtrains_diesel_locomotives_locomotive_type1.b3d",
 		chimneys = {
@@ -395,9 +421,13 @@ end
 -- ////////////////////////////////////////////////////////////////////////////////////
 
 if dlxtrains_diesel_locomotives.max_wagon_length >= 7.35 then
+	local wagon_type = "dlxtrains_diesel_locomotives:locomotive_type1"
+
+	dlxtrains.register_livery_templates(wagon_type, mod_name, livery_templates)
+
 	local wagon_def = {
 		mesh = meshes_diesel_locomotive_type1.default,
-		textures = {"dlxtrains_diesel_locomotives_type1.png"},
+		textures = {dlxtrains.get_init_texture()},
 		set_textures = function(wagon, data)
 			dlxtrains.set_textures_for_livery_scheme(wagon, data, livery_scheme_diesel_locomotive_type1, meshes_diesel_locomotive_type1)
 		end,
@@ -489,13 +519,17 @@ if dlxtrains_diesel_locomotives.max_wagon_length >= 7.35 then
 		advtrains_attachment_offset_patch.setup_advtrains_wagon(wagon_def);
 	end
 
-	advtrains.register_wagon("dlxtrains_diesel_locomotives:locomotive_type1", wagon_def, S("European G1206 Diesel Locomotive"), "dlxtrains_diesel_locomotives_locomotive_type1_inv.png")
+	advtrains.register_wagon(wagon_type, wagon_def, S("European G1206 Diesel Locomotive"), "dlxtrains_diesel_locomotives_locomotive_type1_inv.png")
 end
 
 if dlxtrains_diesel_locomotives.max_wagon_length >= 6.80725 then
+	local wagon_type = "dlxtrains_diesel_locomotives:locomotive_type2"
+
+	dlxtrains.register_livery_templates(wagon_type, mod_name, livery_templates)
+
 	local wagon_def = {
 		mesh = meshes_diesel_locomotive_type2.default,
-		textures = {"dlxtrains_diesel_locomotives_type2.png"},
+		textures = {dlxtrains.get_init_texture()},
 		set_textures = function(wagon, data)
 			dlxtrains.set_textures_for_livery_scheme(wagon, data, livery_scheme_diesel_locomotive_type2, meshes_diesel_locomotive_type2)
 		end,
@@ -581,14 +615,17 @@ if dlxtrains_diesel_locomotives.max_wagon_length >= 6.80725 then
 		advtrains_attachment_offset_patch.setup_advtrains_wagon(wagon_def);
 	end
 
-	advtrains.register_wagon("dlxtrains_diesel_locomotives:locomotive_type2", wagon_def, S("North American SW1500 Diesel Locomotive"), "dlxtrains_diesel_locomotives_locomotive_type2_inv.png")
-
+	advtrains.register_wagon(wagon_type, wagon_def, S("North American SW1500 Diesel Locomotive"), "dlxtrains_diesel_locomotives_locomotive_type2_inv.png")
 end
 
 if dlxtrains_diesel_locomotives.max_wagon_length >= 8.2 then
+	local wagon_type = "dlxtrains_diesel_locomotives:locomotive_type3"
+
+	dlxtrains.register_livery_templates(wagon_type, mod_name, livery_templates)
+
 	local wagon_def = {
 		mesh = meshes_diesel_locomotive_type3.default,
-		textures = {"dlxtrains_diesel_locomotives_type3.png"},
+		textures = {dlxtrains.get_init_texture()},
 		set_textures = function(wagon, data)
 			dlxtrains.set_textures_for_livery_scheme(wagon, data, livery_scheme_diesel_locomotive_type3, meshes_diesel_locomotive_type3)
 		end,
@@ -688,6 +725,5 @@ if dlxtrains_diesel_locomotives.max_wagon_length >= 8.2 then
 		advtrains_attachment_offset_patch.setup_advtrains_wagon(wagon_def);
 	end
 
-	advtrains.register_wagon("dlxtrains_diesel_locomotives:locomotive_type3", wagon_def, S("European BR218 Diesel Locomotive"), "dlxtrains_diesel_locomotives_locomotive_type3_inv.png")
-
+	advtrains.register_wagon(wagon_type, wagon_def, S("European BR218 Diesel Locomotive"), "dlxtrains_diesel_locomotives_locomotive_type3_inv.png")
 end

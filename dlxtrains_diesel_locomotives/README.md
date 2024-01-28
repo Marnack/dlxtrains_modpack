@@ -82,7 +82,7 @@ Due to current limitations in Minetest, the player's view while on board the loc
 
 ## Licenses
 
-Copyright © 2022-2023 Marnack
+Copyright © 2022-2024 Marnack
 
 - DlxTrains Diesel Locomotives code is licensed under the GNU AGPL version 3 license.
 - Unless otherwise specified, DlxTrains Diesel Locomotives media (models, textures and sounds) are licensed under [CC BY-SA 3.0 Unported](https://creativecommons.org/licenses/by-sa/3.0/).
