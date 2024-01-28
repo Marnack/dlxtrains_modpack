@@ -12,7 +12,8 @@ local livery_scheme_support_wagon_caboose_type1 = {
 		[0]={code="t"},
 		[1]={code="dlx"},
 		[2]={code="nr"},
-		count = 3,
+		[3]={code="tt"},
+		count = 4,
 	}
 
 local livery_scheme_support_wagon_escort_type1 = {
@@ -31,6 +32,7 @@ local livery_templates = {
 		dlxtrains.init_livery_template(mod_name, 0, dlxtrains.livery_type.standard,		"T",	"caboose_type1_t"),
 		dlxtrains.init_livery_template(mod_name, 1, dlxtrains.livery_type.middle_era,	"DL&X",	"caboose_type1_dlx"),
 		dlxtrains.init_livery_template(mod_name, 2, dlxtrains.livery_type.middle_era,	"NR",	"caboose_type1_nr"),
+		dlxtrains.init_livery_template(mod_name, 3, dlxtrains.livery_type.middle_era,	"TT",	"caboose_type1_tt"),
 	},
 	["dlxtrains_support_wagons:escort_type1"] = {
 		dlxtrains.init_livery_template(mod_name, 0, dlxtrains.livery_type.standard,		"WF",	"escort_type1_wf"),

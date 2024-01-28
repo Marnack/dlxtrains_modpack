@@ -20,7 +20,7 @@ The following table summarizes the full set of DlxTrains Support Wagons.
 Icon|Wagon Name|Length (m)|Coupler Type|Seats|Max Speed (m/s)|Livery Options
 :---:|---|:---:|---|:---:|:---:|:---:
 ![](textures/inventory/dlxtrains_support_wagons_escort_type1_inv.png)|European Escort Wagon|4.9|Buffer & Chain|3|20|4
-![](textures/inventory/dlxtrains_support_wagons_caboose_type1_inv.png)|Wooden Caboose with Cupola|6.0|Knuckle|4|25|3
+![](textures/inventory/dlxtrains_support_wagons_caboose_type1_inv.png)|Wooden Caboose with Cupola|6.0|Knuckle|4|25|4
 
 Note that some wagons may not be available in-game if the "Longest DLX wagon to include in game" setting defined in **DlxTrains** is set to a value other than "Unlimited".  That setting will use the lengths shown in the table when determining the wagons to be excluded.
 
