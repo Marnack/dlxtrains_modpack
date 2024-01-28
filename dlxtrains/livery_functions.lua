@@ -63,6 +63,56 @@ function dlxtrains.init_livery_template(wagon_mod, scheme_id, livery_type, compa
 	return livery_template
 end
 
+-- ////////////////////////////////////////////////////////////////////////////////////
+-- Begin support code for external access to livery information
+
+-- The following is provided to support easier and safer access to internal livery
+-- information by external tools such as advtrains-doc-integration. Please note,
+-- however, that these functions will likey become deprecated once dlxtrains is fully
+-- transitioned to using AdvTrains Livery Database in place of its current internal
+-- livery database.
+
+-- This function will return the count of internally defined liveries for a given wagon
+-- type. Any additional liveries that may have been added externally for the wagon type
+-- via AdvTrains Livery Database will not be included. Note that wagons types that are
+-- excluded due to dlxtrains' mod settings or are in disabled dlx mods will also be
+-- excluded in the count.
+function dlxtrains.get_livery_count(wagon_type)
+	assert(wagon_type, "Missing wagon type")
+
+	if registered_livery_templates[wagon_type] then
+		return #registered_livery_templates[wagon_type]
+	end
+
+	return 0
+end
+
+-- This function will return the livery information for a given 1-based index for a
+-- given wagon type. Any additional liveries that may have been added externally for
+-- the wagon type via AdvTrains Livery Database will not be included.  Note that the
+-- default livery for a given wagon type is determined dynamically at runtime. Thus,
+-- the livery information at index 1 can be assumed to be the default livery for
+-- documentation purposes. Also note that wagons types that are excluded due to
+-- dlxtrains' mod settings or are in disabled dlx mods will also be excluded here.
+function dlxtrains.get_livery_info(wagon_type, index) -- index is 1 based
+	assert(wagon_type, "Missing wagon type")
+	assert(index and index > 0, "Invalid index")
+
+	if registered_livery_templates[wagon_type] and index <= #registered_livery_templates[wagon_type] then
+		return {
+			-- Only return the internal livery template information that is suitable for external use.
+			name = registered_livery_templates[wagon_type][index].name,
+			base_texture = registered_livery_templates[wagon_type][index].base_texture,
+			notes = registered_livery_templates[wagon_type][index].notes,
+		}
+	end
+
+	return nil
+end
+
+-- End of support code for external access to livery information
+-- ////////////////////////////////////////////////////////////////////////////////////
+
 function dlxtrains.set_textures_for_livery_scheme(wagon, data, livery_schemes, meshes)
 	local livery_count = livery_schemes.count or 0
 
