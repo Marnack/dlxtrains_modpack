@@ -228,7 +228,9 @@ function dlxtrains.register_livery_templates(target_wagon_type, livery_mod_name,
 
 	for wagon_type, wagon_livery_templates in pairs(livery_templates) do
 		if wagon_type == target_wagon_type then
-			advtrains_livery_database.register_wagon(wagon_type, livery_mod_name)
+			if dlxtrains.use_advtrains_livery_designer then
+				advtrains_livery_database.register_wagon(wagon_type, livery_mod_name)
+			end
 			for _, livery_template in ipairs(wagon_livery_templates) do
 
 				-- Build internal table of registered livery templates.
