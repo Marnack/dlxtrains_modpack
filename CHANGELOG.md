@@ -2,6 +2,8 @@
 
 All notable changes to this project will be documented in this file.
 
+## [1.13.1] - 2024-01-29
+ - Prevent crash when AdvTrains Livery Tools is not enabled (Thanks to programmerjake)
 ## [1.13.0] - 2024-01-28
  - Added basic support for AdvTrains Livery Tools.
  - Added API for external access to livery information.
