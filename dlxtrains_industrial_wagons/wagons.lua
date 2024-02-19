@@ -93,6 +93,15 @@ local livery_scheme_industrial_wagon_hopper_type2 = {
 		count = 4,
 	}
 
+local livery_scheme_industrial_wagon_open_type1 = {
+		filename_prefix = "dlxtrains_industrial_wagons_open_type1",
+		[0]={code="ar"},
+		[1]={code="at"},
+		[2]={code="t"},
+		[3]={code="vr"},
+		count = 4,
+	}
+
 local livery_scheme_industrial_wagon_stake_type1 = {
 		filename_prefix = "dlxtrains_industrial_wagons_stake_type1",
 		[0]={code="t"},
@@ -167,6 +176,12 @@ local livery_templates = {
 		dlxtrains.init_livery_template(mod_name, 1, dlxtrains.livery_type.standard,		"T",	"hopper_type2_t"),
 		dlxtrains.init_livery_template(mod_name, 2, dlxtrains.livery_type.standard,		"TT",	"hopper_type2_tt"),
 		dlxtrains.init_livery_template(mod_name, 3, dlxtrains.livery_type.middle_era,	"NR",	"hopper_type2_nr"),
+	},
+	["dlxtrains_industrial_wagons:open_type1"] = {
+		dlxtrains.init_livery_template(mod_name, 0, dlxtrains.livery_type.middle_era,	"AR",	"open_type1_ar"),
+		dlxtrains.init_livery_template(mod_name, 1, dlxtrains.livery_type.middle_era,	"AT",	"open_type1_at"),
+		dlxtrains.init_livery_template(mod_name, 2, dlxtrains.livery_type.standard,		"T",	"open_type1_t"),
+		dlxtrains.init_livery_template(mod_name, 3, dlxtrains.livery_type.middle_era,	"VR",	"open_type1_vr"),
 	},
 	["dlxtrains_industrial_wagons:stake_type1"] = {
 		dlxtrains.init_livery_template(mod_name, 0, dlxtrains.livery_type.standard,		"T",	"stake_type1_t"),
@@ -274,7 +289,7 @@ local function get_liquid_count(stack)
 	return liquid_count
 end
 
-local function is_hopper_load_material(node_def)
+local function is_loose_material(node_def)
 	if node_def then
 		if node_def.groups.soil
 			or node_def.groups.sand
@@ -297,7 +312,7 @@ local function get_valid_flat_wagon_load_texture(node_def, crate_texture_index)
 	-- Return a texture that is appropriate for a flat wagon load.  The default is for the load to
 	-- appear as "in a shipping crate".  For instance, sand would not appear as a block since it
 	-- would collapse into a pile.  Of course, it would be more appropriate for sand to be placed
-	-- in a hopper wagon anyway...
+	-- in a hopper or open wagon anyway...
 	-- Note: Some nodes that would seem valid to appear as themselves on a flat wagon will still
 	-- be shown as "in a crate".  This is because only one texture is used for all sides of the
 	-- node when rendered as a load on the wagon.  Thus, any node that has more than 2 unique
@@ -310,7 +325,7 @@ local function get_valid_flat_wagon_load_texture(node_def, crate_texture_index)
 		texture = dlxtrains_industrial_wagons.get_crate_texture(crate_texture_index)
 	end
 
-	if node_def.drawtype == "normal" and not is_hopper_load_material(node_def) and node_def.tiles then
+	if node_def.drawtype == "normal" and not is_loose_material(node_def) and node_def.tiles then
 		if type(node_def.tiles) == "table" and node_def.tiles[1] and not node_def.tiles[3] then
 			texture = node_def.tiles[1]
 		end
@@ -541,10 +556,10 @@ local function update_model_industrial_wagon_hopper(wagon, data, texture_file, m
 			})
 
 			-- Use an applicable texture for the load.  Note that in some cases the texture may differ
-			-- from the actual item's texture so that it appears reasonable as cargo in the hopper.
+			-- from the actual item's texture so that it appears reasonable as cargo in the wagon.
 			local load_node_name = nil
 
-			if is_hopper_load_material(node_def) then
+			if is_loose_material(node_def) then
 				load_node_name = node_def.name
 			elseif item_def then
 				if item_def.name == "default:coal_lump" or item_def.name == "technic:coal_dust" then
@@ -576,6 +591,99 @@ local function update_model_industrial_wagon_hopper(wagon, data, texture_file, m
 								":208,48="..texture_clause
 					end
 				end
+			end
+		end
+	end
+
+	return texture_file
+end
+
+local function update_model_industrial_wagon_open(wagon, data, texture_file, meshes)
+
+	-- Assume the wagon is not loaded
+	wagon.object:set_properties({
+		mesh = meshes.default
+	})
+
+	local inv = minetest.get_inventory({type="detached", name="advtrains_wgn_"..data.id})
+	if inv and not inv:is_empty("box") then
+		local stack = inv:get_stack("box", 1)
+		local node_def = minetest.registered_nodes[stack:get_name()]
+		local item_def = minetest.registered_items[stack:get_name()]
+		if node_def or item_def then
+			wagon.object:set_properties({
+				mesh = meshes.loaded
+			})
+
+			-- Use an applicable texture for the load.  Note that in some cases the texture may differ
+			-- from the actual item's texture so that it appears reasonable as cargo in the wagon.
+			local load_node_name = nil
+
+			if is_loose_material(node_def) then
+				load_node_name = node_def.name
+			elseif item_def then
+				if item_def.name == "default:coal_lump" or item_def.name == "technic:coal_dust" then
+					load_node_name = "default:coalblock"
+				end
+			end
+
+			if load_node_name then
+				-- Note: Only the material in slot 1 can trigger this load representation.
+				local load_node_def = minetest.registered_nodes[load_node_name]
+				if load_node_def then
+					if load_node_def.drawtype == "normal" then
+						local texture = load_node_def.tiles or "dlxtrains_mixed_material.png"
+						if type(texture) == "table" then
+							texture = texture[1] or "dlxtrains_mixed_material.png"
+						end
+						local texture_clause = dlxtrains.add_modifier_escaping(texture).."\\^\\[resize\\:16x16"
+						return "[combine:256x256:0,0=("..texture_file..
+								"):80,112="..texture_clause..
+								":96,112="..texture_clause..
+								":112,112="..texture_clause..
+								":128,112="..texture_clause..
+								":144,112="..texture_clause..
+								":160,112="..texture_clause..
+								":80,128="..texture_clause..
+								":96,128="..texture_clause..
+								":112,128="..texture_clause..
+								":128,128="..texture_clause..
+								":144,128="..texture_clause..
+								":160,128="..texture_clause
+					end
+				end
+			else
+				-- The load isn't appropriate for an open wagon (i.e. it's not a loose
+				-- material such as coal, dirt or sand), so use another representation.
+
+				-- If inventory slot 1 contains a craft item then use the canvas/tarpaulin covered open wagon.
+				if item_def and item_def.type == "craft" and meshes.covered then
+					wagon.object:set_properties({
+						mesh = meshes.covered
+					})
+					return texture_file
+				end
+
+				-- If inventory slot 1 contains a tree node then show the wagon without doors and loaded with logs.
+				if node_def and node_def.groups.tree and meshes.log_load then
+					wagon.object:set_properties({
+						mesh = meshes.log_load
+					})
+
+					local tree_side = "default_tree_top.png"
+					local tree_end = "default_tree.png"
+					if type(node_def.tiles) == "table" and node_def.tiles[1] and node_def.tiles[3] then
+						tree_end = node_def.tiles[1]
+						tree_side = node_def.tiles[3]
+					end
+
+					local tree_end_texture = dlxtrains.add_modifier_escaping(tree_end).."\\^\\[resize\\:16x16"
+					local tree_side_texture = dlxtrains.add_modifier_escaping(tree_side).."\\^\\[resize\\:16x16"
+					return "[combine:256x256:0,0=("..texture_file.."):48,112="..tree_end_texture..":64,112="..tree_side_texture
+				end
+
+				-- If none of the above is true then handle the load as a flat wagon.
+				return update_model_industrial_wagon_flat(wagon, data, texture_file, meshes)
 			end
 		end
 	end
@@ -697,6 +805,19 @@ local meshes_industrial_wagon_hopper_type1 = {
 
 local meshes_industrial_wagon_hopper_type2 = {
 		default = "dlxtrains_industrial_wagons_hopper_type2.obj",
+	}
+
+local meshes_industrial_wagon_open_type1 = {
+		default = "dlxtrains_industrial_wagons_open_type1.b3d",
+		loaded = "dlxtrains_industrial_wagons_open_type1_loaded.b3d",
+		loaded1 = "dlxtrains_industrial_wagons_open_type1_loaded1.b3d",
+		loaded3 = "dlxtrains_industrial_wagons_open_type1_loaded3.b3d",
+		loaded5 = "dlxtrains_industrial_wagons_open_type1_loaded5.b3d",
+		covered = "dlxtrains_industrial_wagons_open_type1_covered.b3d",
+		log_load = "dlxtrains_industrial_wagons_open_type1_logs.b3d",
+		update_model = function(wagon, data, texture_file, meshes)
+			return update_model_industrial_wagon_open(wagon, data, texture_file, meshes)
+		end,
 	}
 
 local meshes_industrial_wagon_stake_type1 = {
@@ -1080,6 +1201,49 @@ if dlxtrains_industrial_wagons.max_wagon_length >= 6 then
 			box=8*3,
 		},
 	}, S("North American Covered Hopper Wagon"), "dlxtrains_industrial_wagons_hopper_type2_inv.png")
+end
+
+-- ////////////////////////////////////////////////////////////////////////////////////
+
+if dlxtrains_industrial_wagons.max_wagon_length >= 6 then
+	local wagon_type = "dlxtrains_industrial_wagons:open_type1"
+
+	dlxtrains.register_livery_templates(wagon_type, mod_name, livery_templates)
+
+	advtrains.register_wagon(wagon_type, {
+		mesh = meshes_industrial_wagon_open_type1.default,
+		textures = {dlxtrains.get_init_texture()},
+		set_textures = function(wagon, data)
+			dlxtrains.set_textures_for_livery_scheme(wagon, data, livery_scheme_industrial_wagon_open_type1, meshes_industrial_wagon_open_type1)
+		end,
+		custom_may_destroy = function(wagon, puncher, time_from_last_punch, tool_capabilities, direction)
+			return not dlxtrains.update_livery(wagon, puncher, livery_scheme_industrial_wagon_open_type1)
+		end,
+		seats = {},
+		drives_on={default=true},
+		max_speed=20,
+		visual_size = {x=1, y=1},
+		wagon_span=3,
+		wheel_positions = {2.0, -2.0},
+		collisionbox = {-1.0,-0.5,-1.0,1.0,2.5,1.0},
+		coupler_types_front = {knuckle=true},
+		coupler_types_back = {knuckle=true},
+		drops={"default:steelblock"},
+		has_inventory = true,
+		get_inventory_formspec = function(wagon, pname, invname)
+			return "size[8,8]"..
+				"box[0,0;.8,.88;#077]"..	-- Highlight slots that impact visible loads
+				"box[0,1;.8,.88;#077]"..
+				"box[0,2;.8,.88;#077]"..
+				"list["..invname..";box;0,0;8,3;]"..
+				"list[current_player;main;0,4;8,4;]"..
+				"listring[]"..
+				get_wagon_proprties_button_spec(wagon.id, pname, 2, 3)
+		end,
+		inventory_list_sizes = {
+			box=8*3,
+		},
+	}, S("Australian Open Wagon"), "dlxtrains_industrial_wagons_open_type1_inv.png")
 end
 
 -- ////////////////////////////////////////////////////////////////////////////////////

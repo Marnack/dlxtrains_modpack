@@ -116,6 +116,22 @@ if dlxtrains.get_config_wagon_crafting_recipe_complexity() == 1 then
 	end
 
 	if dlxtrains_industrial_wagons.max_wagon_length >= 6 then
+		minetest.register_craftitem("dlxtrains_industrial_wagons:open_body_type1", {
+			description = S("Open Wagon Cargo Deck"),
+			inventory_image = "dlxtrains_industrial_wagons_open_body_type1.png",
+		})
+
+		minetest.register_craft({
+			output = "dlxtrains_industrial_wagons:open_body_type1",
+			recipe = {
+				{"", "dlxtrains:blueprint", ""},
+				{"default:steel_ingot", "default:chest", "default:steel_ingot"},
+				{"default:steel_ingot", "default:wood", "default:steel_ingot"},
+			}
+		})
+	end
+
+	if dlxtrains_industrial_wagons.max_wagon_length >= 6 then
 		minetest.register_craftitem("dlxtrains_industrial_wagons:stake_body_type1", {
 			description = S("Stake Wagon Cargo Deck"),
 			inventory_image = "dlxtrains_industrial_wagons_stake_body_type1.png",

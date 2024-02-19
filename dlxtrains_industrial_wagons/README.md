@@ -17,6 +17,7 @@ The following craft items are defined and added to the game if the "Complexity o
 - **Flat Wagon Cargo Deck** - This item is used to craft flat wagons.
 - **Hopper Wagon Cargo Bin** - This item is used to craft hopper wagons.
 - **North American Wooden Boxcar Cargo Housing** - This item is used to craft wooden boxcars of the type built in North America.
+- **Open Wagon Cargo Deck** - This item is used to craft open wagons.
 - **Stake Wagon Cargo Deck** - This item is used to craft stake wagons.
 
 ## Wagons
@@ -27,6 +28,7 @@ Icon|Wagon Name|Length (m)|Coupler Type|Inventory Size|Max Speed (m/s)|Livery Op
 :---:|---|:---:|---|:---:|:---:|:---:
 ![](textures/inventory/dlxtrains_industrial_wagons_flat_type2_inv.png)|Australian Flat Wagon|6|Knuckle|24|20|4
 ![](textures/inventory/dlxtrains_industrial_wagons_covered_goods_type2_inv.png)|Australian Louver Van|8|Knuckle|40|25|4
+![](textures/inventory/dlxtrains_industrial_wagons_open_type1_inv.png)|Australian Open Wagon|6|Knuckle|24|20|4
 ![](textures/inventory/dlxtrains_industrial_wagons_transition_type1_inv.png)|Buffer/Knuckle Transition Wagon|6|Buffer & Chain / Knuckle|24|20|2
 ![](textures/inventory/dlxtrains_industrial_wagons_container_type1_inv.png)|European Container Wagon|8.5|Buffer & Chain|32|20|5
 ![](textures/inventory/dlxtrains_industrial_wagons_flat_type1_inv.png)|European Flat Wagon|6|Buffer & Chain|24|20|4
@@ -49,6 +51,12 @@ It features visible loads in game using the same mechanism as the European Flat 
 
 This is an Australian wagon loosely modeled on a louver van which first saw service in southern Australia in the late 1920's.  Although initially built with buffer and chain couplers, the wagons were later retrofitted with knuckle couplers.  Since they seem to have been equipped with knuckle couplers for a majority of their service life, they are the couplers used in this mod's version of the wagon. 
 
+### Australian Open Wagon
+
+This wagon is loosely based on an early Australian bogie open wagon that entered service in southern Australia in the mid 1920's.  These versatile wagons have two pairs of removable doors on each side of the wagon that allow for a wide variety of loads to be carried.
+
+In game, these wagons have seven possible load configurations that are determined by the wagon's inventory: Empty, Filled with "loose" material (dirt, gravel, sand, or coal), covered by a canvas or tarpaulin, doors removed and loaded with logs, and three load configurations with crates or nodes similar to the European Flat Wagon (see below).
+
 ### Buffer/Knuckle Transition Wagon
 
 Transition wagons, also known as barrier wagons or match wagons, are used to connect wagons that have different coupler types.  Flat wagons are typically used for this purpose in the real world since they are usually the lightest wagon available.  Aside from coupler differences, the Buffer/Knuckle Transition Wagon is functionally identical to the European Flat Wagon.
@@ -57,17 +65,17 @@ Note that AdvTrains versions 2.4.0 and later support requiring that the type of 
 
 ### European Container Wagon
 
-Modeled after a mid to late 20th century European container wagon, this wagon can appear in one of three load states.  When its inventory is empty it will have no visible containers and players will be able to view the entire framework of this relatively lightweight wagon.  When a small amount of inventory is present, one container will be visible, centered in the middle of the wagon.  When the wagon has significant inventory, a second container will be visible.  (See the *Wagon Inventory Management* section below for the items that will cause a tank container to appear on the wagon.)  The livery of the containers will match the livery of the wagon.  However, if the **DlxTrains Cargo** mod is enabled, additional shipping and tank container liveries will become available.  The livery of each container will then be pseudo-randomly selected from the set of available liveries.
+Modeled after a mid to late 20th century European container wagon, this wagon can appear in one of three load configurations.  When its inventory is empty it will have no visible containers and players will be able to view the entire framework of this relatively lightweight wagon.  When a small amount of inventory is present, one container will be visible, centered in the middle of the wagon.  When the wagon has significant inventory, a second container will be visible.  (See the *Wagon Inventory Management* section below for the items that will cause a tank container to appear on the wagon.)  The livery of the containers will match the livery of the wagon.  However, if the **DlxTrains Cargo** mod is enabled, additional shipping and tank container liveries will become available.  The livery of each container will then be pseudo-randomly selected from the set of available liveries.
 
 ### European Flat Wagon
 
 Although not the first wagon to use bogies in Europe, this early 20th century freight wagon allowed significant versatility for large and oddly shaped loads.
 
-In game, these wagons have four load states: no load, light load, medium load and large load.  When the wagon is lightly loaded, a single node will appear on the wagon as its cargo.  If the cargo is applicable for a flat wagon and can be simply rendered, it will be shown as itself.  Otherwise it will be shown as a crate.  For a moderately full inventory, three nodes will be rendered as the cargo.  As with the previous case, one of the additional nodes with be rendered as itself or a crate.  The third node will always be shown as a crate.  In the case of a large load, five nodes with be shown on the wagon, all of them either as one or more of the inventory items or as a crate.   If the DlxTrains Cargo mod is enabled, additional wooden crates will become available.  These additional crates will then be pseudo-randomly selected from the set of available crates.
+In game, these wagons have four load configurations: no load, light load, medium load and large load.  When the wagon is lightly loaded, a single node will appear on the wagon as its cargo.  If the cargo is applicable for a flat wagon and can be simply rendered, it will be shown as itself.  Otherwise it will be shown as a crate.  For a moderately full inventory, three nodes will be rendered as the cargo.  As with the previous case, one of the additional nodes with be rendered as itself or a crate.  The third node will always be shown as a crate.  In the case of a large load, five nodes with be shown on the wagon, all of them either as one or more of the inventory items or as a crate.   If the DlxTrains Cargo mod is enabled, additional wooden crates will become available.  These additional crates will then be pseudo-randomly selected from the set of available crates.
 
 ### European Single Container Wagon
 
-This fictional wagon is a shortened version of the European Container Wagon that may be better suited for some railways in Minetest.  It has two load states, empty and with a single shipping or tank container whenever the applicable inventory is present.  (See the *Wagon Inventory Management* section below for the items that will cause a tank container to appear on the wagon.)  Like the larger container wagon, the livery of the container will match the livery of the wagon.  However, if the **DlxTrains Cargo** mod is enabled, additional shipping and tank container liveries will become available.  The livery of the container will then be pseudo-randomly selected from the set of available liveries.
+This fictional wagon is a shortened version of the European Container Wagon that may be better suited for some railways in Minetest.  It has two load configurations, empty and with a single shipping or tank container whenever the applicable inventory is present.  (See the *Wagon Inventory Management* section below for the items that will cause a tank container to appear on the wagon.)  Like the larger container wagon, the livery of the container will match the livery of the wagon.  However, if the **DlxTrains Cargo** mod is enabled, additional shipping and tank container liveries will become available.  The livery of the container will then be pseudo-randomly selected from the set of available liveries.
 
 ### European Stake Wagon
 
@@ -98,6 +106,8 @@ This wagon is modeled after the early to mid 20th century boxcars used in North 
 For those DLX wagons that can display visible cargo or cargo containers, DlxTrains will use a pseudo-random algorithm to display the cargo or containers.  However, for players that are interested in specifying exactly which cargo or container is visible on a wagon, that can be accomplished by managing the arrangement and quantities of items and nodes in the wagon's inventory.
 
 When viewing the inventory formspec of DLX wagons that have the ability to display their cargo, one or more of the wagon's inventory slots will be highlighted with a blue-green color.  Adjusting the type or quantities of items in those particular slots will cause a change in the displayed cargo or containers.  (Tip: Use the **DLX Wagon Updater Tool** to quickly confirm the change after adjusting the inventory.) Although each type of DLX wagon that supports visible loads may behave slightly differently, adding or removing one item from these special slots will allow a player to select the next or previous container (crate, shipping container or tank container).  In the case of loads where the item is visible as itself, any non-zero quantity is equivalent.
+
+The Australian Open Wagon will display a visible load based on the state of the wagon's three highlighted inventory slots.  If the first slot is filled with a "loose" material such as dirt, sand, gravel or coal (blocks, lumps or dust), the corresponding load will be visible as piles of the material within the wagon.  If the first slot is filled with one or more craft items of any type then the wagon will appear with a canvas or tarpaulin covered load.  If the first slot is filled with one or more tree trunks then the wagon will appear with its doors removed and loaded with logs of the applicable type.  If none of those conditions are met and at least one of the three highlighted wagon inventory slots is not empty then it will display cargo similar to the European Flat Wagon.
 
 The European Stake Wagon will only show logs as its cargo when one or more tree nodes are placed in the first (upper-left) inventory slot, otherwise it will display its cargo similar to a flat wagon.
 
