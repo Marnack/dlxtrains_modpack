@@ -32,7 +32,7 @@ AT|![](dlxtrains/textures/dlxtrains_logo_at.png)|Light Green|Yellow|0|2|0
 DL&X|![](dlxtrains/textures/dlxtrains_logo_dlx.png)|Black|Light Grey|1|6|1
 DZ|![](dlxtrains/textures/dlxtrains_logo_dz.png)|Red|Light Grey|2|5|1
 NR|![](dlxtrains/textures/dlxtrains_logo_nr.png)|Blue|Light Grey|1|3|1
-T|![](dlxtrains/textures/dlxtrains_logo_t.png)|Brown|Yellow|3|10|2
+T|![](dlxtrains/textures/dlxtrains_logo_t_2.png) ![](dlxtrains/textures/dlxtrains_logo_t.png)|Brown|Yellow|3|11|2
 TT|![](dlxtrains/textures/dlxtrains_logo_tt.png) ![](dlxtrains/textures/dlxtrains_logo_tt_2.png)|Green|Cyan|1|3|1
 VR|![](dlxtrains/textures/dlxtrains_logo_vr.png)|Light Grey|Red|0|2|0
 WF|![](dlxtrains/textures/dlxtrains_logo_wf.png)|Green|Grey|2|5|1

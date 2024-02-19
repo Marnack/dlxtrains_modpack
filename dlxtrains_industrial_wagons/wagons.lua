@@ -35,7 +35,8 @@ local livery_scheme_industrial_wagon_covered_goods_type1 = {
 		[0]={code="nr"},
 		[1]={code="tt"},
 		[2]={code="dlx"},
-		count = 3,
+		[3]={code="t"},
+		count = 4,
 	}
 
 local livery_scheme_industrial_wagon_covered_goods_type2 = {
@@ -129,6 +130,7 @@ local livery_templates = {
 		dlxtrains.init_livery_template(mod_name, 0, dlxtrains.livery_type.early_era,	"NR",	"covered_goods_type1_nr"),
 		dlxtrains.init_livery_template(mod_name, 1, dlxtrains.livery_type.early_era,	"TT",	"covered_goods_type1_tt"),
 		dlxtrains.init_livery_template(mod_name, 2, dlxtrains.livery_type.early_era,	"DL&X",	"covered_goods_type1_dlx"),
+		dlxtrains.init_livery_template(mod_name, 3, dlxtrains.livery_type.early_era,	"T",	"covered_goods_type1_t"),
 	},
 	["dlxtrains_industrial_wagons:covered_goods_type2"] = {
 		dlxtrains.init_livery_template(mod_name, 0, dlxtrains.livery_type.middle_era,	"VR",	"covered_goods_type2_vr"),
