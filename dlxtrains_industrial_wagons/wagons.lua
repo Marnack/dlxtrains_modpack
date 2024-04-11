@@ -1,5 +1,6 @@
 
 local S = dlxtrains_industrial_wagons.S
+local use_attachment_patch = advtrains_attachment_offset_patch and advtrains_attachment_offset_patch.setup_advtrains_wagon
 local mod_name = "dlxtrains_industrial_wagons"
 
 local crate_texture_count = dlxtrains_industrial_wagons.crate_texture_count
@@ -111,6 +112,24 @@ local livery_scheme_industrial_wagon_stake_type1 = {
 		count = 4,
 	}
 
+local livery_scheme_industrial_wagon_tank_type1 = {
+		filename_prefix = "dlxtrains_industrial_wagons_tank_type1",
+		[0]={code="dz"},
+		[1]={code="t"},
+		[2]={code="wf"},
+		[3]={code="zr"},
+		count = 4,
+	}
+
+local livery_scheme_industrial_wagon_tank_type2 = {
+		filename_prefix = "dlxtrains_industrial_wagons_tank_type2",
+		[0]={code="dz"},
+		[1]={code="t"},
+		[2]={code="wf"},
+		[3]={code="zr"},
+		count = 4,
+	}
+
 local livery_scheme_industrial_wagon_transition_type1 = {
 		filename_prefix = "dlxtrains_industrial_wagons_transition_type1",
 		[0]={code="dlx"},
@@ -188,6 +207,18 @@ local livery_templates = {
 		dlxtrains.init_livery_template(mod_name, 1, dlxtrains.livery_type.standard,		"DZ",	"stake_type1_dz"),
 		dlxtrains.init_livery_template(mod_name, 2, dlxtrains.livery_type.standard,		"WF",	"stake_type1_wf"),
 		dlxtrains.init_livery_template(mod_name, 3, dlxtrains.livery_type.standard,		"ZR",	"stake_type1_zr"),
+	},
+	["dlxtrains_industrial_wagons:tank_type1"] = {
+		dlxtrains.init_livery_template(mod_name, 0, dlxtrains.livery_type.early_era,	"DZ",	"tank_type1_dz"),
+		dlxtrains.init_livery_template(mod_name, 1, dlxtrains.livery_type.early_era,	"T",	"tank_type1_t"),
+		dlxtrains.init_livery_template(mod_name, 2, dlxtrains.livery_type.early_era,	"WF",	"tank_type1_wf"),
+		dlxtrains.init_livery_template(mod_name, 3, dlxtrains.livery_type.early_era,	"ZR",	"tank_type1_zr"),
+	},
+	["dlxtrains_industrial_wagons:tank_type2"] = {
+		dlxtrains.init_livery_template(mod_name, 0, dlxtrains.livery_type.early_era,	"DZ",	"tank_type2_dz"),
+		dlxtrains.init_livery_template(mod_name, 1, dlxtrains.livery_type.early_era,	"T",	"tank_type2_t"),
+		dlxtrains.init_livery_template(mod_name, 2, dlxtrains.livery_type.early_era,	"WF",	"tank_type2_wf"),
+		dlxtrains.init_livery_template(mod_name, 3, dlxtrains.livery_type.early_era,	"ZR",	"tank_type2_zr"),
 	},
 	["dlxtrains_industrial_wagons:transition_type1"] = {
 		dlxtrains.init_livery_template(mod_name, 0, dlxtrains.livery_type.standard,		"DL&X",	"transition_type1_dlx"),
@@ -831,6 +862,14 @@ local meshes_industrial_wagon_stake_type1 = {
 		end,
 	}
 
+local meshes_industrial_wagon_tank_type1 = {
+		default = "dlxtrains_industrial_wagons_tank_type1.b3d",
+	}
+
+local meshes_industrial_wagon_tank_type2 = {
+		default = "dlxtrains_industrial_wagons_tank_type2.b3d",
+	}
+
 local meshes_industrial_wagon_transition_type1 = {
 		default = "dlxtrains_industrial_wagons_transition_type1.obj",
 		loaded1 = "dlxtrains_industrial_wagons_transition_type1_loaded1.obj",
@@ -1287,6 +1326,108 @@ if dlxtrains_industrial_wagons.max_wagon_length >= 6 then
 			box=8*3,
 		},
 	}, S("European Stake Wagon"), "dlxtrains_industrial_wagons_stake_type1_inv.png")
+end
+
+-- ////////////////////////////////////////////////////////////////////////////////////
+
+if dlxtrains_industrial_wagons.max_wagon_length >= 4.875 then
+	local wagon_type = "dlxtrains_industrial_wagons:tank_type1"
+
+	dlxtrains.register_livery_templates(wagon_type, mod_name, livery_templates)
+
+	local wagon_def = {
+		mesh = meshes_industrial_wagon_tank_type1.default,
+		textures = {dlxtrains.get_init_texture()},
+		set_textures = function(wagon, data)
+			dlxtrains.set_textures_for_livery_scheme(wagon, data, livery_scheme_industrial_wagon_tank_type1, meshes_industrial_wagon_tank_type1)
+		end,
+		custom_may_destroy = function(wagon, puncher, time_from_last_punch, tool_capabilities, direction)
+			return not dlxtrains.update_livery(wagon, puncher, livery_scheme_industrial_wagon_tank_type1)
+		end,
+		seats = {
+			{
+				name = "Seat in Brakeman's Cabin",
+				attach_offset = use_attachment_patch and {x=0, y=1, z=-18.0} or {x=0, y=1, z=-18.0},
+				view_offset = use_attachment_patch and {x=0, y=0, z=0} or {x=0, y=6.5, z=0},
+				advtrains_attachment_offset_patch_attach_rotation = use_attachment_patch and {x=0, y=180, z=0} or nil,
+				group = "cabin",
+			},
+		},
+		seat_groups = {
+			cabin={
+				name = "Brakeman's Cabin",
+				access_to = {},
+				require_doors_open = false,
+			},
+		},
+		assign_to_seat_group = {"cabin"},
+		drives_on={default=true},
+		max_speed=15,
+		visual_size = {x=1, y=1},
+		wagon_span=2.4375,
+		wheel_positions = {1.3, -1.0},
+		collisionbox = {-1.0,-0.5,-1.0,1.0,2.5,1.0},
+		coupler_types_front = {chain=true},
+		coupler_types_back = {chain=true},
+		drops={"default:steelblock"},
+		has_inventory = true,
+		get_inventory_formspec = function(wagon, pname, invname)
+			return "size[8,8]"..
+				"list["..invname..";box;0,0;8,3;]"..
+				"list[current_player;main;0,4;8,4;]"..
+				"listring[]"..
+				get_wagon_proprties_button_spec(wagon.id, pname, 2, 3)
+		end,
+		inventory_list_sizes = {
+			box=8*3,
+		},
+	}
+
+	if use_attachment_patch then
+		advtrains_attachment_offset_patch.setup_advtrains_wagon(wagon_def);
+	end
+
+	advtrains.register_wagon(wagon_type, wagon_def, S("European Small Tank Wagon with Brakeman's Cabin"), "dlxtrains_industrial_wagons_tank_type1_inv.png")
+end
+
+-- ////////////////////////////////////////////////////////////////////////////////////
+
+if dlxtrains_industrial_wagons.max_wagon_length >= 4.875 then
+	local wagon_type = "dlxtrains_industrial_wagons:tank_type2"
+
+	dlxtrains.register_livery_templates(wagon_type, mod_name, livery_templates)
+
+	advtrains.register_wagon(wagon_type, {
+		mesh = meshes_industrial_wagon_tank_type2.default,
+		textures = {dlxtrains.get_init_texture()},
+		set_textures = function(wagon, data)
+			dlxtrains.set_textures_for_livery_scheme(wagon, data, livery_scheme_industrial_wagon_tank_type2, meshes_industrial_wagon_tank_type2)
+		end,
+		custom_may_destroy = function(wagon, puncher, time_from_last_punch, tool_capabilities, direction)
+			return not dlxtrains.update_livery(wagon, puncher, livery_scheme_industrial_wagon_tank_type2)
+		end,
+		seats = {},
+		drives_on={default=true},
+		max_speed=15,
+		visual_size = {x=1, y=1},
+		wagon_span=2.4375,
+		wheel_positions = {1.3, -1.0},
+		collisionbox = {-1.0,-0.5,-1.0,1.0,2.5,1.0},
+		coupler_types_front = {chain=true},
+		coupler_types_back = {chain=true},
+		drops={"default:steelblock"},
+		has_inventory = true,
+		get_inventory_formspec = function(wagon, pname, invname)
+			return "size[8,8]"..
+				"list["..invname..";box;0,0;8,3;]"..
+				"list[current_player;main;0,4;8,4;]"..
+				"listring[]"..
+				get_wagon_proprties_button_spec(wagon.id, pname, 2, 3)
+		end,
+		inventory_list_sizes = {
+			box=8*3,
+		},
+	}, S("European Small Tank Wagon"), "dlxtrains_industrial_wagons_tank_type2_inv.png")
 end
 
 -- ////////////////////////////////////////////////////////////////////////////////////

@@ -19,6 +19,22 @@ if dlxtrains.get_config_wagon_crafting_recipe_complexity() == 1 then
 		})
 	end
 
+	if dlxtrains_support_wagons.max_wagon_length >= 4.875 then
+		minetest.register_craftitem("dlxtrains_industrial_wagons:brakemans_cabin", {
+			description = S("Brakeman's Cabin"),
+			inventory_image = "dlxtrains_industrial_wagons_brakemans_cabin.png",
+		})
+
+		minetest.register_craft({
+			output = "dlxtrains_industrial_wagons:brakemans_cabin",
+			recipe = {
+				{"dlxtrains:blueprint", "default:glass"},
+				{"default:steel_ingot", "default:wood"},
+				{"default:steel_ingot", "default:wood"},
+			}
+		})
+	end
+
 	if dlxtrains_industrial_wagons.max_wagon_length >= 4.875 then
 		minetest.register_craftitem("dlxtrains_industrial_wagons:container_body_type2", {
 			description = S("Container Wagon Single Cargo Mount"),
@@ -127,6 +143,22 @@ if dlxtrains.get_config_wagon_crafting_recipe_complexity() == 1 then
 				{"", "dlxtrains:blueprint", ""},
 				{"default:steel_ingot", "default:chest", "default:steel_ingot"},
 				{"default:steel_ingot", "default:wood", "default:steel_ingot"},
+			}
+		})
+	end
+
+	if dlxtrains_support_wagons.max_wagon_length >= 4.875 then
+		minetest.register_craftitem("dlxtrains_industrial_wagons:small_tank", {
+			description = S("Small Tank"),
+			inventory_image = "dlxtrains_industrial_wagons_small_tank.png",
+		})
+
+		minetest.register_craft({
+			output = "dlxtrains_industrial_wagons:small_tank",
+			recipe = {
+				{"", "dlxtrains:blueprint", ""},
+				{"default:steel_ingot", "bucket:bucket_empty", "default:steel_ingot"},
+				{"default:steel_ingot", "default:chest", "default:steel_ingot"},
 			}
 		})
 	end

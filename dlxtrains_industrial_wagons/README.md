@@ -11,6 +11,7 @@ Note: DLX is used here to denote items, tools and wagons defined in the DlxTrain
 The following craft items are defined and added to the game if the "Complexity of DLX wagon crafting recipes" setting defined in DlxTrains is set to "Standard".  They are not added to the game if it is set to "Basic".  The default value for the setting is "Standard".
 
 - **Australian Louver Van Cargo Housing** - This item is used to craft metal louver vans of the type built in Australia.
+- **Brakeman's Cabin** - This item is used to craft some early European wagons.
 - **Container Wagon Cargo Mounts** - This item is used to craft shipping container wagons.
 - **Container Wagon Single Cargo Mount** - This item is used to craft smaller shipping container wagons
 - **European Wooden Covered Goods Wagon Cargo Housing** - This item is used to craft wooden box wagons of the type built in Europe.
@@ -18,6 +19,7 @@ The following craft items are defined and added to the game if the "Complexity o
 - **Hopper Wagon Cargo Bin** - This item is used to craft hopper wagons.
 - **North American Wooden Boxcar Cargo Housing** - This item is used to craft wooden boxcars of the type built in North America.
 - **Open Wagon Cargo Deck** - This item is used to craft open wagons.
+- **Small Tank with Mount** - This item is used to craft small tank wagons.
 - **Stake Wagon Cargo Deck** - This item is used to craft stake wagons.
 
 ## Wagons
@@ -33,6 +35,8 @@ Icon|Wagon Name|Length (m)|Coupler Type|Inventory Size|Max Speed (m/s)|Livery Op
 ![](textures/inventory/dlxtrains_industrial_wagons_container_type1_inv.png)|European Container Wagon|8.5|Buffer & Chain|32|20|5
 ![](textures/inventory/dlxtrains_industrial_wagons_flat_type1_inv.png)|European Flat Wagon|6|Buffer & Chain|24|20|4
 ![](textures/inventory/dlxtrains_industrial_wagons_container_type2_inv.png)|European Single Container Wagon|4.9|Buffer & Chain|16|20|5
+![](textures/inventory/dlxtrains_industrial_wagons_tank_type2_inv.png)|European Small Tank Wagon|4.9|Buffer & Chain|24|15|4
+![](textures/inventory/dlxtrains_industrial_wagons_tank_type1_inv.png)|European Small Tank Wagon with Brakeman's Cabin|4.9|Buffer & Chain|24|15|4
 ![](textures/inventory/dlxtrains_industrial_wagons_stake_type1_inv.png)|European Stake Wagon|6|Buffer & Chain|24|20|4
 ![](textures/inventory/dlxtrains_industrial_wagons_covered_goods_type3_inv.png)|European Wooden Covered Goods Wagon|7|Buffer & Chain|32|20|4
 ![](textures/inventory/dlxtrains_industrial_wagons_hopper_type2_inv.png)|North American Covered Hopper Wagon|6|Knuckle|24|25|4
@@ -76,6 +80,16 @@ In game, these wagons have four load configurations: no load, light load, medium
 ### European Single Container Wagon
 
 This fictional wagon is a shortened version of the European Container Wagon that may be better suited for some railways in Minetest.  It has two load configurations, empty and with a single shipping or tank container whenever the applicable inventory is present.  (See the *Wagon Inventory Management* section below for the items that will cause a tank container to appear on the wagon.)  Like the larger container wagon, the livery of the container will match the livery of the wagon.  However, if the **DlxTrains Cargo** mod is enabled, additional shipping and tank container liveries will become available.  The livery of the container will then be pseudo-randomly selected from the set of available liveries.
+
+### European Small Tank Wagon
+
+By the mid 20th century, brakemen were no longer needed to ride wagons and operate their brakes.  Thus, brakeman's cabins were removed from older wagons and newer wagons were built without them.  This wagon represents such early to mid 20th century tank wagons.
+
+### European Small Tank Wagon with Brakeman's Cabin
+
+This wagon is based on late 19th and early 20th century tank wagons used in Europe.  It features a brakeman's cabin that provides shelter for the brakemen who were needed at the time to ride the wagons and operate their brakes.
+
+In game, a player can ride the wagon in the brakeman's cabin.  However, actual braking control is not available.
 
 ### European Stake Wagon
 

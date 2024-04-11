@@ -121,6 +121,28 @@ if dlxtrains.get_config_wagon_crafting_recipe_complexity() == 0 then
 		})
 	end
 
+	if dlxtrains_support_wagons.max_wagon_length >= 4.875 then
+		minetest.register_craft({
+			output = "dlxtrains_industrial_wagons:tank_type1",
+			recipe = {
+				{"default:wood", "bucket:bucket_empty", "default:ladder_steel"},
+				{"default:steel_ingot", "default:chest", "default:steel_ingot"},
+				{"advtrains:wheel", "dlxtrains:blueprint", "advtrains:wheel"},
+			}
+		})
+	end
+
+	if dlxtrains_support_wagons.max_wagon_length >= 4.875 then
+		minetest.register_craft({
+			output = "dlxtrains_industrial_wagons:tank_type2",
+			recipe = {
+				{"default:steel_ingot", "bucket:bucket_empty", "default:ladder_steel"},
+				{"default:steel_ingot", "default:chest", "default:steel_ingot"},
+				{"advtrains:wheel", "dlxtrains:blueprint", "advtrains:wheel"},
+			}
+		})
+	end
+
 	if dlxtrains_industrial_wagons.max_wagon_length >= 6 then
 		minetest.register_craft({
 			output = "dlxtrains_industrial_wagons:transition_type1",
@@ -246,6 +268,27 @@ elseif dlxtrains.get_config_wagon_crafting_recipe_complexity() == 1 then
 			output = "dlxtrains_industrial_wagons:stake_type1",
 			recipe = {
 				{"", "dlxtrains_industrial_wagons:stake_body_type1", ""},
+				{"dlxtrains:coupler_buffer_and_chain", "dlxtrains:wagon_chassis", "dlxtrains:coupler_buffer_and_chain"},
+				{"dlxtrains:wheel_set", "", "dlxtrains:wheel_set"},
+			}
+		})
+	end
+
+	if dlxtrains_support_wagons.max_wagon_length >= 4.875 then
+		minetest.register_craft({
+			output = "dlxtrains_industrial_wagons:tank_type1",
+			recipe = {
+				{"dlxtrains_industrial_wagons:brakemans_cabin", "dlxtrains_industrial_wagons:small_tank", "default:ladder_steel"},
+				{"dlxtrains:coupler_buffer_and_chain", "dlxtrains:wagon_chassis", "dlxtrains:coupler_buffer_and_chain"},
+				{"dlxtrains:wheel_set", "", "dlxtrains:wheel_set"},
+			}
+		})
+	end
+	if dlxtrains_support_wagons.max_wagon_length >= 4.875 then
+		minetest.register_craft({
+			output = "dlxtrains_industrial_wagons:tank_type2",
+			recipe = {
+				{"default:steel_ingot", "dlxtrains_industrial_wagons:small_tank", "default:ladder_steel"},
 				{"dlxtrains:coupler_buffer_and_chain", "dlxtrains:wagon_chassis", "dlxtrains:coupler_buffer_and_chain"},
 				{"dlxtrains:wheel_set", "", "dlxtrains:wheel_set"},
 			}

@@ -1,4 +1,5 @@
 # textdomain: dlxtrains_industrial_wagons
+Brakeman's Cabin=Bremserhaus
 Container Wagon Cargo Mounts=Containerwagen-Ladungshalterungen 
 Container Wagon Single Cargo Mount=Containerwagen Einzelfrachthalterung
 North American Wooden Boxcar Cargo Housing=Nordamerikanischer hölzerner Güterwagenaufbau
@@ -7,6 +8,7 @@ European Wooden Covered Goods Wagon Cargo Housing=Europäischer gedeckter Güter
 Flat Wagon Cargo Deck=Flachwagen-Frachtdeck
 Hopper Wagon Cargo Bin=Bunkerwagenaufbau
 Open Wagon Cargo Deck=offene Güterwagen Wagenkasten
+Small Tank=kleinen Tank
 Stake Wagon Cargo Deck=Rungenwagen-Frachtdeck
 European Container Wagon=Europäischer Containerwagen
 European Single Container Wagon=Europäischer Einzelcontainerwagen
@@ -20,3 +22,5 @@ North American Hopper Wagon=Nordamerikanischer Behälterwagen
 Australian Open Wagon=Australisches offener Güterwagen
 European Stake Wagon=Europäischer Rungenwagen
 Buffer/Knuckle Transition Wagon=Puffer/Knöchel-Übergangswagen 
+European Small Tank Wagon=Europäischer Kleiner Kesselwagen
+European Small Tank Wagon with Brakeman's Cabin=Europäischer Kleiner Kesselwagen mit Bremserhaus
