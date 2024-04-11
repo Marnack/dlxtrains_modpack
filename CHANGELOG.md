@@ -2,6 +2,9 @@
 
 All notable changes to this project will be documented in this file.
 
+## [1.15.0] - 2024-04-10
+ - Added two European small tank wagons.
+ - Added tank wagon support for TechAge via Advanced Trains TechAge addons.
 ## [1.14.0] - 2024-02-19
  - Added the Australian Open Wagon.
  - Rotated the deck texture of the Australian Flat Wagon.
