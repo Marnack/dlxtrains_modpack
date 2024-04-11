@@ -85,11 +85,15 @@ This fictional wagon is a shortened version of the European Container Wagon that
 
 By the mid 20th century, brakemen were no longer needed to ride wagons and operate their brakes.  Thus, brakeman's cabins were removed from older wagons and newer wagons were built without them.  This wagon represents such early to mid 20th century tank wagons.
 
+If [Advanced Trains TechAge addons](https://content.minetest.net/packages/orwell/advtrains_techage/) is installed and enabled, and [Advanced Trains](https://content.minetest.net/packages/orwell/advtrains/) is running at version 2.4.3 or later then this wagon can also be used to transport up to 1000 units of liquid.
+
 ### European Small Tank Wagon with Brakeman's Cabin
 
 This wagon is based on late 19th and early 20th century tank wagons used in Europe.  It features a brakeman's cabin that provides shelter for the brakemen who were needed at the time to ride the wagons and operate their brakes.
 
 In game, a player can ride the wagon in the brakeman's cabin.  However, actual braking control is not available.
+
+If [Advanced Trains TechAge addons](https://content.minetest.net/packages/orwell/advtrains_techage/) is installed and enabled, and [Advanced Trains](https://content.minetest.net/packages/orwell/advtrains/) is running at version 2.4.3 or later then this wagon can also be used to transport up to 1000 units of liquid.
 
 ### European Stake Wagon
 

@@ -1381,6 +1381,7 @@ if dlxtrains_industrial_wagons.max_wagon_length >= 4.875 then
 		inventory_list_sizes = {
 			box=8*3,
 		},
+		techage_liquid_capacity = 1000,
 	}
 
 	if use_attachment_patch then
@@ -1427,6 +1428,7 @@ if dlxtrains_industrial_wagons.max_wagon_length >= 4.875 then
 		inventory_list_sizes = {
 			box=8*3,
 		},
+		techage_liquid_capacity = 1000,
 	}, S("European Small Tank Wagon"), "dlxtrains_industrial_wagons_tank_type2_inv.png")
 end
 

@@ -7,6 +7,7 @@ DlxTrains ModPack is an extension for AdvTrains that adds train related content 
 - 14 industrial freight wagons, including some that have visible loads that reflect the wagon's inventory.
 - 2 support wagons, including an escort wagon and a caboose.
 - Basic support for [AdvTrains Livery Tools](https://content.minetest.net/packages/Marnack/advtrains_livery_tools/).
+- Tank wagon support for [Techage Modpack](https://content.minetest.net/packages/joe7575/techage_modpack/) when used with [Advanced Trains TechAge addons](https://content.minetest.net/packages/orwell/advtrains_techage/).
 
 Note: This modpack does not currently include passenger wagons. For those, consider using [AdvTrains Basic Trains](https://content.minetest.net/packages/orwell/basic_trains/), [Moretrains](https://content.minetest.net/packages/gpcf/moretrains/) or [Classic Coaches](https://content.minetest.net/packages/Marnack/classic_coaches/), all of which are available on [ContentDB](https://content.minetest.net/).
 ![](screenshot.png).
