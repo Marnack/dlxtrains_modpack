@@ -2,6 +2,11 @@
 
 All notable changes to this project will be documented in this file.
 
+## [1.16.0] - 2024-05-27
+ - Allow non-empty TechAge containers to trigger ISO Tanks appearing on container wagons.
+ - Remove dependencies on mods from Minetest Game
+ - Add support for survival mode in additional games
+ - Update version check for AdvTrains Livery Tools
 ## [1.15.0] - 2024-04-10
  - Added two European small tank wagons.
  - Added tank wagon support for TechAge via Advanced Trains TechAge addons.
