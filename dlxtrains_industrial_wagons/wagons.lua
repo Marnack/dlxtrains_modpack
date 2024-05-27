@@ -288,6 +288,60 @@ register_stackable_liquid_proxy("pipeworks", "homedecor:oil_extract")
 register_stackable_liquid_proxy("technic", "technic:cottonseed_oil")
 register_stackable_liquid_proxy("technic", "technic:lox")
 
+if minetest.get_modpath("techage") then
+	-- Note:
+	-- The Techage mod limits the stack size of all of the following items
+	-- to one.  Thus, these items cannot be used for specifying the livery
+	-- of a container.  However, thay can still be used for triggering the
+	-- appearance of ISO tank containers on a container wagon.
+
+	-- Techage liquids:
+	register_stackable_liquid_proxy("techage", "techage:bitumen")
+	register_stackable_liquid_proxy("techage", "techage:epoxy")
+	register_stackable_liquid_proxy("techage", "techage:fueloil")
+	register_stackable_liquid_proxy("techage", "techage:gasoline")
+	register_stackable_liquid_proxy("techage", "techage:lye")
+	register_stackable_liquid_proxy("techage", "techage:naphtha")
+	register_stackable_liquid_proxy("techage", "techage:redmud")
+
+	-- Techage gases:
+	register_stackable_liquid_proxy("techage", "techage:hydrogen")
+	register_stackable_liquid_proxy("techage", "techage:isobutane")
+	register_stackable_liquid_proxy("techage", "techage:gas")
+
+	-- Filled Techage Barrels
+	register_stackable_liquid_proxy("techage", "techage:ta3_barrel_bitumen")			-- Bitumen
+	register_stackable_liquid_proxy("techage", "techage:barrel_epoxy")					-- Epoxide Resin
+	register_stackable_liquid_proxy("techage", "techage:ta3_barrel_fueloil")			-- Fuel Oil
+	register_stackable_liquid_proxy("techage", "techage:ta3_barrel_gasoline")			-- Gasoline
+	register_stackable_liquid_proxy("techage", "techage:barrel_lye")					-- Lye
+	register_stackable_liquid_proxy("techage", "techage:ta3_barrel_naphtha")			-- Naphtha
+	register_stackable_liquid_proxy("techage", "techage:ta3_barrel_oil")				-- Oil
+	register_stackable_liquid_proxy("techage", "techage:barrel_redmud")					-- Red Mud
+	register_stackable_liquid_proxy("techage", "techage:barrel_river_water")			-- River Water
+	register_stackable_liquid_proxy("techage", "techage:barrel_water")					-- Water
+
+	-- Filled Techage Canisters
+	register_stackable_liquid_proxy("techage", "techage:ta3_canister_bitumen")			-- Bitumen
+	register_stackable_liquid_proxy("techage", "techage:canister_epoxy")				-- Epoxide Resin
+	register_stackable_liquid_proxy("techage", "techage:ta3_canister_fueloil")			-- Fuel Oil
+	register_stackable_liquid_proxy("techage", "techage:ta3_canister_gasoline")			-- Gasoline
+	register_stackable_liquid_proxy("techage", "techage:canister_lye")					-- Lye
+	register_stackable_liquid_proxy("techage", "techage:ta3_canister_naphtha")			-- Naphtha
+	register_stackable_liquid_proxy("techage", "techage:ta3_canister_oil")				-- Oil
+	register_stackable_liquid_proxy("techage", "techage:canister_redmud")				-- Red Mud
+
+	-- Filled Techage Large Cylinders
+	register_stackable_liquid_proxy("techage", "techage:cylinder_large_hydrogen")		-- Hydrogen
+	register_stackable_liquid_proxy("techage", "techage:ta4_cylinder_large_isobutane")	-- Isobutane
+	register_stackable_liquid_proxy("techage", "techage:ta3_cylinder_large_gas")		-- Propane
+
+	-- Filled Techage Small Cylinders
+	register_stackable_liquid_proxy("techage", "techage:cylinder_small_hydrogen")		-- Hydrogen
+	register_stackable_liquid_proxy("techage", "techage:ta4_cylinder_small_isobutane")	-- Isobutane
+	register_stackable_liquid_proxy("techage", "techage:ta3_cylinder_small_gas")		-- Propane
+end
+
 local function is_stackable_liquid_proxy(item_name)
 	for _, proxy_name in ipairs(stackable_liquid_proxies) do
 		if item_name == proxy_name then
@@ -298,7 +352,7 @@ local function is_stackable_liquid_proxy(item_name)
 end
 
 local function get_liquid_count(stack)
-	-- The liquid count is either the cound of liquid nodes in the given stack or the
+	-- The liquid count is either the count of liquid nodes in the given stack or the
 	-- amount of liquid in a liquid container since such containers do not stack.
 	local liquid_count = 0
 	if is_filled_bucket(stack) then

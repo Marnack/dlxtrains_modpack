@@ -141,6 +141,7 @@ bucket (from Minetest Game)|any non-empty bucket
 [Farming Redo](https://content.minetest.net/packages/TenPlus1/farming/)|bottle_ethanol, hemp_oil
 [Pipeworks](https://content.minetest.net/packages/VanessaE/pipeworks/)|oil_extract
 [Technic](https://content.minetest.net/packages/RealBadAngel/technic/)|cottonseed_oil, lox, any non-empty can
+[Techage](https://content.minetest.net/packages/joe7575/techage_modpack/)|source nodes and their relevant containers (barrels, canisters, and gas cylinders) for the following materials: bitumen, epoxide resin, fuel oil, gasoline, hydrogen, lye, naphtha, oil, propane, red mud, river water, and water
 
 While liquids in containers are not actually placed in tank containers in the real world, this was done here to make it easier for players to have wagons loaded with tank containers in game when playing in survival mode.  Please note, however, that this could change in a future release of this mod.
 
