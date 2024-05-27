@@ -20,14 +20,16 @@ minetest.register_node("dlxtrains_cargo:corrugated_box", {
 	},
 })
 
-minetest.register_craft({
-	output = "dlxtrains_cargo:corrugated_box",
-	recipe = {
-		{ "dlxtrains_cargo:corrugated_fiberboard", "dlxtrains_cargo:corrugated_fiberboard", "dlxtrains_cargo:corrugated_fiberboard" },
-		{ "dlxtrains_cargo:corrugated_fiberboard", "", "dlxtrains_cargo:corrugated_fiberboard" },
-		{ "dlxtrains_cargo:corrugated_fiberboard", "dlxtrains_cargo:corrugated_fiberboard", "dlxtrains_cargo:corrugated_fiberboard" },
-	}
-})
+if dlxtrains.crafting_enabled() then
+	minetest.register_craft({
+		output = "dlxtrains_cargo:corrugated_box",
+		recipe = {
+			{ "dlxtrains_cargo:corrugated_fiberboard", "dlxtrains_cargo:corrugated_fiberboard", "dlxtrains_cargo:corrugated_fiberboard" },
+			{ "dlxtrains_cargo:corrugated_fiberboard", "", "dlxtrains_cargo:corrugated_fiberboard" },
+			{ "dlxtrains_cargo:corrugated_fiberboard", "dlxtrains_cargo:corrugated_fiberboard", "dlxtrains_cargo:corrugated_fiberboard" },
+		}
+	})
+end
 
 minetest.register_craft({
 	type = "fuel",
@@ -35,40 +37,51 @@ minetest.register_craft({
 	burntime = 6,
 })
 
-local crate_woods = {
-		{ "default",	"pine_wood",	"Pine Wood" },
-		{ "default",	"acacia_wood",	"Acacia Wood" },
-		{ "default",	"junglewood",	"Jungle Wood" },
+local crate_defs = {
+	{
+		name = "dlxtrains_cargo:crate_pine_wood",
+		desc = S("Pine Wood Crate"),
+		texture = "dlxtrains_cargo_wooden_crate_pine_wood.png",
+		wood = dlxtrains.materials.pine_wood
+	},
+	{
+		name = "dlxtrains_cargo:crate_acacia_wood",
+		desc = S("Acacia Wood Crate"),
+		texture = "dlxtrains_cargo_wooden_crate_acacia_wood.png",
+		wood = dlxtrains.materials.acacia_wood
+	},
+	{
+		name = "dlxtrains_cargo:crate_junglewood",
+		desc = S("Jungle Wood Crate"),
+		texture = "dlxtrains_cargo_wooden_crate_junglewood.png",
+		wood = dlxtrains.materials.junglewood
+	},
 }
 
-for i in ipairs(crate_woods) do
-	local mod_name			= crate_woods[i][1]
-	local technical_name	= crate_woods[i][2]
-	local display_name		= crate_woods[i][3]
-	local wood_name			= mod_name..":"..technical_name
-	local crate_name		= "dlxtrains_cargo:crate_"..technical_name
-
-	minetest.register_node(crate_name, {
-		description = S(display_name.." Crate"),
+for _, crate_def in ipairs(crate_defs) do
+	minetest.register_node(crate_def.name, {
+		description = crate_def.desc,
 		paramtype2 = "facedir",
-		tiles = { "dlxtrains_cargo_wooden_crate_"..technical_name..".png" },
+		tiles = { crate_def.texture },
 		is_ground_content = false,
 		groups = {choppy = 2, oddly_breakable_by_hand = 2, flammable = 3},
-		sounds = default.node_sound_wood_defaults(),
+		sounds = dlxtrains.sounds.node_sound_wood_defaults and dlxtrains.sounds.node_sound_wood_defaults(),
 	})
 
-	minetest.register_craft({
-		output = crate_name,
-		recipe = {
-			{ "default:stick", wood_name, "default:stick" },
-			{ wood_name, "", wood_name },
-			{ wood_name, wood_name, wood_name },
-		}
-	})
+	if dlxtrains.crafting_enabled() and crate_def.wood and crate_def.wood ~= ""then
+		minetest.register_craft({
+			output = crate_def.name,
+			recipe = {
+				{ dlxtrains.materials.stick, crate_def.wood, dlxtrains.materials.stick },
+				{ crate_def.wood, "", crate_def.wood },
+				{ crate_def.wood, crate_def.wood, crate_def.wood },
+			}
+		})
+	end
 
 	minetest.register_craft({
 		type = "fuel",
-		recipe = crate_name,
+		recipe = crate_def.name,
 		burntime = 8,
 	})
 end

@@ -1,7 +1,7 @@
 
 local S = dlxtrains_industrial_wagons.S
 
-if dlxtrains.get_config_wagon_crafting_recipe_complexity() == 1 then
+if dlxtrains.crafting_enabled() and dlxtrains.get_config_wagon_crafting_recipe_complexity() == 1 then
 
 	if dlxtrains_industrial_wagons.max_wagon_length >= 8.5 then
 		minetest.register_craftitem("dlxtrains_industrial_wagons:container_body_type1", {
@@ -12,9 +12,9 @@ if dlxtrains.get_config_wagon_crafting_recipe_complexity() == 1 then
 		minetest.register_craft({
 			output = "dlxtrains_industrial_wagons:container_body_type1",
 			recipe = {
-				{"dye:black", "dlxtrains:blueprint", "dye:yellow"},
-				{"default:steel_ingot", "default:chest", "default:steel_ingot"},
-				{"default:steel_ingot", "default:steel_ingot", "default:steel_ingot"},
+				{dlxtrains.materials.dye_black, "dlxtrains:blueprint", dlxtrains.materials.dye_yellow},
+				{dlxtrains.materials.steel_ingot, dlxtrains.materials.chest, dlxtrains.materials.steel_ingot},
+				{dlxtrains.materials.steel_ingot, dlxtrains.materials.steel_ingot, dlxtrains.materials.steel_ingot},
 			}
 		})
 	end
@@ -28,9 +28,9 @@ if dlxtrains.get_config_wagon_crafting_recipe_complexity() == 1 then
 		minetest.register_craft({
 			output = "dlxtrains_industrial_wagons:brakemans_cabin",
 			recipe = {
-				{"dlxtrains:blueprint", "default:glass"},
-				{"default:steel_ingot", "default:wood"},
-				{"default:steel_ingot", "default:wood"},
+				{"dlxtrains:blueprint", dlxtrains.materials.glass},
+				{dlxtrains.materials.steel_ingot, dlxtrains.materials.wood},
+				{dlxtrains.materials.steel_ingot, dlxtrains.materials.wood},
 			}
 		})
 	end
@@ -44,9 +44,9 @@ if dlxtrains.get_config_wagon_crafting_recipe_complexity() == 1 then
 		minetest.register_craft({
 			output = "dlxtrains_industrial_wagons:container_body_type2",
 			recipe = {
-				{"dye:black", "dlxtrains:blueprint", "dye:yellow"},
-				{"", "default:chest", ""},
-				{"default:steel_ingot", "default:steel_ingot", "default:steel_ingot"},
+				{dlxtrains.materials.dye_black, "dlxtrains:blueprint", dlxtrains.materials.dye_yellow},
+				{"", dlxtrains.materials.chest, ""},
+				{dlxtrains.materials.steel_ingot, dlxtrains.materials.steel_ingot, dlxtrains.materials.steel_ingot},
 			}
 		})
 	end
@@ -60,9 +60,9 @@ if dlxtrains.get_config_wagon_crafting_recipe_complexity() == 1 then
 		minetest.register_craft({
 			output = "dlxtrains_industrial_wagons:covered_goods_body_type1",
 			recipe = {
-				{"default:steel_ingot", "default:wood", "default:steel_ingot"},
-				{"default:wood", "default:chest", "default:wood"},
-				{"default:wood", "dlxtrains:blueprint", "default:wood"},
+				{dlxtrains.materials.steel_ingot, dlxtrains.materials.wood, dlxtrains.materials.steel_ingot},
+				{dlxtrains.materials.wood, dlxtrains.materials.chest, dlxtrains.materials.wood},
+				{dlxtrains.materials.wood, "dlxtrains:blueprint", dlxtrains.materials.wood},
 			}
 		})
 	end
@@ -76,9 +76,9 @@ if dlxtrains.get_config_wagon_crafting_recipe_complexity() == 1 then
 		minetest.register_craft({
 			output = "dlxtrains_industrial_wagons:covered_goods_body_type2",
 			recipe = {
-				{"default:steel_ingot", "default:steel_ingot", "default:steel_ingot"},
-				{"", "default:chest", ""},
-				{"default:steel_ingot", "dlxtrains:blueprint", "default:steel_ingot"},
+				{dlxtrains.materials.steel_ingot, dlxtrains.materials.steel_ingot, dlxtrains.materials.steel_ingot},
+				{"", dlxtrains.materials.chest, ""},
+				{dlxtrains.materials.steel_ingot, "dlxtrains:blueprint", dlxtrains.materials.steel_ingot},
 			}
 		})
 	end
@@ -92,9 +92,9 @@ if dlxtrains.get_config_wagon_crafting_recipe_complexity() == 1 then
 		minetest.register_craft({
 			output = "dlxtrains_industrial_wagons:covered_goods_body_type3",
 			recipe = {
-				{"default:steel_ingot", "default:steel_ingot", "default:steel_ingot"},
-				{"default:tin_ingot", "default:chest", "default:tin_ingot"},
-				{"default:wood", "dlxtrains:blueprint", "default:wood"},
+				{dlxtrains.materials.steel_ingot, dlxtrains.materials.steel_ingot, dlxtrains.materials.steel_ingot},
+				{dlxtrains.materials.tin_ingot, dlxtrains.materials.chest, dlxtrains.materials.tin_ingot},
+				{dlxtrains.materials.wood, "dlxtrains:blueprint", dlxtrains.materials.wood},
 			}
 		})
 	end
@@ -109,8 +109,8 @@ if dlxtrains.get_config_wagon_crafting_recipe_complexity() == 1 then
 			output = "dlxtrains_industrial_wagons:flat_body_type1",
 			recipe = {
 				{"", "dlxtrains:blueprint", ""},
-				{"", "default:chest", ""},
-				{"default:wood", "default:wood", "default:wood"},
+				{"", dlxtrains.materials.chest, ""},
+				{dlxtrains.materials.wood, dlxtrains.materials.wood, dlxtrains.materials.wood},
 			}
 		})
 	end
@@ -125,8 +125,8 @@ if dlxtrains.get_config_wagon_crafting_recipe_complexity() == 1 then
 			output = "dlxtrains_industrial_wagons:hopper_body_type1",
 			recipe = {
 				{"", "dlxtrains:blueprint", ""},
-				{"default:steel_ingot", "default:chest", "default:steel_ingot"},
-				{"default:steel_ingot", "default:steel_ingot", "default:steel_ingot"},
+				{dlxtrains.materials.steel_ingot, dlxtrains.materials.chest, dlxtrains.materials.steel_ingot},
+				{dlxtrains.materials.steel_ingot, dlxtrains.materials.steel_ingot, dlxtrains.materials.steel_ingot},
 			}
 		})
 	end
@@ -141,8 +141,8 @@ if dlxtrains.get_config_wagon_crafting_recipe_complexity() == 1 then
 			output = "dlxtrains_industrial_wagons:open_body_type1",
 			recipe = {
 				{"", "dlxtrains:blueprint", ""},
-				{"default:steel_ingot", "default:chest", "default:steel_ingot"},
-				{"default:steel_ingot", "default:wood", "default:steel_ingot"},
+				{dlxtrains.materials.steel_ingot, dlxtrains.materials.chest, dlxtrains.materials.steel_ingot},
+				{dlxtrains.materials.steel_ingot, dlxtrains.materials.wood, dlxtrains.materials.steel_ingot},
 			}
 		})
 	end
@@ -157,8 +157,8 @@ if dlxtrains.get_config_wagon_crafting_recipe_complexity() == 1 then
 			output = "dlxtrains_industrial_wagons:small_tank",
 			recipe = {
 				{"", "dlxtrains:blueprint", ""},
-				{"default:steel_ingot", "bucket:bucket_empty", "default:steel_ingot"},
-				{"default:steel_ingot", "default:chest", "default:steel_ingot"},
+				{dlxtrains.materials.steel_ingot, dlxtrains.materials.bucket_empty, dlxtrains.materials.steel_ingot},
+				{dlxtrains.materials.steel_ingot, dlxtrains.materials.chest, dlxtrains.materials.steel_ingot},
 			}
 		})
 	end
@@ -172,9 +172,9 @@ if dlxtrains.get_config_wagon_crafting_recipe_complexity() == 1 then
 		minetest.register_craft({
 			output = "dlxtrains_industrial_wagons:stake_body_type1",
 			recipe = {
-				{"default:steel_ingot", "dlxtrains:blueprint", "default:steel_ingot"},
-				{"default:steel_ingot", "default:chest", "default:steel_ingot"},
-				{"default:wood", "default:wood", "default:wood"},
+				{dlxtrains.materials.steel_ingot, "dlxtrains:blueprint", dlxtrains.materials.steel_ingot},
+				{dlxtrains.materials.steel_ingot, dlxtrains.materials.chest, dlxtrains.materials.steel_ingot},
+				{dlxtrains.materials.wood, dlxtrains.materials.wood, dlxtrains.materials.wood},
 			}
 		})
 	end

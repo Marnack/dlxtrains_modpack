@@ -118,7 +118,7 @@ if dlxtrains_support_wagons.max_wagon_length >= 6 then
 		collisionbox = {-1.0,-0.5,-1.0,1.0,2.5,1.0},
 		coupler_types_front = {knuckle=true},
 		coupler_types_back = {knuckle=true},
-		drops={"default:steelblock"},
+		drops={dlxtrains.materials.steelblock},
 		has_inventory = false,
 	}
 
@@ -186,7 +186,7 @@ if dlxtrains_support_wagons.max_wagon_length >= 4.875 then
 		collisionbox = {-1.4,-0.5,-1.4,1.4,2.5,1.4},
 		coupler_types_front = {chain=true},
 		coupler_types_back = {chain=true},
-		drops={"default:steelblock"},
+		drops={dlxtrains.materials.steelblock},
 		has_inventory = false,
 	}
 

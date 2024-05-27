@@ -46,6 +46,16 @@ DLX Tools only work with DLX wagons and locomotives.  Click near the center (i.e
 - **DLX Livery Selector Tool** - This tool is used to select the livery of DLX wagons and locomotives.  A livery in this case is more than just a color scheme.  It also includes markings and logos and occasionally other minor cosmetic variations.  Each DLX wagon and locomotive will have two or more liveries from which to choose.  Left-clicking (punching) on a DLX wagon or locomotive with this tool changes it to the next livery.  Holding the sneak key while left-clicking on a DLX wagon or locomotive changes it to the previous livery.  As a side effect, this tool will also update any visible cargo if it is out of sync with the wagon's inventory.  Also, if the [AdvTrains Livery Tools](https://content.minetest.net/packages/Marnack/advtrains_livery_tools/) modpack is enabled, its livery designer tool can also be used to select a new livery for DLX wagons and locomotives.  Both of these livery selector tools can be used interchangeably.
 - **DLX Wagon Updater Tool** - This tool is used to immediately update a DLX wagon's visible cargo in case it is out of sync with its inventory.  Although the visible cargo of a DLX wagon will automatically update the next time the area of the map is reloaded or the game is restarted, this tool can be used to force an immediate update without leaving the area or the game.   Thus, it can be useful to confirm or update a DLX wagon's visible cargo when the inventory of the wagon has just been changed, either manually or automatically via load and unload tracks.
 
+## Game Support
+As with **AdvTrains**, the DlxTrains mod is compatible with many games when playing in creative mode and fully supports survival mode in [Minetest Game](https://content.minetest.net/packages/Minetest/minetest_game/) and its many variants.  However, DlxTrains also supports survival mode in games that are not based on **Minetest Game** including the following:
+
+- [Farlands Reloaded](https://content.minetest.net/packages/wsor4035/farlands_reloaded/)
+- [Hades Revisited](https://content.minetest.net/packages/Wuzzy/hades_revisited/)
+- [Minecloneia](https://content.minetest.net/packages/ryvnf/mineclonia/)
+- [VoxeLibre](https://content.minetest.net/packages/Wuzzy/mineclone2/) (formerly known as MineClone2)
+
+Note that support for survival mode in those games is subject to potential breakage in the future if those games change their materials or crafting system.
+
 ## Licenses
 
 Copyright © 2021-2024 Marnack

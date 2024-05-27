@@ -22,29 +22,31 @@ minetest.register_tool("dlxtrains:livery_selector", {
 	stack_max = 1,
 })
 
-minetest.register_craft({
-	output = "dlxtrains:wagon_updater",
-	recipe = {
-		{"default:glass", "default:diamond", "default:glass"},
-		{"default:stick", "default:mese", "default:stick"},
-		{"default:stick", "dlxtrains:blueprint", "default:stick"},
-	}
-})
+if dlxtrains.crafting_enabled() then
+	minetest.register_craft({
+		output = "dlxtrains:wagon_updater",
+		recipe = {
+			{dlxtrains.materials.glass, dlxtrains.materials.diamond, dlxtrains.materials.glass},
+			{dlxtrains.materials.stick, dlxtrains.materials.mese, dlxtrains.materials.stick},
+			{dlxtrains.materials.stick, "dlxtrains:blueprint", dlxtrains.materials.stick},
+		}
+	})
 
-minetest.register_craft({
-	output = "dlxtrains:age_selector",
-	recipe = {
-		{"default:desert_sand", "default:obsidian_glass", "default:steel_ingot"},
-		{"default:glass", "dlxtrains:wagon_updater", "default:gold_ingot"},
-		{"default:desert_sand", "dlxtrains:blueprint", "default:tin_ingot"},
-	}
-})
+	minetest.register_craft({
+		output = "dlxtrains:age_selector",
+		recipe = {
+			{dlxtrains.materials.desert_sand, dlxtrains.materials.obsidian_glass, dlxtrains.materials.steel_ingot},
+			{dlxtrains.materials.glass, "dlxtrains:wagon_updater", dlxtrains.materials.gold_ingot},
+			{dlxtrains.materials.desert_sand, "dlxtrains:blueprint", dlxtrains.materials.tin_ingot},
+		}
+	})
 
-minetest.register_craft({
-	output = "dlxtrains:livery_selector",
-	recipe = {
-		{"dye:grey", "default:obsidian_glass", "default:diamond"},
-		{"dye:red", "dlxtrains:wagon_updater", "default:gold_ingot"},
-		{"dye:cyan", "dlxtrains:blueprint", "default:bronze_ingot"},
-	}
-})
+	minetest.register_craft({
+		output = "dlxtrains:livery_selector",
+		recipe = {
+			{dlxtrains.materials.dye_grey, dlxtrains.materials.obsidian_glass, dlxtrains.materials.diamond},
+			{dlxtrains.materials.dye_red, "dlxtrains:wagon_updater", dlxtrains.materials.gold_ingot},
+			{dlxtrains.materials.dye_cyan, "dlxtrains:blueprint", dlxtrains.materials.bronze_ingot},
+		}
+	})
+end

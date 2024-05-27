@@ -461,7 +461,7 @@ if dlxtrains_diesel_locomotives.max_wagon_length >= 7.35 then
 		collisionbox = {-0.5,-0.5,-0.5,0.5,2.5,0.5},
 		coupler_types_front = {chain=true},
 		coupler_types_back = {chain=true},
-		drops={"default:steelblock 2"},
+		drops={dlxtrains.materials.steelblock and (dlxtrains.materials.steelblock.." 2")},
 		horn_sound = "advtrains_industrial_horn",
 		has_inventory = false,
 		custom_on_step=function(wagon, dtime)
@@ -563,7 +563,7 @@ if dlxtrains_diesel_locomotives.max_wagon_length >= 6.80725 then
 		collisionbox = {-0.5,-0.5,-0.5,0.5,2.5,0.5},
 		coupler_types_front = {knuckle=true},
 		coupler_types_back = {knuckle=true},
-		drops={"default:steelblock 2"},
+		drops={dlxtrains.materials.steelblock and (dlxtrains.materials.steelblock.." 2")},
 		horn_sound = "advtrains_industrial_horn",
 		has_inventory = false,
 		custom_on_step=function(wagon, dtime)
@@ -673,7 +673,7 @@ if dlxtrains_diesel_locomotives.max_wagon_length >= 8.2 then
 		collisionbox = {-0.5,-0.5,-0.5,0.5,2.5,0.5},
 		coupler_types_front = {chain=true},
 		coupler_types_back = {chain=true},
-		drops={"default:steelblock 2"},
+		drops={dlxtrains.materials.steelblock and (dlxtrains.materials.steelblock.." 2")},
 		horn_sound = "advtrains_industrial_horn",
 		has_inventory = false,
 		custom_on_step=function(wagon, dtime)

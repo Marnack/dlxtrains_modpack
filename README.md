@@ -39,6 +39,18 @@ VR|![](dlxtrains/textures/dlxtrains_logo_vr.png)|Light Grey|Red|0|3|0
 WF|![](dlxtrains/textures/dlxtrains_logo_wf.png)|Green|Grey|2|7|1
 ZR|![](dlxtrains/textures/dlxtrains_logo_zr_2.png) ![](dlxtrains/textures/dlxtrains_logo_zr.png)|Yellow|Black|2|7|1
 
+## Game Support
+As with **AdvTrains**, DlxTrains ModPack is compatible with many games when playing in creative mode and fully supports survival mode in [Minetest Game](https://content.minetest.net/packages/Minetest/minetest_game/) and its many variants.  However, DlxTrains ModPack also supports survival mode in games that are not based on **Minetest Game** including the following:
+
+- [Farlands Reloaded](https://content.minetest.net/packages/wsor4035/farlands_reloaded/)
+- [Hades Revisited](https://content.minetest.net/packages/Wuzzy/hades_revisited/)
+- [Minecloneia](https://content.minetest.net/packages/ryvnf/mineclonia/)
+- [VoxeLibre](https://content.minetest.net/packages/Wuzzy/mineclone2/) (formerly known as MineClone2)
+
+Note that support for survival mode in those games is subject to potential breakage in the future if those games change their materials or crafting system.
+
+Some of the crafting recipes defined by DlxTrains require items that are defined in AdvTrains.  Thus, for full support of survival mode in the games listed above, also consider using the [AdvTrains Crafting Compatibility Patch](https://content.minetest.net/packages/Marnack/advtrains_crafting_compatibility_patch/) to enable crafting of those items that are defined in AdvTrains.
+
 ## Author's Notes
 
 1) All of the locomotives and wagons in this modpack will function properly on any of the AdvTrains track.  However, the appearance of some of the longer wagons in this modpack will be more realistic if they are only used on track that is built with large radius curves and shallowest slopes.  This is not deemed to be a significant problem since it also happens in the real world that there are some trains that can only run on track that is constructed to accommodate their requirements.  However, players wanting to limit the inclusion of longer DLX wagons in game should consult the DlxTrains mod's README.md file for details on how to accomplish that using that mod's settings.

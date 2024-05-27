@@ -17,6 +17,7 @@ dlxtrains.locomotive_smoke = ({["Off"]=0, ["Constant"]=1, ["Dynamic"]=2})[locomo
 advtrains.register_coupler_type("knuckle", dlxtrains.S("Knuckle Coupler"))
 
 local mod_path = minetest.get_modpath(mod_name)
+dofile(mod_path.."/materials.lua")
 dofile(mod_path.."/items.lua")
 dofile(mod_path.."/tools.lua")
 dofile(mod_path.."/livery_functions.lua")

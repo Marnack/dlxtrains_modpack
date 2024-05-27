@@ -8,24 +8,26 @@ end
 
 -- ////////////////////////////////////////////////////////////////////////////////////
 
-minetest.register_craftitem("dlxtrains:blueprint", {
-	description = S("DLX Blueprint"),
-	inventory_image = "dlxtrains_blueprint.png",
-	groups = {flammable = 3},
-})
+if dlxtrains.crafting_enabled() then
+	minetest.register_craftitem("dlxtrains:blueprint", {
+		description = S("DLX Blueprint"),
+		inventory_image = "dlxtrains_blueprint.png",
+		groups = {flammable = 3},
+	})
 
-minetest.register_craft({
-	output = "dlxtrains:blueprint 9",
-	recipe = {
-		{"default:paper", "default:paper", "default:paper"},
-		{"default:paper", "default:mese_crystal_fragment", "default:paper"},
-		{"default:paper", "dye:blue", "default:paper"},
-	}
-})
+	minetest.register_craft({
+		output = "dlxtrains:blueprint 9",
+		recipe = {
+			{dlxtrains.materials.paper, dlxtrains.materials.paper, dlxtrains.materials.paper},
+			{dlxtrains.materials.paper, dlxtrains.materials.mese_crystal_fragment, dlxtrains.materials.paper},
+			{dlxtrains.materials.paper, dlxtrains.materials.dye_blue, dlxtrains.materials.paper},
+		}
+	})
+end
 
 -- ////////////////////////////////////////////////////////////////////////////////////
 
-if dlxtrains.get_config_wagon_crafting_recipe_complexity() == 1 then
+if dlxtrains.crafting_enabled() and dlxtrains.get_config_wagon_crafting_recipe_complexity() == 1 then
 
 	if dlxtrains.max_wagon_length >= 6 then					-- Currently, no wagons < 6m use a bogie
 		minetest.register_craftitem("dlxtrains:bogie", {
@@ -36,9 +38,9 @@ if dlxtrains.get_config_wagon_crafting_recipe_complexity() == 1 then
 		minetest.register_craft({
 			output = "dlxtrains:bogie",
 			recipe = {
-				{"advtrains:wheel", "default:steel_ingot", "advtrains:wheel"},
-				{"dlxtrains:blueprint", "default:steel_ingot", ""},
-				{"advtrains:wheel", "default:steel_ingot", "advtrains:wheel"},
+				{dlxtrains.materials.advtrains_wheel, dlxtrains.materials.steel_ingot, dlxtrains.materials.advtrains_wheel},
+				{"dlxtrains:blueprint", dlxtrains.materials.steel_ingot, ""},
+				{dlxtrains.materials.advtrains_wheel, dlxtrains.materials.steel_ingot, dlxtrains.materials.advtrains_wheel},
 			}
 		})
 	end
@@ -52,8 +54,8 @@ if dlxtrains.get_config_wagon_crafting_recipe_complexity() == 1 then
 		output = "dlxtrains:coupler_buffer_and_chain 2",
 		recipe = {
 			{"", "dlxtrains:blueprint", ""},
-			{"default:steel_ingot", "default:steel_ingot", "default:steel_ingot"},
-			{"default:steel_ingot", "", "default:steel_ingot"},
+			{dlxtrains.materials.steel_ingot, dlxtrains.materials.steel_ingot, dlxtrains.materials.steel_ingot},
+			{dlxtrains.materials.steel_ingot, "", dlxtrains.materials.steel_ingot},
 		}
 	})
 
@@ -66,9 +68,9 @@ if dlxtrains.get_config_wagon_crafting_recipe_complexity() == 1 then
 		minetest.register_craft({
 			output = "dlxtrains:coupler_knuckle 2",
 			recipe = {
-				{"default:steel_ingot", "dlxtrains:blueprint", "default:steel_ingot"},
-				{"default:steel_ingot", "default:steel_ingot", "default:steel_ingot"},
-				{"", "default:steel_ingot", ""},
+				{dlxtrains.materials.steel_ingot, "dlxtrains:blueprint", dlxtrains.materials.steel_ingot},
+				{dlxtrains.materials.steel_ingot, dlxtrains.materials.steel_ingot, dlxtrains.materials.steel_ingot},
+				{"", dlxtrains.materials.steel_ingot, ""},
 			}
 		})
 	end
@@ -81,9 +83,9 @@ if dlxtrains.get_config_wagon_crafting_recipe_complexity() == 1 then
 	minetest.register_craft({
 		output = "dlxtrains:wagon_chassis",
 		recipe = {
-			{"default:steel_ingot", "default:steel_ingot", "default:steel_ingot"},
-			{"default:steel_ingot", "dlxtrains:blueprint", "default:steel_ingot"},
-			{"default:steel_ingot", "default:steel_ingot", "default:steel_ingot"},
+			{dlxtrains.materials.steel_ingot, dlxtrains.materials.steel_ingot, dlxtrains.materials.steel_ingot},
+			{dlxtrains.materials.steel_ingot, "dlxtrains:blueprint", dlxtrains.materials.steel_ingot},
+			{dlxtrains.materials.steel_ingot, dlxtrains.materials.steel_ingot, dlxtrains.materials.steel_ingot},
 		}
 	})
 
@@ -95,9 +97,9 @@ if dlxtrains.get_config_wagon_crafting_recipe_complexity() == 1 then
 	minetest.register_craft({
 		output = "dlxtrains:wheel_set",
 		recipe = {
-			{"", "advtrains:wheel", ""},
-			{"dlxtrains:blueprint", "default:steel_ingot", ""},
-			{"", "advtrains:wheel", ""},
+			{"", dlxtrains.materials.advtrains_wheel, ""},
+			{"dlxtrains:blueprint", dlxtrains.materials.steel_ingot, ""},
+			{"", dlxtrains.materials.advtrains_wheel, ""},
 		}
 	})
 end

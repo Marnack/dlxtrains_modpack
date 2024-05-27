@@ -1,7 +1,7 @@
 
 local S = dlxtrains_diesel_locomotives.S
 
-if dlxtrains.get_config_wagon_crafting_recipe_complexity() == 1 then
+if dlxtrains.crafting_enabled() and dlxtrains.get_config_wagon_crafting_recipe_complexity() == 1 then
 
 	if dlxtrains_diesel_locomotives.max_wagon_length >= 6.80725 then
 
@@ -13,9 +13,9 @@ if dlxtrains.get_config_wagon_crafting_recipe_complexity() == 1 then
 		minetest.register_craft({
 			output = "dlxtrains_diesel_locomotives:locomotive_chassis",
 			recipe = {
-				{"default:steel_ingot", "default:steel_ingot", "default:steel_ingot"},
-				{"default:steelblock", "default:steelblock", "default:steelblock"},
-				{"default:ladder_steel", "dlxtrains:blueprint", "default:ladder_steel"},
+				{dlxtrains.materials.steel_ingot, dlxtrains.materials.steel_ingot, dlxtrains.materials.steel_ingot},
+				{dlxtrains.materials.steelblock, dlxtrains.materials.steelblock, dlxtrains.materials.steelblock},
+				{dlxtrains.materials.ladder_steel, "dlxtrains:blueprint", dlxtrains.materials.ladder_steel},
 			}
 		})
 
@@ -27,9 +27,9 @@ if dlxtrains.get_config_wagon_crafting_recipe_complexity() == 1 then
 		minetest.register_craft({
 			output = "dlxtrains_diesel_locomotives:locomotive_bogie",
 			recipe = {
-				{"default:steel_ingot", "", "default:steel_ingot"},
-				{"default:sand", "default:steelblock", "default:sand"},
-				{"default:steel_ingot", "dlxtrains:bogie", "default:steel_ingot"},
+				{dlxtrains.materials.steel_ingot, "", dlxtrains.materials.steel_ingot},
+				{dlxtrains.materials.sand, dlxtrains.materials.steelblock, dlxtrains.materials.sand},
+				{dlxtrains.materials.steel_ingot, "dlxtrains:bogie", dlxtrains.materials.steel_ingot},
 			}
 		})
 
@@ -41,9 +41,9 @@ if dlxtrains.get_config_wagon_crafting_recipe_complexity() == 1 then
 		minetest.register_craft({
 			output = "dlxtrains_diesel_locomotives:fuel_tank",
 			recipe = {
-				{"default:steel_ingot", "default:steel_ingot", "default:steel_ingot"},
-				{"default:steel_ingot", "dlxtrains:blueprint", "default:steel_ingot"},
-				{"", "default:steel_ingot", ""},
+				{dlxtrains.materials.steel_ingot, dlxtrains.materials.steel_ingot, dlxtrains.materials.steel_ingot},
+				{dlxtrains.materials.steel_ingot, "dlxtrains:blueprint", dlxtrains.materials.steel_ingot},
+				{"", dlxtrains.materials.steel_ingot, ""},
 			}
 		})
 
@@ -55,9 +55,9 @@ if dlxtrains.get_config_wagon_crafting_recipe_complexity() == 1 then
 		minetest.register_craft({
 			output = "dlxtrains_diesel_locomotives:hood",
 			recipe = {
-				{"default:steel_ingot", "default:steel_ingot", "default:steel_ingot"},
-				{"default:steel_ingot", "", "default:steel_ingot"},
-				{"default:steel_ingot", "dlxtrains:blueprint", "default:steel_ingot"},
+				{dlxtrains.materials.steel_ingot, dlxtrains.materials.steel_ingot, dlxtrains.materials.steel_ingot},
+				{dlxtrains.materials.steel_ingot, "", dlxtrains.materials.steel_ingot},
+				{dlxtrains.materials.steel_ingot, "dlxtrains:blueprint", dlxtrains.materials.steel_ingot},
 			}
 		})
 
@@ -69,9 +69,9 @@ if dlxtrains.get_config_wagon_crafting_recipe_complexity() == 1 then
 		minetest.register_craft({
 			output = "dlxtrains_diesel_locomotives:cooling_fan",
 			recipe = {
-				{"default:steel_ingot", "default:steel_ingot", "default:steel_ingot"},
-				{"default:steel_ingot", "default:copper_ingot", "default:steel_ingot"},
-				{"default:steel_ingot", "dlxtrains:blueprint", "default:steel_ingot"},
+				{dlxtrains.materials.steel_ingot, dlxtrains.materials.steel_ingot, dlxtrains.materials.steel_ingot},
+				{dlxtrains.materials.steel_ingot, dlxtrains.materials.copper_ingot, dlxtrains.materials.steel_ingot},
+				{dlxtrains.materials.steel_ingot, "dlxtrains:blueprint", dlxtrains.materials.steel_ingot},
 			}
 		})
 
@@ -83,9 +83,9 @@ if dlxtrains.get_config_wagon_crafting_recipe_complexity() == 1 then
 		minetest.register_craft({
 			output = "dlxtrains_diesel_locomotives:radiator",
 			recipe = {
-				{"default:steel_ingot", "default:copper_ingot", "default:steel_ingot"},
-				{"default:copper_ingot", "bucket:bucket_water", "default:copper_ingot"},
-				{"default:steel_ingot", "dlxtrains:blueprint", "default:steel_ingot"},
+				{dlxtrains.materials.steel_ingot, dlxtrains.materials.copper_ingot, dlxtrains.materials.steel_ingot},
+				{dlxtrains.materials.copper_ingot, dlxtrains.materials.bucket_water, dlxtrains.materials.copper_ingot},
+				{dlxtrains.materials.steel_ingot, "dlxtrains:blueprint", dlxtrains.materials.steel_ingot},
 			}
 		})
 
@@ -97,9 +97,9 @@ if dlxtrains.get_config_wagon_crafting_recipe_complexity() == 1 then
 		minetest.register_craft({
 			output = "dlxtrains_diesel_locomotives:cooling_unit",
 			recipe = {
-				{"default:steel_ingot", "dlxtrains_diesel_locomotives:cooling_fan", "default:steel_ingot"},
-				{"dlxtrains_diesel_locomotives:radiator", "default:copper_ingot", "dlxtrains_diesel_locomotives:radiator"},
-				{"default:steel_ingot", "default:steel_ingot", "default:steel_ingot"},
+				{dlxtrains.materials.steel_ingot, "dlxtrains_diesel_locomotives:cooling_fan", dlxtrains.materials.steel_ingot},
+				{"dlxtrains_diesel_locomotives:radiator", dlxtrains.materials.copper_ingot, "dlxtrains_diesel_locomotives:radiator"},
+				{dlxtrains.materials.steel_ingot, dlxtrains.materials.steel_ingot, dlxtrains.materials.steel_ingot},
 			}
 		})
 
@@ -111,9 +111,9 @@ if dlxtrains.get_config_wagon_crafting_recipe_complexity() == 1 then
 		minetest.register_craft({
 			output = "dlxtrains_diesel_locomotives:battery_pack",
 			recipe = {
-				{"default:copper_ingot", "default:copper_ingot", "default:copper_ingot"},
-				{"default:steel_ingot", "default:steel_ingot", "default:steel_ingot"},
-				{"default:mese_crystal", "dlxtrains:blueprint", "default:obsidian"},
+				{dlxtrains.materials.copper_ingot, dlxtrains.materials.copper_ingot, dlxtrains.materials.copper_ingot},
+				{dlxtrains.materials.steel_ingot, dlxtrains.materials.steel_ingot, dlxtrains.materials.steel_ingot},
+				{dlxtrains.materials.mese_crystal, "dlxtrains:blueprint", dlxtrains.materials.obsidian},
 			}
 		})
 
@@ -125,9 +125,9 @@ if dlxtrains.get_config_wagon_crafting_recipe_complexity() == 1 then
 		minetest.register_craft({
 			output = "dlxtrains_diesel_locomotives:diesel_engine",
 			recipe = {
-				{"default:copper_ingot", "default:steel_ingot", "default:copper_ingot"},
-				{"default:steel_ingot", "default:steelblock", "default:steel_ingot"},
-				{"default:steel_ingot", "dlxtrains:blueprint", "default:steel_ingot"},
+				{dlxtrains.materials.copper_ingot, dlxtrains.materials.steel_ingot, dlxtrains.materials.copper_ingot},
+				{dlxtrains.materials.steel_ingot, dlxtrains.materials.steelblock, dlxtrains.materials.steel_ingot},
+				{dlxtrains.materials.steel_ingot, "dlxtrains:blueprint", dlxtrains.materials.steel_ingot},
 			}
 		})
 
@@ -139,9 +139,9 @@ if dlxtrains.get_config_wagon_crafting_recipe_complexity() == 1 then
 		minetest.register_craft({
 			output = "dlxtrains_diesel_locomotives:generator",
 			recipe = {
-				{"default:copper_ingot", "default:steel_ingot", "default:copper_ingot"},
-				{"default:steel_ingot", "default:copperblock", "default:steel_ingot"},
-				{"default:steel_ingot", "dlxtrains:blueprint", "default:steel_ingot"},
+				{dlxtrains.materials.copper_ingot, dlxtrains.materials.steel_ingot, dlxtrains.materials.copper_ingot},
+				{dlxtrains.materials.steel_ingot, dlxtrains.materials.copperblock, dlxtrains.materials.steel_ingot},
+				{dlxtrains.materials.steel_ingot, "dlxtrains:blueprint", dlxtrains.materials.steel_ingot},
 			}
 		})
 
@@ -153,8 +153,8 @@ if dlxtrains.get_config_wagon_crafting_recipe_complexity() == 1 then
 		minetest.register_craft({
 			output = "dlxtrains_diesel_locomotives:locomotive_body_type2",
 			recipe = {
-				{"", "dlxtrains_diesel_locomotives:hood", "advtrains:driver_cab"},
-				{"", "dye:black", "dlxtrains_diesel_locomotives:cooling_unit"},
+				{"", "dlxtrains_diesel_locomotives:hood", dlxtrains.materials.advtrains_driver_cab},
+				{"", dlxtrains.materials.dye_black, "dlxtrains_diesel_locomotives:cooling_unit"},
 				{"dlxtrains_diesel_locomotives:battery_pack", "dlxtrains_diesel_locomotives:generator", "dlxtrains_diesel_locomotives:diesel_engine"},
 			}
 		})
@@ -171,8 +171,8 @@ if dlxtrains.get_config_wagon_crafting_recipe_complexity() == 1 then
 		minetest.register_craft({
 			output = "dlxtrains_diesel_locomotives:hydraulic_transmission",
 			recipe = {
-				{"", "default:steelblock", ""},
-				{"default:steel_ingot", "bucket:bucket_water", "default:steel_ingot"},
+				{"", dlxtrains.materials.steelblock, ""},
+				{dlxtrains.materials.steel_ingot, dlxtrains.materials.bucket_water, dlxtrains.materials.steel_ingot},
 				{"", "dlxtrains:blueprint", ""},
 			}
 		})
@@ -185,8 +185,8 @@ if dlxtrains.get_config_wagon_crafting_recipe_complexity() == 1 then
 		minetest.register_craft({
 			output = "dlxtrains_diesel_locomotives:locomotive_body_type1",
 			recipe = {
-				{"dlxtrains_diesel_locomotives:hood", "advtrains:driver_cab", "dlxtrains_diesel_locomotives:hood"},
-				{"dye:red", "dlxtrains_diesel_locomotives:cooling_unit", "dlxtrains_diesel_locomotives:cooling_unit"},
+				{"dlxtrains_diesel_locomotives:hood", dlxtrains.materials.advtrains_driver_cab, "dlxtrains_diesel_locomotives:hood"},
+				{dlxtrains.materials.dye_red, "dlxtrains_diesel_locomotives:cooling_unit", "dlxtrains_diesel_locomotives:cooling_unit"},
 				{"dlxtrains_diesel_locomotives:battery_pack", "dlxtrains_diesel_locomotives:hydraulic_transmission", "dlxtrains_diesel_locomotives:diesel_engine"},
 			}
 		})
@@ -202,8 +202,8 @@ if dlxtrains.get_config_wagon_crafting_recipe_complexity() == 1 then
 		minetest.register_craft({
 			output = "dlxtrains_diesel_locomotives:locomotive_body_type3",
 			recipe = {
-				{"advtrains:driver_cab", "dlxtrains_diesel_locomotives:hood", "advtrains:driver_cab"},
-				{"dye:red", "dlxtrains_diesel_locomotives:cooling_unit", "dlxtrains_diesel_locomotives:generator"},
+				{dlxtrains.materials.advtrains_driver_cab, "dlxtrains_diesel_locomotives:hood", dlxtrains.materials.advtrains_driver_cab},
+				{dlxtrains.materials.dye_red, "dlxtrains_diesel_locomotives:cooling_unit", "dlxtrains_diesel_locomotives:generator"},
 				{"dlxtrains_diesel_locomotives:battery_pack", "dlxtrains_diesel_locomotives:hydraulic_transmission", "dlxtrains_diesel_locomotives:diesel_engine"},
 			}
 		})

@@ -229,9 +229,24 @@ local livery_templates = {
 -- ////////////////////////////////////////////////////////////////////////////////////
 
 local function is_filled_bucket(stack)
-	-- Any liquid registered with the bucket mod will be considered a valid liquid
-	for bucket, def in pairs(bucket.liquids) do
-		if def.itemname == stack:get_name() then
+	local stack_name = stack:get_name()
+	if minetest.get_modpath("default") then
+		-- Any liquid registered with the bucket mod will be considered a valid liquid
+		for bucket, def in pairs(bucket.liquids) do
+			if def.itemname == stack_name then
+				return true
+			end
+		end
+	end
+	if minetest.get_modpath("mcl_buckets") then
+
+		-- Any liquid registered with the mcl_bucket mod will be considered a valid liquid
+		for bucket, def in pairs(mcl_buckets.liquids) do
+			if def.bucketname == stack_name then
+				return true
+			end
+		end
+		if stack_name == "mcl_mobitems:milk_bucket" then
 			return true
 		end
 	end
@@ -375,14 +390,14 @@ local function get_liquid_count(stack)
 end
 
 local function is_loose_material(node_def)
-	if node_def then
+	if node_def and node_def.name ~= "" then
 		if node_def.groups.soil
 			or node_def.groups.sand
-			or node_def.name == "default:gravel"
-			or node_def.name == "default:coalblock"
-			or node_def.name == "default:permafrost"
-			or node_def.name == "default:permafrost_with_stones"
-			or node_def.name == "default:cobble" then
+			or node_def.name == dlxtrains.materials.gravel
+			or node_def.name == dlxtrains.materials.coalblock
+			or node_def.name == dlxtrains.materials.permafrost
+			or node_def.name == dlxtrains.materials.permafrost_with_stones
+			or node_def.name == dlxtrains.materials.cobble then
 			return true
 		end
 	end
@@ -647,8 +662,8 @@ local function update_model_industrial_wagon_hopper(wagon, data, texture_file, m
 			if is_loose_material(node_def) then
 				load_node_name = node_def.name
 			elseif item_def then
-				if item_def.name == "default:coal_lump" or item_def.name == "technic:coal_dust" then
-					load_node_name = "default:coalblock"
+				if item_def.name == dlxtrains.materials.coal_lump or item_def.name == "technic:coal_dust" then
+					load_node_name = dlxtrains.materials.coalblock
 				end
 			end
 
@@ -707,8 +722,8 @@ local function update_model_industrial_wagon_open(wagon, data, texture_file, mes
 			if is_loose_material(node_def) then
 				load_node_name = node_def.name
 			elseif item_def then
-				if item_def.name == "default:coal_lump" or item_def.name == "technic:coal_dust" then
-					load_node_name = "default:coalblock"
+				if item_def.name == dlxtrains.materials.coal_lump or item_def.name == "technic:coal_dust" then
+					load_node_name = dlxtrains.materials.coalblock
 				end
 			end
 
@@ -959,7 +974,7 @@ if dlxtrains_industrial_wagons.max_wagon_length >= 8.5 then
 		collisionbox = {-1.0,-0.5,-1.0,1.0,2.5,1.0},
 		coupler_types_front = {chain=true},
 		coupler_types_back = {chain=true},
-		drops={"default:steelblock"},
+		drops={dlxtrains.materials.steelblock},
 		has_inventory = true,
 		get_inventory_formspec = function(wagon, pname, invname)
 			return "size[8,9]"..
@@ -999,7 +1014,7 @@ if dlxtrains_industrial_wagons.max_wagon_length >= 4.875 then
 		collisionbox = {-1.0,-0.5,-1.0,1.0,2.5,1.0},
 		coupler_types_front = {chain=true},
 		coupler_types_back = {chain=true},
-		drops={"default:steelblock"},
+		drops={dlxtrains.materials.steelblock},
 		has_inventory = true,
 		get_inventory_formspec = function(wagon, pname, invname)
 			return "size[8,7]"..
@@ -1038,7 +1053,7 @@ if dlxtrains_industrial_wagons.max_wagon_length >= 8 then
 		collisionbox = {-1.0,-0.5,-1.0,1.0,2.5,1.0},
 		coupler_types_front = {knuckle=true},
 		coupler_types_back = {knuckle=true},
-		drops={"default:steelblock"},
+		drops={dlxtrains.materials.steelblock},
 		has_inventory = true,
 		get_inventory_formspec = function(wagon, pname, invname)
 			return "size[8,10]"..
@@ -1076,7 +1091,7 @@ if dlxtrains_industrial_wagons.max_wagon_length >= 8 then
 		collisionbox = {-1.0,-0.5,-1.0,1.0,2.5,1.0},
 		coupler_types_front = {knuckle=true},
 		coupler_types_back = {knuckle=true},
-		drops={"default:steelblock"},
+		drops={dlxtrains.materials.steelblock},
 		has_inventory = true,
 		get_inventory_formspec = function(wagon, pname, invname)
 			return "size[8,10]"..
@@ -1114,7 +1129,7 @@ if dlxtrains_industrial_wagons.max_wagon_length >= 7 then
 		collisionbox = {-1.0,-0.5,-1.0,1.0,2.5,1.0},
 		coupler_types_front = {chain=true},
 		coupler_types_back = {chain=true},
-		drops={"default:steelblock"},
+		drops={dlxtrains.materials.steelblock},
 		has_inventory = true,
 		get_inventory_formspec = function(wagon, pname, invname)
 			return "size[8,9]"..
@@ -1154,7 +1169,7 @@ if dlxtrains_industrial_wagons.max_wagon_length >= 6 then
 		collisionbox = {-1.0,-0.5,-1.0,1.0,2.5,1.0},
 		coupler_types_front = {chain=true},
 		coupler_types_back = {chain=true},
-		drops={"default:steelblock"},
+		drops={dlxtrains.materials.steelblock},
 		has_inventory = true,
 		get_inventory_formspec = function(wagon, pname, invname)
 			return "size[8,8]"..
@@ -1197,7 +1212,7 @@ if dlxtrains_industrial_wagons.max_wagon_length >= 6 then
 		collisionbox = {-1.0,-0.5,-1.0,1.0,2.5,1.0},
 		coupler_types_front = {knuckle=true},
 		coupler_types_back = {knuckle=true},
-		drops={"default:steelblock"},
+		drops={dlxtrains.materials.steelblock},
 		has_inventory = true,
 		get_inventory_formspec = function(wagon, pname, invname)
 			return "size[8,8]"..
@@ -1240,7 +1255,7 @@ if dlxtrains_industrial_wagons.max_wagon_length >= 6 then
 		collisionbox = {-1.0,-0.5,-1.0,1.0,2.5,1.0},
 		coupler_types_front = {knuckle=true},
 		coupler_types_back = {knuckle=true},
-		drops={"default:steelblock"},
+		drops={dlxtrains.materials.steelblock},
 		has_inventory = true,
 		get_inventory_formspec = function(wagon, pname, invname)
 			return "size[8,8]"..
@@ -1281,7 +1296,7 @@ if dlxtrains_industrial_wagons.max_wagon_length >= 6 then
 		collisionbox = {-1.0,-0.5,-1.0,1.0,2.5,1.0},
 		coupler_types_front = {knuckle=true},
 		coupler_types_back = {knuckle=true},
-		drops={"default:steelblock"},
+		drops={dlxtrains.materials.steelblock},
 		has_inventory = true,
 		get_inventory_formspec = function(wagon, pname, invname)
 			return "size[8,8]"..
@@ -1321,7 +1336,7 @@ if dlxtrains_industrial_wagons.max_wagon_length >= 6 then
 		collisionbox = {-1.0,-0.5,-1.0,1.0,2.5,1.0},
 		coupler_types_front = {knuckle=true},
 		coupler_types_back = {knuckle=true},
-		drops={"default:steelblock"},
+		drops={dlxtrains.materials.steelblock},
 		has_inventory = true,
 		get_inventory_formspec = function(wagon, pname, invname)
 			return "size[8,8]"..
@@ -1364,7 +1379,7 @@ if dlxtrains_industrial_wagons.max_wagon_length >= 6 then
 		collisionbox = {-1.0,-0.5,-1.0,1.0,2.5,1.0},
 		coupler_types_front = {chain=true},
 		coupler_types_back = {chain=true},
-		drops={"default:steelblock"},
+		drops={dlxtrains.materials.steelblock},
 		has_inventory = true,
 		get_inventory_formspec = function(wagon, pname, invname)
 			return "size[8,8]"..
@@ -1423,7 +1438,7 @@ if dlxtrains_industrial_wagons.max_wagon_length >= 4.875 then
 		collisionbox = {-1.0,-0.5,-1.0,1.0,2.5,1.0},
 		coupler_types_front = {chain=true},
 		coupler_types_back = {chain=true},
-		drops={"default:steelblock"},
+		drops={dlxtrains.materials.steelblock},
 		has_inventory = true,
 		get_inventory_formspec = function(wagon, pname, invname)
 			return "size[8,8]"..
@@ -1470,7 +1485,7 @@ if dlxtrains_industrial_wagons.max_wagon_length >= 4.875 then
 		collisionbox = {-1.0,-0.5,-1.0,1.0,2.5,1.0},
 		coupler_types_front = {chain=true},
 		coupler_types_back = {chain=true},
-		drops={"default:steelblock"},
+		drops={dlxtrains.materials.steelblock},
 		has_inventory = true,
 		get_inventory_formspec = function(wagon, pname, invname)
 			return "size[8,8]"..
@@ -1511,7 +1526,7 @@ if dlxtrains_industrial_wagons.max_wagon_length >= 6 then
 		collisionbox = {-1.0,-0.5,-1.0,1.0,2.5,1.0},
 		coupler_types_front = {chain=true},
 		coupler_types_back = {knuckle=true},
-		drops={"default:steelblock"},
+		drops={dlxtrains.materials.steelblock},
 		has_inventory = true,
 		get_inventory_formspec = function(wagon, pname, invname)
 			return "size[8,8]"..
