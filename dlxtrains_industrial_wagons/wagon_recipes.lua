@@ -122,7 +122,7 @@ if dlxtrains.crafting_enabled() then
 			})
 		end
 
-		if dlxtrains_support_wagons.max_wagon_length >= 4.875 then
+		if dlxtrains_industrial_wagons.max_wagon_length >= 4.875 then
 			minetest.register_craft({
 				output = "dlxtrains_industrial_wagons:tank_type1",
 				recipe = {
@@ -133,7 +133,7 @@ if dlxtrains.crafting_enabled() then
 			})
 		end
 
-		if dlxtrains_support_wagons.max_wagon_length >= 4.875 then
+		if dlxtrains_industrial_wagons.max_wagon_length >= 4.875 then
 			minetest.register_craft({
 				output = "dlxtrains_industrial_wagons:tank_type2",
 				recipe = {
@@ -275,7 +275,7 @@ if dlxtrains.crafting_enabled() then
 			})
 		end
 
-		if dlxtrains_support_wagons.max_wagon_length >= 4.875 then
+		if dlxtrains_industrial_wagons.max_wagon_length >= 4.875 then
 			minetest.register_craft({
 				output = "dlxtrains_industrial_wagons:tank_type1",
 				recipe = {
@@ -285,7 +285,8 @@ if dlxtrains.crafting_enabled() then
 				}
 			})
 		end
-		if dlxtrains_support_wagons.max_wagon_length >= 4.875 then
+
+		if dlxtrains_industrial_wagons.max_wagon_length >= 4.875 then
 			minetest.register_craft({
 				output = "dlxtrains_industrial_wagons:tank_type2",
 				recipe = {

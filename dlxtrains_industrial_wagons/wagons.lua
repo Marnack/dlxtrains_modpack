@@ -1018,7 +1018,7 @@ if dlxtrains_industrial_wagons.max_wagon_length >= 4.875 then
 		has_inventory = true,
 		get_inventory_formspec = function(wagon, pname, invname)
 			return "size[8,7]"..
-				"box[0,0;.8,.88;#077]"..	-- Highlight slots that impact visible loads
+				"box[0,0;.8,.88;#077]"..	-- Highlight slot that impacts visible loads
 				"list["..invname..";box;0,0;8,2;]"..
 				"list[current_player;main;0,3;8,4;]"..
 				"listring[]"..
@@ -1259,7 +1259,7 @@ if dlxtrains_industrial_wagons.max_wagon_length >= 6 then
 		has_inventory = true,
 		get_inventory_formspec = function(wagon, pname, invname)
 			return "size[8,8]"..
-				"box[0,0;.8,.88;#077]"..	-- Highlight slots that impact visible loads
+				"box[0,0;.8,.88;#077]"..	-- Highlight slot that impacts visible loads
 				"list["..invname..";box;0,0;8,3;]"..
 				"list[current_player;main;0,4;8,4;]"..
 				"listring[]"..
