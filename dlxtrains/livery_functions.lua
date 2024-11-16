@@ -17,6 +17,15 @@ local function is_valid_wagon(wagon)
 	return wagon and wagon.id and advtrains.wagons[wagon.id] and advtrains.wagons[wagon.id].type
 end
 
+local function play_tool_sound(tool_sound, wagon)
+	minetest.sound_play(tool_sound, {object = wagon.object, gain = 0.06, max_hear_distance = 11})
+end
+
+local function notify_puncher(puncher, wagon, message)
+	minetest.sound_play("dlxtrains_notification", {object = wagon.object, gain = 0.06, max_hear_distance = 11})
+	minetest.chat_send_player(puncher:get_player_name(), message);
+end
+
 function dlxtrains.add_modifier_escaping(str)
 	return string.gsub(str, ".", {["\\"] = "\\\\", ["^"] = "\\^", [":"] = "\\:"})
 end
@@ -166,33 +175,33 @@ function dlxtrains.update_livery(wagon, puncher, livery_schemes)
 	local itemstack = puncher:get_wielded_item()
 	local item_name = itemstack:get_name()
 	if item_name == "dlxtrains:wagon_updater" or item_name == "dlxtrains:age_selector" or item_name == "dlxtrains:livery_selector" then
-		local livery_count = livery_schemes.count or 0
-		if livery_count > 0 then
-			local data = advtrains.wagons[wagon.id]
+		local data = advtrains.wagons[wagon.id]
+		if item_name == "dlxtrains:wagon_updater" then
+			play_tool_sound("dlxtrains_wagon_updater_tool", wagon)
+		else
+			local alt_scheme = data.alt_scheme or false
+			local scheme_id = data.scheme_id or 0
 
-			if item_name == "dlxtrains:wagon_updater" then
-				minetest.sound_play("dlxtrains_wagon_updater_tool", {object = wagon.object, gain = 0.06, max_hear_distance = 11})
+			if item_name == "dlxtrains:age_selector" then
+				data.alt_scheme = not alt_scheme;
+				play_tool_sound("dlxtrains_age_selection_tool", wagon)
 			else
-				local alt_scheme = data.alt_scheme or false
-				local scheme_id = data.scheme_id or 0
-
-				if item_name == "dlxtrains:age_selector" then
-					data.alt_scheme = not alt_scheme;
-					minetest.sound_play("dlxtrains_age_selection_tool", {object = wagon.object, gain = 0.08, max_hear_distance = 11})
-				elseif livery_count > 1 then
+				local livery_count = livery_schemes.count or 0
+				if livery_count > 1 then
 					local pc = puncher:get_player_control()
 					local increment = 1
 					if pc.sneak then
 						increment = -1
 					end
 					data.scheme_id = (scheme_id + increment)%livery_count
-					minetest.sound_play("dlxtrains_livery_selection_tool", {object = wagon.object, gain = 0.06, max_hear_distance = 11})
+					play_tool_sound("dlxtrains_livery_selection_tool", wagon)
+				else
+					notify_puncher(puncher, wagon, S("This wagon does not have any other liveries available."))
 				end
 			end
-			wagon:set_textures(data)
-
-			return true
 		end
+		wagon:set_textures(data)
+		return true
 	elseif dlxtrains.use_advtrains_livery_designer and item_name == advtrains_livery_designer.tool_name and is_valid_wagon(wagon) then
 		local wagon_type = advtrains.wagons[wagon.id].type
 		local wagon_mod_name = advtrains_livery_database.get_wagon_mod_name(wagon_type)
