@@ -1,6 +1,6 @@
 # DlxTrains Support Wagons
 
-This mod adds AdvTrains compatible support wagons to Minetest.  In reality, these wagons are used to support railway operations and do not typically generate revenue as passenger and freight wagons do.  These wagons are loosely modeled on real world wagons from different geographies and eras.
+This mod adds AdvTrains compatible support wagons to Luanti games.  In reality, these wagons are used to support railway operations and do not typically generate revenue as passenger and freight wagons do.  These wagons are loosely modeled on real world wagons from different geographies and eras.
 
 ![](screenshot.png)
 
@@ -43,5 +43,5 @@ Copyright © 2021-2024 Marnack
 
 The following textures from prior art where included in whole or in part in some of the textures for this mod:
 
-- From the game for Minetest named "mintest_game"
+- From the game for Luanti named "mintest_game"
 		- default_wood.png (CC BY-SA 3.0 by BlockMen)

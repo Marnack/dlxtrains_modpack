@@ -1,6 +1,6 @@
 # DlxTrains Industrial Wagons
 
-This mod adds AdvTrains compatible industrial wagons to Minetest.  These wagons are loosely modeled on real world wagons from different geographies and eras.
+This mod adds AdvTrains compatible industrial wagons to Luanti games.  These wagons are loosely modeled on real world wagons from different geographies and eras.
 
 ![](screenshot.png)
 
@@ -97,13 +97,13 @@ In game, these wagons have four load configurations: no load, light load, medium
 
 ### European Single Container Wagon
 
-This fictional wagon is a shortened version of the European Container Wagon that may be better suited for some railways in Minetest.  It has two load configurations, empty and with a single shipping or tank container whenever the applicable inventory is present.  (See the *Wagon Inventory Management* section below for the items that will cause a tank container to appear on the wagon.)  Like the larger container wagon, the livery of the container will match the livery of the wagon.  However, if the **DlxTrains Cargo** mod is enabled, additional shipping and tank container liveries will become available.  The livery of the container will then be pseudo-randomly selected from the set of available liveries.
+This fictional wagon is a shortened version of the European Container Wagon that may be better suited for some railways in Luanti games.  It has two load configurations, empty and with a single shipping or tank container whenever the applicable inventory is present.  (See the *Wagon Inventory Management* section below for the items that will cause a tank container to appear on the wagon.)  Like the larger container wagon, the livery of the container will match the livery of the wagon.  However, if the **DlxTrains Cargo** mod is enabled, additional shipping and tank container liveries will become available.  The livery of the container will then be pseudo-randomly selected from the set of available liveries.
 
 ### European Small Tank Wagon
 
 By the mid 20th century, brakemen were no longer needed to ride wagons and operate their brakes.  Thus, brakeman's cabins were removed from older wagons and newer wagons were built without them.  This wagon represents such early to mid 20th century tank wagons.
 
-If [Advanced Trains TechAge addons](https://content.minetest.net/packages/orwell/advtrains_techage/) is installed and enabled, and [Advanced Trains](https://content.minetest.net/packages/orwell/advtrains/) is running at version 2.4.3 or later then this wagon can also be used to transport up to 1000 units of liquid.
+If [Advanced Trains TechAge addons](https://content.luanti.org/packages/orwell/advtrains_techage/) is installed and enabled, and [Advanced Trains](https://content.luanti.org/packages/orwell/advtrains/) is running at version 2.4.3 or later then this wagon can also be used to transport up to 1000 units of liquid.
 
 ### European Small Tank Wagon with Brakeman's Cabin
 
@@ -111,7 +111,7 @@ This wagon is based on late 19th and early 20th century tank wagons used in Euro
 
 In game, a player can ride the wagon in the brakeman's cabin.  However, actual braking control is not available.
 
-If [Advanced Trains TechAge addons](https://content.minetest.net/packages/orwell/advtrains_techage/) is installed and enabled, and [Advanced Trains](https://content.minetest.net/packages/orwell/advtrains/) is running at version 2.4.3 or later then this wagon can also be used to transport up to 1000 units of liquid.
+If [Advanced Trains TechAge addons](https://content.luanti.org/packages/orwell/advtrains_techage/) is installed and enabled, and [Advanced Trains](https://content.luanti.org/packages/orwell/advtrains/) is running at version 2.4.3 or later then this wagon can also be used to transport up to 1000 units of liquid.
 
 ### European Stake Wagon
 
@@ -156,12 +156,12 @@ The following nodes from other optional mods will cause a tank container to appe
 Mod|Items
 ---|---
 bucket (from Minetest Game)|any non-empty bucket
-[Basic Materials](https://content.minetest.net/packages/VanessaE/basic_materials/)|oil_extract
-[Biofuel](https://content.minetest.net/packages/Lokrates/biofuel/)|phial_fuel, bottle_fuel, fuel_can
-[Farming Redo](https://content.minetest.net/packages/TenPlus1/farming/)|bottle_ethanol, hemp_oil
-[Pipeworks](https://content.minetest.net/packages/VanessaE/pipeworks/)|oil_extract
-[Technic](https://content.minetest.net/packages/RealBadAngel/technic/)|cottonseed_oil, lox, any non-empty can
-[Techage](https://content.minetest.net/packages/joe7575/techage_modpack/)|source nodes and their relevant containers (barrels, canisters, and gas cylinders) for the following materials: bitumen, epoxide resin, fuel oil, gasoline, hydrogen, lye, naphtha, oil, propane, red mud, river water, and water
+[Basic Materials](https://content.luanti.org/packages/VanessaE/basic_materials/)|oil_extract
+[Biofuel](https://content.luanti.org/packages/Lokrates/biofuel/)|phial_fuel, bottle_fuel, fuel_can
+[Farming Redo](https://content.luanti.org/packages/TenPlus1/farming/)|bottle_ethanol, hemp_oil
+[Pipeworks](https://content.luanti.org/packages/VanessaE/pipeworks/)|oil_extract
+[Technic](https://content.luanti.org/packages/RealBadAngel/technic/)|cottonseed_oil, lox, any non-empty can
+[Techage](https://content.luanti.org/packages/joe7575/techage_modpack/)|source nodes and their relevant containers (barrels, canisters, and gas cylinders) for the following materials: bitumen, epoxide resin, fuel oil, gasoline, hydrogen, lye, naphtha, oil, propane, red mud, river water, and water
 
 While liquids in containers are not actually placed in tank containers in the real world, this was done here to make it easier for players to have wagons loaded with tank containers in game when playing in survival mode.  Please note, however, that this could change in a future release of this mod.
 
@@ -176,13 +176,13 @@ Copyright © 2021-2024 Marnack
 
 The following textures from prior art where included in whole or in part in some of the textures for this mod:
 
-- From the game for Minetest named "mintest_game"
+- From the game for Luanti named "mintest_game"
 	- default_pine_wood.png (CC BY-SA 3.0 by paramat)
 	- default_tree.png (CC BY-SA 3.0 by Cisoun)
 	- default_tree_top.png (CC BY-SA 3.0 by Cisoun)
 	- default_wood.png (CC BY-SA 3.0 by BlockMen)
 
-- From the mod for Minetest named "farming":
+- From the mod for Luanti named "farming":
 	- farming_hemp_rope.png (CC BY-SA 3.0 by TenPlus1)
 
 The following sounds from freesound.org were used to create sounds included in DlxTrains:

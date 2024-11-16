@@ -19,7 +19,7 @@ The following nodes defined in this mod do not currently function as containers.
 
 ## Additional Shipping Containers
 
-This mod defines 18 additional textures for large modern shipping containers.  These containers would be much larger than the standard cubic meter node in Minetest and thus are not currently implemented to be placed directly in the world.  However, they can appear on the container wagons that are defined in the DlxTrains Industrial Wagons mod.  Enabling this mod allows these additional textures to be used by that mod.  As with the liveries defined for DLX wagons, the shipping container liveries in this mod are all intended to be fictional.
+This mod defines 18 additional textures for large modern shipping containers.  These containers would be much larger than the standard cubic meter node commonly used in Luanti games and thus are not currently implemented to be placed directly in the world.  However, they can appear on the container wagons that are defined in the DlxTrains Industrial Wagons mod.  Enabling this mod allows these additional textures to be used by that mod.  As with the liveries defined for DLX wagons, the shipping container liveries in this mod are all intended to be fictional.
 
 ## Additional Tank Containers
 
@@ -36,7 +36,7 @@ Copyright © 2021-2024 Marnack
 
 The following textures from prior art where included in whole or in part in some of the textures for this mod:
 
-- From the game for Minetest named "mintest_game":
+- From the game for Luanti named "mintest_game":
 	- default_acacia_wood.png (CC BY-SA 3.0 by paramat)
 	- default_junglewood.png (CC BY-SA 3.0 by paramat)
 	- default_pine_wood.png (CC BY-SA 3.0 by paramat)

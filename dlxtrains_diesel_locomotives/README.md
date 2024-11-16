@@ -1,6 +1,6 @@
 # DlxTrains Diesel Locomotives
 
-This mod adds AdvTrains compatible diesel locomotives in multiple liveries to Minetest.
+This mod adds AdvTrains compatible diesel locomotives in multiple liveries to Luanti games.
 
 ![](screenshot.png)
 
@@ -47,7 +47,7 @@ In game, the locomotive features several effects when the locomotive is moving:
 * The diesel engine's sound will change based on the locomotive's velocity (unless this feature is disabled in the **DlxTrains** mod settings).
 * The amount of diesel smoke produced by the locomotive will vary based on its acceleration, velocity and the length of the train (unless this feature is disabled in the **DlxTrains** mod settings).
 
-The locomotive has two driver's cabs, one at each end. Players can choose to be located in either cab 1 or cab 2, switching between the two even while the locomotive is moving. This can be especially useful when changing the direction of travel.  For the best in-cab experience, use the optional [advtrains_attachment_offset_patch](https://content.minetest.net/packages/doxygen_spammer/advtrains_attachment_offset_patch/)
+The locomotive has two driver's cabs, one at each end. Players can choose to be located in either cab 1 or cab 2, switching between the two even while the locomotive is moving. This can be especially useful when changing the direction of travel.  For the best in-cab experience, use the optional [advtrains_attachment_offset_patch](https://content.luanti.org/packages/doxygen_spammer/advtrains_attachment_offset_patch/)
 
 ### European G1206 Diesel Locomotive
 
@@ -74,11 +74,11 @@ In game, the locomotive features the following effects when the locomotive is mo
 
 Players can optionally customize their locomotives with a visible unit number that is unique to each locomotive.  The locomotive's unit number will be displayed on the exterior of the locomotive if a number is specified in the "Wagon road number" field of the "Wagon properties" formspec.  (Access the formspec via right mouse button click after boarding the locomotive.)  Although any value may be specified in this field, only a positive whole number with a value from 0 to 999 will trigger the number to be displayed on the exterior of the locomotive.  If included, leading zeros and spaces will be shown as leading zeros.  Thus, a value of "04" or " 4" would both be shown as "04".  Also note that each livery defines the location, color and size of the unit number. Examples of where the unit number may be displayed include the side of the cabin, the sides of the hood or on the side of the fuel tank.  (Tip: Use the **DLX Wagon Updater Tool** on the locomotive to quickly confirm the change after setting or editing the unit number.)
 
-> Note for players running Minetest on Windows: There is currently an issue with formspecs in that the button to show the wagon properties formspec may need to be clicked *many* times before it will eventually display.  This is a low level problem that happens with non DLX locomotives and wagons as well.  Linux versions of Minetest do not seem to have this issue.
+> Note for players running Luanti on Windows: There is currently an issue with formspecs in that the button to show the wagon properties formspec may need to be clicked *many* times before it will eventually display.  This is a low level problem that happens with non DLX locomotives and wagons as well.  Linux versions of Luanti do not seem to have this issue.
 
 ## Notes
 
-Due to current limitations in Minetest, the player's view while on board the locomotive will be from a point in space just above the center of the locomotive rather than from inside the cabin.  While this viewpoint is certainly sufficient, switching to third person view while driving the locomotive provides a slightly different perspective from outside the locomotive that might also be useful.  Alternatively, DlxTrains now supports the [advtrains_attachment_offset_patch](https://content.minetest.net/packages/doxygen_spammer/advtrains_attachment_offset_patch/) as an optional dependency which provides a fix for the issue.
+Due to current limitations in Luanti, the player's view while on board the locomotive will be from a point in space just above the center of the locomotive rather than from inside the cabin.  While this viewpoint is certainly sufficient, switching to third person view while driving the locomotive provides a slightly different perspective from outside the locomotive that might also be useful.  Alternatively, DlxTrains now supports the [advtrains_attachment_offset_patch](https://content.luanti.org/packages/doxygen_spammer/advtrains_attachment_offset_patch/) as an optional dependency which provides a fix for the issue.
 
 ## Licenses
 
