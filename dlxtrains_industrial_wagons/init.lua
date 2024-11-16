@@ -29,6 +29,7 @@ if minetest.get_modpath( "dlxtrains_cargo" ) and dlxtrains_cargo then
 end
 
 local mod_path = minetest.get_modpath(mod_name)
+dofile(mod_path.."/animal_sounds.lua")
 dofile(mod_path.."/items.lua")
 dofile(mod_path.."/wagons.lua")
 dofile(mod_path.."/wagon_recipes.lua")

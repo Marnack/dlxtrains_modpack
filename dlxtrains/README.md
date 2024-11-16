@@ -26,6 +26,7 @@ DlxTrains has the following settings.  These settings will also apply to other D
 
 - **DLX Locomotive smoke** (Dynamic, Constant, Off) - This specifies how smoke for a DLX locomotive will be generated, when applicable.  The "Dynamic" setting will cause the smoke to vary based on the locomotive's acceleration, velocity and length of its train.  The "Constant" setting will cause the smoke to be constant regardless of the locomotive's acceleration, velocity or length of its train.  The default is "Dynamic".
 
+- **DLX Wagon sounds** (Enabled/Disabled) - This specifies if wagons should produce sounds.  For example, livestock wagons can produce the sounds of some of the animals they are carrying.  The default is "Enabled".
 
 ## Craft Items
 

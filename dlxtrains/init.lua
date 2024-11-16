@@ -14,6 +14,10 @@ dlxtrains.locomotive_sounds = ({["Off"]=0, ["Constant"]=1, ["Dynamic"]=2})[locom
 local locomotive_smoke_enum = minetest.settings:get("dlxtrains_locomotive_smoke") or "Dynamic"
 dlxtrains.locomotive_smoke = ({["Off"]=0, ["Constant"]=1, ["Dynamic"]=2})[locomotive_smoke_enum]
 
+local use_wagon_sounds = minetest.settings:get_bool("dlxtrains_wagon_sounds")
+if use_wagon_sounds == nil then use_wagon_sounds = true end
+dlxtrains.wagon_sounds = use_wagon_sounds
+
 advtrains.register_coupler_type("knuckle", dlxtrains.S("Knuckle Coupler"))
 
 local mod_path = minetest.get_modpath(mod_name)

@@ -102,6 +102,17 @@ if dlxtrains.crafting_enabled() then
 
 		if dlxtrains_industrial_wagons.max_wagon_length >= 6 then
 			minetest.register_craft({
+				output = "dlxtrains_industrial_wagons:livestock_type1",
+				recipe = {
+					{dlxtrains.materials.steel_ingot, dlxtrains.materials.steel_ingot, dlxtrains.materials.steel_ingot},
+					{dlxtrains.materials.wood, "", dlxtrains.materials.wood},
+					{"", "dlxtrains_industrial_wagons:flat_type2", ""},
+				}
+			})
+		end
+
+		if dlxtrains_industrial_wagons.max_wagon_length >= 6 then
+			minetest.register_craft({
 				output = "dlxtrains_industrial_wagons:open_type1",
 				recipe = {
 					{dlxtrains.materials.steel_ingot, dlxtrains.materials.wood, dlxtrains.materials.steel_ingot},
@@ -249,6 +260,17 @@ if dlxtrains.crafting_enabled() then
 				recipe = {
 					{dlxtrains.materials.steel_ingot, dlxtrains.materials.steel_ingot, dlxtrains.materials.steel_ingot},
 					{"", "dlxtrains_industrial_wagons:hopper_type1", ""},
+				}
+			})
+		end
+
+		if dlxtrains_industrial_wagons.max_wagon_length >= 6 then
+			minetest.register_craft({
+				output = "dlxtrains_industrial_wagons:livestock_type1",
+				recipe = {
+					{"", "dlxtrains_industrial_wagons:livestock_body_type1", ""},
+					{"dlxtrains:coupler_knuckle", "dlxtrains:wagon_chassis", "dlxtrains:coupler_knuckle"},
+					{"dlxtrains:bogie", "", "dlxtrains:bogie"},
 				}
 			})
 		end

@@ -10,7 +10,8 @@ Note: DLX is used here to denote items, tools and wagons defined in the DlxTrain
 
 The following craft items are defined and added to the game if the "Complexity of DLX wagon crafting recipes" setting defined in DlxTrains is set to "Standard".  They are not added to the game if it is set to "Basic".  The default value for the setting is "Standard".
 
-- **Australian Louver Van Cargo Housing** - This item is used to craft metal louver vans of the type built in Australia.
+- **Australian Cattle Van Cargo Housing** - This item is used to craft cattle vans of the type built in Australia.
+- **Australian Louver Van Cargo Housing** - This item is used to metal louver vans of the type built in Australia.
 - **Brakeman's Cabin** - This item is used to craft some early European wagons.
 - **Container Wagon Cargo Mounts** - This item is used to craft shipping container wagons.
 - **Container Wagon Single Cargo Mount** - This item is used to craft smaller shipping container wagons
@@ -28,6 +29,7 @@ The following table summarizes the full set of DlxTrains Industrial Wagons.
 
 Icon|Wagon Name|Length (m)|Coupler Type|Inventory Size|Max Speed (m/s)|Livery Options
 :---:|---|:---:|---|:---:|:---:|:---:
+![](textures/inventory/dlxtrains_industrial_wagons_livestock_type1_inv.png)|Australian Cattle Van|6|Knuckle|16|20|4
 ![](textures/inventory/dlxtrains_industrial_wagons_flat_type2_inv.png)|Australian Flat Wagon|6|Knuckle|24|20|4
 ![](textures/inventory/dlxtrains_industrial_wagons_covered_goods_type2_inv.png)|Australian Louver Van|8|Knuckle|40|25|4
 ![](textures/inventory/dlxtrains_industrial_wagons_open_type1_inv.png)|Australian Open Wagon|6|Knuckle|24|20|4
@@ -44,6 +46,22 @@ Icon|Wagon Name|Length (m)|Coupler Type|Inventory Size|Max Speed (m/s)|Livery Op
 ![](textures/inventory/dlxtrains_industrial_wagons_covered_goods_type1_inv.png)|North American Wooden Boxcar|8|Knuckle|40|25|3
 
 Note that some wagons may not be available in-game if the "Longest DLX wagon to include in game" setting defined in **DlxTrains** is set to a value other than "Unlimited".  That setting will use the lengths shown in the table when determining the wagons to be excluded.
+
+### Australian Cattle Van
+
+This livestock wagon is loosely based on cattle vans that were used in southern Australia in the mid twentieth century.  These particular wagons were removed from service in the 1980's when the transport of cattle by rail was phased out.
+
+In game, these wagons can be used to transport more than just cattle.  The wagons will display animals from the following mods:
+
+- [Animalia](https://content.luanti.org/packages/ElCeejo/animalia/): Cow, Horse, Pig and Sheep
+- [Mobs Animal](https://content.luanti.org/packages/TenPlus1/mobs_animal/): Cow, Sheep and Warthog
+- [Mob Horse](https://content.luanti.org/packages/TenPlus1/mob_horse/): Horse
+
+	Note: The animals shown on these wagons have a slightly different appearance from their mob representation since different models and textures were created to represent them.
+
+Animals that are not listed above will be represented as being in a crate.  Also, similar to the European Flat Wagon, if the cargo is a node that can be simply rendered, it will be shown as itself.  In all other cases, the cargo will be shown as being in a crate.
+
+If the wagon is loaded with animals from the above list, an applicable animal sound will be emitted at random intervals from the wagon.  Increasing the number of animals in the highlighted inventory slot of the wagon increases the frequency at which these sounds are emitted.  These animal sounds can be disabled in the **DlxTrains** mod settings by setting "DLX Wagon sounds" to false.
 
 ### Australian Flat Wagon
 
@@ -127,6 +145,8 @@ When viewing the inventory formspec of DLX wagons that have the ability to displ
 
 The Australian Open Wagon will display a visible load based on the state of the wagon's three highlighted inventory slots.  If the first slot is filled with a "loose" material such as dirt, sand, gravel or coal (blocks, lumps or dust), the corresponding load will be visible as piles of the material within the wagon.  If the first slot is filled with one or more craft items of any type then the wagon will appear with a canvas or tarpaulin covered load.  If the first slot is filled with one or more tree trunks then the wagon will appear with its doors removed and loaded with logs of the applicable type.  If none of those conditions are met and at least one of the three highlighted wagon inventory slots is not empty then it will display cargo similar to the European Flat Wagon.
 
+The Australian Cattle Van will display loads based on the items placed in the first highlighted inventory slot.  These visible loads include crates, simple nodes and a select set of animals.  See the wagon's description above for details.
+
 The European Stake Wagon will only show logs as its cargo when one or more tree nodes are placed in the first (upper-left) inventory slot, otherwise it will display its cargo similar to a flat wagon.
 
 For container wagons, the load will appear as a shipping container unless the load placed in the highlighted slot is either a liquid, such as a water source node, or a non-empty liquid container, such as a water bucket.  For non-stackable liquid containers that can store multiple units of liquid, the number of units of liquid in the container rather than the number of items in the inventory slot will determine the tank container's livery.
@@ -164,3 +184,21 @@ The following textures from prior art where included in whole or in part in some
 
 - From the mod for Minetest named "farming":
 	- farming_hemp_rope.png (CC BY-SA 3.0 by TenPlus1)
+
+The following sounds from freesound.org were used to create sounds included in DlxTrains:
+
+- [Horse](https://freesound.org/s/184503/) ([CC0](https://creativecommons.org/publicdomain/zero/1.0/) by madklown) was renamed and modified to create the following file:
+	- dlxtrains_animals_horse_snort-01.ogg
+
+- [horse snort.wav](https://freesound.org/s/538697/) ([CC0](https://creativecommons.org/publicdomain/zero/1.0/) by bruno.auzet) was renamed and modified to create the following files:
+	- dlxtrains_animals_horse_snort-02.ogg
+	- dlxtrains_animals_horse_snort-03.ogg
+	- dlxtrains_animals_horse_snort-04.ogg
+	- dlxtrains_animals_horse_snort-05.ogg
+	- dlxtrains_animals_horse_snort-06.ogg
+
+- [Horse Whinny 1.wav](https://freesound.org/s/322445/) ([CC by Attribution 3.0 Unported](https://creativecommons.org/licenses/by/3.0/) by GoodListener) was renamed and modified to create the following file:
+	- dlxtrains_animals_horse_whinny-01.ogg (This file is CC by Attribution 3.0 Unported by GoodListener and Marnack)
+
+- [horse neigh shortened.wav](https://freesound.org/s/269571/) ([CC0](https://creativecommons.org/publicdomain/zero/1.0/) by shadoWisp) was renamed to create the following file:
+	- dlxtrains_animals_horse_whinny-02.ogg

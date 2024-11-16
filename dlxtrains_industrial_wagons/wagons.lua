@@ -94,6 +94,15 @@ local livery_scheme_industrial_wagon_hopper_type2 = {
 		count = 4,
 	}
 
+local livery_scheme_industrial_wagon_livestock_type1 = {
+		filename_prefix = "dlxtrains_industrial_wagons_livestock_type1",
+		[0]={code="ar"},
+		[1]={code="at"},
+		[2]={code="t"},
+		[3]={code="vr"},
+		count = 4,
+	}
+
 local livery_scheme_industrial_wagon_open_type1 = {
 		filename_prefix = "dlxtrains_industrial_wagons_open_type1",
 		[0]={code="ar"},
@@ -195,6 +204,12 @@ local livery_templates = {
 		dlxtrains.init_livery_template(mod_name, 1, dlxtrains.livery_type.standard,		"T",	"hopper_type2_t"),
 		dlxtrains.init_livery_template(mod_name, 2, dlxtrains.livery_type.standard,		"TT",	"hopper_type2_tt"),
 		dlxtrains.init_livery_template(mod_name, 3, dlxtrains.livery_type.middle_era,	"NR",	"hopper_type2_nr"),
+	},
+	["dlxtrains_industrial_wagons:livestock_type1"] = {
+		dlxtrains.init_livery_template(mod_name, 0, dlxtrains.livery_type.middle_era,	"AR",	"livestock_type1_ar"),
+		dlxtrains.init_livery_template(mod_name, 1, dlxtrains.livery_type.middle_era,	"AT",	"livestock_type1_at"),
+		dlxtrains.init_livery_template(mod_name, 2, dlxtrains.livery_type.standard,		"T",	"livestock_type1_t"),
+		dlxtrains.init_livery_template(mod_name, 3, dlxtrains.livery_type.middle_era,	"VR",	"livestock_type1_vr"),
 	},
 	["dlxtrains_industrial_wagons:open_type1"] = {
 		dlxtrains.init_livery_template(mod_name, 0, dlxtrains.livery_type.middle_era,	"AR",	"open_type1_ar"),
@@ -408,6 +423,92 @@ local function get_crate_texture_index(wagon_id, quantity)
 	return (wagon_id + quantity) % crate_texture_count
 end
 
+-- ////////////////////////////////////////////////////////////////////////////////////
+
+local animal_types = {
+	["mobs_animal:cow"]			= "cow",
+	["mobs_animal:cow_set"]		= "cow",
+	["animalia:spawn_cow"]		= "cow",
+	["animalia:cow"]			= "cow",
+	["mob_horse:horse"]			= "horse",
+	["mob_horse:horse_set"]		= "horse",
+	["animalia:spawn_horse"]	= "horse",
+	["animalia:horse"]			= "horse",
+	["animalia:spawn_pig"]		= "pig",
+	["mobs_animal:sheep"]		= "sheep",
+	["animalia:spawn_sheep"]	= "sheep",
+	["animalia:sheep"]			= "sheep",
+	["mobs_animal:pumba"]		= "warthog",
+	["mobs_animal:pumba_set"]	= "warthog",
+}
+
+local function get_animal_type(stack)
+	local stack_item = stack:get_name()
+	if string.sub(stack_item, 1, 17) == "mobs_animal:sheep" then
+		-- Remove the color string that the mobs_animal mod appends to sheep.
+		stack_item = "mobs_animal:sheep"
+	elseif stack_item == "animalia:net" or stack_item == "animalia:crate" then
+		local meta = stack:get_meta()
+		if meta then
+			stack_item = meta:get_string("mob") or stack:get_name()
+		end
+	end
+	return animal_types[stack_item]
+end
+
+local animal_info = {
+	["cow"] =		{texture_count = 3, },
+	["horse"] =		{texture_count = 5, },
+	["pig"] =		{texture_count = 3, },
+	["sheep"] =		{texture_count = 4, },
+	["warthog"] =	{texture_count = 4, },
+}
+
+local function get_animal_texture(animal_type, rnd_number, quantity)
+	local info = animal_info[animal_type]
+	if info then
+		local index = 1 + ((rnd_number + quantity) % info.texture_count)
+		return dlxtrains.add_modifier_escaping("dlxtrains_industrial_wagons_animals_"..animal_type.."-"..index..".png")
+	end
+	return ""
+end
+
+local function play_animal_sound(wagon, wagon_id, cargo_stack)
+	local animal_count = cargo_stack:get_count()
+	if dlxtrains.wagon_sounds and animal_count > 0 then
+		local count = animal_count
+		if count > 99 then
+			count = 99
+		end
+
+		-- Vary the frequency of the animals making a sound based on the number of
+		-- animals.  More animals should result in more frequent sounds.
+		-- The following formula is an arbitrary curve with a range of 1500 to 210
+		-- for the domain of 1 to 99.  This should result in a count of 1
+		-- triggering a sound once every few minutes and a count of 99 triggering
+		-- a sound once every few seconds.
+		local odds = math.floor(24000 * math.pow(count + 15, -1))
+		if math.random(1, odds) == 1 then
+			local animal_sounds = dlxtrains_animal_sounds.get_sounds(get_animal_type(cargo_stack))
+			if animal_sounds and #animal_sounds > 0 then
+				-- Play a random sound if more than one is available for the animal_type.
+				local sound_idx = math.random(1, #animal_sounds)
+				local animal_sound = animal_sounds[sound_idx]
+				local sound_name = animal_sound.name
+				local gain = math.random(animal_sound.gain - 10, animal_sound.gain + 10) / 100
+				local pitch = math.random(90, 110) / 100
+				minetest.sound_play(sound_name, {
+					object = wagon,
+					gain = gain,
+					pitch = pitch,
+				})
+			end
+		end
+	end
+end
+
+-- ////////////////////////////////////////////////////////////////////////////////////
+
 local function get_valid_flat_wagon_load_texture(node_def, crate_texture_index)
 	-- Return a texture that is appropriate for a flat wagon load.  The default is for the load to
 	-- appear as "in a shipping crate".  For instance, sand would not appear as a block since it
@@ -480,6 +581,8 @@ local function get_tank_container_overlay(livery_id, livery_code, y)
 
 	return overlay_texture
 end
+
+-- ////////////////////////////////////////////////////////////////////////////////////
 
 local function update_model_industrial_wagon_container(wagon, data, texture_file, meshes, livery_code)
 	local updated_texture = texture_file
@@ -698,6 +801,48 @@ local function update_model_industrial_wagon_hopper(wagon, data, texture_file, m
 	return texture_file
 end
 
+local function update_model_industrial_wagon_livestock(wagon, data, texture_file, meshes)
+	local updated_texture = texture_file
+
+	-- Assume the wagon is not loaded
+	wagon.object:set_properties({
+		mesh = meshes.default
+	})
+
+	local inv = minetest.get_inventory({type="detached", name="advtrains_wgn_"..data.id})
+	if inv and not inv:is_empty("box") then
+		local stack = inv:get_stack("box", 1)
+		updated_texture = "[combine:256x256:0,0=("..texture_file..")"
+
+		-- Use the texture and mesh that corresponds to the detected load.  Note that the
+		-- default texture includes the crate texture for the loaded model.  The applicable
+		-- animal texture will overlay the crate textures since they won't be needed when
+		-- animals are loaded.
+		local mesh_with_load = meshes.loaded
+		local animal_type = get_animal_type(stack)
+		if animal_type then
+			local pseudo_rnd_1 = data.id				-- A pseudo random number based on the wagon's id.
+			local pseudo_rnd_2 = math.floor(data.id/10)	-- A pseudo random number based on the wagon's id.
+			local stack_count = stack:get_count()
+			updated_texture = updated_texture..":0,96="..get_animal_texture(animal_type, pseudo_rnd_1, stack_count).."\\^\\[resize\\:32x32"
+			updated_texture = updated_texture..":32,96="..get_animal_texture(animal_type, pseudo_rnd_2, stack_count).."\\^\\[resize\\:32x32"
+			mesh_with_load = meshes.animal_load[animal_type]
+		else
+			local node_def = minetest.registered_nodes[stack:get_name()]
+			if node_def ~= nil then
+				local x = 16	-- Overlay the middle crate texture to indicate the load type.
+				updated_texture = updated_texture..":"..x..",112="..get_valid_flat_wagon_load_texture(node_def, get_crate_texture_index(data.id, stack:get_count())).."\\^\\[resize\\:16x16"
+			end
+		end
+
+		wagon.object:set_properties({
+			mesh = mesh_with_load
+		})
+	end
+
+	return updated_texture
+end
+
 local function update_model_industrial_wagon_open(wagon, data, texture_file, meshes)
 
 	-- Assume the wagon is not loaded
@@ -905,6 +1050,21 @@ local meshes_industrial_wagon_hopper_type1 = {
 
 local meshes_industrial_wagon_hopper_type2 = {
 		default = "dlxtrains_industrial_wagons_hopper_type2.obj",
+	}
+
+local meshes_industrial_wagon_livestock_type1 = {
+		default = "dlxtrains_industrial_wagons_livestock_type1.b3d",
+		loaded = "dlxtrains_industrial_wagons_livestock_type1_loaded.b3d",
+		animal_load = {
+			["cow"]		= "dlxtrains_industrial_wagons_livestock_type1_cows.b3d",
+			["horse"]	= "dlxtrains_industrial_wagons_livestock_type1_horses.b3d",
+			["pig"]		= "dlxtrains_industrial_wagons_livestock_type1_pigs.b3d",
+			["sheep"]	= "dlxtrains_industrial_wagons_livestock_type1_sheep.b3d",
+			["warthog"]	= "dlxtrains_industrial_wagons_livestock_type1_warthogs.b3d",
+		},
+		update_model = function(wagon, data, texture_file, meshes)
+			return update_model_industrial_wagon_livestock(wagon, data, texture_file, meshes)
+		end,
 	}
 
 local meshes_industrial_wagon_open_type1 = {
@@ -1309,6 +1469,58 @@ if dlxtrains_industrial_wagons.max_wagon_length >= 6 then
 			box=8*3,
 		},
 	}, S("North American Covered Hopper Wagon"), "dlxtrains_industrial_wagons_hopper_type2_inv.png")
+end
+
+-- ////////////////////////////////////////////////////////////////////////////////////
+
+if dlxtrains_industrial_wagons.max_wagon_length >= 6 then
+	local wagon_type = "dlxtrains_industrial_wagons:livestock_type1"
+
+	dlxtrains.register_livery_templates(wagon_type, mod_name, livery_templates)
+
+	advtrains.register_wagon(wagon_type, {
+		mesh = meshes_industrial_wagon_livestock_type1.default,
+		textures = {dlxtrains.get_init_texture()},
+		set_textures = function(wagon, data)
+			dlxtrains.set_textures_for_livery_scheme(wagon, data, livery_scheme_industrial_wagon_livestock_type1, meshes_industrial_wagon_livestock_type1)
+		end,
+		custom_may_destroy = function(wagon, puncher, time_from_last_punch, tool_capabilities, direction)
+			return not dlxtrains.update_livery(wagon, puncher, livery_scheme_industrial_wagon_livestock_type1)
+		end,
+		custom_on_step = function(self, dtime, data, train)
+			if dlxtrains.wagon_sounds then
+				local inv = minetest.get_inventory({type="detached", name="advtrains_wgn_"..data.id})
+				if inv and not inv:is_empty("box") then
+					local stack = inv:get_stack("box", 1)
+					if not stack:is_empty() then
+						play_animal_sound(self.object, data.id, stack)
+					end
+				end
+			end
+		end,
+		seats = {},
+		drives_on={default=true},
+		max_speed=20,
+		visual_size = {x=1, y=1},
+		wagon_span=3,
+		wheel_positions = {2.0, -2.0},
+		collisionbox = {-1.0,-0.5,-1.0,1.0,2.5,1.0},
+		coupler_types_front = {knuckle=true},
+		coupler_types_back = {knuckle=true},
+		drops={"default:steelblock"},
+		has_inventory = true,
+		get_inventory_formspec = function(wagon, pname, invname)
+			return "size[8,7]"..
+				"box[0,0;.8,.88;#077]"..	-- Highlight slot that impacts visible loads
+				"list["..invname..";box;0,0;8,2;]"..
+				"list[current_player;main;0,3;8,4;]"..
+				"listring[]"..
+				get_wagon_proprties_button_spec(wagon.id, pname, 2, 2)
+		end,
+		inventory_list_sizes = {
+			box=8*3,
+		},
+	}, S("Australian Cattle Van"), "dlxtrains_industrial_wagons_livestock_type1_inv.png")
 end
 
 -- ////////////////////////////////////////////////////////////////////////////////////

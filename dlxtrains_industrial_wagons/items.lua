@@ -132,6 +132,22 @@ if dlxtrains.crafting_enabled() and dlxtrains.get_config_wagon_crafting_recipe_c
 	end
 
 	if dlxtrains_industrial_wagons.max_wagon_length >= 6 then
+		minetest.register_craftitem("dlxtrains_industrial_wagons:livestock_body_type1", {
+			description = S("Australian Cattle Van Cargo Housing"),
+			inventory_image = "dlxtrains_industrial_wagons_livestock_body_type1.png",
+		})
+
+		minetest.register_craft({
+			output = "dlxtrains_industrial_wagons:livestock_body_type1",
+			recipe = {
+				{dlxtrains.materials.steel_ingot, dlxtrains.materials.steel_ingot, dlxtrains.materials.steel_ingot},
+				{dlxtrains.materials.wood, dlxtrains.materials.chest, dlxtrains.materials.wood},
+				{dlxtrains.materials.wood, "dlxtrains:blueprint", dlxtrains.materials.wood},
+			}
+		})
+	end
+
+	if dlxtrains_industrial_wagons.max_wagon_length >= 6 then
 		minetest.register_craftitem("dlxtrains_industrial_wagons:open_body_type1", {
 			description = S("Open Wagon Cargo Deck"),
 			inventory_image = "dlxtrains_industrial_wagons_open_body_type1.png",

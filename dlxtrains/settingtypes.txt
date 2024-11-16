@@ -33,3 +33,6 @@ dlxtrains_locomotive_sounds (DLX Locomotive sounds) enum Dynamic Dynamic,Constan
 #	Constant: When applicable, DLX Locomotives will produce a constant amount of smoke regardless of acceleration, velocity or length of train.
 #	Off: DLX Locomotives will not produce any smoke.
 dlxtrains_locomotive_smoke (DLX Locomotive smoke) enum Dynamic Dynamic,Constant,Off
+
+#	Specify if wagons should produce sounds.  For example, livestock wagons can produce the sounds of some of the animals they are carrying.
+dlxtrains_wagon_sounds (DLX Wagon sounds) bool true
