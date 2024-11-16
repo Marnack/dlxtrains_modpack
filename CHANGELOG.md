@@ -2,6 +2,11 @@
 
 All notable changes to this project will be documented in this file.
 
+## [1.17.0] - 2024-11-15
+ - Change references from Minetest to Luanti
+ - Add Australian Cattle Van
+ - Minor code cleanup
+ - Refactor common tool code
 ## [1.16.0] - 2024-05-27
  - Allow non-empty TechAge containers to trigger ISO Tanks appearing on container wagons.
  - Remove dependencies on mods from Minetest Game
