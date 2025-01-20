@@ -220,9 +220,9 @@ end
 if dlxtrains.use_advtrains_livery_designer then
 	-- Notify player if a newer version of AdvTrains Livery Tools is available or needed.
 	if not advtrains_livery_designer.is_compatible_mod_version or
-	   not advtrains_livery_designer.is_compatible_mod_version({major = 0, minor = 8, patch = 5}) then
+	   not advtrains_livery_designer.is_compatible_mod_version({major = 0, minor = 9, patch = 0}) then
 		minetest.log("warning", "[DlxTrains] An old version of AdvTrains Livery Tools was detected. Consider updating to the latest version.")
-		-- Version 0.8.5 is not currently required so just log an informational message.
+		-- Version 0.9.0 is not currently required so just log an informational message.
 	end
 end
 
