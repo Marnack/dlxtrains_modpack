@@ -2,6 +2,8 @@
 
 All notable changes to this project will be documented in this file.
 
+## [1.18.0] - 2025-01-20
+ - Optimize PNGs
 ## [1.17.0] - 2024-11-15
  - Change references from Minetest to Luanti
  - Add Australian Cattle Van
