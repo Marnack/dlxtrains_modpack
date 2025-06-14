@@ -1182,6 +1182,67 @@ local meshes_industrial_wagon_transition_type1 = {
 
 -- ////////////////////////////////////////////////////////////////////////////////////
 
+local function compute_excess_inventory(inv, listname, target_size)
+	assert(inv and listname and target_size, "Invalid parameters for compute_excess_inventory()")
+
+	local excess_inventory = 0
+	local inv_size = inv:get_size(listname)
+	if inv_size and inv_size > 0 and target_size > 0 and target_size < inv_size then
+		for i = target_size + 1, inv_size do
+			local inv_stack = inv:get_stack(listname, i)
+			if inv_stack and not inv_stack:is_empty() then
+				excess_inventory = excess_inventory + 1
+			end
+		end
+	end
+
+	return excess_inventory
+end
+
+local function condense_inventory(inv, listname, target_size)
+	assert(inv and listname and target_size, "Invalid parameters for condense_inventory()")
+
+	local inv_size = inv:get_size(listname)
+	if inv_size and inv_size > 0 and target_size > 0 and target_size < inv_size then
+		for i = target_size + 1, inv_size do
+			local stack = inv:get_stack(listname, i)
+			if stack and not stack:is_empty() then
+				-- Clear contents at current index
+				inv:set_stack(listname, i, ItemStack())
+				-- Add stack to first available slot in list
+				inv:add_item(listname, stack)
+			end
+		end
+	end
+end
+
+local function update_wagon_to_smaller_inventory(wagon_entity, target_inv_size)
+	if wagon_entity.has_inventory then
+		local inv = minetest.get_inventory({type="detached", name="advtrains_wgn_"..wagon_entity.id})
+		if inv then
+			for listname, _ in pairs(inv:get_lists()) do
+				if inv:get_size(listname) > target_inv_size then
+					if inv:is_empty(listname) then
+						-- Since the wagon is empty, update it to the new smaller inventory limit.
+						inv:set_size(listname, target_inv_size)
+					else
+						if compute_excess_inventory(inv, listname, target_inv_size) > 0 then
+							-- Condense inventory and update inventory size limit accordingly
+							condense_inventory(inv, listname, target_inv_size)
+							inv:set_size(listname, target_inv_size + compute_excess_inventory(inv, listname, target_inv_size))
+						else
+							-- The wagon's inventory is less than the new smaller limit so update it to the new smaller inventory limit.
+							inv:set_size(listname, target_inv_size)
+						end
+					end
+				end
+			end
+		end
+	end
+end
+
+-- ////////////////////////////////////////////////////////////////////////////////////
+
 if dlxtrains_industrial_wagons.max_wagon_length >= 8.5 then
 	local wagon_type = "dlxtrains_industrial_wagons:container_type1"
 
@@ -1797,6 +1858,7 @@ if dlxtrains_industrial_wagons.max_wagon_length >= 4.875 then
 
 	dlxtrains.register_livery_templates(wagon_type, mod_name, livery_templates)
 
+	local target_size = 18
 	local wagon_def = {
 		mesh = meshes_industrial_wagon_tank_type1.default,
 		textures = {dlxtrains.get_init_texture()},
@@ -1834,15 +1896,36 @@ if dlxtrains_industrial_wagons.max_wagon_length >= 4.875 then
 		drops={dlxtrains.materials.steelblock},
 		has_inventory = true,
 		get_inventory_formspec = function(wagon, pname, invname)
+			-- Update wagon to have smaller inventory size if cargo won't be lost.
+			local wagon_object = advtrains.wagon_objects[wagon.id]
+			if wagon_object then
+				local wagon_entity = wagon_object:get_luaentity()
+				if wagon_entity then
+					update_wagon_to_smaller_inventory(wagon_entity, target_size)
+				end
+			end
+
+			local wagon_inv_list = "list["..invname..";box;1,0;6,3;]"
+			local inv = minetest.get_inventory({type="detached", name="advtrains_wgn_"..wagon.id})
+			if compute_excess_inventory(inv, "box", target_size) > 0 then
+				wagon_inv_list = "list["..invname..";box;0,0;8,3;]"
+			end
 			return "size[8,8]"..
-				"list["..invname..";box;0,0;8,3;]"..
+				wagon_inv_list..
 				"list[current_player;main;0,4;8,4;]"..
 				"listring[]"..
 				get_wagon_proprties_button_spec(wagon.id, pname, 2, 3)
 		end,
 		inventory_list_sizes = {
+			-- Keep this the original size (24) so that any excess inventory is not lost
+			-- when using the reduced inventory size for the wagon.  This size will be
+			-- updated in custom_on_activate()
 			box=8*3,
 		},
+		custom_on_activate = function(self, staticdata_table, dtime_s)
+			-- Update wagons to use an inventory size of 18 instead of 24 without losing cargo.
+			update_wagon_to_smaller_inventory(self, target_size)
+		end,
 		techage_liquid_capacity = 1000,
 	}
 
@@ -1860,6 +1943,7 @@ if dlxtrains_industrial_wagons.max_wagon_length >= 4.875 then
 
 	dlxtrains.register_livery_templates(wagon_type, mod_name, livery_templates)
 
+	local target_size = 18
 	advtrains.register_wagon(wagon_type, {
 		mesh = meshes_industrial_wagon_tank_type2.default,
 		textures = {dlxtrains.get_init_texture()},
@@ -1881,17 +1965,39 @@ if dlxtrains_industrial_wagons.max_wagon_length >= 4.875 then
 		drops={dlxtrains.materials.steelblock},
 		has_inventory = true,
 		get_inventory_formspec = function(wagon, pname, invname)
+			-- Update wagon to have smaller inventory size if cargo won't be lost.
+			local wagon_object = advtrains.wagon_objects[wagon.id]
+			if wagon_object then
+				local wagon_entity = wagon_object:get_luaentity()
+				if wagon_entity then
+					update_wagon_to_smaller_inventory(wagon_entity, target_size)
+				end
+			end
+
+			local wagon_inv_list = "list["..invname..";box;1,0;6,3;]"
+			local inv = minetest.get_inventory({type="detached", name="advtrains_wgn_"..wagon.id})
+			if compute_excess_inventory(inv, "box", target_size) > 0 then
+				wagon_inv_list = "list["..invname..";box;0,0;8,3;]"
+			end
 			return "size[8,8]"..
-				"list["..invname..";box;0,0;8,3;]"..
+				wagon_inv_list..
 				"list[current_player;main;0,4;8,4;]"..
 				"listring[]"..
 				get_wagon_proprties_button_spec(wagon.id, pname, 2, 3)
 		end,
 		inventory_list_sizes = {
+			-- Keep this the original size (24) so that any excess inventory is not lost
+			-- when using the reduced inventory size for the wagon.  This size will be
+			-- updated in custom_on_activate()
 			box=8*3,
 		},
+		custom_on_activate = function(self, staticdata_table, dtime_s)
+			-- Update wagons to use an inventory size of 18 instead of 24 without losing cargo.
+			update_wagon_to_smaller_inventory(self, target_size)
+		end,
 		techage_liquid_capacity = 1000,
 	}, S("European Small Tank Wagon"), "dlxtrains_industrial_wagons_tank_type2_inv.png")
+
 end
 
 -- ////////////////////////////////////////////////////////////////////////////////////

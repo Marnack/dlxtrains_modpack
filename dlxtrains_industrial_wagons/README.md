@@ -40,8 +40,8 @@ Icon|Wagon Name|Length (m)|Coupler Type|Inventory Size|Max Speed (m/s)|Livery Op
 ![](textures/inventory/dlxtrains_industrial_wagons_container_type2_inv.png)|European Single Container Wagon|4.9|Buffer & Chain|16|20|5
 ![](textures/inventory/dlxtrains_industrial_wagons_open_type3_inv.png)|European Small Open Wagon|4.9|Buffer & Chain|18|15|4
 ![](textures/inventory/dlxtrains_industrial_wagons_open_type2_inv.png)|European Small Open Wagon with Brakeman's Cabin|4.9|Buffer & Chain|18|15|4
-![](textures/inventory/dlxtrains_industrial_wagons_tank_type2_inv.png)|European Small Tank Wagon|4.9|Buffer & Chain|24|15|4
-![](textures/inventory/dlxtrains_industrial_wagons_tank_type1_inv.png)|European Small Tank Wagon with Brakeman's Cabin|4.9|Buffer & Chain|24|15|4
+![](textures/inventory/dlxtrains_industrial_wagons_tank_type2_inv.png)|European Small Tank Wagon|4.9|Buffer & Chain|18|15|4
+![](textures/inventory/dlxtrains_industrial_wagons_tank_type1_inv.png)|European Small Tank Wagon with Brakeman's Cabin|4.9|Buffer & Chain|18|15|4
 ![](textures/inventory/dlxtrains_industrial_wagons_stake_type1_inv.png)|European Stake Wagon|6|Buffer & Chain|24|20|4
 ![](textures/inventory/dlxtrains_industrial_wagons_covered_goods_type3_inv.png)|European Wooden Covered Goods Wagon|7|Buffer & Chain|32|20|4
 ![](textures/inventory/dlxtrains_industrial_wagons_hopper_type2_inv.png)|North American Covered Hopper Wagon|6|Knuckle|24|25|4
@@ -118,6 +118,9 @@ By the mid 20th century, brakemen were no longer needed to ride wagons and opera
 
 If [Advanced Trains TechAge addons](https://content.luanti.org/packages/orwell/advtrains_techage/) is installed and enabled, and [Advanced Trains](https://content.luanti.org/packages/orwell/advtrains/) is running at version 2.4.3 or later then this wagon can also be used to transport up to 1000 units of liquid.
 
+**Note:**
+This tank wagon had a cargo capacity of 24 inventory slots in previous versions of this mod.  As of the 1.19.0 release it is now 18 slots.  In order to avoid losing cargo, existing tank wagons with cargo exceeding 18 inventory slots will continue to carry that cargo and have more than 18 inventory slots but the cargo capacity of those wagons will be reduced after the excess cargo is removed.  The code to support preserving excess cargo in these wagons may be removed in a future version of this mod. ***Players should therefore check for and remove excess cargo from these wagons in order to avoid losing it in the future.***
+
 ### European Small Tank Wagon with Brakeman's Cabin
 
 This wagon is based on late 19th and early 20th century tank wagons used in Europe.  It features a brakeman's cabin that provides shelter for the brakemen who were needed at the time to ride the wagons and operate their brakes.
@@ -125,6 +128,9 @@ This wagon is based on late 19th and early 20th century tank wagons used in Euro
 In game, a player can ride the wagon in the brakeman's cabin.  However, actual braking control is not available.
 
 If [Advanced Trains TechAge addons](https://content.luanti.org/packages/orwell/advtrains_techage/) is installed and enabled, and [Advanced Trains](https://content.luanti.org/packages/orwell/advtrains/) is running at version 2.4.3 or later then this wagon can also be used to transport up to 1000 units of liquid.
+
+**Note:**
+This wagon's inventory size has been reduced from 24 to 18.  ***See the note about this change for the European Small Tank Wagon since it applies to this wagon as well.***
 
 ### European Stake Wagon
 
