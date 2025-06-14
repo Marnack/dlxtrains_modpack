@@ -104,13 +104,17 @@ This fictional wagon is a shortened version of the European Container Wagon that
 
 ### European Small Open Wagon
 
-By the mid 20th century, brakemen were no longer needed to ride wagons and operate their brakes.  Thus, brakeman's cabins were removed from older wagons and newer wagons were built without them.  This wagon represents such early to mid 20th century open wagons.  It has a smaller inventory size due to its smaller size.
+By the mid 20th century, brakemen were no longer needed to ride wagons and operate their brakes.  Thus, brakeman's cabins were removed from older wagons and newer wagons were built without them.  This wagon represents such early to mid 20th century open wagons.
+
+In game, these wagons have six possible load configurations that are determined by the wagon's inventory: Empty, Filled with "loose" material (dirt, gravel, sand, or coal), covered by a canvas or tarpaulin, and three load configurations with 1, 2 or 3 crates or nodes similar to the European Flat Wagon.  These wagons have a smaller inventory size due to their smaller size.
 
 ### European Small Open Wagon with Brakeman's Cabin
 
 This wagon is based on late 19th and early 20th century open wagons used in Europe.  It features a brakeman's cabin that provides shelter for the brakemen who were needed at the time to ride the wagons and operate their brakes.
 
-In game, a player can ride the wagon in the brakeman's cabin.  However, actual braking control is not available.  Also, the wagon has a smaller inventory size due to its smaller size.
+In game, these wagons have six possible load configurations that are determined by the wagon's inventory: Empty, Filled with "loose" material (dirt, gravel, sand, or coal), covered by a canvas or tarpaulin, and three load configurations with 1, 2 or 3 crates or nodes similar to the European Flat Wagon.  These wagons have a smaller inventory size due to their smaller size.
+
+A player can ride these wagons in the brakeman's cabin.  However, actual braking control is not available.
 
 ### European Small Tank Wagon
 
