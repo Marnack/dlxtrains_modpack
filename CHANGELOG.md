@@ -2,6 +2,14 @@
 
 All notable changes to this project will be documented in this file.
 
+## [1.19.0] - 2025-06-14
+ - Add second driver stand to the European G1206 Diesel Locomotive
+ - Add two European small open wagons
+ - Remove unnecessary MTL files
+ - Add conversion recipes for the European small tank wagons
+ - Reduce inventory capacity of the European small tank wagons
+ - Update livery count for the North American Wooden Boxcar in readme.md
+ - Add notes about inventory for the European small open wagons
 ## [1.18.0] - 2025-01-20
  - Optimize PNGs
 ## [1.17.0] - 2024-11-15
