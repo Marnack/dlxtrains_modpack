@@ -59,7 +59,7 @@ In game, the locomotive features several effects when the locomotive is moving:
 * The diesel engine's sound will change based on the locomotive's velocity (unless this feature is disabled in the **DlxTrains** mod settings).
 * The amount of diesel smoke produced by the locomotive will vary based on its acceleration, velocity and the length of the train (unless this feature is disabled in the **DlxTrains** mod settings).
 
-The MaK/Vossloh G1206 locomotive is driven with either end being used as "forward".  Since there seems to be some preference by real world engineers to drive with the "short hood" end as forward due to better visibility, player avatars are positioned to face in that direction when in the cabin of the European G1206 Diesel Locomotive.
+The MaK/Vossloh G1206 locomotive is driven with either end being used as "forward".  Since there seems to be some preference by real world engineers to drive with the "short hood" end as forward due to better visibility, player avatars are positioned to face in that direction by default when in the cabin of the European G1206 Diesel Locomotive. Players can move between the "forward" and reverse" facing driver stands as desired, however.
 
 ### North American SW1500 Diesel Locomotive
 

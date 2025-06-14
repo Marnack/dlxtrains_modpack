@@ -436,22 +436,36 @@ if dlxtrains_diesel_locomotives.max_wagon_length >= 7.35 then
 		end,
 		seats = {
 			{
-				name = "Driver Stand",
+				name = "Forward Driver Stand",	-- Facing the short hood
 				attach_offset={x=2.8, y=2.8, z=12},
 				view_offset = use_attachment_patch and {x=0, y=0, z=0} or {x=0, y=3.6, z=0},
 				driving_ctrl_access = true,
-				group = "cabin",
+				group = "cabin_fwd",
+			},
+			{
+				name = "Reverse Driver Stand",	-- Facing the long hood
+				attach_offset={x=-2.8, y=2.8, z=15},
+				view_offset = use_attachment_patch and {x=0, y=0, z=0} or {x=0, y=3.6, z=0},
+				advtrains_attachment_offset_patch_attach_rotation = {x=0, y=180, z=0},
+				driving_ctrl_access = true,
+				group = "cabin_rev",
 			}
 		},
 		seat_groups = {
-			cabin={
-				name = "Cabin",
-				access_to = {},
+			cabin_fwd={
+				name = "Cabin (forward view)",
+				access_to = {"cabin_rev"},
+				require_doors_open = false,
+				driving_ctrl_access = true,
+			},
+			cabin_rev={
+				name = "Cabin (reverse view)",
+				access_to = {"cabin_fwd"},
 				require_doors_open = false,
 				driving_ctrl_access = true,
 			},
 		},
-		assign_to_seat_group = {"cabin"},
+		assign_to_seat_group = {"cabin_fwd"},
 		drives_on={default=true},
 		max_speed=25,
 		visual_size = {x=1, y=1},
