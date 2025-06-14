@@ -366,6 +366,15 @@ if dlxtrains.crafting_enabled() then
 					{"dlxtrains:wheel_set", "", "dlxtrains:wheel_set"},
 				}
 			})
+			minetest.register_craft({
+				output = "dlxtrains_industrial_wagons:tank_type1",
+				type = "shapeless",
+				replacements = {{"dlxtrains_industrial_wagons:brakemans_cabin", dlxtrains.materials.steel_ingot}},
+				recipe = {
+					"dlxtrains_industrial_wagons:tank_type2",
+					"dlxtrains_industrial_wagons:brakemans_cabin",
+				}
+			})
 		end
 
 		if dlxtrains_industrial_wagons.max_wagon_length >= 4.875 then
@@ -375,6 +384,15 @@ if dlxtrains.crafting_enabled() then
 					{dlxtrains.materials.steel_ingot, "dlxtrains_industrial_wagons:small_tank", dlxtrains.materials.ladder_steel},
 					{"dlxtrains:coupler_buffer_and_chain", "dlxtrains:wagon_chassis", "dlxtrains:coupler_buffer_and_chain"},
 					{"dlxtrains:wheel_set", "", "dlxtrains:wheel_set"},
+				}
+			})
+			minetest.register_craft({
+				output = "dlxtrains_industrial_wagons:tank_type2",
+				type = "shapeless",
+				replacements = {{dlxtrains.materials.steel_ingot, "dlxtrains_industrial_wagons:brakemans_cabin"}},
+				recipe = {
+					"dlxtrains_industrial_wagons:tank_type1",
+					dlxtrains.materials.steel_ingot,
 				}
 			})
 		end
