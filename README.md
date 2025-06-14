@@ -4,7 +4,7 @@ DlxTrains ModPack is an extension for AdvTrains that adds train related content.
 
 - Detailed locomotives and wagons whose livery and age appearance can be selected by the owning player.
 - 3 diesel locomotives with dynamic sound, smoke and texture effects.
-- 15 industrial freight wagons, including some that have visible loads that reflect the wagon's inventory.
+- 17 industrial freight wagons, including some that have visible loads that reflect the wagon's inventory.
 - 2 support wagons, including an escort wagon and a caboose.
 - Basic support for [AdvTrains Livery Tools](https://content.luanti.org/packages/Marnack/advtrains_livery_tools/).
 - Tank wagon support for [Techage Modpack](https://content.luanti.org/packages/joe7575/techage_modpack/) when used with [Advanced Trains TechAge addons](https://content.luanti.org/packages/orwell/advtrains_techage/).
@@ -31,13 +31,13 @@ Railway Code|Logo(s)|Primary Color|Secondary Color|Diesel Locomotives|Industrial
 AR|![](dlxtrains/textures/dlxtrains_logo_ar.png)|Red|Yellow|0|4|0
 AT|![](dlxtrains/textures/dlxtrains_logo_at.png)|Light Green|Yellow|0|4|0
 DL&X|![](dlxtrains/textures/dlxtrains_logo_dlx.png)|Black|Light Grey|1|6|1
-DZ|![](dlxtrains/textures/dlxtrains_logo_dz.png)|Red|Light Grey|2|7|1
+DZ|![](dlxtrains/textures/dlxtrains_logo_dz.png)|Red|Light Grey|2|9|1
 NR|![](dlxtrains/textures/dlxtrains_logo_nr.png)|Blue|Light Grey|1|3|1
-T|![](dlxtrains/textures/dlxtrains_logo_t_2.png) ![](dlxtrains/textures/dlxtrains_logo_t.png)|Brown|Yellow|3|15|2
+T|![](dlxtrains/textures/dlxtrains_logo_t_2.png) ![](dlxtrains/textures/dlxtrains_logo_t.png)|Brown|Yellow|3|17|2
 TT|![](dlxtrains/textures/dlxtrains_logo_tt.png) ![](dlxtrains/textures/dlxtrains_logo_tt_2.png)|Green|Cyan|1|3|1
 VR|![](dlxtrains/textures/dlxtrains_logo_vr.png)|Light Grey|Red|0|4|0
-WF|![](dlxtrains/textures/dlxtrains_logo_wf.png)|Green|Grey|2|7|1
-ZR|![](dlxtrains/textures/dlxtrains_logo_zr_2.png) ![](dlxtrains/textures/dlxtrains_logo_zr.png)|Yellow|Black|2|7|1
+WF|![](dlxtrains/textures/dlxtrains_logo_wf.png)|Green|Grey|2|9|1
+ZR|![](dlxtrains/textures/dlxtrains_logo_zr_2.png) ![](dlxtrains/textures/dlxtrains_logo_zr.png)|Yellow|Black|2|9|1
 
 ## Game Support
 As with **AdvTrains**, DlxTrains ModPack is compatible with many games when playing in creative mode and fully supports survival mode in [Minetest Game](https://content.luanti.org/packages/Minetest/minetest_game/) and its many variants.  However, DlxTrains ModPack also supports survival mode in games that are not based on **Minetest Game** including the following:

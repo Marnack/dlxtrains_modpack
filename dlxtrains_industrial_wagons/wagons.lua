@@ -112,6 +112,24 @@ local livery_scheme_industrial_wagon_open_type1 = {
 		count = 4,
 	}
 
+local livery_scheme_industrial_wagon_open_type2 = {
+		filename_prefix = "dlxtrains_industrial_wagons_open_type2",
+		[0]={code="dz"},
+		[1]={code="t"},
+		[2]={code="wf"},
+		[3]={code="zr"},
+		count = 4,
+	}
+
+local livery_scheme_industrial_wagon_open_type3 = {
+		filename_prefix = "dlxtrains_industrial_wagons_open_type3",
+		[0]={code="dz"},
+		[1]={code="t"},
+		[2]={code="wf"},
+		[3]={code="zr"},
+		count = 4,
+	}
+
 local livery_scheme_industrial_wagon_stake_type1 = {
 		filename_prefix = "dlxtrains_industrial_wagons_stake_type1",
 		[0]={code="t"},
@@ -216,6 +234,18 @@ local livery_templates = {
 		dlxtrains.init_livery_template(mod_name, 1, dlxtrains.livery_type.middle_era,	"AT",	"open_type1_at"),
 		dlxtrains.init_livery_template(mod_name, 2, dlxtrains.livery_type.standard,		"T",	"open_type1_t"),
 		dlxtrains.init_livery_template(mod_name, 3, dlxtrains.livery_type.middle_era,	"VR",	"open_type1_vr"),
+	},
+	["dlxtrains_industrial_wagons:open_type2"] = {
+		dlxtrains.init_livery_template(mod_name, 0, dlxtrains.livery_type.middle_era,	"DZ",	"open_type2_dz"),
+		dlxtrains.init_livery_template(mod_name, 1, dlxtrains.livery_type.early_era,	"T",	"open_type2_t"),
+		dlxtrains.init_livery_template(mod_name, 2, dlxtrains.livery_type.middle_era,	"WF",	"open_type2_wf"),
+		dlxtrains.init_livery_template(mod_name, 3, dlxtrains.livery_type.middle_era,	"ZR",	"open_type2_zr"),
+	},
+	["dlxtrains_industrial_wagons:open_type3"] = {
+		dlxtrains.init_livery_template(mod_name, 0, dlxtrains.livery_type.middle_era,	"DZ",	"open_type3_dz"),
+		dlxtrains.init_livery_template(mod_name, 1, dlxtrains.livery_type.early_era,	"T",	"open_type3_t"),
+		dlxtrains.init_livery_template(mod_name, 2, dlxtrains.livery_type.middle_era,	"WF",	"open_type3_wf"),
+		dlxtrains.init_livery_template(mod_name, 3, dlxtrains.livery_type.middle_era,	"ZR",	"open_type3_zr"),
 	},
 	["dlxtrains_industrial_wagons:stake_type1"] = {
 		dlxtrains.init_livery_template(mod_name, 0, dlxtrains.livery_type.standard,		"T",	"stake_type1_t"),
@@ -671,6 +701,9 @@ local function update_model_industrial_wagon_container(wagon, data, texture_file
 end
 
 local function update_model_industrial_wagon_flat(wagon, data, texture_file, meshes)
+	assert(meshes and meshes.default, "Missing default mesh")
+	assert(meshes.flat_load and meshes.flat_load.small and meshes.flat_load.medium and meshes.flat_load.large, "Missing flat load meshes")
+
 	local updated_texture = texture_file
 
 	-- Assume the wagon is not loaded
@@ -683,17 +716,17 @@ local function update_model_industrial_wagon_flat(wagon, data, texture_file, mes
 
 		-- Show at least one crate as a load on the wagon since the inventory is not empty.
 		-- Show additional crates depending on how many selected "target" slots are occupied.
-		-- These target slots are currently 1, 9 and 17.  They were chosen because they should
-		-- provide a sense of how full the wagon's inventory might be when automatic loading
-		-- is used.  Thus, one crate represents the wagon being < 1/3 filled, three crates
-		-- represent the wagon being less than 2/3 filled and five crates represent the wagon
-		-- being mostly filled.  Alternatively, a player may choose to fill the target slots
-		-- manually in order to achieve a specific appearance for the wagon regardless of how
-		-- full the wagon may be.  That is an intended feature of this approach.
+		-- The default target slots are currently 1, 9 and 17.  They were chosen because they
+		-- should provide a sense of how full the wagon's inventory might be when automatic
+		-- loading is used.  Thus, one crate represents the wagon being < 1/3 filled, three
+		-- crates represent the wagon being less than 2/3 filled and five crates represent the
+		-- wagon being mostly filled.  Alternatively, a player may choose to fill the target
+		-- slots manually in order to achieve a specific appearance for the wagon regardless
+		-- of how full the wagon may be.  That is an intended feature of this approach.
 
-		local stack1 = inv:get_stack("box", 1)
-		local stack2 = inv:get_stack("box", 9)
-		local stack3 = inv:get_stack("box", 17)
+		local stack1 = inv:get_stack("box", meshes.flat_load.small.target_slot  or  1)
+		local stack2 = inv:get_stack("box", meshes.flat_load.medium.target_slot or  9)
+		local stack3 = inv:get_stack("box", meshes.flat_load.large.target_slot  or 17)
 		local node_def1 = minetest.registered_nodes[stack1:get_name()]
 		local node_def2 = minetest.registered_nodes[stack2:get_name()]
 		local node_def3 = minetest.registered_nodes[stack3:get_name()]
@@ -725,14 +758,14 @@ local function update_model_industrial_wagon_flat(wagon, data, texture_file, mes
 		end
 
 		-- Use a mesh that corresponds to the number of nodes/crates to be shown.
-		local mesh_with_load = meshes.loaded1
+		local mesh_with_load = meshes.flat_load.small.file
 		if occupied_slots == 2 then
-			mesh_with_load = meshes.loaded3
+			mesh_with_load = meshes.flat_load.medium.file
 		elseif occupied_slots == 3 then
-			mesh_with_load = meshes.loaded5
+			mesh_with_load = meshes.flat_load.large.file
 		end
 		wagon.object:set_properties({
-			mesh = mesh_with_load
+			mesh = mesh_with_load or meshes.default -- Use the default mesh if the needed load mesh is not specified
 		})
 	end
 
@@ -1022,9 +1055,11 @@ local meshes_industrial_wagon_covered_goods_type3 = {
 
 local meshes_industrial_wagon_flat_type1 = {
 		default = "dlxtrains_industrial_wagons_flat_type1.obj",
-		loaded1 = "dlxtrains_industrial_wagons_flat_type1_loaded1.obj",
-		loaded3 = "dlxtrains_industrial_wagons_flat_type1_loaded3.obj",
-		loaded5 = "dlxtrains_industrial_wagons_flat_type1_loaded5.obj",
+		flat_load = {
+			small  = {file = "dlxtrains_industrial_wagons_flat_type1_loaded1.obj"},
+			medium = {file = "dlxtrains_industrial_wagons_flat_type1_loaded3.obj"},
+			large  = {file = "dlxtrains_industrial_wagons_flat_type1_loaded5.obj"},
+		},
 		update_model = function(wagon, data, texture_file, meshes)
 			return update_model_industrial_wagon_flat(wagon, data, texture_file, meshes)
 		end,
@@ -1032,9 +1067,11 @@ local meshes_industrial_wagon_flat_type1 = {
 
 local meshes_industrial_wagon_flat_type2 = {
 		default = "dlxtrains_industrial_wagons_flat_type2.b3d",
-		loaded1 = "dlxtrains_industrial_wagons_flat_type2_loaded1.b3d",
-		loaded3 = "dlxtrains_industrial_wagons_flat_type2_loaded3.b3d",
-		loaded5 = "dlxtrains_industrial_wagons_flat_type2_loaded5.b3d",
+		flat_load = {
+			small  = {file = "dlxtrains_industrial_wagons_flat_type2_loaded1.b3d"},
+			medium = {file = "dlxtrains_industrial_wagons_flat_type2_loaded3.b3d"},
+			large  = {file = "dlxtrains_industrial_wagons_flat_type2_loaded5.b3d"},
+		},
 		update_model = function(wagon, data, texture_file, meshes)
 			return update_model_industrial_wagon_flat(wagon, data, texture_file, meshes)
 		end,
@@ -1070,9 +1107,11 @@ local meshes_industrial_wagon_livestock_type1 = {
 local meshes_industrial_wagon_open_type1 = {
 		default = "dlxtrains_industrial_wagons_open_type1.b3d",
 		loaded = "dlxtrains_industrial_wagons_open_type1_loaded.b3d",
-		loaded1 = "dlxtrains_industrial_wagons_open_type1_loaded1.b3d",
-		loaded3 = "dlxtrains_industrial_wagons_open_type1_loaded3.b3d",
-		loaded5 = "dlxtrains_industrial_wagons_open_type1_loaded5.b3d",
+		flat_load = {
+			small  = {file = "dlxtrains_industrial_wagons_open_type1_loaded1.b3d"},
+			medium = {file = "dlxtrains_industrial_wagons_open_type1_loaded3.b3d"},
+			large  = {file = "dlxtrains_industrial_wagons_open_type1_loaded5.b3d"},
+		},
 		covered = "dlxtrains_industrial_wagons_open_type1_covered.b3d",
 		log_load = "dlxtrains_industrial_wagons_open_type1_logs.b3d",
 		update_model = function(wagon, data, texture_file, meshes)
@@ -1080,11 +1119,41 @@ local meshes_industrial_wagon_open_type1 = {
 		end,
 	}
 
+local meshes_industrial_wagon_open_type2 = {
+		default = "dlxtrains_industrial_wagons_open_type2.b3d",
+		loaded = "dlxtrains_industrial_wagons_open_type2_loaded.b3d",
+		flat_load = {
+			small  = {file = "dlxtrains_industrial_wagons_open_type2_loaded1.b3d", target_slot =  1},
+			medium = {file = "dlxtrains_industrial_wagons_open_type2_loaded2.b3d", target_slot =  7},
+			large  = {file = "dlxtrains_industrial_wagons_open_type2_loaded3.b3d", target_slot = 13},
+		},
+		covered = "dlxtrains_industrial_wagons_open_type2_covered.b3d",
+		update_model = function(wagon, data, texture_file, meshes)
+			return update_model_industrial_wagon_open(wagon, data, texture_file, meshes)
+		end,
+	}
+
+local meshes_industrial_wagon_open_type3 = {
+		default = "dlxtrains_industrial_wagons_open_type3.b3d",
+		loaded = "dlxtrains_industrial_wagons_open_type3_loaded.b3d",
+		flat_load = {
+			small  = {file = "dlxtrains_industrial_wagons_open_type3_loaded1.b3d", target_slot =  1},
+			medium = {file = "dlxtrains_industrial_wagons_open_type3_loaded2.b3d", target_slot =  7},
+			large  = {file = "dlxtrains_industrial_wagons_open_type3_loaded3.b3d", target_slot = 13},
+		},
+		covered = "dlxtrains_industrial_wagons_open_type3_covered.b3d",
+		update_model = function(wagon, data, texture_file, meshes)
+			return update_model_industrial_wagon_open(wagon, data, texture_file, meshes)
+		end,
+	}
+
 local meshes_industrial_wagon_stake_type1 = {
 		default = "dlxtrains_industrial_wagons_stake_type1.obj",
-		loaded1 = "dlxtrains_industrial_wagons_stake_type1_loaded1.obj",
-		loaded3 = "dlxtrains_industrial_wagons_stake_type1_loaded3.obj",
-		loaded5 = "dlxtrains_industrial_wagons_stake_type1_loaded5.obj",
+		flat_load = {
+			small  = {file = "dlxtrains_industrial_wagons_stake_type1_loaded1.obj"},
+			medium = {file = "dlxtrains_industrial_wagons_stake_type1_loaded3.obj"},
+			large  = {file = "dlxtrains_industrial_wagons_stake_type1_loaded5.obj"},
+		},
 		log_load = "dlxtrains_industrial_wagons_stake_type1_logs.obj",
 		update_model = function(wagon, data, texture_file, meshes)
 			return update_model_industrial_wagon_stake(wagon, data, texture_file, meshes)
@@ -1101,9 +1170,11 @@ local meshes_industrial_wagon_tank_type2 = {
 
 local meshes_industrial_wagon_transition_type1 = {
 		default = "dlxtrains_industrial_wagons_transition_type1.obj",
-		loaded1 = "dlxtrains_industrial_wagons_transition_type1_loaded1.obj",
-		loaded3 = "dlxtrains_industrial_wagons_transition_type1_loaded3.obj",
-		loaded5 = "dlxtrains_industrial_wagons_transition_type1_loaded5.obj",
+		flat_load = {
+			small  = {file = "dlxtrains_industrial_wagons_transition_type1_loaded1.obj"},
+			medium = {file = "dlxtrains_industrial_wagons_transition_type1_loaded3.obj"},
+			large  = {file = "dlxtrains_industrial_wagons_transition_type1_loaded5.obj"},
+		},
 		update_model = function(wagon, data, texture_file, meshes)
 			return update_model_industrial_wagon_flat(wagon, data, texture_file, meshes)
 		end,
@@ -1564,6 +1635,116 @@ if dlxtrains_industrial_wagons.max_wagon_length >= 6 then
 			box=8*3,
 		},
 	}, S("Australian Open Wagon"), "dlxtrains_industrial_wagons_open_type1_inv.png")
+end
+
+-- ////////////////////////////////////////////////////////////////////////////////////
+
+if dlxtrains_industrial_wagons.max_wagon_length >= 4.875 then
+	local wagon_type = "dlxtrains_industrial_wagons:open_type2"
+
+	dlxtrains.register_livery_templates(wagon_type, mod_name, livery_templates)
+
+	local wagon_def = {
+		mesh = meshes_industrial_wagon_open_type2.default,
+		textures = {dlxtrains.get_init_texture()},
+		set_textures = function(wagon, data)
+			dlxtrains.set_textures_for_livery_scheme(wagon, data, livery_scheme_industrial_wagon_open_type2, meshes_industrial_wagon_open_type2)
+		end,
+		custom_may_destroy = function(wagon, puncher, time_from_last_punch, tool_capabilities, direction)
+			return not dlxtrains.update_livery(wagon, puncher, livery_scheme_industrial_wagon_open_type2)
+		end,
+		seats = {
+			{
+				name = "Seat in Brakeman's Cabin",
+				attach_offset = use_attachment_patch and {x=0, y=1, z=-18.0} or {x=0, y=1, z=-18.0},
+				view_offset = use_attachment_patch and {x=0, y=0, z=0} or {x=0, y=6.5, z=0},
+				advtrains_attachment_offset_patch_attach_rotation = use_attachment_patch and {x=0, y=180, z=0} or nil,
+				group = "cabin",
+			},
+		},
+		seat_groups = {
+			cabin={
+				name = "Brakeman's Cabin",
+				access_to = {},
+				require_doors_open = false,
+			},
+		},
+		assign_to_seat_group = {"cabin"},
+		drives_on={default=true},
+		max_speed=15,
+		visual_size = {x=1, y=1},
+		wagon_span=2.4375,
+		wheel_positions = {1.3, -1.0},
+		collisionbox = {-1.0,-0.5,-1.0,1.0,2.5,1.0},
+		coupler_types_front = {chain=true},
+		coupler_types_back = {chain=true},
+		drops={dlxtrains.materials.steelblock},
+		has_inventory = true,
+		get_inventory_formspec = function(wagon, pname, invname)
+			return "size[8,8]"..
+				"box[1,0;.8,.88;#077]"..	-- Highlight slots that impact visible loads
+				"box[1,1;.8,.88;#077]"..
+				"box[1,2;.8,.88;#077]"..
+				"list["..invname..";box;1,0;6,3;]"..
+				"list[current_player;main;0,4;8,4;]"..
+				"listring[]"..
+				get_wagon_proprties_button_spec(wagon.id, pname, 2, 3)
+		end,
+		inventory_list_sizes = {
+			box=6*3,
+		},
+	}
+
+	if use_attachment_patch then
+		advtrains_attachment_offset_patch.setup_advtrains_wagon(wagon_def);
+	end
+
+	advtrains.register_wagon(wagon_type, wagon_def, S("European Small Open Wagon with Brakeman's Cabin"), "dlxtrains_industrial_wagons_open_type2_inv.png")
+end
+
+-- ////////////////////////////////////////////////////////////////////////////////////
+
+if dlxtrains_industrial_wagons.max_wagon_length >= 4.875 then
+	local wagon_type = "dlxtrains_industrial_wagons:open_type3"
+
+	dlxtrains.register_livery_templates(wagon_type, mod_name, livery_templates)
+
+	local wagon_def = {
+		mesh = meshes_industrial_wagon_open_type3.default,
+		textures = {dlxtrains.get_init_texture()},
+		set_textures = function(wagon, data)
+			dlxtrains.set_textures_for_livery_scheme(wagon, data, livery_scheme_industrial_wagon_open_type3, meshes_industrial_wagon_open_type3)
+		end,
+		custom_may_destroy = function(wagon, puncher, time_from_last_punch, tool_capabilities, direction)
+			return not dlxtrains.update_livery(wagon, puncher, livery_scheme_industrial_wagon_open_type3)
+		end,
+		seats = {},
+		drives_on={default=true},
+		max_speed=15,
+		visual_size = {x=1, y=1},
+		wagon_span=2.4375,
+		wheel_positions = {1.3, -1.0},
+		collisionbox = {-1.0,-0.5,-1.0,1.0,2.5,1.0},
+		coupler_types_front = {chain=true},
+		coupler_types_back = {chain=true},
+		drops={dlxtrains.materials.steelblock},
+		has_inventory = true,
+		get_inventory_formspec = function(wagon, pname, invname)
+			return "size[8,8]"..
+				"box[1,0;.8,.88;#077]"..	-- Highlight slots that impact visible loads
+				"box[1,1;.8,.88;#077]"..
+				"box[1,2;.8,.88;#077]"..
+				"list["..invname..";box;1,0;6,3;]"..
+				"list[current_player;main;0,4;8,4;]"..
+				"listring[]"..
+				get_wagon_proprties_button_spec(wagon.id, pname, 2, 3)
+		end,
+		inventory_list_sizes = {
+			box=6*3,
+		},
+	}
+
+	advtrains.register_wagon(wagon_type, wagon_def, S("European Small Open Wagon"), "dlxtrains_industrial_wagons_open_type3_inv.png")
 end
 
 -- ////////////////////////////////////////////////////////////////////////////////////

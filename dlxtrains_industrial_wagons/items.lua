@@ -164,6 +164,22 @@ if dlxtrains.crafting_enabled() and dlxtrains.get_config_wagon_crafting_recipe_c
 	end
 
 	if dlxtrains_support_wagons.max_wagon_length >= 4.875 then
+		minetest.register_craftitem("dlxtrains_industrial_wagons:open_body_type2", {
+			description = S("Small Open Wagon Cargo Deck"),
+			inventory_image = "dlxtrains_industrial_wagons_open_body_type2.png",
+		})
+
+		minetest.register_craft({
+			output = "dlxtrains_industrial_wagons:open_body_type2",
+			recipe = {
+				{"", "dlxtrains:blueprint", ""},
+				{dlxtrains.materials.wood, dlxtrains.materials.chest, dlxtrains.materials.wood},
+				{dlxtrains.materials.wood, dlxtrains.materials.wood, dlxtrains.materials.wood},
+			}
+		})
+	end
+
+	if dlxtrains_support_wagons.max_wagon_length >= 4.875 then
 		minetest.register_craftitem("dlxtrains_industrial_wagons:small_tank", {
 			description = S("Small Tank"),
 			inventory_image = "dlxtrains_industrial_wagons_small_tank.png",
