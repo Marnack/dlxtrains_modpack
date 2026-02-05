@@ -19,7 +19,7 @@ if dlxtrains.crafting_enabled() and dlxtrains.get_config_wagon_crafting_recipe_c
 		})
 	end
 
-	if dlxtrains_support_wagons.max_wagon_length >= 4.875 then
+	if dlxtrains_industrial_wagons.max_wagon_length >= 4.875 then
 		minetest.register_craftitem("dlxtrains_industrial_wagons:brakemans_cabin", {
 			description = S("Brakeman's Cabin"),
 			inventory_image = "dlxtrains_industrial_wagons_brakemans_cabin.png",
