@@ -69,7 +69,7 @@ This modpack would not exist without the prior efforts of the following people:
 
 ## Licenses
 
-Copyright © 2021-2025 Marnack
+Copyright © 2021-2026 Marnack
 
 - DlxTrains ModPack code is licensed under the GNU AGPL version 3 license, see [LICENSE.txt](LICENSE.txt) for details.
 - Unless otherwise specified, DlxTrains ModPack media (models, textures and sounds) are licensed under [CC BY-SA 3.0 Unported](https://creativecommons.org/licenses/by-sa/3.0/).
