@@ -549,7 +549,9 @@ local function get_valid_flat_wagon_load_texture(node_def, crate_texture_index)
 	-- node when rendered as a load on the wagon.  Thus, any node that has more than 2 unique
 	-- faces would likely appear obviously incorrect and so will be shown as "in a crate" instead.
 	-- Even though two unique faces for a node can result in some loads appearing incorrect, it's
-	-- not likely to be very obvious and so it is not shown as "in a crate".
+	-- not likely to be very obvious and so it is not shown as "in a crate". Also, nodes with
+	-- animated textures will also be shown as "in a crate" due to practical and performance
+	-- concerns.
 
 	local texture = "dlxtrains_industrial_wagons_wooden_crate.png"
 	if crate_texture_index > 0 and dlxtrains_industrial_wagons.get_crate_texture ~= nil then
@@ -557,7 +559,7 @@ local function get_valid_flat_wagon_load_texture(node_def, crate_texture_index)
 	end
 
 	if node_def.drawtype == "normal" and not is_loose_material(node_def) and node_def.tiles then
-		if type(node_def.tiles) == "table" and node_def.tiles[1] and not node_def.tiles[3] then
+		if type(node_def.tiles) == "table" and type(node_def.tiles[1]) == "string" and not node_def.tiles[3] then
 			texture = node_def.tiles[1]
 		end
 	end
@@ -950,7 +952,7 @@ local function update_model_industrial_wagon_open(wagon, data, texture_file, mes
 
 					local tree_side = "default_tree_top.png"
 					local tree_end = "default_tree.png"
-					if type(node_def.tiles) == "table" and node_def.tiles[1] and node_def.tiles[3] then
+					if type(node_def.tiles) == "table" and type(node_def.tiles[1]) == "string" and type(node_def.tiles[3]) == "string" then
 						tree_end = node_def.tiles[1]
 						tree_side = node_def.tiles[3]
 					end
@@ -994,7 +996,7 @@ local function update_model_industrial_wagon_stake(wagon, data, texture_file, me
 
 			local tree_side = "default_tree_top.png"
 			local tree_end = "default_tree.png"
-			if type(node_def.tiles) == "table" and node_def.tiles[1] and node_def.tiles[3] then
+			if type(node_def.tiles) == "table" and type(node_def.tiles[1]) == "string" and type(node_def.tiles[3]) == "string" then
 				tree_end = node_def.tiles[1]
 				tree_side = node_def.tiles[3]
 			end
