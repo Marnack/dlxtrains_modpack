@@ -3,7 +3,7 @@
 DlxTrains ModPack is an extension for AdvTrains that adds train related content.  Features of the modpack include:
 
 - Detailed locomotives and wagons whose livery and age appearance can be selected by the owning player.
-- 3 diesel locomotives with dynamic sound, smoke and texture effects.
+- 4 diesel locomotives with dynamic sound, smoke and texture effects.
 - 17 industrial freight wagons, including some that have visible loads that reflect the wagon's inventory.
 - 2 support wagons, including an escort wagon and a caboose.
 - Basic support for [AdvTrains Livery Tools](https://content.luanti.org/packages/Marnack/advtrains_livery_tools/).
@@ -18,7 +18,7 @@ Please see the README file in each of the included mod folders for important add
 
 - **DlxTrains** - This is the base mod needed by all other DlxTrains related mods.  It contains common craft items and tools for the modpack plus utilities needed by the other DlxTrains mods.
 - **DlxTrains Cargo** - This is an optional mod that adds some cargo nodes as well as additional cargo related textures that can be used by the DlxTrains Industrial Wagons mod.
-- **DlxTrains Diesel Locomotives** - This mod provides three diesel locomotives in multiple liveries.  Players can optionally customize the exterior of these locomotives with a visible unit number that is unique to each locomotive.
+- **DlxTrains Diesel Locomotives** - This mod provides four diesel locomotives in multiple liveries.  Players can optionally customize the exterior of these locomotives with a visible unit number that is unique to each locomotive.
 - **DlxTrains Industrial Wagons** - This mod provides freight wagons that feature selectable liveries and, in some cases, visible cargo.
 - **DlxTrains Support Wagons** - This mod provides support wagons, including an escort wagon and a caboose, both of which provide additional seating for train crew members.  These wagons also feature selectable liveries.
 
@@ -28,14 +28,14 @@ All of the liveries in DlxTrains are intended to be fictional.  The following ta
 
 Railway Code|Logo(s)|Primary Color|Secondary Color|Diesel Locomotives|Industrial Wagons|Support Wagons
 ---|:---:|---|---|:---:|:---:|:---:
-AR|![](dlxtrains/textures/dlxtrains_logo_ar.png)|Red|Yellow|0|4|0
-AT|![](dlxtrains/textures/dlxtrains_logo_at.png)|Light Green|Yellow|0|4|0
+AR|![](dlxtrains/textures/dlxtrains_logo_ar.png)|Red|Yellow|1|4|0
+AT|![](dlxtrains/textures/dlxtrains_logo_at.png)|Light Green|Yellow|1|4|0
 DL&X|![](dlxtrains/textures/dlxtrains_logo_dlx.png)|Black|Light Grey|1|6|1
 DZ|![](dlxtrains/textures/dlxtrains_logo_dz.png)|Red|Light Grey|2|9|1
 NR|![](dlxtrains/textures/dlxtrains_logo_nr.png)|Blue|Light Grey|1|3|1
-T|![](dlxtrains/textures/dlxtrains_logo_t_2.png) ![](dlxtrains/textures/dlxtrains_logo_t.png)|Brown|Yellow|3|17|2
+T|![](dlxtrains/textures/dlxtrains_logo_t_2.png) ![](dlxtrains/textures/dlxtrains_logo_t.png)|Brown|Yellow|4|17|2
 TT|![](dlxtrains/textures/dlxtrains_logo_tt.png) ![](dlxtrains/textures/dlxtrains_logo_tt_2.png)|Green|Cyan|1|3|1
-VR|![](dlxtrains/textures/dlxtrains_logo_vr.png)|Light Grey|Red|0|4|0
+VR|![](dlxtrains/textures/dlxtrains_logo_vr.png)|Light Grey|Red|1|4|0
 WF|![](dlxtrains/textures/dlxtrains_logo_wf.png)|Green|Grey|2|9|1
 ZR|![](dlxtrains/textures/dlxtrains_logo_zr_2.png) ![](dlxtrains/textures/dlxtrains_logo_zr.png)|Yellow|Black|2|9|1
 

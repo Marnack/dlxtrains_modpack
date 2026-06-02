@@ -10,6 +10,7 @@ Note: DLX is used here to denote items, tools, wagons and locomotives defined in
 
 The following craft items are defined and added to the game if the "Complexity of DLX wagon crafting recipes" setting defined in **DlxTrains** is set to "Standard".  They are not added to the game if it is set to "Basic".  The default value for the setting is "Standard".
 
+- **Australian 500 Class Diesel Locomotive Body** - This is the set of components that are added to a chassis to make a Australian 500 Class Diesel Locomotive.
 - **Diesel Locomotive Battery Pack** - This item represents the batteries that provide power to the locomotive's electrical systems.  They are recharged when the diesel engine is running.  Note that battery power for DLX diesel locomotives is not currently represented or tracked in game.
 - **Diesel Locomotive Bogie** - Similar to the bogies used on wagons, this is a pair of wheel sets that are connected by a framework that can turn independently of the locomotive that it supports.  Unlike wagon bogies, however, it also contains gearboxes or electric motors (depending on the type of diesel locomotive) that are used to propel the train.
 - **Diesel Locomotive Chassis** - This is the underframe of the locomotive.
@@ -31,11 +32,24 @@ The following table summarizes the current set of DlxTrains Diesel Locomotives.
 
 Icon|Wagon Name|Length (m)|Coupler Type|Max Speed (m/s)|Livery Options
 :---:|---|:---:|---|:---:|:---:
+![](textures/inventory/dlxtrains_diesel_locomotives_locomotive_type4_inv.png)|Australian 500 Class Diesel Locomotive|6.3|Knuckle|20|4
 ![](textures/inventory/dlxtrains_diesel_locomotives_locomotive_type3_inv.png)|European BR218 Diesel Locomotive|8.2|Buffer & Chain|25|4
 ![](textures/inventory/dlxtrains_diesel_locomotives_locomotive_type1_inv.png)|European G1206 Diesel Locomotive|7.35|Buffer & Chain|25|4
 ![](textures/inventory/dlxtrains_diesel_locomotives_locomotive_type2_inv.png)|North American SW1500 Diesel Locomotive|6.81|Knuckle|25|4
 
 Note that locomotives may not be available in-game if the "Longest DLX wagon to include in game" setting defined in **DlxTrains** is set to a value other than "Unlimited".  That setting will use the lengths shown in the table when determining the locomotives to be excluded.
+  
+### Australian 500 Class Diesel Locomotive
+
+The Australian 500 Class Diesel Locomotive in DlxTrains is loosely based on the South Australian Railways 500 class diesel-electric shunting locomotive built by the Islington Railway Workshops in the late 1960s. Thirty four of the locomotives were built and many remained in service until the early 1990s.
+
+In game, the locomotive features several effects when the locomotive is moving:
+* The main and running lights will appear to turn on (but not illuminate) based on the locomotive's direction of movement.
+* Its radiator cooling fan will appear to be spinning while the locomotive is moving.
+* The diesel engine's sound will change based on the locomotive's velocity (unless this feature is disabled in the **DlxTrains** mod settings).
+* The amount of diesel smoke produced by the locomotive will vary based on its acceleration, velocity and the length of the train (unless this feature is disabled in the **DlxTrains** mod settings).
+
+The Australian 500 Class Diesel Locomotive has two driver stands in its cab, one facing forward and the other rearward. Players can select between these "forward" and reverse" facing driver stands as needed assuming that both stands are not concurrently occupied.
 
 ### European BR218 Diesel Locomotive
 
@@ -47,7 +61,7 @@ In game, the locomotive features several effects when the locomotive is moving:
 * The diesel engine's sound will change based on the locomotive's velocity (unless this feature is disabled in the **DlxTrains** mod settings).
 * The amount of diesel smoke produced by the locomotive will vary based on its acceleration, velocity and the length of the train (unless this feature is disabled in the **DlxTrains** mod settings).
 
-The locomotive has two driver's cabs, one at each end. Players can choose to be located in either cab 1 or cab 2, switching between the two even while the locomotive is moving. This can be especially useful when changing the direction of travel.  For the best in-cab experience, use the optional [advtrains_attachment_offset_patch](https://content.luanti.org/packages/doxygen_spammer/advtrains_attachment_offset_patch/)
+The locomotive has two driver's cabs, one at each end. Players can choose to be located in either cab 1 or cab 2, switching between the two even while the locomotive is moving. This can be especially useful when changing the direction of travel.
 
 ### European G1206 Diesel Locomotive
 
@@ -78,7 +92,7 @@ Players can optionally customize their locomotives with a visible unit number th
 
 ## Notes
 
-Due to current limitations in Luanti, the player's view while on board the locomotive will be from a point in space just above the center of the locomotive rather than from inside the cabin.  While this viewpoint is certainly sufficient, switching to third person view while driving the locomotive provides a slightly different perspective from outside the locomotive that might also be useful.  Alternatively, DlxTrains now supports the [advtrains_attachment_offset_patch](https://content.luanti.org/packages/doxygen_spammer/advtrains_attachment_offset_patch/) as an optional dependency which provides a fix for the issue.
+Due to current limitations in Luanti, the player's view while on board the locomotive will be from a point in space just above the center of the locomotive rather than from inside the cabin.  While this viewpoint is certainly sufficient, switching to third person view while driving the locomotive provides a slightly different perspective from outside the locomotive that might also be useful.  Alternatively, DlxTrains supports the [advtrains_attachment_offset_patch](https://content.luanti.org/packages/doxygen_spammer/advtrains_attachment_offset_patch/) as an optional dependency which provides a fix for the issue. Using the patch is highly recommended since it allows the player to have a first person perspective from the correct location inside the cab based on the selected diver stand.
 
 ## Licenses
 

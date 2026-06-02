@@ -38,6 +38,17 @@ local livery_type3_unit_number_info = {
 				{x = 192, y = 167, spacing = 1, justify = 1, digit_width =  3, digit_height =  5, font_id = 1, color1 = "#2A2A2A", color2 = "#474443"}, },
 	}
 
+local livery_type4_unit_number_info = {
+		[0] = {	{x =  96, y = 181, spacing = 1, justify = 1, digit_width =  3, digit_height =  5, font_id = 1, color1 = "#D6D6D6", color2 = "#B5B5B5"},
+				{x = 122, y = 181, spacing = 1, justify = 1, digit_width =  3, digit_height =  5, font_id = 1, color1 = "#D6D6D6", color2 = "#B5B5B5"}, },
+		[1] = {	{x =  96, y = 181, spacing = 1, justify = 1, digit_width =  3, digit_height =  5, font_id = 1, color1 = "#C4C44E", color2 = "#BCBC46"},
+				{x = 122, y = 181, spacing = 1, justify = 1, digit_width =  3, digit_height =  5, font_id = 1, color1 = "#C4C44E", color2 = "#BCBC46"}, },
+		[2] = {	{x =  55, y = 103, spacing = 3, justify = 0, digit_width =  6, digit_height =  9, font_id = 6, color1 = "#938731", color2 = "#A29435"},
+				{x =  39, y =  41, spacing = 3, justify = 2, digit_width =  6, digit_height =  9, font_id = 6, color1 = "#938731", color2 = "#A29435"}, },
+		[3] = {	{x =  56, y = 103, spacing = 5, justify = 0, digit_width =  4, digit_height =  7, font_id = 5, color1 = "#383838", color2 = "#404040"},
+				{x =  40, y =  41, spacing = 5, justify = 2, digit_width =  4, digit_height =  7, font_id = 5, color1 = "#383838", color2 = "#404040"}, },
+	}
+
 local function GetDigitOverlay(livery_unit_number_info, x, d, alt_scheme)
 	local digit_font_name = "dlxtrains_diesel_locomotives_font"..livery_unit_number_info.font_id.."_digit_"
 
@@ -235,6 +246,55 @@ local livery_scheme_diesel_locomotive_type3 = {
 		end,
 	}
 
+local livery_scheme_diesel_locomotive_type4 = {
+		filename_prefix = "dlxtrains_diesel_locomotives_locomotive_type4",
+		[0]={code="ar"},
+		[1]={code="at"},
+		[2]={code="t"},
+		[3]={code="vr"},
+		count = 4,
+		on_update_texture = function(wagon, data, texture)
+			local new_texture = texture
+			if texture ~= nil then
+				local overlays = nil
+
+				-- Update lights
+				local white_light = "dlxtrains_diesel_locomotives_white_light.png\\^\\[resize\\:10x10"
+				if data.light_config == 1 or data.light_config == 2 then
+					-- Turn on running lights
+					overlays = (overlays or "")..":374,168="..white_light
+					if data.light_config == 1 then
+						-- Locomotive is moving forward
+						overlays = (overlays or "")..":374,157="..white_light
+					elseif data.light_config == 2 then
+						-- Locomotive is moving in reverse
+						overlays = (overlays or "")..":374,146="..white_light
+					end
+
+				end
+
+				-- Update cooling fan
+				if data.light_config == 1 or data.light_config == 2 then
+					-- Show cooling fan in spinning state
+					overlays = (overlays or "")..":159,33=".."dlxtrains_diesel_locomotives_spinning_fan.png\\^\\[resize\\:17x17"
+				end
+
+				-- Update unit number
+				local wagon_number = data.roadnumber
+				local unit_number = tonumber(wagon_number)
+				if unit_number ~= nil and unit_number >= 0 and unit_number < 1000 and string.find(wagon_number, "[,%.]") == nil then
+					overlays = (overlays or "")..Get_unit_number_overlays(livery_type4_unit_number_info[data.scheme_id or 0], wagon_number, unit_number, data.alt_scheme)
+				end
+
+				-- Update the texture if any overlays were created
+				if overlays ~= nil then
+					new_texture = "[combine:384x384:0,0=("..texture..")"..overlays
+				end
+			end
+			return new_texture
+		end,
+	}
+
 -- ////////////////////////////////////////////////////////////////////////////////////
 
 local livery_templates = {
@@ -255,6 +315,12 @@ local livery_templates = {
 		dlxtrains.init_livery_template(mod_name, 1, dlxtrains.livery_type.standard,		"T",	"locomotive_type3_t"),
 		dlxtrains.init_livery_template(mod_name, 2, dlxtrains.livery_type.standard,		"WF",	"locomotive_type3_wf"),
 		dlxtrains.init_livery_template(mod_name, 3, dlxtrains.livery_type.standard,		"ZR",	"locomotive_type3_zr"),
+	},
+	["dlxtrains_diesel_locomotives:locomotive_type4"] = {
+		dlxtrains.init_livery_template(mod_name, 0, dlxtrains.livery_type.standard,		"AR",	"locomotive_type4_ar"),
+		dlxtrains.init_livery_template(mod_name, 1, dlxtrains.livery_type.standard,		"AT",	"locomotive_type4_at"),
+		dlxtrains.init_livery_template(mod_name, 2, dlxtrains.livery_type.standard,		"T",	"locomotive_type4_t"),
+		dlxtrains.init_livery_template(mod_name, 3, dlxtrains.livery_type.standard,		"VR",	"locomotive_type4_vr"),
 	},
 }
 
@@ -284,6 +350,15 @@ local meshes_diesel_locomotive_type3 = {
 		chimneys = {
 			{x=-0.29, y=2.6, z=1.80, type="left"},
 			{x= 0.29, y=2.6, z=1.80, type="right"}
+		},
+		audio_loop_name = "dlxtrains_diesel_locomotives_locomotive_type1_loop",	-- Using locomotive_type1 audio for now.
+		audio_loop_gain = .3
+	}
+
+local meshes_diesel_locomotive_type4 = {
+		default = "dlxtrains_diesel_locomotives_locomotive_type4.b3d",
+		chimneys = {
+			{x=0.05, y=2.2, z=-0.53},
 		},
 		audio_loop_name = "dlxtrains_diesel_locomotives_locomotive_type1_loop",	-- Using locomotive_type1 audio for now.
 		audio_loop_gain = .3
@@ -740,4 +815,114 @@ if dlxtrains_diesel_locomotives.max_wagon_length >= 8.2 then
 	end
 
 	advtrains.register_wagon(wagon_type, wagon_def, S("European BR218 Diesel Locomotive"), "dlxtrains_diesel_locomotives_locomotive_type3_inv.png")
+end
+
+if dlxtrains_diesel_locomotives.max_wagon_length >= 6.3 then
+	local wagon_type = "dlxtrains_diesel_locomotives:locomotive_type4"
+
+	dlxtrains.register_livery_templates(wagon_type, mod_name, livery_templates)
+
+	local wagon_def = {
+		mesh = meshes_diesel_locomotive_type4.default,
+		textures = {dlxtrains.get_init_texture()},
+		set_textures = function(wagon, data)
+			dlxtrains.set_textures_for_livery_scheme(wagon, data, livery_scheme_diesel_locomotive_type4, meshes_diesel_locomotive_type4)
+		end,
+		custom_may_destroy = function(wagon, puncher, time_from_last_punch, tool_capabilities, direction)
+			return not dlxtrains.update_livery(wagon, puncher, livery_scheme_diesel_locomotive_type4)
+		end,
+		seats = {
+			{
+				name = "Forward Driver Stand",
+				attach_offset={x=-3.6, y=-1.0, z=-22.5},
+				view_offset = use_attachment_patch and {x=-2, y=0, z=0} or {x=-0.0, y=6.0, z=0},
+				driving_ctrl_access = true,
+				group = "cabin_fwd",
+			},
+			{
+				name = "Reverse Driver Stand",
+				attach_offset={x=3.6, y=-1.0, z=-21.0},
+				view_offset = use_attachment_patch and {x=-1, y=0, z=0} or {x=0, y=6.0, z=0},
+				advtrains_attachment_offset_patch_attach_rotation = {x=0, y=180, z=0},
+				driving_ctrl_access = true,
+				group = "cabin_rev",
+			}
+		},
+		seat_groups = {
+			cabin_fwd={
+				name = "Cabin (forward view)",
+				access_to = {"cabin_rev"},
+				require_doors_open = false,
+				driving_ctrl_access = true,
+			},
+			cabin_rev={
+				name = "Cabin (reverse view)",
+				access_to = {"cabin_fwd"},
+				require_doors_open = false,
+				driving_ctrl_access = true,
+			},
+		},
+		assign_to_seat_group = {"cabin_fwd"},
+		drives_on={default=true},
+		max_speed=20,
+		visual_size = {x=1, y=1},
+		wagon_span=3.15,
+		wheel_positions = {1.5625, -1.5625},
+		is_locomotive=true,
+		collisionbox = {-0.5,-0.5,-0.5,0.5,2.5,0.5},
+		coupler_types_front = {knuckle=true},
+		coupler_types_back = {knuckle=true},
+		drops={dlxtrains.materials.steelblock and (dlxtrains.materials.steelblock.." 2")},
+		horn_sound = "advtrains_industrial_horn",
+		has_inventory = false,
+		custom_on_step=function(wagon, dtime)
+			if dlxtrains.locomotive_sounds > 0 and wagon:train().velocity > 0 then
+				if not wagon.sound_loop_tmr or wagon.sound_loop_tmr <= 0 then
+					Update_locomotive_sound(wagon, true, meshes_diesel_locomotive_type4.audio_loop_name, meshes_diesel_locomotive_type4.audio_loop_gain)
+				end
+				wagon.sound_loop_tmr = wagon.sound_loop_tmr - dtime
+			else
+				Terminate_locomotive_sound(wagon)
+			end
+		end,
+		custom_on_velocity_change = function(wagon, velocity, old_velocity)
+			if velocity ~= old_velocity then
+				local data = advtrains.wagons[wagon.id]
+				local light_config = 0
+
+				if data.particle_spawner_ids ~= nil then
+					for _, particle_spawner_id in ipairs(data.particle_spawner_ids) do
+						if particle_spawner_id ~= nil then
+							minetest.delete_particlespawner(particle_spawner_id)
+						end
+					end
+					data.particle_spawner_ids = nil
+				end
+
+				if velocity > 0 then
+					-- Set light configuration based on direction of travel
+					light_config = 1
+					if data.wagon_flipped then
+						light_config = 2
+					end
+
+					Update_locomotive_smoke(data, wagon, meshes_diesel_locomotive_type4.chimneys, old_velocity, velocity)
+				end
+				if light_config ~= data.light_config then
+					data.light_config = light_config
+					wagon:set_textures(data)
+				end
+
+				if dlxtrains.locomotive_sounds == 2 then
+					Update_locomotive_sound(wagon, false, meshes_diesel_locomotive_type4.audio_loop_name, meshes_diesel_locomotive_type4.audio_loop_gain)
+				end
+			end
+		end,
+	}
+
+	if use_attachment_patch then
+		advtrains_attachment_offset_patch.setup_advtrains_wagon(wagon_def);
+	end
+
+	advtrains.register_wagon(wagon_type, wagon_def, S("Australian 500 Class Diesel Locomotive"), "dlxtrains_diesel_locomotives_locomotive_type4_inv.png")
 end

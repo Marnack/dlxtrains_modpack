@@ -3,7 +3,7 @@ local S = dlxtrains_diesel_locomotives.S
 
 if dlxtrains.crafting_enabled() and dlxtrains.get_config_wagon_crafting_recipe_complexity() == 1 then
 
-	if dlxtrains_diesel_locomotives.max_wagon_length >= 6.80725 then
+	if dlxtrains_diesel_locomotives.max_wagon_length >= 6.3 then
 
 		minetest.register_craftitem("dlxtrains_diesel_locomotives:locomotive_chassis", {
 			description = S("Diesel Locomotive Chassis"),
@@ -145,6 +145,24 @@ if dlxtrains.crafting_enabled() and dlxtrains.get_config_wagon_crafting_recipe_c
 			}
 		})
 
+		minetest.register_craftitem("dlxtrains_diesel_locomotives:locomotive_body_type4", {
+			description = S("Australian 500 Class Diesel Locomotive Body"),
+			inventory_image = "dlxtrains_diesel_locomotives_locomotive_body_type4.png",
+		})
+
+		minetest.register_craft({
+			output = "dlxtrains_diesel_locomotives:locomotive_body_type4",
+			recipe = {
+				{"", "dlxtrains_diesel_locomotives:hood", dlxtrains.materials.advtrains_driver_cab},
+				{"", dlxtrains.materials.dye_green, "dlxtrains_diesel_locomotives:cooling_unit"},
+				{"dlxtrains_diesel_locomotives:battery_pack", "dlxtrains_diesel_locomotives:generator", "dlxtrains_diesel_locomotives:diesel_engine"},
+			}
+		})
+
+	end
+
+	if dlxtrains_diesel_locomotives.max_wagon_length >= 6.80725 then
+
 		minetest.register_craftitem("dlxtrains_diesel_locomotives:locomotive_body_type2", {
 			description = S("North American SW1500 Diesel Locomotive Body"),
 			inventory_image = "dlxtrains_diesel_locomotives_locomotive_body_type2.png",
@@ -158,7 +176,6 @@ if dlxtrains.crafting_enabled() and dlxtrains.get_config_wagon_crafting_recipe_c
 				{"dlxtrains_diesel_locomotives:battery_pack", "dlxtrains_diesel_locomotives:generator", "dlxtrains_diesel_locomotives:diesel_engine"},
 			}
 		})
-
 	end
 
 	if dlxtrains_diesel_locomotives.max_wagon_length >= 7.35 then
