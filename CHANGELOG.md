@@ -2,6 +2,10 @@
 
 All notable changes to this project will be documented in this file.
 
+## [1.20.0] - 2026-06-01
+ - Add the Australian 500 Class Diesel Locomotive
+ - Optimize PNGs
+ - Minor code cleanup
 ## [1.19.2] - 2026-02-19
  - Prevent crash when wagons have visible loads with animated textures
 ## [1.19.1] - 2026-02-13
