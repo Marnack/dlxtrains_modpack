@@ -583,7 +583,7 @@ if dlxtrains_diesel_locomotives.max_wagon_length >= 6.80725 then
 		custom_on_step=function(wagon, dtime)
 			if dlxtrains.locomotive_sounds > 0 and wagon:train().velocity > 0 then
 				if not wagon.sound_loop_tmr or wagon.sound_loop_tmr <= 0 then
-					Update_locomotive_sound(wagon, true, meshes_diesel_locomotive_type1.audio_loop_name, meshes_diesel_locomotive_type1.audio_loop_gain) -- Using locomotive_type1 audio for now.
+					Update_locomotive_sound(wagon, true, meshes_diesel_locomotive_type2.audio_loop_name, meshes_diesel_locomotive_type2.audio_loop_gain)
 				end
 				wagon.sound_loop_tmr = wagon.sound_loop_tmr - dtime
 			else
@@ -619,7 +619,7 @@ if dlxtrains_diesel_locomotives.max_wagon_length >= 6.80725 then
 				end
 
 				if dlxtrains.locomotive_sounds == 2 then
-					Update_locomotive_sound(wagon, false, meshes_diesel_locomotive_type1.audio_loop_name, meshes_diesel_locomotive_type1.audio_loop_gain) -- Using locomotive_type1 audio for now.
+					Update_locomotive_sound(wagon, false, meshes_diesel_locomotive_type2.audio_loop_name, meshes_diesel_locomotive_type2.audio_loop_gain)
 				end
 			end
 		end,
@@ -693,7 +693,7 @@ if dlxtrains_diesel_locomotives.max_wagon_length >= 8.2 then
 		custom_on_step=function(wagon, dtime)
 			if dlxtrains.locomotive_sounds > 0 and wagon:train().velocity > 0 then
 				if not wagon.sound_loop_tmr or wagon.sound_loop_tmr <= 0 then
-					Update_locomotive_sound(wagon, true, meshes_diesel_locomotive_type1.audio_loop_name, meshes_diesel_locomotive_type1.audio_loop_gain)
+					Update_locomotive_sound(wagon, true, meshes_diesel_locomotive_type3.audio_loop_name, meshes_diesel_locomotive_type3.audio_loop_gain)
 				end
 				wagon.sound_loop_tmr = wagon.sound_loop_tmr - dtime
 			else
